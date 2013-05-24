@@ -1,7 +1,8 @@
-.. image:: https://secure.travis-ci.org/stephenmcd/mezzanine.png?branch=master
-   :target: http://travis-ci.org/#!/stephenmcd/mezzanine
+.. image:: https://secure.travis-ci.org/orlenko/mezzanine.png?branch=master
+   :target: http://travis-ci.org/#!/orlenko/mezzanine
 
 Created by `Stephen McDonald <http://twitter.com/stephen_mcd>`_
+Customized by `Vlad Orlenko <http://twitter.com/vorlenko>`_
 
 ========
 Overview
@@ -65,7 +66,7 @@ interface, Mezzanine provides the following:
 
 The Mezzanine admin dashboard:
 
-.. image:: http://github.com/stephenmcd/mezzanine/raw/master/docs/img/dashboard.png
+.. image:: http://github.com/orlenko/mezzanine/raw/master/docs/img/dashboard.png
 
 Dependencies
 ============
@@ -162,7 +163,7 @@ up a development environment and run the unit tests, using
     $ mkvirtualenv mezzanine
     $ workon mezzanine
     $ pip install Django pep8 pyflakes
-    $ git clone https://github.com/stephenmcd/mezzanine/
+    $ git clone https://github.com/orlenko/mezzanine/
     $ cd mezzanine
     $ python setup.py develop
     $ cp mezzanine/project_template/local_settings.py.template mezzanine/project_template/local_settings.py
@@ -448,8 +449,8 @@ Quotes
 .. _`pytz`: http://pypi.python.org/pypi/pytz/
 .. _`django-compressor`: https://pypi.python.org/pypi/django_compressor
 .. _`Python Imaging Library`: http://www.pythonware.com/products/pil/
-.. _`grappelli-safe`: http://github.com/stephenmcd/grappelli-safe
-.. _`filebrowser-safe`: http://github.com/stephenmcd/filebrowser-safe/
+.. _`grappelli-safe`: http://github.com/orlenko/grappelli-safe
+.. _`filebrowser-safe`: http://github.com/orlenko/filebrowser-safe/
 .. _`Grappelli`: http://code.google.com/p/django-grappelli/
 .. _`FileBrowser`: http://code.google.com/p/django-filebrowser/
 .. _`South`: http://south.aeracode.org/
@@ -472,12 +473,12 @@ Quotes
 .. _`Twitter`: http://twitter.com/
 .. _`bit.ly`: http://bit.ly/
 .. _`Akismet`: http://akismet.com/
-.. _`project_template`: https://github.com/stephenmcd/mezzanine/tree/master/mezzanine/project_template
-.. _`GitHub`: http://github.com/stephenmcd/mezzanine/
-.. _`Bitbucket`: http://bitbucket.org/stephenmcd/mezzanine/
+.. _`project_template`: https://github.com/orlenko/mezzanine/tree/master/mezzanine/project_template
+.. _`GitHub`: http://github.com/orlenko/mezzanine/
+.. _`Bitbucket`: http://bitbucket.org/orlenko/mezzanine/
 .. _`mezzanine-users`: http://groups.google.com/group/mezzanine-users/topics
 .. _`security@jupo.org`: mailto:security@jupo.org?subject=Mezzanine+Security+Issue
-.. _`GitHub issue tracker`: http://github.com/stephenmcd/mezzanine/issues
+.. _`GitHub issue tracker`: http://github.com/orlenko/mezzanine/issues
 .. _`#mezzanine IRC channel`: irc://freenode.net/mezzanine
 .. _`Freenode`: http://freenode.net
 .. _`Django coding style`: http://docs.djangoproject.com/en/dev/internals/contributing/#coding-style
