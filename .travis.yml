@@ -8,9 +8,9 @@ install:
   - pip install . --use-mirrors
   - pip install pep8 pyflakes --use-mirrors
 before_script:
-  - "cp mezzanine/project_template/local_settings.py.template mezzanine/project_template/local_settings.py"
+  - "cp sfpirgapp/local_settings.py.template sfpirgapp/local_settings.py"
 script:
-  - ./mezzanine/project_template/manage.py test
+  - ./sfpirgapp/manage.py test
 notifications:
   email:
     - vlad@bjola.ca
