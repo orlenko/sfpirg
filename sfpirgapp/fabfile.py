@@ -36,6 +36,8 @@ env.user = conf.get("SSH_USER", getuser())
 env.password = conf.get("SSH_PASS", None)
 env.key_filename = conf.get("SSH_KEY_PATH", None)
 env.hosts = conf.get("HOSTS", [])
+env.port = conf.get('SSH_PORT', 22)
+print 'Will connect to %s:%s' % (env.hosts, env.port)
 
 env.proj_name = conf.get("PROJECT_NAME", os.getcwd().split(os.sep)[-1])
 env.venv_home = conf.get("VIRTUALENV_HOME", "/home/%s" % env.user)
@@ -61,26 +63,26 @@ env.locale = conf.get("LOCALE", "en_US.UTF-8")
 # also run.
 
 templates = {
-    "nginx": {
-        "local_path": "deploy/nginx.conf",
-        "remote_path": "/etc/nginx/sites-enabled/%(proj_name)s.conf",
-        "reload_command": "service nginx restart",
-    },
-    "supervisor": {
-        "local_path": "deploy/supervisor.conf",
-        "remote_path": "/etc/supervisor/conf.d/%(proj_name)s.conf",
-        "reload_command": "supervisorctl reload",
-    },
-    "cron": {
-        "local_path": "deploy/crontab",
-        "remote_path": "/etc/cron.d/%(proj_name)s",
-        "owner": "root",
-        "mode": "600",
-    },
-    "gunicorn": {
-        "local_path": "deploy/gunicorn.conf.py",
-        "remote_path": "%(proj_path)s/gunicorn.conf.py",
-    },
+    #"nginx": {
+    #    "local_path": "deploy/nginx.conf",
+    #    "remote_path": "/etc/nginx/sites-enabled/%(proj_name)s.conf",
+    #    "reload_command": "service nginx restart",
+    #},
+    #"supervisor": {
+    #    "local_path": "deploy/supervisor.conf",
+    #    "remote_path": "/etc/supervisor/conf.d/%(proj_name)s.conf",
+    #    "reload_command": "supervisorctl reload",
+    #},
+    #"cron": {
+    #    "local_path": "deploy/crontab",
+    #    "remote_path": "/etc/cron.d/%(proj_name)s",
+    #    "owner": "root",
+    #    "mode": "600",
+    #},
+    #"gunicorn": {
+    #    "local_path": "deploy/gunicorn.conf.py",
+    #    "remote_path": "%(proj_path)s/gunicorn.conf.py",
+    #},
     "settings": {
         "local_path": "deploy/live_settings.py",
         "remote_path": "%(proj_path)s/local_settings.py",
@@ -514,6 +516,13 @@ def rollback():
             run("tar -xf %s" % join(env.proj_path, "last.tar"))
         restore("last.db")
     restart()
+
+
+@task
+@log_call
+def test_connection():
+    '''Tests connection to the deployment servers'''
+    sudo('pwd')
 
 
 @task

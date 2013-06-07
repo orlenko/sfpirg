@@ -1,0 +1,8 @@
+django
+PIL
+bleach
+pytz
+South
+django-compressor
+pyflakes
+pep8
