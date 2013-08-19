@@ -11,13 +11,13 @@
 # http://mezzanine.jupo.org/docs/configuration.html#default-settings
 
 # Controls the ordering and grouping of the admin menu.
-#
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "blog.BlogPost",
-#        "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
+
+ADMIN_MENU_ORDER = (
+    ("Content", ("sfpirgapp.Testimonial", "pages.Page", "blog.BlogPost",
+       "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
+    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("Users", ("auth.User", "auth.Group",)),
+)
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -35,11 +35,13 @@
 # menus a page should appear in. Note that if a menu template is used
 # that doesn't appear in this setting, all pages will appear in it.
 
-# PAGE_MENU_TEMPLATES = (
-#     (1, "Top navigation bar", "pages/menus/dropdown.html"),
-#     (2, "Left-hand tree", "pages/menus/tree.html"),
-#     (3, "Footer", "pages/menus/footer.html"),
-# )
+PAGE_MENU_TEMPLATES = (
+    (1, "Top navigation bar", "menus/top.html"),
+    (2, "Right-hand sidebar", "menus/side.html"),
+    (3, "Footer", "menus/bottom.html"),
+)
+
+INLINE_EDITING_ENABLED = True
 
 # A sequence of fields that will be injected into Mezzanine's (or any
 # library's) models. Each item in the sequence is a four item sequence.
@@ -116,6 +118,8 @@ DEBUG = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 1
+
+SITE_TITLE = 'SFPIRG - Simon Fraser Public Interest Research Group'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -213,6 +217,8 @@ ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
+AUTH_PROFILE_MODULE = 'sfpirgapp.profile'
+
 
 ################
 # APPLICATIONS #
@@ -236,8 +242,9 @@ INSTALLED_APPS = (
     "mezzanine.pages",
     "mezzanine.galleries",
     "mezzanine.twitter",
-    #"mezzanine.accounts",
+    "mezzanine.accounts",
     #"mezzanine.mobile",
+    'sfpirgapp',
 )
 
 # List of processors used by RequestContext to populate the context.

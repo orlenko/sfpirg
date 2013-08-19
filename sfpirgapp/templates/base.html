@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags %}
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block meta_title %}{{ settings.SITE_TITLE }}{% endblock %}</title>
+
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+		<link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/apple-touch-icon.png' %}">
+		<link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+		<link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+
+		<!--Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700,700italic,600italic,300italic,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/MyFontsWebfontsKit.css' %}">
+
+		<!-- End Fonts -->
+
+		{% compress css %}
+			<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+
+			{% block extra_css %}{% endblock %}
+		{% endcompress %}
+
+		{% compress js %}
+			<!--[if lt IE 9]>
+			<script src="js/shiv.js"></script>
+			<script src="js/modernizr.custom.83894.js"></script>
+			<![endif]-->
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="{% static 'js/default.js' %}"></script>
+			<script type="text/javascript">
+				var $buoop = {
+					vs : {
+						i : 8,
+						f : 15,
+						o : 10.6,
+						s : 4,
+						n : 9
+					}
+				}
+				$buoop.ol = window.onload;
+				window.onload = function() {
+					try {
+						if ($buoop.ol)
+							$buoop.ol();
+					} catch (e) {
+					}
+					var e = document.createElement("script");
+					e.setAttribute("type", "text/javascript");
+					e.setAttribute("src", "http://browser-update.org/update.js");
+					document.body.appendChild(e);
+				}
+			</script>
+			{% block extra_js %}{% endblock %}
+		{% endcompress %}
+
+		{% block extra_head %}{% endblock %}
+	</head>
+
+	<body id="{% block body_id %}body{% endblock %}">
+
+		<div class="container">
+
+			<header>
+
+				<div class="section row-one">
+					<div id="sfpirg-logo" class="col two tablet-three mobile-full">
+						<a href="/"><img src="{% static 'img/sfpirg-logo.jpg' %}" alt="SFPIRG Logo" /></a>
+					</div>
+
+					<div id="top-search-bar" class="col ten tablet-nine mobile-full">
+						<form method="get" id="searchform" action="/search/">
+							<input type="hidden" name="type" value="" />
+							<input type="text" class="field" name="q" id="q" placeholder="Search SFPIRG" />
+							<input type="submit" class="submit" name="submit" id="searchsubmit" value=""  />
+						</form>
+					</div>
+
+					<div id="main-title" class="col ten tablet-nine mobile-full">
+						<h1>Simon Fraser Public Interest Research Group</h1>
+					</div>
+					<div id="tag-line" class="col ten tablet-nine mobile-full">
+						<h2>Student Funded. Student Lead. Student Directed.</h2>
+					</div>
+				</div>
+
+				<div class="section row-one">
+					<nav id="main-nav" class="col twelve red-nav tablet-full mobile-full">
+						{% page_menu "menus/top.html" %}
+					</nav>
+				</div>
+
+			</header><!-- End of Header -->
+
+			{% block bodycontent %}
+			<div class="section row-one">
+				<section id="main-content" class="col eight tablet-seven mobile-full grey">
+					{% block main %}
+					{% endblock %}
+				</section>
+				{% include 'include/sidebar.html' %}
+			</div>
+			{% endblock %}
+
+
+			<footer>
+
+				<div class="section row-two">
+					<nav id="footer-nav" class="col twelve red-nav tablet-full mobile-full">
+						{% page_menu "menus/bottom.html" %}
+					</nav>
+				</div>
+
+				<div class="section row-two">
+					<div id="copyright" class="col twelve tablet-full mobile-full">
+						Copyright &copy;2013 SFPIRG | <a href="http://www.webteam.vcn.bc.ca/" title="Webdesign and Development by VCN webteam" target="_blank">Webdesign and Development by VCN webteam</a>
+					</div>
+				</div>
+
+			</footer><!-- End of Footer -->
+
+		</div><!-- End Class ="container" -->
+
+		{% include "includes/footer_scripts.html" %}
+
+	</body>
+</html>

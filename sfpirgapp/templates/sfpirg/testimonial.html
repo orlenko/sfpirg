@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block main %}
+	{% editable t.content %}
+		{{ t.content|richtext_filter|safe }}
+	{% endeditable %}
+{% endblock %}
+

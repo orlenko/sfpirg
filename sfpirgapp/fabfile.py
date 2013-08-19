@@ -380,25 +380,25 @@ def create():
     psql("CREATE DATABASE %s WITH OWNER %s ENCODING = 'UTF8' "
          "LC_CTYPE = '%s' LC_COLLATE = '%s' TEMPLATE template0;" %
          (env.proj_name, env.proj_name, env.locale, env.locale))
-
-    # Set up SSL certificate.
-    conf_path = "/etc/nginx/conf"
-    if not exists(conf_path):
-        sudo("mkdir %s" % conf_path)
-    with cd(conf_path):
-        crt_file = env.proj_name + ".crt"
-        key_file = env.proj_name + ".key"
-        if not exists(crt_file) and not exists(key_file):
-            try:
-                crt_local, = glob(join("deploy", "*.crt"))
-                key_local, = glob(join("deploy", "*.key"))
-            except ValueError:
-                parts = (crt_file, key_file, env.live_host)
-                sudo("openssl req -new -x509 -nodes -out %s -keyout %s "
-                     "-subj '/CN=%s' -days 3650" % parts)
-            else:
-                upload_template(crt_local, crt_file, use_sudo=True)
-                upload_template(key_local, key_file, use_sudo=True)
+# 
+#     # Set up SSL certificate.
+#     conf_path = "/etc/nginx/conf"
+#     if not exists(conf_path):
+#         sudo("mkdir %s" % conf_path)
+#     with cd(conf_path):
+#         crt_file = env.proj_name + ".crt"
+#         key_file = env.proj_name + ".key"
+#         if not exists(crt_file) and not exists(key_file):
+#             try:
+#                 crt_local, = glob(join("deploy", "*.crt"))
+#                 key_local, = glob(join("deploy", "*.key"))
+#             except ValueError:
+#                 parts = (crt_file, key_file, env.live_host)
+#                 sudo("openssl req -new -x509 -nodes -out %s -keyout %s "
+#                      "-subj '/CN=%s' -days 3650" % parts)
+#             else:
+#                 upload_template(crt_local, crt_file, use_sudo=True)
+#                 upload_template(key_local, key_file, use_sudo=True)
 
     # Set up project.
     upload_template_and_reload("settings")
