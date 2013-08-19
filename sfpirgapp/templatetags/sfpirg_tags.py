@@ -30,11 +30,12 @@ register = template.Library()
 def sfpirg_random_testimonial(context, token):
     all_testimonials = models.Testimonial.objects.all()
     count = len(all_testimonials)
-    index = random.randint(0, count-1)
-    testimonial = all_testimonials[index]
-    log.debug('Processing testimonial: %s' % testimonial)
+    if count:
+        index = random.randint(0, count-1)
+        testimonial = all_testimonials[index]
+        log.debug('Processing testimonial: %s' % testimonial)
+        context['testimonial'] = testimonial
     t = get_template('sfpirg/testimonial_block.html')
-    context['testimonial'] = testimonial
     return t.render(Context(context))
 
 
