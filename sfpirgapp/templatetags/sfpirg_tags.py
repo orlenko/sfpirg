@@ -35,6 +35,8 @@ def sfpirg_random_testimonial(context, token):
         testimonial = all_testimonials[index]
         log.debug('Processing testimonial: %s' % testimonial)
         context['testimonial'] = testimonial
+    else:
+        context['testimonial'] = {}
     t = get_template('sfpirg/testimonial_block.html')
     return t.render(Context(context))
 
