@@ -15,7 +15,8 @@ event_fieldsets[0][1]['fields'].remove(('publish_date', 'expiry_date'))
 event_fieldsets[1][1]['fields'].append('status')
 event_fieldsets[1][1]['fields'].append(('publish_date', 'expiry_date'))
 event_fieldsets[0][1]["fields"].extend([
-    "content", "start", "end", "type", "zip_import", "in_menus", 'login_required'])
+    "content", "start", "end", "type", "zip_import", "in_menus",
+    'login_required'])
 
 
 class EventImageInline(TabularDynamicInlineAdmin):

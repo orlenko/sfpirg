@@ -31,9 +31,11 @@ class Event(Page):
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
     type = models.ForeignKey('calendar.EventType', blank=True, null=True)
-    zip_import = models.FileField(verbose_name=_("Zip import"), blank=True, null=True,
-                                  upload_to=upload_to("calendar.Event.zip_import", "events"),
-                                  help_text=_("Upload a zip file containing images, and "
+    zip_import = models.FileField(verbose_name=_("Zip import"),
+                                  blank=True,
+                                  null=True,
+                    upload_to=upload_to("calendar.Event.zip_import", "events"),
+                    help_text=_("Upload a zip file containing images, and "
                                   "they'll be imported into this event."))
 
     class Meta:

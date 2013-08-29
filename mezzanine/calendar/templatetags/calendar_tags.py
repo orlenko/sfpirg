@@ -15,6 +15,7 @@ register = template.Library()
 
 @register.render_tag
 def calendar_event_slider(context, token):
-    context['events'] = models.Event.objects.filter(start__gt=datetime.datetime.now()).order_by('start')[:20]
+    context['events'] = models.Event.objects.filter(
+                    start__gt=datetime.datetime.now()).order_by('start')[:20]
     t = get_template('calendar/event_slider.html')
     return t.render(Context(context))

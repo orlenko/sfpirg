@@ -15,3 +15,5 @@ if Profile:
     @receiver(post_save, sender=User)
     def user_saved(sender=None, instance=None, **kwargs):
         Profile.objects.get_or_create(**{str(user_field): instance})
+        if hasattr(instance, '_profile_cache'):
+            del instance._profile_cache

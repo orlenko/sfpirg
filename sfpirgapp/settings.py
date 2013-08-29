@@ -218,12 +218,12 @@ ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
 AUTH_PROFILE_MODULE = 'sfpirgapp.profile'
+ALLOWED_HOSTS = []
 
 
 ################
 # APPLICATIONS #
 ################
-
 INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
