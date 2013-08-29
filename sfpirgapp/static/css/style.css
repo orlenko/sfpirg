@@ -8,6 +8,7 @@
 .menu-slideshow {
   position: relative;
   overflow: hidden;
+  max-height: 330px;
   /* caption */
   /* overlay */ }
   .menu-slideshow .button-more {
