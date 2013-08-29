@@ -5,6 +5,63 @@
   Version: 1.5 - Last Updated: 21st June, 2013
 
 ========================================================================== */
+.menu-slideshow {
+  position: relative;
+  overflow: hidden;
+  /* caption */
+  /* overlay */ }
+  .menu-slideshow .button-more {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 700; }
+  .menu-slideshow .cycle-caption {
+    position: absolute;
+    color: white;
+    bottom: 15px;
+    right: 15px;
+    z-index: 700; }
+  .menu-slideshow .cycle-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 600;
+    background-color: rgba(0, 0, 0, 0.3);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000,endColorstr=#7F000000);
+    /* IE*/
+    padding: 15px;
+    color: white; }
+    .menu-slideshow .cycle-overlay div:first-child {
+      font-family: Peignot LT Std Demi, PeignotLTStd-Demi;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-size: 1.25rem; }
+  .menu-slideshow .arrow-left, .menu-slideshow .arrow-right {
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    width: 66px;
+    height: 55px;
+    top: 140px;
+    z-index: 101; }
+  .menu-slideshow .arrow-left {
+    left: 10px; }
+    .menu-slideshow .arrow-left.red {
+      background-image: url(/static/img/arrow-left-red-b.png); }
+    .menu-slideshow .arrow-left.green {
+      background-image: url(/static/img/arrow-left-green-b.png); }
+    .menu-slideshow .arrow-left.teal {
+      background-image: url(/static/img/arrow-left-teal-b.png); }
+  .menu-slideshow .arrow-right {
+    right: 10px; }
+    .menu-slideshow .arrow-right.red {
+      background-image: url(/static/img/arrow-right-red-b.png); }
+    .menu-slideshow .arrow-right.green {
+      background-image: url(/static/img/arrow-right-green-b.png); }
+    .menu-slideshow .arrow-right.teal {
+      background-image: url(/static/img/arrow-right-teal-b.png); }
+
 /* General Resets */
 * {
   -webkit-box-sizing: border-box;
@@ -497,6 +554,23 @@ textarea {
 .no-style-button.disabled {
   text-decoration: none;
   color: #999; }
+
+.button-more {
+  display: block;
+  width: 96px;
+  height: 18px;
+  background-position: top center;
+  background-repeat: no-repeat; }
+  .button-more.red {
+    background-image: url(/static/img/more-button-red.png); }
+  .button-more.green {
+    background-image: url(/static/img/more-button-green.png); }
+  .button-more.grey {
+    background-image: url(/static/img/more-button-grey.png); }
+  .button-more.teal {
+    background-image: url(/static/img/more-button-teal.png); }
+  .button-more.yellow {
+    background-image: url(/static/img/more-button-yellow.png); }
 
 /* ==========================================================================
 /* 2.0 - Grid Layout (Responsive)

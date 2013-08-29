@@ -15,6 +15,7 @@ from mezzanine.utils.urls import admin_url
 
 page_fieldsets = deepcopy(DisplayableAdmin.fieldsets)
 page_fieldsets[0][1]["fields"] += ("in_menus", "login_required",)
+page_fieldsets[0][1]["fields"].insert(-2, "featured_image")
 
 
 class PageAdminForm(DisplayableAdminForm):

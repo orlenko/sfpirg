@@ -7,6 +7,7 @@
 ========================================================================== */
 
   @import "mixins"; // Import the base mixins
+  @import "slides";
 
   // Global Defaults
   $mobile-container:              100%;
@@ -478,6 +479,30 @@ textarea {
 .no-style-button.disabled {
   text-decoration: none;
   color: #999;
+}
+
+.button-more {
+  display: block;
+  width: 96px;
+  height: 18px;
+  background-position: top center;
+  background-repeat: no-repeat;
+
+  &.red {
+    background-image: url(/static/img/more-button-red.png);
+  }
+  &.green {
+    background-image: url(/static/img/more-button-green.png);
+  }
+  &.grey {
+    background-image: url(/static/img/more-button-grey.png);
+  }
+  &.teal {
+    background-image: url(/static/img/more-button-teal.png);
+  }
+  &.yellow {
+    background-image: url(/static/img/more-button-yellow.png);
+  }
 }
 
 

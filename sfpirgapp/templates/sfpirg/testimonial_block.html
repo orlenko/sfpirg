@@ -1,4 +1,5 @@
 {% load mezzanine_tags staticfiles sfpirg_tags %}
+
 <img src="{{ MEDIA_URL }}{% sfpirg_thumbnail testimonial.user.profile.photo 90 0 %}" alt="Avatar" />
 <p class="x-name">{{ testimonial.user.get_full_name|default:testimonial.user.username }} - {{ testimonial.user.profile.title|default:'A Person' }}</p>
 <p class="x-title-story">{{ testimonial.title }}</p>

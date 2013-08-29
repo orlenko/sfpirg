@@ -1,0 +1,23 @@
+{% load i18n future pages_tags sfpirg_tags %}
+
+<div class="event-slider-container">
+	<ul class="cycle-slideshow"
+		data-cycle-fx="carousel"
+		data-cycle-timeout="10000"
+		data-cycle-slides="> li"
+        data-cycle-prev="#prevslide"
+        data-cycle-next="#nextslide">
+		{% for event in events %}
+	         <li>
+	         	<img class="event-img" src="{{ MEDIA_URL }}{% sfpirg_thumbnail event.first_image 100 0 %}" alt="Event Picture" />
+                <p class="ev-title">{{ event.title }}</p>
+                <p class="ev-date">{{ event.start|date:"M d, Y at gA" }}</p>
+                <p class="ev-text">{{ event.content|striptags|truncatewords:30 }}</p>
+                <a href="{{ event.get_absolute_url }}"><img class="ev-more" src="/static/img/more-button-green.png" alt="Click for More" /></a>
+             </li>
+	    {% endfor %}
+	</ul>
+
+	<a href="#" id="prevslide" class="arrow-left green"></a>
+	<a href="#" id="nextslide" class="arrow-right red"></a>
+</div>

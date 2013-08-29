@@ -1,6 +1,48 @@
 {% extends "base.html" %}
-{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+{% load i18n staticfiles pages_tags mezzanine_tags sfpirg_tags calendar_tags news_tags %}
 
 {% block bodycontent %}
-halloo
+
+	<section class="section row-two grey">
+		{% page_menu "menus/slideshow.html" %}
+
+		<div id="experience-widget" class="col four tablet-eight mobile-full">
+			<h3>EXPERIENCE SFPIRG</h3>
+			{% sfpirg_random_testimonial %}
+		</div>
+
+        <div id="values" class="col two tablet-four mobile-full"><h3><a href="/values">OUR VALUES</a></h3>
+        	<a href="/values"><img src="../static/img/what-matters-to-us.png" alt="Click for: What Matters to US" /></a>
+        </div><!-- end of #values -->
+
+
+        <div id="newsletter" class="col two tablet-four mobile-full"><h3><a href="http://sfpirg.us4.list-manage1.com/subscribe?u=06455f18e6886efe48a03ced1&id=66dabecbe8">NEWSLETTER</a></h3>
+        <a href="http://sfpirg.us4.list-manage1.com/subscribe?u=06455f18e6886efe48a03ced1&id=66dabecbe8" target="_blank"><img src="../static/img/newsletter.png" alt="Click for: Newsletter" /></a>
+        </div><!-- end of #newsletter -->
+
+    </section>
+
+
+    <section class="section row-two green">
+
+        <div id="what-is-happening" class="col five mobile-full">
+        	<h3>What is happening</h3>
+        	{% calendar_event_slider %}
+        </div>
+
+
+
+
+        <div id="news" class="col three mobile-full">
+        	<h3>News</h3>
+        	{% news_list %}
+        </div>
+
+        <div id="stay-connected" class="col four mobile-full"><h3><a href="#">Stay Connected</a></h3>
+        <a href="https://www.facebook.com/sfpirg" target="_blank"><img src="../static/img/facebook.png" alt="Like us on Facebook" /></a>
+        <a href="https://twitter.com/SFPIRG" target="_blank"><img src="../static/img/twitter.png" alt="Follow Us on Twitter" /></a>
+        <a href="http://www.youtube.com/user/SFPIRGatSFU" target="_blank"><img src="../static/img/youtube.png" alt="Watch Us on You Tube"/></a>
+        </div><!-- end of #stay-connected -->
+
+    </section>
 {% endblock %}

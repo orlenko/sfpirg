@@ -8,7 +8,6 @@ from mezzanine.utils.models import upload_to
 from mezzanine.core.fields import FileField
 
 
-
 class Profile(models.Model, AdminThumbMixin):
     user = models.OneToOneField(User)
     date_of_birth = models.DateField(null=True)
@@ -21,10 +20,9 @@ class Profile(models.Model, AdminThumbMixin):
     admin_thumb_field = "photo"
 
 
-
 class Testimonial(Displayable, Ownable, RichText):
-    is_public = models.BooleanField(default=False)
 
     @models.permalink
     def get_absolute_url(self):
         return ('testimonial', (), {"slug": self.slug})
+

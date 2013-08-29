@@ -1,16 +1,16 @@
 import random
 from urllib import quote, unquote
-from django.template import Context, TemplateSyntaxError, Variable
+from django.template import Context
 from django.template.loader import get_template
 from django.core.files.storage import default_storage
 from mezzanine.conf import settings
 from mezzanine import template
 import logging
-import traceback
 
 from sfpirgapp import models
 from django.core.files.base import File
 import os
+from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 
 # Try to import PIL in either of the two ways it can end up installed.
 try:
@@ -22,13 +22,15 @@ except ImportError:
 
 
 log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
 
 register = template.Library()
 
 
 @register.render_tag
 def sfpirg_random_testimonial(context, token):
-    all_testimonials = models.Testimonial.objects.all()
+    log.debug('Creating a random testimonial block')
+    all_testimonials = models.Testimonial.objects.filter(status=CONTENT_STATUS_PUBLISHED)
     count = len(all_testimonials)
     if count:
         index = random.randint(0, count-1)
@@ -36,7 +38,19 @@ def sfpirg_random_testimonial(context, token):
         log.debug('Processing testimonial: %s' % testimonial)
         context['testimonial'] = testimonial
     else:
-        context['testimonial'] = {}
+        context['testimonial'] = {
+            'user': {
+                'first_name': '',
+                'last_name': '',
+                'username': '',
+                'get_full_name': '',
+                'profile': {
+                    'title': '',
+                    'photo': ''
+                }
+            },
+            'content': ''
+        }
     t = get_template('sfpirg/testimonial_block.html')
     return t.render(Context(context))
 

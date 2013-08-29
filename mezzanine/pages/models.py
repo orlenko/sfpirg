@@ -7,9 +7,11 @@ from mezzanine.core.models import Displayable, Orderable, RichText
 from mezzanine.pages.fields import MenusField
 from mezzanine.pages.managers import PageManager
 from mezzanine.utils.urls import path_to_slug, slugify
+from mezzanine.core.fields import FileField
+from mezzanine.utils.models import AdminThumbMixin, upload_to
 
 
-class BasePage(Orderable, Displayable):
+class BasePage(Orderable, Displayable, AdminThumbMixin):
     """
     Exists solely to store ``PageManager`` as the main manager.
     If it's defined on ``Page``, a concrete model, then each
@@ -35,6 +37,10 @@ class Page(BasePage):
     content_model = models.CharField(editable=False, max_length=50, null=True)
     login_required = models.BooleanField(_("Login required"),
         help_text=_("If checked, only logged in users can view this page"))
+    featured_image = FileField(verbose_name=_("Featured Image"),
+        upload_to=upload_to("pages.Page.featured_image", "pages"),
+        format="Image", max_length=255, null=True, blank=True)
+    admin_thumb_field = "featured_image"
 
     class Meta:
         verbose_name = _("Page")
