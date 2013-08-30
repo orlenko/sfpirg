@@ -1,0 +1,18 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags sfpirg_tags %}
+
+{% block main %}{{ block.super }}
+
+	<div id="main-content-block">
+		{% if page.featured_image %}
+			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 200 0 %}" />
+		{% endif %}
+
+		{% editable page.newspost.content %}
+			{{ page.newspost.content|richtext_filter|safe }}
+		{% endeditable %}
+	</div>
+
+
+{% endblock %}

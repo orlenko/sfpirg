@@ -17,11 +17,4 @@
 
 {% block main %}
 	<h1>{% editable page.title %}{{ page.title }}{% endeditable %}</h1>
-
-	{% editable page.content %}
-		<div id="main-content-block">
-			{{ page.content|safe }}
-		</div>
-	{% endeditable %}
-
 {% endblock %}
