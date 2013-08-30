@@ -1004,7 +1004,9 @@ textarea {
 		width: 100%;
 		}
 		.event-img {float:left;
-		padding: 6px 8px 0 0;}
+		padding: 6px 8px 0 0;
+		width:30%;
+		}
 
 		.ev-title {font-size:12px;
 		text-transform:uppercase;
@@ -1380,7 +1382,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 		.event-img {
 		padding: 6px 8px 8px 0;
-		/*width:30%;*/}
+		width:30%;}
 
 		.ev-title {font-size:10px;}
 
@@ -1529,7 +1531,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 		.event-img {
 		padding: 6px 8px 8px 0;
-		/*width:30%;*/}
+		width:30%;}
 
 		.ev-title {font-size:10px;}
 
@@ -1717,7 +1719,7 @@ table td {
 
 		.event-img {
 		padding: 6px 8px 8px 0;
-		/*width:30%;*/}
+		width:30%;}
 
 		.ev-title {font-size:10px;}
 

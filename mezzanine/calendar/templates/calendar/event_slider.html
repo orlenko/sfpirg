@@ -13,7 +13,7 @@
 	         <div class="slide">
 	         	{% if event.featured_image %}
 	         		<img class="event-img"
-	         			src="{{ MEDIA_URL }}{% sfpirg_thumbnail event.featured_image 50 0 %}"
+	         			src="{{ MEDIA_URL }}{% sfpirg_thumbnail event.featured_image 150 0 %}"
 	         			alt="Event Picture" />
 	         	{% endif %}
                 <p class="ev-title">{{ event.title }}</p>

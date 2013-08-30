@@ -64,8 +64,7 @@
       background-image: url(/static/img/arrow-right-teal-b.png); }
 
 .event-slider-container {
-  position: relative;
-  max-height: 112px; }
+  overflow: hidden; }
   .event-slider-container .button-more {
     position: absolute;
     bottom: 10px;
@@ -74,7 +73,8 @@
   .event-slider-container .slide {
     padding: 0 70px;
     white-space: normal;
-    vertical-align: top; }
+    vertical-align: top;
+    width: 100%; }
     .event-slider-container .slide p {
       white-space: normal; }
   .event-slider-container .arrow-left, .event-slider-container .arrow-right {
@@ -87,21 +87,21 @@
     top: 20px;
     z-index: 101; }
   .event-slider-container .arrow-left {
-    left: 10px; }
+    left: 2px; }
     .event-slider-container .arrow-left.red {
-      background-image: url(/static/img/arrow-left-red.png); }
+      background-image: url(/static/img/arrow-left-red-b.png); }
     .event-slider-container .arrow-left.green {
-      background-image: url(/static/img/arrow-left-green.png); }
+      background-image: url(/static/img/arrow-left-green-b.png); }
     .event-slider-container .arrow-left.teal {
-      background-image: url(/static/img/arrow-left-teal.png); }
+      background-image: url(/static/img/arrow-left-teal-b.png); }
   .event-slider-container .arrow-right {
-    right: 10px; }
+    right: 2px; }
     .event-slider-container .arrow-right.red {
-      background-image: url(/static/img/arrow-right-red.png); }
+      background-image: url(/static/img/arrow-right-red-b.png); }
     .event-slider-container .arrow-right.green {
-      background-image: url(/static/img/arrow-right-green.png); }
+      background-image: url(/static/img/arrow-right-green-b.png); }
     .event-slider-container .arrow-right.teal {
-      background-image: url(/static/img/arrow-right-teal.png); }
+      background-image: url(/static/img/arrow-right-teal-b.png); }
 
 /*
 
@@ -1085,7 +1085,8 @@ textarea {
     width: 100%; }
   #what-is-happening .event-img {
     float: left;
-    padding: 6px 8px 0 0; }
+    padding: 6px 8px 0 0;
+    width: 30%; }
   #what-is-happening .ev-title {
     font-size: 12px;
     text-transform: uppercase;
@@ -1402,7 +1403,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
   height: 112px; }
 #sidebar #what-is-happening .event-img {
   padding: 6px 8px 8px 0;
-  /*width:30%;*/ }
+  width: 30%; }
 #sidebar #what-is-happening .ev-title {
   font-size: 10px; }
 #sidebar #what-is-happening .ev-date {
@@ -1551,7 +1552,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     height: 112px; }
   #what-is-happening .event-img {
     padding: 6px 8px 8px 0;
-    /*width:30%;*/ }
+    width: 30%; }
   #what-is-happening .ev-title {
     font-size: 10px; }
   #what-is-happening .ev-date {
@@ -1714,7 +1715,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     height: 112px; }
   #what-is-happening .event-img {
     padding: 6px 8px 8px 0;
-    /*width:30%;*/ }
+    width: 30%; }
   #what-is-happening .ev-title {
     font-size: 10px; }
   #what-is-happening .ev-date {

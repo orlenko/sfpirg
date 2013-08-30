@@ -1,0 +1,19 @@
+
+  // Global Defaults
+  $mobile-container:              100%;
+  $tablet-container:              765px;
+  $desktop-container:             1020px;
+
+
+  // Resonsive Design Break Points
+  $mobile-breakpoint:         $tablet-container + 19px;
+  $tablet-breakpoint:         $tablet-container + 20px;
+  $desktop-breakpoint:        $desktop-container + 39px;
+
+  // Heading                  Size
+  $h1:                        36;
+  $h2:                        32;
+  $h3:                        26;
+  $h4:                        20;
+  $h5:                        18;
+  $h6:                        16;
