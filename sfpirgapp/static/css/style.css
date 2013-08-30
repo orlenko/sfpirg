@@ -44,7 +44,7 @@
     display: block;
     width: 66px;
     height: 55px;
-    top: 140px;
+    top: 130px;
     z-index: 101; }
   .menu-slideshow .arrow-left {
     left: 10px; }
@@ -62,6 +62,47 @@
       background-image: url(/static/img/arrow-right-green-b.png); }
     .menu-slideshow .arrow-right.teal {
       background-image: url(/static/img/arrow-right-teal-b.png); }
+
+.event-slider-container {
+  position: relative;
+  overflow: hidden;
+  max-height: 112px; }
+  .event-slider-container .button-more {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 700; }
+  .event-slider-container .slide {
+    padding: 0 70px;
+    white-space: normal;
+    width: 405px; }
+    .event-slider-container .slide p {
+      white-space: normal; }
+  .event-slider-container .arrow-left, .event-slider-container .arrow-right {
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    width: 66px;
+    height: 55px;
+    top: 20px;
+    z-index: 101; }
+  .event-slider-container .arrow-left {
+    left: 10px; }
+    .event-slider-container .arrow-left.red {
+      background-image: url(/static/img/arrow-left-red.png); }
+    .event-slider-container .arrow-left.green {
+      background-image: url(/static/img/arrow-left-green.png); }
+    .event-slider-container .arrow-left.teal {
+      background-image: url(/static/img/arrow-left-teal.png); }
+  .event-slider-container .arrow-right {
+    right: 10px; }
+    .event-slider-container .arrow-right.red {
+      background-image: url(/static/img/arrow-right-red.png); }
+    .event-slider-container .arrow-right.green {
+      background-image: url(/static/img/arrow-right-green.png); }
+    .event-slider-container .arrow-right.teal {
+      background-image: url(/static/img/arrow-right-teal.png); }
 
 /* General Resets */
 * {
@@ -1345,7 +1386,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
   height: 112px; }
 #sidebar #what-is-happening .event-img {
   padding: 6px 8px 8px 0;
-  width: 30%; }
+  /*width:30%;*/ }
 #sidebar #what-is-happening .ev-title {
   font-size: 10px; }
 #sidebar #what-is-happening .ev-date {

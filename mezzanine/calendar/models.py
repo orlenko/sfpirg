@@ -42,12 +42,6 @@ class Event(Page):
         verbose_name = u'Event'
         verbose_name_plural = u'Events'
 
-    @property
-    def first_image(self):
-        images = self.images
-        if len(images):
-            return images[0]
-
     def save(self, delete_zip_import=True, *args, **kwargs):
         """
         If a zip file is uploaded, extract any images from it and add

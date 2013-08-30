@@ -34,7 +34,6 @@
       }
   }
 
-
   .arrow-left, .arrow-right {
     background-position: top center;
     background-repeat: no-repeat;
@@ -42,7 +41,7 @@
     display: block;
     width: 66px;
     height: 55px;
-    top: 140px;
+    top: 130px;
     z-index: 101;
   }
 
@@ -72,4 +71,65 @@
     }
   }
 
+}
+
+.event-slider-container {
+
+  position: relative;
+  overflow: hidden;
+  max-height: 112px;
+
+  .button-more {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 700;
+  }
+
+  .slide {
+    padding: 0 70px;
+    white-space: normal;
+    width: 405px;
+
+    p {
+      white-space: normal;
+    }
+  }
+
+  .arrow-left, .arrow-right {
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    width: 66px;
+    height: 55px;
+    top: 20px;
+    z-index: 101;
+  }
+
+  .arrow-left {
+    left: 10px;
+    &.red {
+      background-image: url(/static/img/arrow-left-red.png);
+    }
+    &.green {
+      background-image: url(/static/img/arrow-left-green.png);
+    }
+    &.teal {
+      background-image: url(/static/img/arrow-left-teal.png);
+    }
+  }
+
+  .arrow-right {
+    right: 10px;
+    &.red {
+      background-image: url(/static/img/arrow-right-red.png);
+    }
+    &.green {
+      background-image: url(/static/img/arrow-right-green.png);
+    }
+    &.teal {
+      background-image: url(/static/img/arrow-right-teal.png);
+    }
+  }
 }
