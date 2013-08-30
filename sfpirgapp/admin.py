@@ -7,6 +7,8 @@ from sfpirgapp.models import (
     Testimonial,
     Profile
 )
+from mezzanine.pages.admin import PageAdmin
+from sfpirgapp.models import ActionGroup
 
 
 testimonial_fieldsets = deepcopy(DisplayableAdmin.fieldsets)
@@ -38,5 +40,10 @@ class ProfileAdmin(admin.ModelAdmin):
     list_filter = []
 
 
+class ActionGroupAdmin(PageAdmin):
+    fieldsets = deepcopy(PageAdmin.fieldsets)
+
+
+admin.site.register(ActionGroup, ActionGroupAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Profile, ProfileAdmin)

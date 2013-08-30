@@ -1,0 +1,25 @@
+{% load i18n future pages_tags sfpirg_tags %}
+
+<div class="ag-slider-container">
+	<div class="cycle-slideshow"
+		data-cycle-fx="fade"
+		data-cycle-timeout="0"
+		data-cycle-slides="> div.slide"
+        data-cycle-prev="#ag-prevslide"
+        data-cycle-next="#ag-nextslide">
+			<a href="#" id="ag-prevslide" class="arrow-left teal"></a>
+			<a href="#" id="ag-nextslide" class="arrow-right teal"></a>
+		{% for six in sixes %}
+	         <div class="slide">
+	         	<div class="slide-center">
+		         	{% for ag in six %}
+		         		<div class="ag"><a href="{{ag.get_full_url}}"><img class="ag-img"
+		         			src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 42 42 %}"
+		         			alt="Action Group Picture" /></a></div>
+		         	{% endfor %}
+	         	</div>
+             </div>
+	    {% endfor %}
+	</div>
+
+</div>

@@ -11,6 +11,7 @@ from sfpirgapp import models
 from django.core.files.base import File
 import os
 from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
+from django.template.base import Variable
 
 # Try to import PIL in either of the two ways it can end up installed.
 try:
@@ -22,7 +23,6 @@ except ImportError:
 
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
 
 register = template.Library()
 
@@ -120,14 +120,14 @@ def sfpirg_thumbnail(image_url, width, height, quality=95):
         return image_url
     # Set dimensions.
     if width and height:
-        #print 'Both dimensions of %s are specified' % image_url
+        print 'Both dimensions of %s are specified' % image_url
         if float(height) / width < float(image.size[1]) / image.size[0]:
-            #print 'Original image is tall and slim, will resize by width only'
+            print 'Original image is tall and slim, will resize by width only'
             height = 0
         else:
-            #print 'Original image is wide and short, will resize by height only'
-            #print 'Because %s is less than %s' % (float(image.size[1]) / image.size[0],
-            #    float(height) / width)
+            print 'Original image is wide and short, will resize by height only'
+            print 'Because %s is less than %s' % (float(image.size[1]) / image.size[0],
+                                                  float(height) / width)
             width = 0
     if not width:
         width = int(round(float(image.size[0]) * height / image.size[1]))
@@ -158,3 +158,31 @@ def sfpirg_thumbnail(image_url, width, height, quality=95):
             pass
         return image_url
     return thumb_url
+
+
+@register.render_tag
+def sfpirg_pagination(context, token):
+    parts = token.split_contents()[1:]
+    for part in parts:
+        recordlist = Variable(part).resolve(context)
+        break
+    context['recordlist'] = recordlist
+    t = get_template('include/pagination.html')
+    return t.render(Context(context))
+
+
+@register.render_tag
+def action_group_slider(context, token):
+    action_groups = models.ActionGroup.objects.all().order_by('title')[:200]
+    sixes = []
+    six = []
+    for ag in action_groups:
+        six.append(ag)
+        if len(six) == 6:
+            sixes.append(six)
+            six = []
+    if six:
+        sixes.append(six)
+    context['sixes'] = sixes
+    t = get_template('sfpirg/action-group-slider.html')
+    return t.render(Context(context))

@@ -1573,8 +1573,17 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 #action-groups {
 
+  background:$dtpaper bottom right repeat-x;
+  text-align: center;
+
+  .ag-logo {
+   display: none;
+  }
+
 	.ag-more {
-		margin: 19px 0;}
+		margin: 19px 0;
+		float:none;
+	}
 
 		ul {
 		height: 67px;
@@ -1759,11 +1768,7 @@ table td {
 	text-align:center;
 
 	.ag-logo {
-	float:left;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    width: 0;
+	 display: none;
 	}
 
 	.ag-more {

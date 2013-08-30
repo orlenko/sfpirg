@@ -63,21 +63,21 @@
     .menu-slideshow .arrow-right.teal {
       background-image: url(/static/img/arrow-right-teal-b.png); }
 
-.event-slider-container {
+.event-slider-container, .ag-slider-container {
   overflow: hidden; }
-  .event-slider-container .button-more {
+  .event-slider-container .button-more, .ag-slider-container .button-more {
     position: absolute;
     bottom: 10px;
     right: 10px;
     z-index: 700; }
-  .event-slider-container .slide {
+  .event-slider-container .slide, .ag-slider-container .slide {
     padding: 0 70px;
     white-space: normal;
     vertical-align: top;
     width: 100%; }
-    .event-slider-container .slide p {
+    .event-slider-container .slide p, .ag-slider-container .slide p {
       white-space: normal; }
-  .event-slider-container .arrow-left, .event-slider-container .arrow-right {
+  .event-slider-container .arrow-left, .event-slider-container .arrow-right, .ag-slider-container .arrow-left, .ag-slider-container .arrow-right {
     background-position: top center;
     background-repeat: no-repeat;
     position: absolute;
@@ -86,40 +86,38 @@
     height: 55px;
     top: 20px;
     z-index: 101; }
-  .event-slider-container .arrow-left {
+  .event-slider-container .arrow-left, .ag-slider-container .arrow-left {
     left: 2px; }
-    .event-slider-container .arrow-left.red {
+    .event-slider-container .arrow-left.red, .ag-slider-container .arrow-left.red {
       background-image: url(/static/img/arrow-left-red-b.png); }
-    .event-slider-container .arrow-left.green {
+    .event-slider-container .arrow-left.green, .ag-slider-container .arrow-left.green {
       background-image: url(/static/img/arrow-left-green-b.png); }
-    .event-slider-container .arrow-left.teal {
+    .event-slider-container .arrow-left.teal, .ag-slider-container .arrow-left.teal {
       background-image: url(/static/img/arrow-left-teal-b.png); }
-  .event-slider-container .arrow-right {
+  .event-slider-container .arrow-right, .ag-slider-container .arrow-right {
     right: 2px; }
-    .event-slider-container .arrow-right.red {
+    .event-slider-container .arrow-right.red, .ag-slider-container .arrow-right.red {
       background-image: url(/static/img/arrow-right-red-b.png); }
-    .event-slider-container .arrow-right.green {
+    .event-slider-container .arrow-right.green, .ag-slider-container .arrow-right.green {
       background-image: url(/static/img/arrow-right-green-b.png); }
-    .event-slider-container .arrow-right.teal {
+    .event-slider-container .arrow-right.teal, .ag-slider-container .arrow-right.teal {
       background-image: url(/static/img/arrow-right-teal-b.png); }
 
-/*
+.ag-slider-container .slide {
+  width: 100%; }
+  .ag-slider-container .slide .slide-center {
+    margin: auto;
+    width: 156px; }
+    .ag-slider-container .slide .slide-center .ag {
+      display: block;
+      float: left;
+      width: 42px;
+      height: 42px;
+      overflow: hidden;
+      margin: 5px; }
+      .ag-slider-container .slide .slide-center .ag img {
+        max-width: none; }
 
-@media only screen and (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
-  .event-slider-container {
-    .slide {
-       width: 302px;
-    }
-  }
-}
-
-@media only screen and (max-width: $mobile-breakpoint) {
-  .event-slider-container {
-    .slide {
-       width: 100%;
-    }
-  }
-}*/
 .featured-image {
   float: left;
   padding: 0 10px 10px 0; }
@@ -1581,16 +1579,22 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
   #get-involved .arx-browse {
     margin-bottom: 5px; }
 
-  #action-groups .ag-more {
-    margin: 19px 0; }
-  #action-groups ul {
-    height: 67px;
-    margin: -69px 36px 0;
-    width: 71px; }
-  #action-groups .left-button {
-    left: 220px; }
-  #action-groups .right-button {
-    right: 0px; }
+  #action-groups {
+    background: url(../img/extra_clean_paper-dt.jpg) bottom right repeat-x;
+    text-align: center; }
+    #action-groups .ag-logo {
+      display: none; }
+    #action-groups .ag-more {
+      margin: 19px 0;
+      float: none; }
+    #action-groups ul {
+      height: 67px;
+      margin: -69px 36px 0;
+      width: 71px; }
+    #action-groups .left-button {
+      left: 220px; }
+    #action-groups .right-button {
+      right: 0px; }
 
   #project-carousel ul {
     padding: 0 61px; }
@@ -1743,11 +1747,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     background: url(../img/extra_clean_paper-dt.jpg) bottom right repeat-x;
     text-align: center; }
     #action-groups .ag-logo {
-      float: left;
-      height: 0;
-      margin: 0;
-      padding: 0;
-      width: 0; }
+      display: none; }
     #action-groups .ag-more {
       margin: 8px 0;
       float: none;

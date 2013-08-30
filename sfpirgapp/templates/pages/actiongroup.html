@@ -9,10 +9,8 @@
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 200 0 %}" />
 		{% endif %}
 
-		<h4>{{ page.newspost.publish_date|date:"M d, Y" }} at {{ page.newspost.publish_date|date:"gA" }}</h4>
-
-		{% editable page.newspost.content %}
-			{{ page.newspost.content|richtext_filter|safe }}
+		{% editable page.actiongroup.content %}
+			{{ page.actiongroup.content|richtext_filter|safe }}
 		{% endeditable %}
 	</div>
 

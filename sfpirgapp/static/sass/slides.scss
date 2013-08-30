@@ -75,7 +75,7 @@
 
 }
 
-.event-slider-container {
+.event-slider-container, .ag-slider-container {
    overflow: hidden;
 
   .button-more {
@@ -131,21 +131,30 @@
       background-image: url(/static/img/arrow-right-teal-b.png);
     }
   }
-}
-/*
 
-@media only screen and (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
-  .event-slider-container {
-    .slide {
-       width: 302px;
-    }
-  }
 }
 
-@media only screen and (max-width: $mobile-breakpoint) {
-  .event-slider-container {
-    .slide {
-       width: 100%;
+.ag-slider-container {
+  .slide {
+
+    width: 100%;
+
+    .slide-center {
+      margin: auto;
+      width: 156px;
+
+      .ag {
+        display: block;
+        float: left;
+        width: 42px;
+        height: 42px;
+        overflow: hidden;
+        margin: 5px;
+        img {
+          max-width: none;
+        }
+      }
     }
+
   }
-}*/
+}

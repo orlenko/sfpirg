@@ -5,7 +5,6 @@ from .models import NewsPost
 
 
 news_fieldsets = deepcopy(PageAdmin.fieldsets)
-#news_fieldsets[0][1]["fields"].extend(["content", "in_menus",])
 
 
 class NewsAdmin(PageAdmin):

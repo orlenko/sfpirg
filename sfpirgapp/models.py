@@ -6,6 +6,8 @@ from mezzanine.core.models import RichText
 from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.utils.models import upload_to
 from mezzanine.core.fields import FileField
+from mezzanine.core.fields import RichTextField
+from mezzanine.pages.models import Page
 
 
 class Profile(models.Model, AdminThumbMixin):
@@ -26,3 +28,10 @@ class Testimonial(Displayable, Ownable, RichText):
     def get_absolute_url(self):
         return ('testimonial', (), {"slug": self.slug})
 
+
+class ActionGroup(Page):
+    content = RichTextField(blank=True)
+
+    class Meta:
+        verbose_name = u'Action Group'
+        verbose_name_plural = u'Action Groups'

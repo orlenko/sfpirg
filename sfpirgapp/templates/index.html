@@ -26,15 +26,12 @@
     <section class="section row-two green">
 
         <div id="what-is-happening" class="col five mobile-full">
-        	<h3>What is happening</h3>
+        	<h3><a href="/events">What is happening</a></h3>
         	{% calendar_event_slider %}
         </div>
 
-
-
-
         <div id="news" class="col three mobile-full">
-        	<h3>News</h3>
+        	<h3><a href="/news">News</a></h3>
         	{% news_list %}
         </div>
 
@@ -43,6 +40,26 @@
         <a href="https://twitter.com/SFPIRG" target="_blank"><img src="../static/img/twitter.png" alt="Follow Us on Twitter" /></a>
         <a href="http://www.youtube.com/user/SFPIRGatSFU" target="_blank"><img src="../static/img/youtube.png" alt="Watch Us on You Tube"/></a>
         </div><!-- end of #stay-connected -->
+
+    </section>
+
+
+	<section class="section row-two teal">
+    	<div id="get-involved" class="col five tablet-six mobile-full"><h3><a href="/arx">Get Involved</a></h3>
+        <div class="wrap-fix">
+          <a href="/arx"><img class="arx-logo" src="/static/img/arx-logo.png" alt="Click to Action Resource Exchange" /></a>
+        <p class="arx-text">SFU students get connected with non-profit community organizations and give something back while gaining great experience!  Take on an ARX project for credit or independantly.</p>
+        <a href="/arx"><img class="arx-browse" src="/static/img/browse-proposal.png" alt="Click to Browse Arx Proposals" /></a>
+        </div><!-- end of .wrap-fix -->
+
+        </div><!-- end of #get-involved -->
+
+
+      <div id="action-groups" class="col seven tablet-six mobile-full"><h3><a href="/action-groups">Action Groups</a></h3>
+        <a href="/action-groups"><img class="ag-logo" src="/static/img/action-groups-logo.png" alt="Click to see more actions groups" /></a>
+        {% action_group_slider %}
+        <a href="/action-groups"><img class="ag-more" src="/static/img/more-button-teal.png" alt="Click for More"></a>
+        </div><!-- end of #action-groups -->
 
     </section>
 {% endblock %}

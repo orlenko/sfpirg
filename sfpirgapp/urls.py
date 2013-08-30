@@ -16,6 +16,11 @@ urlpatterns = patterns("",
     url("^$", "sfpirgapp.views.home.homepage", {}, name="home"),
     url('^testimonial/(?P<slug>.*)/$', 'sfpirgapp.views.testimonial.testimonial', {}, name='testimonial'),
 
+    url('^news$', 'sfpirgapp.views.newsposts.newslist', {}, name='news-list'),
+    url('^events$', 'sfpirgapp.views.events.eventslist', {}, name='events-list'),
+    url('^arx$', 'sfpirgapp.views.arx.arxlist', {}, name='arx-list'),
+    url('^action-groups$', 'sfpirgapp.views.actiongroups.aglist', {}, name='action-groups-list'),
+
     ("^", include("mezzanine.urls")),
 
 )

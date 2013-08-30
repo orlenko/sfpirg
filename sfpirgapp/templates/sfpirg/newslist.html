@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block main %}
+
+	<h1>News</h1>
+
+	{% sfpirg_pagination news %}
+
+	{% for rec in news %}
+		<div class="news-toc-item">
+			<h4><a href="{{ rec.get_absolute_url }}">{{ rec.publish_date|date:"M d, Y" }} at {{ rec.publish_date|date:"gA" }}: {{ rec.title }}</a></h4>
+			{% if rec.featured_image %}
+				<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail rec.featured_image 50 0 %}" />
+			{% endif %}
+			<p>{{ rec.content|richtext_filter|safe|truncatewords:30 }}</p>
+		</div>
+	{% endfor %}
+
+{% endblock %}

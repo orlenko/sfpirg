@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block main %}
+
+	<h1>Events Calendar</h1>
+
+	{% sfpirg_pagination events %}
+
+	{% for rec in events %}
+		<div class="events-toc-item">
+			<h4><a href="{{ rec.get_absolute_url }}">{{ rec.start|date:"M d, Y" }} at {{ rec.start|date:"gA" }}: {{ rec.title }}</a></h4>
+			{% if rec.featured_image %}
+				<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail rec.featured_image 50 0 %}" />
+			{% endif %}
+			<p>{{ rec.content|richtext_filter|safe|truncatewords:30 }}</p>
+		</div>
+	{% endfor %}
+
+{% endblock %}
+

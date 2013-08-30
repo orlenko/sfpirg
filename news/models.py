@@ -1,7 +1,5 @@
 from mezzanine.core.fields import RichTextField
 from mezzanine.pages.models import Page
-from mezzanine.core.fields import FileField
-from mezzanine.utils.models import upload_to
 
 
 class NewsPost(Page):
