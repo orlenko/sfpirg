@@ -1,4 +1,6 @@
 
+@import "measurements";
+
 .menu-slideshow {
   position: relative;
   overflow: hidden;
@@ -76,7 +78,6 @@
 .event-slider-container {
 
   position: relative;
-  overflow: hidden;
   max-height: 112px;
 
   .button-more {
@@ -89,8 +90,7 @@
   .slide {
     padding: 0 70px;
     white-space: normal;
-    width: 405px;
-
+    vertical-align: top;
     p {
       white-space: normal;
     }
@@ -133,3 +133,20 @@
     }
   }
 }
+/*
+
+@media only screen and (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
+  .event-slider-container {
+    .slide {
+       width: 302px;
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .event-slider-container {
+    .slide {
+       width: 100%;
+    }
+  }
+}*/

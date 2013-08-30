@@ -65,7 +65,6 @@
 
 .event-slider-container {
   position: relative;
-  overflow: hidden;
   max-height: 112px; }
   .event-slider-container .button-more {
     position: absolute;
@@ -75,7 +74,7 @@
   .event-slider-container .slide {
     padding: 0 70px;
     white-space: normal;
-    width: 405px; }
+    vertical-align: top; }
     .event-slider-container .slide p {
       white-space: normal; }
   .event-slider-container .arrow-left, .event-slider-container .arrow-right {
@@ -104,6 +103,23 @@
     .event-slider-container .arrow-right.teal {
       background-image: url(/static/img/arrow-right-teal.png); }
 
+/*
+
+@media only screen and (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
+  .event-slider-container {
+    .slide {
+       width: 302px;
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .event-slider-container {
+    .slide {
+       width: 100%;
+    }
+  }
+}*/
 /* General Resets */
 * {
   -webkit-box-sizing: border-box;
@@ -1535,7 +1551,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     height: 112px; }
   #what-is-happening .event-img {
     padding: 6px 8px 8px 0;
-    width: 30%; }
+    /*width:30%;*/ }
   #what-is-happening .ev-title {
     font-size: 10px; }
   #what-is-happening .ev-date {
@@ -1698,7 +1714,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     height: 112px; }
   #what-is-happening .event-img {
     padding: 6px 8px 8px 0;
-    width: 30%; }
+    /*width:30%;*/ }
   #what-is-happening .ev-title {
     font-size: 10px; }
   #what-is-happening .ev-date {
