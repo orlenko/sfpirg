@@ -5,5 +5,5 @@
 {% endif %}
 <p class="x-name">{{ testimonial.user.get_full_name|default:testimonial.user.username }} {% if testimonial.user.profile.title %}- {{ testimonial.user.profile.title }}{% endif %}</p>
 <p class="x-title-story">{{ testimonial.title }}</p>
-	{{ testimonial.content|richtext_filter|safe }}
+	{{ testimonial.content|richtext_filter|safe|truncatewords:10 }}
 <a href="{{ testimonial.get_absolute_url }}"><img class="x-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>
