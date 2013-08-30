@@ -12,6 +12,7 @@ from django.core.files.base import File
 import os
 from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 from django.template.base import Variable
+from mezzanine.pages.models import Page
 
 # Try to import PIL in either of the two ways it can end up installed.
 try:
@@ -186,3 +187,24 @@ def action_group_slider(context, token):
     context['sixes'] = sixes
     t = get_template('sfpirg/action-group-slider.html')
     return t.render(Context(context))
+
+
+@register.render_tag
+def sfpirg_side_menu(context, token):
+    parts = token.split_contents()[1:]
+    page = Variable(parts[0]).resolve(context)
+    context['page'] = page
+    links = []
+    if page.parent:
+        links.append((page.parent.get_absolute_url(), page.parent.title))
+        for child in page.parent.children.all():
+            links.append((child.get_absolute_url(), child.title))
+    else:
+        for child in page.children.all():
+            links.append((child.get_absolute_url(), child.title))
+    if not links:
+        for page in Page.objects.published(for_user=context["request"].user).order_by('_order'):
+            if page.in_menu_template('menus/side.html'):
+                links.append((page.get_absolute_url(), page.title))
+    context['links'] = links
+    return get_template('sfpirg/side_menu.html').render(Context(context))
