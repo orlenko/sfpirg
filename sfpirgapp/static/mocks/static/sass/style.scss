@@ -76,7 +76,7 @@ html { font-size: 100%; }
 .strong { font-weight: bold; }
 .italic { font-style: italic; }
 .center-text { text-align: center; }
-.none, 
+.none,
 [hidden] {
   display: none;
 }
@@ -151,7 +151,7 @@ audio:not([controls]) {
   height: 0;
 }
 
-/* Small, 
+/* Small,
 Sub and Sup */
 small { font-size:80%; }
 sub, sup {
@@ -174,7 +174,7 @@ img {
   height:auto;
 }
 @media \0screen {
-  img { 
+  img {
   	width: auto; /* for ie 8 */
   }
 }
@@ -199,7 +199,7 @@ h2, .h2 {
   @include font-size($h2);
   margin-bottom: .33em;
 }
-h3, .h3 { 
+h3, .h3 {
   @include font-size($h3);
   margin-bottom: .5em;
 }
@@ -354,10 +354,10 @@ button, input, select, textarea {
   *vertical-align: middle;
 }
 
-input[type=text], 
-input[type=password], 
-input[type=email], 
-input[type=search], 
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
 input[type=tel],
 textarea {
   padding: 5px 7px;
@@ -372,7 +372,7 @@ textarea {
   -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
-input[type=checkbox], 
+input[type=checkbox],
 input[type=radio] {
   cursor: pointer;
   box-sizing: border-box;
@@ -384,7 +384,7 @@ input[type=radio] {
 .checkbox {
   @extend .block;
   margin: .2em 0;
-  input[type=checkbox], 
+  input[type=checkbox],
   input[type=radio] {
     @extend .left;
   }
@@ -400,16 +400,16 @@ button, input { line-height: normal; }
 button, select { text-transform: none; }
 
 /* Buttons */
-button, 
-html input[type="button"], 
-input[type="reset"], 
+button,
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
   cursor: pointer;
   *overflow: visible;
 }
-button[disabled], 
+button[disabled],
 html input[disabled] { cursor: default; }
 
 input[type="search"] {
@@ -418,9 +418,9 @@ input[type="search"] {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
-input[type="search"]::-webkit-search-cancel-button, 
+input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
-button::-moz-focus-inner, 
+button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0;
@@ -586,7 +586,7 @@ textarea {
 	font-family:$peidemi;
 	@include font-size($h5);
 	text-transform:uppercase;
-		
+
 		ul {margin:0;
 			padding:0;
 			display: block;
@@ -596,7 +596,7 @@ textarea {
 			float: left;
     		padding: 20px 8px;
 			}
-			
+
 		a	{color:#fff;
 			text-decoration:none;
 			&:hover{color:#000;}
@@ -608,17 +608,18 @@ textarea {
 	font-family:$peidemi;
 	text-align:center;
 	text-transform:uppercase;
-	
+
 	h1{
 	font-size:34px;
 	color:$red;
+	background: transparent;
 	}
 }
 #tag-line {
 	text-transform:uppercase;
 	text-align:center;
 	padding:10px 0;
-	
+
 	h2 {font-size:18px;
 		color:$dgrey;
 	}
@@ -652,10 +653,10 @@ textarea {
 	}
 }
 .grey {
-	
+
 	h3 {text-align:center; 	padding:10px 0px;}
 	h1 {text-align:left; padding-left:20px;}
-	
+
 	h1, h3{
 	background:
 	url(../img/panel-grey-left.png) left center no-repeat,
@@ -665,27 +666,27 @@ textarea {
 	width:100%;
 	font-family:$peidemi;
 	text-transform:uppercase;
-	color:#fff;	
-	
+	color:#fff;
+
 	a{text-decoration:none;
 	color:#fff;
 	&:hover{color:#000;}
 	}
 	}
 		#category-list {
-		
+
 		h2 {background:url(../img/cat-middle-grey.jpg) repeat; float:left;}
-		
+
 		.main-cat-img:after {background:url(../img/cat-top-grey.png) top center no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
 		margin: -4px 0;}
-		
+
 		.cat-text:before {background:url(../img/cat-bottom-grey.png) bottom center no-repeat;
 		height:28px;
 		width:100%;
-		content:""; display:inline-block;} 
+		content:""; display:inline-block;}
 	}
 	#pagination li a{
 		height: 16px;
@@ -703,10 +704,10 @@ textarea {
 	}
 }
 .teal {
-	
+
 	h3 {text-align:center;	padding:10px 0px;}
 	h1 {text-align:left; padding-left:20px;}
-	
+
 	h1, h3{
 	background:
 	url(../img/panel-teal-left.png) left center no-repeat,
@@ -716,27 +717,27 @@ textarea {
 	width:100%;
 	font-family:$peidemi;
 	text-transform:uppercase;
-	color:#fff;	
-	
+	color:#fff;
+
 	a{text-decoration:none;
 	color:#fff;
 	&:hover{color:#000;}
 	}
 	}
 	#category-list {
-		
+
 		h2 {background:url(../img/cat-middle-teal.jpg) repeat; float:left;}
-		
+
 		.main-cat-img:after {background:url(../img/cat-top-teal.png) top center no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
 		margin: -4px 0;}
-		
+
 		.cat-text:before {background:url(../img/cat-bottom-teal.png) bottom center no-repeat;
 		height:28px;
 		width:100%;
-		content:""; display:inline-block;} 
+		content:""; display:inline-block;}
 	}
 	#pagination li a{
 		height: 16px;
@@ -754,10 +755,10 @@ textarea {
 	}
 }
 .green {
-	
+
 	h3 {text-align:center; 	padding:10px 0px;}
 	h1 {text-align:left; padding-left:20px;}
-	
+
 	h1, h3{
 	background:
 	url(../img/panel-green-left.png) left center no-repeat,
@@ -767,27 +768,27 @@ textarea {
 	width:100%;
 	font-family:$peidemi;
 	text-transform:uppercase;
-	color:#fff;	
-	
+	color:#fff;
+
 	a{text-decoration:none;
 	color:#fff;
 	&:hover{color:#000;}
 	}
 	}
 		#category-list {
-		
+
 		h2 {background:url(../img/cat-middle-green.jpg) repeat; float:left;}
-		
+
 		.main-cat-img:after {background:url(../img/cat-top-green.png) top center no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
 		margin: -4px 0;}
-		
+
 		.cat-text:before {background:url(../img/cat-bottom-green.png) bottom center no-repeat;
 		height:28px;
 		width:100%;
-		content:""; display:inline-block;} 
+		content:""; display:inline-block;}
 	}
 	#pagination li a{
 		height: 16px;
@@ -805,10 +806,10 @@ textarea {
 	}
 }
 .yellow {
-	
+
 	h3 {text-align:center;	padding:10px 0px;}
 	h1 {text-align:left; padding-left:20px;}
-	
+
 	h1, h3{
 	background:
 	url(../img/panel-yellow-left.png) left center no-repeat,
@@ -819,26 +820,26 @@ textarea {
 	font-family:$peidemi;
 	text-transform:uppercase;
 	color:#fff;
-	
+
 	a{text-decoration:none;
 	color:#fff;
 	&:hover{color:#000;}
 	}
 	}
 		#category-list {
-		
+
 		h2 {background:url(../img/cat-middle-yellow.jpg) repeat; float:left;}
-		
+
 		.main-cat-img:after {background:url(../img/cat-top-yellow.png) top center no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
 		margin: -4px 0;}
-		
+
 		.cat-text:before {background:url(../img/cat-bottom-yellow.png) bottom center no-repeat;
 		height:28px;
 		width:100%;
-		content:""; display:inline-block;} 
+		content:""; display:inline-block;}
 	}
 	#pagination li a{
 		height: 16px;
@@ -856,10 +857,10 @@ textarea {
 	}
 }
 .red {
-	
+
 	h3 {text-align:center; 	padding:10px 0px;}
 	h1 {text-align:left; padding-left:20px;}
-	
+
 	h1, h3{
 	background:
 	url(../img/panel-red-left.png) left center no-repeat,
@@ -870,26 +871,26 @@ textarea {
 	font-family:$peidemi;
 	text-transform:uppercase;
 	color:#fff;
-	
+
 	a{text-decoration:none;
 	color:#fff;
 	&:hover{color:#000;}
 	}
 	}
 		#category-list {
-		
+
 		h2 {background:url(../img/cat-middle-red.jpg) repeat; float:left;}
-		
+
 		.main-cat-img:after {background:url(../img/cat-top-red.png) top center no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
 		margin: -4px 0;}
-		
+
 		.cat-text:before {background:url(../img/cat-bottom-red.png) bottom center no-repeat;
 		height:28px;
 		width:100%;
-		content:""; display:inline-block;} 
+		content:""; display:inline-block;}
 	}
 	#pagination li a{
 		height: 16px;
@@ -912,49 +913,49 @@ textarea {
 	min-height:184px;
 	margin-bottom:10px;
 	font-size:12px;
-	
+
 	h3 {
 	margin: -7px 0 0;}
-	
+
 	img {float:left;
 	padding: 6px 8px 20px 4px;}
-	
+
 	.x-name {font-size:14px;
 	font-weight:bold;
 	margin:0;}
-    
+
 	.x-title-story {
 		font-weight:600;
 		margin:0;}
-    
+
 	.x-text {
 		font-weight:300;
 		margin:0;
 		padding: 4px 0 0;}
-    
+
 	.x-more {float:right;
 	padding: 5px 10px 10px;}
-	
+
 }
 #navigation {
-	
+
 	width:100%;
 	h3 {
 	margin: -9px 0 0;}
-	
-	
-	
+
+
+
 	ul {
 	width:100%;
 	list-style:none;
 	list-style-position:inside;
 	display:block;
 	margin:0;
-	padding:0;	
+	padding:0;
 	}
-	
+
 	li {
-		
+
 		a {
 		background:url(../img/sub-nav.png) center left repeat-x;
 		color:#fff;
@@ -966,20 +967,20 @@ textarea {
 		&:hover {background:url(../img/sub-nav-hover.png) center left repeat-x;}
 	}
 	}
-	
+
 }
 #values, #newsletter{
 	background:url(../img/background-grey-star.jpg) center bottom no-repeat;
 	height:115px;
 	text-align:center;
-	
+
 	img {padding:0; margin: -16px 0;}
 }
 #what-is-happening {
 	background:$paper repeat;
 	min-height:184px;
 	position:relative;
-	
+
 		ul {margin:-12px 0 0;
 		padding:0;
 		display: block;
@@ -988,8 +989,8 @@ textarea {
 		height:130px;
 		list-style:none;
 		overflow:hidden;
-			
-			
+
+
 		}
 		li {display:inline block;
 		float: left;
@@ -997,29 +998,29 @@ textarea {
 		}
 		.event-img {float:left;
 		padding: 6px 8px 0 0;}
-		
+
 		.ev-title {font-size:12px;
 		text-transform:uppercase;
 		font-weight:bold;
 		margin: 3px 0 0;}
-		
+
 		.ev-date {
 			font-size:10px;
 			text-transform:uppercase;
 			font-weight:600;
 			margin:0;}
-		
+
 		.ev-text {
 			font-size:10px;
 			font-weight:300;
 			margin:0;
 			padding: 4px 0 0;}
-		
+
 		.ev-more {float:right;
 		padding: 5px 10px 10px;}
-	
-	
-	
+
+
+
 		.left-button{
 		width:66px;
 		height:55px;
@@ -1035,19 +1036,19 @@ textarea {
     	top: 83px;
 		}
 
-		.prev-big { 
-		/*activae when JS carousel is in: 
-		background:url(../img/arrow-left-green-b.png) top center no-repeat;*/ 
+		.prev-big {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-green-b.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
 		.next-big {
-		/*activae when JS carousel is in: 	
-		background:url(../img/arrow-right-green-b.png) top center no-repeat;*/ 
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-green-b.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
-	
+
 }
 
 
@@ -1055,7 +1056,7 @@ textarea {
 #news {
 	background:$paper repeat;
 	min-height:184px;
-	
+
 	  ul {margin:-12px 0 0;
 		  padding:0;
 		  display: block;
@@ -1064,26 +1065,26 @@ textarea {
 		  height:125px;
 		  list-style:none;
 		  overflow:auto;
-				
+
 		}
 	  li {display:block;
 	  float: left;
 	  width: 100%;
 	  padding: 10px 0;
-	  	
+
 		a {color:$green;
 	  &:hover {color:$dgrey}
 	  }
 	  }
-	  
-	
-	
+
+
+
 }
 #stay-connected{
 	background:$paper repeat;
 	min-height:184px;
 	text-align:center;
-	
+
 	img {padding:0px 6px;}
 }
 #get-involved {
@@ -1091,7 +1092,7 @@ textarea {
 	url(../img/background-teil-star.jpg) left bottom no-repeat,
 	$paper repeat;
 	min-height:184px;
-	
+
 		.arx-logo {float:left;
 		 margin: -12px 0;
     	padding: 0 10px;
@@ -1115,7 +1116,7 @@ textarea {
 	$paper repeat;
 	min-height:184px;
 	position:relative;
-	
+
 	.ag-logo {
 		margin:-15px 0;
 		padding:0 10px;
@@ -1123,7 +1124,7 @@ textarea {
 	.ag-more {
 		padding:0 20px;
 		float:left;}
-	
+
 		ul {margin:-14px 68px 0 0;
 			padding:0;
 			display: block;
@@ -1133,8 +1134,8 @@ textarea {
 			height:130px;
 			list-style:none;
 			overflow:hidden;
-			
-			
+
+
 		}
 		li {display:inline block;
 			float: left;
@@ -1156,18 +1157,18 @@ textarea {
 		right: 17px;
     	top: 94px;
 		}
-		.prev-small { 
-		/*activae when JS carousel is in: 
-		background:url(../img/arrow-left-teal.png) top center no-repeat;*/ 
+		.prev-small {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-teal.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
 		.next-small {
-		/*activae when JS carousel is in: 	
-		background:url(../img/arrow-right-teal.png) top center no-repeat;*/ 
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-teal.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
-		}	
+		}
 }
 
 #project-carousel {
@@ -1183,8 +1184,8 @@ textarea {
 			height:220px;
 			list-style:none;
 			overflow:hidden;
-			
-			
+
+
 		}
 		li {display:inline block;
 			float: left;
@@ -1193,7 +1194,7 @@ textarea {
 			background: url(../img/background-yellow-star.png) center bottom no-repeat;
 
 			}
-			
+
 		 a	{color:#fff;
 			text-decoration:none;
 			&:hover{color:#000;}
@@ -1205,7 +1206,7 @@ textarea {
 			width:100%;
 			text-transform:uppercase;
 			line-height: 22px;
-			float:left;		
+			float:left;
 			}
 		.left-button{
 		width:45px;
@@ -1222,35 +1223,35 @@ textarea {
     	top: 80px;
 		}
 
-		.prev-small { 
-		/*activae when JS carousel is in: 
-		background:url(../img/arrow-left-yellow.png) top center no-repeat;*/ 
+		.prev-small {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-yellow.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
 		.next-small {
-		/*activae when JS carousel is in: 	
-		background:url(../img/arrow-right-yellow.png) top center no-repeat;*/ 
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-yellow.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
 }
 #main-content-block {margin:20px 0}
 #category-list {
-	
-	
+
+
 	ul {width:100%;
 	list-style:inside none;
 	display:block;
 	padding:0;
 	margin:20px 0;
 	}
-	
+
 	li {width:177px;
 	margin:20px;
 	height:430px;
 	display:inline-block;
-	
+
 		h2 {
 			margin:0;
 			padding: 0 6px;
@@ -1261,9 +1262,9 @@ textarea {
 			word-wrap:break-word;
 			text-align:center;
 			display:block;
-		
-		a {	color:#fff;	
-			text-decoration:none;		
+
+		a {	color:#fff;
+			text-decoration:none;
 			&:hover{color:$dgrey;}
 		}
 		}
@@ -1272,7 +1273,7 @@ textarea {
 		float:left;
 		background-color:transparent;
 		img {margin-bottom:-23px;}
-		
+
 		}
 	.cat-text {
 		float:left;
@@ -1291,7 +1292,7 @@ textarea {
 	height:20px;
 	width:100%;
 	text-align:right;
-	
+
 	ul {
 		float:right;
 		min-width:200px;
@@ -1302,7 +1303,7 @@ textarea {
 	height: 16px;
     width: 23px;
     margin: 5px;
-    text-align: center;	
+    text-align: center;
 	}
 }
 
@@ -1317,44 +1318,44 @@ textarea {
 NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 .oneline {
-	
+
 	h4 {background:url(../img/pc-title-1line.png) center center no-repeat;
 		padding:15px;}
-	
+
 	img {margin:12px 0;
-	}	
+	}
 }
 .twoline {
 	h4 {background:url(../img/pc-title-2line.png) center center no-repeat;
 	padding:14px 0;}
-	
+
 	img {margin:4px 0;
-	;}		
+	;}
 }
 .threeline {
 	h4 {background:url(../img/pc-title-3line.png) center center no-repeat;
 	padding:13px 6px;}
-	
+
 	img {height: auto;
     margin: -4px 0;
     width: 90%;
-	}		
+	}
 }
 .fourline {
 	h4 {background:url(../img/pc-title-4line.png) center center no-repeat;
 	padding:17px 0;}
-	
+
 	img {height: auto;
     margin: -75px 0;
     width: 64%;
-	}		
+	}
 }
 /*Project Carousel Title Classes End */
-			
+
 /*Side bar Adjustments START -----------------------------------------------
-*/			
+*/
 #sidebar {
- 
+
 	#experience-widget {
 	margin-left:0;
 	font-size:12px;
@@ -1362,9 +1363,9 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 	h3 {margin:0;}
 	.x-name {font-size:13px;}
 	}
-	
+
 	#what-is-happening {
-	
+
 		ul {margin:0;
 		height:112px;
 		}
@@ -1372,15 +1373,15 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		.event-img {
 		padding: 6px 8px 8px 0;
 		width:30%;}
-		
+
 		.ev-title {font-size:10px;}
-		
+
 		.ev-date {
 			font-size:10px;}
-		
+
 		.ev-text {
 			font-size:10px;}
-	
+
 		.left-button{
 		width:45px;
 		height:38px;
@@ -1390,13 +1391,13 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		height:38px;
 		}
 
-		.prev-big { 
-		/*activae when JS carousel is in: 
-		background:url(../img/arrow-left-green.png) top center no-repeat;*/ 
+		.prev-big {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-green.png) top center no-repeat;*/
 		}
 		.next-big {
-		/*activae when JS carousel is in: 	
-		background:url(../img/arrow-right-green.png) top center no-repeat;*/ 
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-green.png) top center no-repeat;*/
 		}
 	}
 	#newsletter {
@@ -1404,8 +1405,8 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 	background:$dpaper bottom right repeat-x;
 	min-height:109px;
 }
-}			
-/*Side bar Adjustments END */	
+}
+/*Side bar Adjustments END */
 
 
 /* ==========================================================================
@@ -1481,14 +1482,14 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 #main-title {
 	padding:10px 0 0;
-	
+
 	h1{
 	font-size:22px;
 	}
 }
 #tag-line {
 	padding:0;
-	
+
 	h2 {font-size:16px;
 
 	}
@@ -1496,7 +1497,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 #values, #newsletter{
 	background:$dpaper bottom right no-repeat;
 	height:95px;
-	
+
 		img {width:40%}
 }
 #experience-widget {
@@ -1513,7 +1514,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     width: 31%
 }
 #what-is-happening {
-	
+
 		ul {margin:0;
 		height:112px;
 		}
@@ -1521,15 +1522,15 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		.event-img {
 		padding: 6px 8px 8px 0;
 		width:30%;}
-		
+
 		.ev-title {font-size:10px;}
-		
+
 		.ev-date {
 			font-size:10px;}
-		
+
 		.ev-text {
 			font-size:10px;}
-	
+
 		.left-button{
 		width:45px;
 		height:38px;
@@ -1539,19 +1540,19 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		height:38px;
 		}
 
-		.prev-big { 
-		/*activae when JS carousel is in: 
-		background:url(../img/arrow-left-green.png) top center no-repeat;*/ 
+		.prev-big {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-green.png) top center no-repeat;*/
 		}
 		.next-big {
-		/*activae when JS carousel is in: 	
-		background:url(../img/arrow-right-green.png) top center no-repeat;*/ 
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-green.png) top center no-repeat;*/
 		}
-	
+
 }
 
 #get-involved {
-			
+
 		.arx-text {
 		width: 115px;
 			}
@@ -1560,14 +1561,14 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 			}
 }
 #action-groups {
-	
+
 	.ag-more {
 		margin: 19px 0;}
-	
+
 		ul {
 		height: 67px;
 		margin: -69px 36px 0;
-		width: 71px;				
+		width: 71px;
 		}
 
 		.left-button{
@@ -1577,7 +1578,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		right: 0px;
 
 		}
-	
+
 }
 
 #project-carousel {
@@ -1672,7 +1673,7 @@ table td {
 #get-involved {
 	background:$dtpaper bottom right repeat-x;
 	text-align:center;
-			
+
 		.arx-logo {
 			float:none;
 			margin: -7px 0 0;
@@ -1700,8 +1701,8 @@ table td {
 }
 
 #what-is-happening {
-	
-	
+
+
 		ul {margin:0;
 		height:112px;
 		}
@@ -1709,17 +1710,17 @@ table td {
 		.event-img {
 		padding: 6px 8px 8px 0;
 		width:30%;}
-		
+
 		.ev-title {font-size:10px;}
-		
+
 		.ev-date {
 			font-size:10px;}
-		
+
 		.ev-text {
 			font-size:10px;}
-	
-	
-	
+
+
+
 		.left-button{
 		width:45px;
 		height:38px;
@@ -1729,15 +1730,15 @@ table td {
 		height:38px;
 		}
 
-		.prev-big { 
-		/*activae when JS carousel is in: 
-		background:url(../img/arrow-left-green.png) top center no-repeat;*/ 
+		.prev-big {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-green.png) top center no-repeat;*/
 		}
 		.next-big {
-		/*activae when JS carousel is in: 	
-		background:url(../img/arrow-right-green.png) top center no-repeat;*/ 
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-green.png) top center no-repeat;*/
 		}
-	
+
 }
 
 
@@ -1745,7 +1746,7 @@ table td {
 #action-groups {
 	background:$dtpaper bottom right repeat-x;
 	text-align:center;
-	
+
 	.ag-logo {
 	float:left;
     height: 0;
@@ -1753,20 +1754,20 @@ table td {
     padding: 0;
     width: 0;
 	}
-	
+
 	.ag-more {
 		margin: 8px 0;
 		float:none;
 		padding:0;}
-	
+
 		ul {
 		margin: -14px 0 0 0;
 		width:180px;
-		height:103px;		
+		height:103px;
 		}
 		li {
 		width:55px;
-		height:55px;	
+		height:55px;
 		}
 
 		.left-button{
@@ -1780,7 +1781,7 @@ table td {
 			width:200px;
 			margin: 0 auto;
 		}
-	
+
 }
 #project-carousel {
 

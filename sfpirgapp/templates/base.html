@@ -64,7 +64,7 @@
 
 	<body id="{% block body_id %}body{% endblock %}">
 
-		<div class="container">
+		<div class="container {% block contentclass %}grey{% endblock %}">
 
 			<header>
 
@@ -99,7 +99,7 @@
 
 			{% block bodycontent %}
 			<div class="section row-one">
-				<section id="main-content" class="col eight tablet-seven mobile-full grey">
+				<section id="main-content" class="col eight tablet-seven mobile-full">
 					{% block main %}
 					{% endblock %}
 				</section>
