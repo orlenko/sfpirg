@@ -192,11 +192,7 @@ def action_group_slider(context, token):
 @register.render_tag
 def sfpirg_side_menu(context, token):
     links = []
-    parts = token.split_contents()[1:]
-    page = None
-    if parts:
-        page = Variable(parts[0]).resolve(context)
-    context['page'] = page
+    page = context.get('page')
     if page:
         if page.parent:
             links.append((page.parent.get_absolute_url(), page.parent.title))
