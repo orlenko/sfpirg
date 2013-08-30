@@ -1,4 +1,4 @@
-{% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags %}
+{% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags calendar_tags news_tags  %}
 <section id="sidebar" class="col four tablet-five mobile-full">
 
 	<div class="section row grey">
@@ -22,65 +22,15 @@
 	<div class="section row green">
 
 		<div id="what-is-happening" class="col tablet-full mobile-full">
-			<h3><a href="#">What is happening</a></h3>
-
-			<div class="left-button">
-				<a class="prev-big" href=""><!--remove image when JS in in--><img src="/static/img/arrow-left-green-b.png" alt="next" /></a>
-			</div>
-
-			<ul>
-				<li>
-					<img class="event-img" src="/static/img/event.jpg" alt="Event Picture" />
-					<p class="ev-title">
-						COMMUNITY ORGANIZING WORKSHOP
-					</p>
-					<p class="ev-date">
-						JUNE 18, 2013 at 8PM
-					</p>
-					<p class="ev-text">
-						SFPIRG is excited to annonce MIa Mingus will be joing us...
-					</p>
-					<a href="#"><img class="ev-more" src="/static/img/more-button-green.png" alt="Click for More" /></a>
-				</li>
-				<li>
-					<img class="event-img" src="/static/img/event.jpg" alt="Event Picture" />
-					<p class="ev-title">
-						COMMUNITY ORGANIZING WORKSHOP
-					</p>
-					<p class="ev-date">
-						JUNE 18, 2013 at 8PM
-					</p>
-					<p class="ev-text">
-						SFPIRG is excited to annonce MIa Mingus will be joing us...
-					</p>
-					<a href="#"><img class="ev-more" src="/static/img/more-button-green.png" alt="Click for More" /></a>
-				</li>
-				<li>
-					<img class="event-img" src="/static/img/event.jpg" alt="Event Picture" />
-					<p class="ev-title">
-						COMMUNITY ORGANIZING WORKSHOP
-					</p>
-					<p class="ev-date">
-						JUNE 18, 2013 at 8PM
-					</p>
-					<p class="ev-text">
-						SFPIRG is excited to annonce MIa Mingus will be joing us...
-					</p>
-					<a href="#"><img class="ev-more" src="/static/img/more-button-green.png" alt="Click for More" /></a>
-				</li>
-			</ul>
-
-			<div class="right-button">
-				<a class="next-big" href=""><!--remove image when JS in in--><img src="/static/img/arrow-right-green-b.png" alt="next" /></a>
-			</div>
-
+			<h3>What is happening</h3>
+			{% calendar_event_slider %}
 		</div><!-- end of #what-is-happening -->
 	</div>
 
 	<div class="section row grey">
 
 		<div id="newsletter" class="col tablet-full mobile-full">
-			<h3><a href="#">NEWSLETTER</a></h3>
+			<h3>NEWSLETTER</h3>
 			<a href="http://sfpirg.us4.list-manage1.com/subscribe?u=06455f18e6886efe48a03ced1&id=66dabecbe8" target="_blank"><img src="/static/img/newsletter.png" alt="Click for: Newsletter" /></a>
 		</div><!-- end of #newsletter -->
 
