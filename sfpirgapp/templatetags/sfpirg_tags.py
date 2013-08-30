@@ -191,17 +191,20 @@ def action_group_slider(context, token):
 
 @register.render_tag
 def sfpirg_side_menu(context, token):
-    parts = token.split_contents()[1:]
-    page = Variable(parts[0]).resolve(context)
-    context['page'] = page
     links = []
-    if page.parent:
-        links.append((page.parent.get_absolute_url(), page.parent.title))
-        for child in page.parent.children.all():
-            links.append((child.get_absolute_url(), child.title))
-    else:
-        for child in page.children.all():
-            links.append((child.get_absolute_url(), child.title))
+    parts = token.split_contents()[1:]
+    page = None
+    if parts:
+        page = Variable(parts[0]).resolve(context)
+    context['page'] = page
+    if page:
+        if page.parent:
+            links.append((page.parent.get_absolute_url(), page.parent.title))
+            for child in page.parent.children.all():
+                links.append((child.get_absolute_url(), child.title))
+        else:
+            for child in page.children.all():
+                links.append((child.get_absolute_url(), child.title))
     if not links:
         for page in Page.objects.published(for_user=context["request"].user).order_by('_order'):
             if page.in_menu_template('menus/side.html'):
