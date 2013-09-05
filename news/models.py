@@ -1,10 +1,7 @@
-from mezzanine.core.fields import RichTextField
-from mezzanine.pages.models import Page
+from mezzanine.utils.models import AdminThumbMixin
+from mezzanine.core.models import Displayable
+from mezzanine.core.models import RichText
 
 
-class NewsPost(Page):
-    content = RichTextField(blank=True)
-
-    class Meta:
-        verbose_name = u'News Post'
-        verbose_name_plural = u'News Posts'
+class NewsPost(Displayable, RichText, AdminThumbMixin):
+    pass

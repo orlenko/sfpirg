@@ -22,16 +22,15 @@ class Profile(models.Model, AdminThumbMixin):
     admin_thumb_field = "photo"
 
 
-class Testimonial(Displayable, Ownable, RichText):
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('testimonial', (), {"slug": self.slug})
+class Testimonial(Displayable, Ownable, RichText, AdminThumbMixin):
+    pass
 
 
-class ActionGroup(Page):
-    content = RichTextField(blank=True)
+class ActionGroup(Displayable, RichText, AdminThumbMixin):
+    pass
 
+
+class Category(Displayable, RichText, AdminThumbMixin):
     class Meta:
-        verbose_name = u'Action Group'
-        verbose_name_plural = u'Action Groups'
+        verbose_name = u'Category'
+        verbose_name_plural = u'Categories'

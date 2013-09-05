@@ -1,3 +1,4 @@
+from mezzanine.conf import settings
 from copy import deepcopy
 
 from django.contrib import admin
@@ -5,6 +6,8 @@ from mezzanine.core.admin import TabularDynamicInlineAdmin
 from mezzanine.pages.admin import PageAdmin
 
 from .models import Event, EventType, EventImage
+from mezzanine.core.admin import DisplayableAdmin
+from mezzanine.core.admin import OwnableAdmin
 
 
 event_fieldsets = deepcopy(PageAdmin.fieldsets)
@@ -23,7 +26,7 @@ class EventImageInline(TabularDynamicInlineAdmin):
     model = EventImage
 
 
-class EventAdmin(PageAdmin):
+class EventAdmin(DisplayableAdmin, OwnableAdmin):
     inlines = (EventImageInline,)
     fieldsets = event_fieldsets
 
@@ -37,6 +40,12 @@ class EventAdmin(PageAdmin):
 
         form.clean_content = clean_content
         return form
+
+    def in_menu(self):
+        for (_name, items) in settings.ADMIN_MENU_ORDER:
+            if "calendar.Event" in items:
+                return True
+        return False
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(EventType)

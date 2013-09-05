@@ -1,0 +1,33 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags %}
+
+{% block main %}{{ block.super }}
+{% spaceless %}
+	{% editable page.richtextpage.content %}
+		<div id="main-content-block">
+			{{ page.richtextpage.content|richtext_filter|safe }}
+		</div>
+	{% endeditable %}
+
+	<div id="category-list">
+		{% for child in page.children %}
+		    <li>
+		    <div class="main-cat-img">
+		    	<a href="{{page.get_absolute_url}}">
+		    		{% if rec.featured_image %}
+						<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 177 200 %}" />
+					{% endif %}
+				</a>
+			</div>
+		    <h2><a href="{{page.get_absolute_url}}">{{page.title}}</a></h2>
+		    <div class="cat-text">
+		    <p>{{ page.content|richtext_filter|safe|truncatewords:30 }}
+		    <a href="{{page.get_absolute_url}}"><img class="cat-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a></p>
+		    </div>
+		    </li>
+		{% endfor %}
+	</div>
+{% endspaceless %}
+{% endblock %}
+

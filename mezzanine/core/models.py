@@ -165,6 +165,20 @@ CONTENT_STATUS_CHOICES = (
 )
 
 
+THEME_GREEN = 'green'
+THEME_GREY = 'grey'
+THEME_RED = 'red'
+THEME_TEAL = 'teal'
+THEME_YELLOW = 'yellow'
+THEME_CHOICES = (
+    (THEME_GREEN, 'Green'),
+    (THEME_GREY, 'Grey'),
+    (THEME_RED, 'Red'),
+    (THEME_TEAL, 'Teal'),
+    (THEME_YELLOW, 'Yellow'),
+)
+
+
 class Displayable(Slugged, MetaData):
     """
     Abstract model that provides features of a visible page on the
@@ -184,6 +198,11 @@ class Displayable(Slugged, MetaData):
         blank=True, null=True)
     short_url = models.URLField(blank=True, null=True)
     in_sitemap = models.BooleanField(_("Show in sitemap"), default=True)
+    theme_color = models.CharField("Theme Colour",
+                                   max_length=255,
+                                   default='grey',
+                                   choices=THEME_CHOICES,
+                                   help_text='Select a Theme Colour for this page')
 
     objects = DisplayableManager()
     search_fields = {"keywords": 10, "title": 5}

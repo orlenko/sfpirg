@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags %}
 <html lang="en" class="no-js">
+{% spaceless %}
 	<head>
 		<meta charset="utf-8">
 		<title>{% block meta_title %}{{ settings.SITE_TITLE }}{% endblock %}</title>
@@ -64,7 +65,7 @@
 
 	<body id="{% block body_id %}body{% endblock %}">
 
-		<div class="container {% block contentclass %}grey{% endblock %}">
+		<div class="container {% block contentclass %}{{page.theme_color|default:'grey'}}{% endblock %}">
 
 			<header>
 
@@ -133,4 +134,5 @@
 		<script src="{% static "js/sfpirg.js" %}"></script>
 
 	</body>
+{% endspaceless %}
 </html>

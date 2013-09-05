@@ -13,7 +13,25 @@
 # Controls the ordering and grouping of the admin menu.
 
 ADMIN_MENU_ORDER = (
-    ("Content", ("sfpirgapp.Testimonial", "pages.Page", "blog.BlogPost", "generic.ThreadedComment", ("Media Library", "fb_browse"),)),
+    ("SFPIRG", (
+      "sfpirgapp.Testimonial",
+      "sfpirgapp.ActionGroup",
+      "sfpirgapp.Category",
+      "calendar.Event",
+      "news.NewsPost",
+      "sfpirgapp.Profile",
+    )),
+    ("Content", (
+      #"sfpirgapp.Testimonial",
+      "pages.Page",
+      #"blog.BlogPost",
+      "generic.ThreadedComment",
+      ("Media Library", "fb_browse"),
+    )),
+    ("Calendar", (
+      "calendar.Event",
+      "calendar.EventType",
+    )),
     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
     ("Users", ("auth.User", "auth.Group",)),
 )
@@ -237,7 +255,7 @@ INSTALLED_APPS = (
     "mezzanine.conf",
     "mezzanine.core",
     "mezzanine.generic",
-    "mezzanine.blog",
+    #"mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.pages",
     "mezzanine.galleries",

@@ -16,6 +16,10 @@ from mezzanine.core.models import SiteRelated, Orderable
 from mezzanine.pages.models import Page
 from mezzanine.utils.importing import import_dotted_path
 from mezzanine.utils.models import upload_to
+from mezzanine.utils.models import AdminThumbMixin
+from mezzanine.core.models import Displayable
+from mezzanine.core.models import Ownable
+from mezzanine.core.models import RichText
 
 EVENTS_UPLOAD_DIR = "galleries"
 if settings.PACKAGE_NAME_FILEBROWSER in settings.INSTALLED_APPS:
@@ -26,8 +30,7 @@ if settings.PACKAGE_NAME_FILEBROWSER in settings.INSTALLED_APPS:
         pass
 
 
-class Event(Page):
-    content = RichTextField(blank=True)
+class Event(Displayable, RichText, AdminThumbMixin):
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
     type = models.ForeignKey('calendar.EventType', blank=True, null=True)
@@ -37,10 +40,6 @@ class Event(Page):
                     upload_to=upload_to("calendar.Event.zip_import", "events"),
                     help_text=_("Upload a zip file containing images, and "
                                   "they'll be imported into this event."))
-
-    class Meta:
-        verbose_name = u'Event'
-        verbose_name_plural = u'Events'
 
     def save(self, delete_zip_import=True, *args, **kwargs):
         """

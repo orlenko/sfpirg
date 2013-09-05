@@ -5,30 +5,26 @@ from django.contrib import admin
 from mezzanine.core.admin import DisplayableAdmin, OwnableAdmin
 from sfpirgapp.models import (
     Testimonial,
-    Profile
+    Profile,
+    Category,
 )
 from mezzanine.pages.admin import PageAdmin
 from sfpirgapp.models import ActionGroup
+from sfpirgapp import settings
 
 
-testimonial_fieldsets = deepcopy(DisplayableAdmin.fieldsets)
-testimonial_fieldsets[0][1]["fields"].extend(["user", "content", ])
-testimonial_list_display = ["title", "user", "status", "admin_link"]
-testimonial_fieldsets = list(testimonial_fieldsets)
-resource_list_filter = deepcopy(DisplayableAdmin.list_filter)
+testimonial_fieldsets = deepcopy(PageAdmin.fieldsets)
+testimonial_fieldsets[0][1]["fields"].append('user')
 
 
 class TestimonialAdmin(DisplayableAdmin, OwnableAdmin):
     fieldsets = testimonial_fieldsets
-    list_display = testimonial_list_display
-    list_filter = resource_list_filter
 
-    def save_form(self, request, form, change):
-        """
-        Super class ordering is important here - user must get saved first.
-        """
-        OwnableAdmin.save_form(self, request, form, change)
-        return DisplayableAdmin.save_form(self, request, form, change)
+    def in_menu(self):
+        for (_name, items) in settings.ADMIN_MENU_ORDER:
+            if "sfpirgapp.Testimonial" in items:
+                return True
+        return False
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -39,11 +35,34 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'date_of_birth']
     list_filter = []
 
+    def in_menu(self):
+        for (_name, items) in settings.ADMIN_MENU_ORDER:
+            if "sfpirgapp.Profile" in items:
+                return True
+        return False
 
-class ActionGroupAdmin(PageAdmin):
+
+class ActionGroupAdmin(DisplayableAdmin, OwnableAdmin):
     fieldsets = deepcopy(PageAdmin.fieldsets)
+
+    def in_menu(self):
+        for (_name, items) in settings.ADMIN_MENU_ORDER:
+            if "sfpirgapp.ActionGroup" in items:
+                return True
+        return False
+
+
+class CategoryAdmin(DisplayableAdmin, OwnableAdmin):
+    fieldsets = deepcopy(PageAdmin.fieldsets)
+
+    def in_menu(self):
+        for (_name, items) in settings.ADMIN_MENU_ORDER:
+            if "sfpirgapp.Category" in items:
+                return True
+        return False
 
 
 admin.site.register(ActionGroup, ActionGroupAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Category, CategoryAdmin)

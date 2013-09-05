@@ -11,6 +11,10 @@ from mezzanine.conf import settings
 from mezzanine.core.admin import DisplayableAdmin, DisplayableAdminForm
 from mezzanine.pages.models import Page, RichTextPage, Link
 from mezzanine.utils.urls import admin_url
+import logging
+
+
+log = logging.getLogger(__name__)
 
 
 page_fieldsets = deepcopy(DisplayableAdmin.fieldsets)
