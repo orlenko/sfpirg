@@ -8,7 +8,10 @@ from django.core.paginator import EmptyPage
 
 def category(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    paginator = Paginator(category.action_groups.all(), 6)
+    paginator = Paginator(category.action_groups.all()
+                          or category.testimonials.all()
+                          or category.news_posts.all()
+                          or category.events.all(), 6)
     pagenum = request.GET.get('page')
     try:
         aglist = paginator.page(pagenum)

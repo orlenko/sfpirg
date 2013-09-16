@@ -36,6 +36,8 @@ class Profile(models.Model, AdminThumbMixin):
 
 
 class Testimonial(PageLike, Ownable):
+    category = ForeignKey('Category', related_name='testimonials')
+
     @models.permalink
     def get_absolute_url(self):
         return ('testimonial', (), {'slug': self.slug})
@@ -58,7 +60,6 @@ class Category(PageLike, Ownable):
     @models.permalink
     def get_absolute_url(self):
         return ('category', (), {'slug': self.slug})
-
 
 
 class ActionGroup(PageLike, Ownable):

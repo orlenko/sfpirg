@@ -19,6 +19,7 @@ common_fieldsets[0][1]['fields'].remove('in_menus')
 
 testimonial_fieldsets = deepcopy(common_fieldsets)
 testimonial_fieldsets[0][1]['fields'].append('user')
+testimonial_fieldsets[0][1]['fields'].append('category')
 
 
 class TestimonialAdmin(DisplayableAdmin, OwnableAdmin):

@@ -20,6 +20,7 @@ from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.core.models import Displayable
 from mezzanine.core.models import Ownable
 from mezzanine.core.models import RichText
+from django.db.models.fields.related import ForeignKey
 
 EVENTS_UPLOAD_DIR = "galleries"
 if settings.PACKAGE_NAME_FILEBROWSER in settings.INSTALLED_APPS:
@@ -54,6 +55,7 @@ class Event(Displayable, RichText, AdminThumbMixin):
         upload_to=upload_to("images", "images"),
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
+    category = ForeignKey('sfpirgapp.Category', related_name='events')
 
     @models.permalink
     def get_absolute_url(self):

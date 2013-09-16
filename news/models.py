@@ -3,6 +3,7 @@ from mezzanine.core.models import Displayable
 from mezzanine.core.models import RichText
 from mezzanine.core.fields import FileField
 from django.db import models
+from django.db.models.fields.related import ForeignKey
 
 
 class DummyTable(models.Model):
@@ -23,7 +24,7 @@ class NewsPost(Displayable, RichText, AdminThumbMixin):
         help_text="If checked, only logged in users can view this page")
     parent = None # To make it compatible with the side_menu template
     children = DummyEmptyResultSet() # To make it compatible with the side_menu template
-
+    category = ForeignKey('sfpirgapp.Category', related_name='news_posts')
 
     @models.permalink
     def get_absolute_url(self):

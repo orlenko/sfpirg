@@ -13,6 +13,9 @@ import os
 from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 from django.template.base import Variable
 from mezzanine.pages.models import Page
+from sfpirgapp.models import ActionGroup, Testimonial
+from news.models import NewsPost
+from mezzanine.calendar.models import Event
 
 # Try to import PIL in either of the two ways it can end up installed.
 try:
@@ -230,3 +233,14 @@ def proj_lines_class(title):
     if charcount < 4 * linelen:
         return 'threeline'
     return 'fourline'
+
+
+@register.filter
+def category_slug(model_name):
+    model = globals().get(model_name)
+    if not model:
+        return ''
+    allrecs = model.objects.all()
+    if not allrecs:
+        return ''
+    return allrecs[0].category.slug
