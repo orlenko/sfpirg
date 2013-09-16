@@ -1243,6 +1243,7 @@ textarea {
 	display:inline-block;
 	overflow: hidden;
 	position: relative;
+	background:$paper repeat;
 
 	img {
 		max-width: none;
@@ -1273,7 +1274,6 @@ textarea {
 		}
 	.cat-text {
 		float:left;
-		background:$paper repeat;
 		font-size:12px;
 		width: 177px;
 		height: 154px;

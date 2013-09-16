@@ -14,6 +14,7 @@ admin.autodiscover()
 urlpatterns = patterns("",
     ("^admin/", include(admin.site.urls)),
     url("^$", "sfpirgapp.views.home.homepage", {}, name="home"),
+    url('^testimonials/$', 'sfpirgapp.views.testimonial.testimoniallist', {}, name='testimoniallist'),
     url('^testimonial/(?P<slug>.*)/$', 'sfpirgapp.views.testimonial.testimonial', {}, name='testimonial'),
 
     url('^news$', 'sfpirgapp.views.newsposts.newslist', {}, name='news-list'),

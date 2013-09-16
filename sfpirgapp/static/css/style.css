@@ -1365,7 +1365,8 @@ textarea {
   height: 430px;
   display: inline-block;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  background: url(../img/extra_clean_paper.jpg) repeat; }
   #category-list li img {
     max-width: none; }
   #category-list li h2 {
@@ -1390,7 +1391,6 @@ textarea {
     margin-bottom: -23px; }
 #category-list .cat-text {
   float: left;
-  background: url(../img/extra_clean_paper.jpg) repeat;
   font-size: 12px;
   width: 177px;
   height: 154px; }
