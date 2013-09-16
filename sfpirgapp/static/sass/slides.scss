@@ -1,5 +1,7 @@
 
 @import "measurements";
+@import "common";
+
 
 .menu-slideshow {
   position: relative;
@@ -157,4 +159,68 @@
     }
 
   }
+}
+
+.project-carousel-container {
+	position: relative;
+	padding: 0 30px;
+	background:$paper repeat;
+
+	.left-button{
+		width:45px;
+		height:38px;
+		position:absolute;
+		left: 0;
+    	top: 80px;
+		}
+	.right-button{
+		width:45px;
+		height:38px;
+		position:absolute;
+		right: 0;
+    	top: 80px;
+		}
+
+	.prev-small {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-left-yellow.png) top center no-repeat;*/
+		&:hover {opacity:0.6;
+					filter:alpha(opacity=60); /* For IE8 and earlier */}
+		}
+	.next-small {
+		/*activae when JS carousel is in:
+		background:url(../img/arrow-right-yellow.png) top center no-repeat;*/
+		&:hover {opacity:0.6;
+					filter:alpha(opacity=60); /* For IE8 and earlier */}
+		}
+
+	#project-carousel {
+		font-family:$peidemi;
+		text-align:center;
+
+			div.slide {
+				display:inline block;
+	    		white-space: normal;
+				float: left;
+				width:155px;
+				height:220px;
+				background: url(../img/background-yellow-star.png) center bottom no-repeat;
+
+				}
+
+			 a	{color:#fff;
+				text-decoration:none;
+				&:hover{color:#000;}
+			 }
+			h4 {
+				font-size:24px;
+				color:#fff;
+				margin:0;
+				width:100%;
+				text-transform:uppercase;
+				line-height: 22px;
+				float:left;
+				}
+
+	}
 }

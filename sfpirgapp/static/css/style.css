@@ -118,6 +118,60 @@
       .ag-slider-container .slide .slide-center .ag img {
         max-width: none; }
 
+.project-carousel-container {
+  position: relative;
+  padding: 0 30px;
+  background: url(../img/extra_clean_paper.jpg) repeat; }
+  .project-carousel-container .left-button {
+    width: 45px;
+    height: 38px;
+    position: absolute;
+    left: 0;
+    top: 80px; }
+  .project-carousel-container .right-button {
+    width: 45px;
+    height: 38px;
+    position: absolute;
+    right: 0;
+    top: 80px; }
+  .project-carousel-container .prev-small {
+    /*activae when JS carousel is in:
+    background:url(../img/arrow-left-yellow.png) top center no-repeat;*/ }
+    .project-carousel-container .prev-small:hover {
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+      /* For IE8 and earlier */ }
+  .project-carousel-container .next-small {
+    /*activae when JS carousel is in:
+    background:url(../img/arrow-right-yellow.png) top center no-repeat;*/ }
+    .project-carousel-container .next-small:hover {
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+      /* For IE8 and earlier */ }
+  .project-carousel-container #project-carousel {
+    font-family: Peignot LT Std Demi, PeignotLTStd-Demi;
+    text-align: center; }
+    .project-carousel-container #project-carousel div.slide {
+      display: inline block;
+      white-space: normal;
+      float: left;
+      width: 155px;
+      height: 220px;
+      background: url(../img/background-yellow-star.png) center bottom no-repeat; }
+    .project-carousel-container #project-carousel a {
+      color: #fff;
+      text-decoration: none; }
+      .project-carousel-container #project-carousel a:hover {
+        color: #000; }
+    .project-carousel-container #project-carousel h4 {
+      font-size: 24px;
+      color: #fff;
+      margin: 0;
+      width: 100%;
+      text-transform: uppercase;
+      line-height: 22px;
+      float: left; }
+
 .featured-image {
   float: left;
   padding: 0 10px 10px 0; }
@@ -245,7 +299,7 @@ body {
   font-size: 14px;
   font-size: 0.875rem;
   color: #000;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
@@ -407,7 +461,7 @@ mark {
 /* Code */
 code, kbd, pre, samp {
   font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
+  _font-family: "courier new", monospace;
   font-size: 1em; }
 
 code {
@@ -449,8 +503,8 @@ table {
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
   word-wrap: break-word;
   -ms-word-wrap: break-word;
   *white-space: normal; }
@@ -460,8 +514,8 @@ table td {
   padding: 8px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid #eee;
-  border-left: 1px solid #eee; }
+  border-top: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee; }
 
 table thead th {
   vertical-align: bottom;
@@ -510,8 +564,8 @@ textarea {
   -moz-appearance: none;
   background-color: #fff;
   color: #777;
-  border: 1px solid #ddd;
-  border-top: 1px solid #999;
+  border: 1px solid #dddddd;
+  border-top: 1px solid #999999;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); }
@@ -525,7 +579,7 @@ input[type=radio] {
   *width: 13px; }
 
 .checkbox {
-  margin: .2em 0; }
+  margin: 0.2em 0; }
   .checkbox label {
     padding-left: 5px;
     overflow: hidden;
@@ -641,7 +695,7 @@ textarea {
 
 /* Rows */
 .row {
-  margin: .5em 0; }
+  margin: 0.5em 0; }
 
 .row-one {
   margin: 1em 0; }
@@ -851,14 +905,14 @@ textarea {
   background: url(../img/cat-middle-teal.jpg) repeat;
   float: left; }
 .teal #category-list .main-cat-img:after {
-  background: url(../img/cat-top-teal.png) top center no-repeat;
+  background: url(../img/cat-top-teal.png) top left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
   display: inline-block;
   margin: -4px 0; }
 .teal #category-list .cat-text:before {
-  background: url(../img/cat-bottom-teal.png) bottom center no-repeat;
+  background: url(../img/cat-bottom-teal.png) bottom left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
@@ -1235,65 +1289,67 @@ textarea {
       filter: alpha(opacity=60);
       /* For IE8 and earlier */ }
 
-#project-carousel {
-  font-family: Peignot LT Std Demi, PeignotLTStd-Demi;
-  text-align: center;
-  background: url(../img/extra_clean_paper.jpg) repeat; }
-  #project-carousel ul {
-    margin: 0;
-    padding: 0;
-    display: block;
-    padding: 0 35px;
-    width: 100%;
-    height: 220px;
-    list-style: none;
-    overflow: hidden; }
-  #project-carousel li {
-    display: inline block;
-    float: left;
-    width: 155px;
-    height: 220px;
-    background: url(../img/background-yellow-star.png) center bottom no-repeat; }
-  #project-carousel a {
-    color: #fff;
-    text-decoration: none; }
-    #project-carousel a:hover {
-      color: #000; }
-  #project-carousel h4 {
-    font-size: 24px;
-    color: #fff;
-    margin: 0;
-    width: 100%;
-    text-transform: uppercase;
-    line-height: 22px;
-    float: left; }
-  #project-carousel .left-button {
-    width: 45px;
-    height: 38px;
-    position: absolute;
-    left: 0;
-    top: 80px; }
-  #project-carousel .right-button {
-    width: 45px;
-    height: 38px;
-    position: absolute;
-    right: 0;
-    top: 80px; }
-  #project-carousel .prev-small {
-    /*activae when JS carousel is in:
-    background:url(../img/arrow-left-yellow.png) top center no-repeat;*/ }
-    #project-carousel .prev-small:hover {
-      opacity: 0.6;
-      filter: alpha(opacity=60);
-      /* For IE8 and earlier */ }
-  #project-carousel .next-small {
-    /*activae when JS carousel is in:
-    background:url(../img/arrow-right-yellow.png) top center no-repeat;*/ }
-    #project-carousel .next-small:hover {
-      opacity: 0.6;
-      filter: alpha(opacity=60);
-      /* For IE8 and earlier */ }
+/*#project-carousel {
+	font-family:$peidemi;
+	text-align:center;
+	background:$paper repeat;
 
+		ul {margin:0;
+			padding:0;
+			display: block;
+			padding:0 35px;
+			width: 100%;
+			height:220px;
+			list-style:none;
+			overflow:hidden;
+
+
+		}
+		li {display:inline block;
+			float: left;
+			width:155px;
+			height:220px;
+			background: url(../img/background-yellow-star.png) center bottom no-repeat;
+
+			}
+
+		 a	{color:#fff;
+			text-decoration:none;
+			&:hover{color:#000;}
+		 }
+		h4 {
+			font-size:24px;
+			color:#fff;
+			margin:0;
+			width:100%;
+			text-transform:uppercase;
+			line-height: 22px;
+			float:left;
+			}
+		.left-button{
+		width:45px;
+		height:38px;
+		position:absolute;
+		left: 0;
+    	top: 80px;
+		}
+		.right-button{
+		width:45px;
+		height:38px;
+		position:absolute;
+		right: 0;
+    	top: 80px;
+		}
+
+		.prev-small {
+		&:hover {opacity:0.6;
+					filter:alpha(opacity=60); }
+		}
+		.next-small {
+		&:hover {opacity:0.6;
+					filter:alpha(opacity=60); }
+		}
+}*/
 #main-content-block {
   margin: 20px 0; }
 
@@ -1307,7 +1363,11 @@ textarea {
   width: 177px;
   margin: 20px;
   height: 430px;
-  display: inline-block; }
+  display: inline-block;
+  overflow: hidden;
+  position: relative; }
+  #category-list li img {
+    max-width: none; }
   #category-list li h2 {
     margin: 0;
     padding: 0 6px;
@@ -1331,11 +1391,15 @@ textarea {
 #category-list .cat-text {
   float: left;
   background: url(../img/extra_clean_paper.jpg) repeat;
-  font-size: 12px; }
+  font-size: 12px;
+  width: 177px;
+  height: 154px; }
   #category-list .cat-text p {
     padding: 6px; }
 #category-list .cat-more {
-  float: right;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
   margin: 8px 2px 7px; }
 
 #pagination {
@@ -1363,13 +1427,13 @@ textarea {
 NOTE: img is based on an image no more than: 150px wide and 135px high. */
 .oneline h4 {
   background: url(../img/pc-title-1line.png) center center no-repeat;
-  padding: 15px; }
+  padding: 15px 6px; }
 .oneline img {
   margin: 12px 0; }
 
 .twoline h4 {
   background: url(../img/pc-title-2line.png) center center no-repeat;
-  padding: 14px 0; }
+  padding: 14px 6px; }
 .twoline img {
   margin: 4px 0; }
 
@@ -1383,7 +1447,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 .fourline h4 {
   background: url(../img/pc-title-4line.png) center center no-repeat;
-  padding: 17px 0; }
+  padding: 17px 6px; }
 .fourline img {
   height: auto;
   margin: -75px 0;

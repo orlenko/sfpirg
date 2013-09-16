@@ -10,26 +10,7 @@
 @import "mixins";
 @import "slides";
 @import "pages";
-
-
-//Peignot Font Styles
-$peibold:Peignot LT Std Bold, PeignotLTStd-Bold;
-$peilight:Peignot LT Std Light, PeignotLTStd-Light;
-$peidemi:Peignot LT Std Demi, PeignotLTStd-Demi;
-
-//SFPIRG Colors
-$red:#BE1D2C;
-$grey:#675F5F;
-$dgrey:#221F1F;
-$green:#6AA620;
-$teal:#27A8A5;
-$yellow:#DDC22F;
-
-//SFPIRG Backgrounds
-$paper:url(../img/extra_clean_paper.jpg);
-$dpaper:url(../img/extra_clean_paper-d.jpg);
-$dtpaper:url(../img/extra_clean_paper-dt.jpg);
-
+@import "common";
 
 
 /* General Resets */
@@ -737,13 +718,13 @@ textarea {
 
 		h2 {background:url(../img/cat-middle-teal.jpg) repeat; float:left;}
 
-		.main-cat-img:after {background:url(../img/cat-top-teal.png) top center no-repeat;
+		.main-cat-img:after {background:url(../img/cat-top-teal.png) top left no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
 		margin: -4px 0;}
 
-		.cat-text:before {background:url(../img/cat-bottom-teal.png) bottom center no-repeat;
+		.cat-text:before {background:url(../img/cat-bottom-teal.png) bottom left no-repeat;
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;}
@@ -1182,7 +1163,7 @@ textarea {
 		}
 }
 
-#project-carousel {
+/*#project-carousel {
 	font-family:$peidemi;
 	text-align:center;
 	background:$paper repeat;
@@ -1235,18 +1216,15 @@ textarea {
 		}
 
 		.prev-small {
-		/*activae when JS carousel is in:
-		background:url(../img/arrow-left-yellow.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
-					filter:alpha(opacity=60); /* For IE8 and earlier */}
+					filter:alpha(opacity=60); }
 		}
 		.next-small {
-		/*activae when JS carousel is in:
-		background:url(../img/arrow-right-yellow.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
-					filter:alpha(opacity=60); /* For IE8 and earlier */}
+					filter:alpha(opacity=60); }
 		}
-}
+}*/
+
 #main-content-block {margin:20px 0}
 #category-list {
 
@@ -1258,10 +1236,17 @@ textarea {
 	margin:20px 0;
 	}
 
-	li {width:177px;
+	li {
+	width:177px;
 	margin:20px;
 	height:430px;
 	display:inline-block;
+	overflow: hidden;
+	position: relative;
+
+	img {
+		max-width: none;
+	}
 
 		h2 {
 			margin:0;
@@ -1290,10 +1275,14 @@ textarea {
 		float:left;
 		background:$paper repeat;
 		font-size:12px;
+		width: 177px;
+		height: 154px;
 		 p{padding:6px;}
 		}
 	.cat-more {
-		float:right;
+		position: absolute;
+		right: 6px;
+		bottom: 6px;
 		margin: 8px 2px 7px;
 		}
 }
@@ -1331,14 +1320,14 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 .oneline {
 
 	h4 {background:url(../img/pc-title-1line.png) center center no-repeat;
-		padding:15px;}
+		padding:15px 6px;}
 
 	img {margin:12px 0;
 	}
 }
 .twoline {
 	h4 {background:url(../img/pc-title-2line.png) center center no-repeat;
-	padding:14px 0;}
+	padding:14px 6px;}
 
 	img {margin:4px 0;
 	;}
@@ -1354,7 +1343,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 .fourline {
 	h4 {background:url(../img/pc-title-4line.png) center center no-repeat;
-	padding:17px 0;}
+	padding:17px 6px;}
 
 	img {height: auto;
     margin: -75px 0;

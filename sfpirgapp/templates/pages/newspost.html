@@ -6,14 +6,14 @@
 {% block main %}{{ block.super }}
 
 	<div id="main-content-block">
-		{% if page.featured_image %}
+		{% if newspost.featured_image %}
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 200 0 %}" />
 		{% endif %}
 
-		<h4>{{ page.newspost.publish_date|date:"M d, Y" }} at {{ page.newspost.publish_date|date:"gA" }}</h4>
+		<h4>{{ newspost.publish_date|date:"M d, Y" }} at {{ newspost.publish_date|date:"gA" }}</h4>
 
-		{% editable page.newspost.content %}
-			{{ page.newspost.content|richtext_filter|safe }}
+		{% editable newspost.content %}
+			{{ newspost.content|richtext_filter|safe }}
 		{% endeditable %}
 	</div>
 

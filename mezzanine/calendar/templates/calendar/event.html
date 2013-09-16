@@ -1,0 +1,19 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags sfpirg_tags %}
+
+{% block contentclass %}green{% endblock %}
+{% block main %}{{ block.super }}
+
+	<div id="main-content-block">
+		{% if event.featured_image %}
+			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail event.featured_image 200 0 %}" />
+		{% endif %}
+
+		<h4>{{ event.start|date:"M d, Y" }} at {{ event.start|date:"gA" }}</h4>
+		{% editable event.content %}
+			{{ event.content|richtext_filter|safe }}
+		{% endeditable %}
+	</div>
+
+{% endblock %}

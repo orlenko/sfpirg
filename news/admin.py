@@ -3,11 +3,16 @@ from copy import deepcopy
 from django.contrib import admin
 from .models import NewsPost
 from mezzanine.core.admin import DisplayableAdmin
-from mezzanine.core.admin import OwnableAdmin
+from mezzanine.pages.admin import PageAdmin
 
 
-class NewsAdmin(DisplayableAdmin, OwnableAdmin):
-    fieldsets = deepcopy(DisplayableAdmin.fieldsets)
+common_fieldsets = deepcopy(PageAdmin.fieldsets)
+common_fieldsets[0][1]['fields'].append('content')
+common_fieldsets[0][1]['fields'].remove('in_menus')
+#common_fieldsets[0][1]['fields'].remove('user_id')
+
+class NewsAdmin(DisplayableAdmin):
+    fieldsets = common_fieldsets
 
     def in_menu(self):
         for (_name, items) in settings.ADMIN_MENU_ORDER:

@@ -22,3 +22,10 @@ def eventslist(request):
 
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/eventslist.html', {}, context_instance=context)
+
+
+def event(request, event):
+    event = Event.objects.get(slug=event)
+    page = event
+    context = RequestContext(request, locals())
+    return render_to_response('calendar/event.html', {}, context_instance=context)

@@ -1,17 +1,17 @@
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from sfpirgapp.models import ActionGroup
+from sfpirgapp.models import ActionGroup, Category
 from django.core.paginator import Paginator
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
 
 
-def aglist(request):
-    aglist = ActionGroup.objects.all().order_by('title')
-    paginator = Paginator(aglist, 10)
-    page = request.GET.get('page')
+def category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    paginator = Paginator(category.action_groups.all(), 6)
+    pagenum = request.GET.get('page')
     try:
-        aglist = paginator.page(page)
+        aglist = paginator.page(pagenum)
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         aglist = paginator.page(1)
@@ -19,11 +19,4 @@ def aglist(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         aglist = paginator.page(paginator.num_pages)
     context = RequestContext(request, locals())
-    return render_to_response('sfpirg/aglist.html', {}, context_instance=context)
-
-
-def actiongroup(request, slug):
-    actiongroup = get_object_or_404(ActionGroup, slug=slug)
-    page = actiongroup
-    context = RequestContext(request, locals())
-    return render_to_response('pages/actiongroup.html', {}, context_instance=context)
+    return render_to_response('sfpirg/category.html', {}, context_instance=context)

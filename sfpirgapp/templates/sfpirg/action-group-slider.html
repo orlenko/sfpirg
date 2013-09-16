@@ -13,9 +13,20 @@
 	         <div class="slide">
 	         	<div class="slide-center">
 		         	{% for ag in six %}
-		         		<div class="ag"><a href="{{ag.get_full_url}}"><img class="ag-img"
-		         			src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 42 42 %}"
-		         			alt="Action Group Picture" /></a></div>
+		         		<div class="ag">
+		         			<a href="{{ag.get_absolute_url}}">
+		         			{% if ag.featured_image %}
+		         				<img class="ag-img"
+		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 42 42 %}"
+		         					 alt="Action Group Picture" />
+		         			{% endif %}
+		         			{% if not ag.featured_image %}
+		         				<img class="ag-img"
+		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail 'noimg.jpg' 42 42 %}"
+		         					 alt="Action Group Picture" />
+		         			{% endif %}
+		         			</a>
+		         		</div>
 		         	{% endfor %}
 	         	</div>
              </div>

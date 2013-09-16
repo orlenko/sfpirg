@@ -207,3 +207,26 @@ def sfpirg_side_menu(context, token):
                 links.append((page.get_absolute_url(), page.title))
     context['links'] = links
     return get_template('sfpirg/side_menu.html').render(Context(context))
+
+
+@register.render_tag
+def projects_slider(context, token):
+    pages = []
+    for page in Page.objects.published(for_user=context["request"].user).order_by('_order'):
+        if page.in_menu_template('menus/projects.html'):
+            pages.append(page)
+    context['pages'] = pages
+    return get_template('sfpirg/projects_slider.html').render(Context(context))
+
+
+@register.filter
+def proj_lines_class(title):
+    charcount = len(title)
+    linelen = 6
+    if charcount < 2 * linelen:
+        return 'oneline'
+    if charcount < 3 * linelen:
+        return 'twoline'
+    if charcount < 4 * linelen:
+        return 'threeline'
+    return 'fourline'

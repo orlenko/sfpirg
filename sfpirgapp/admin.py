@@ -13,10 +13,12 @@ from sfpirgapp.models import ActionGroup
 from sfpirgapp import settings
 
 
-testimonial_fieldsets = deepcopy(PageAdmin.fieldsets)
-testimonial_fieldsets[0][1]["fields"].append('user')
-testimonial_fieldsets[0][1]["fields"].remove('in_menus')
-testimonial_fieldsets[0][1]["fields"].append('content')
+common_fieldsets = deepcopy(PageAdmin.fieldsets)
+common_fieldsets[0][1]['fields'].append('content')
+common_fieldsets[0][1]['fields'].remove('in_menus')
+
+testimonial_fieldsets = deepcopy(common_fieldsets)
+testimonial_fieldsets[0][1]['fields'].append('user')
 
 
 class TestimonialAdmin(DisplayableAdmin, OwnableAdmin):
@@ -44,8 +46,12 @@ class ProfileAdmin(admin.ModelAdmin):
         return False
 
 
+action_group_fieldsets = deepcopy(common_fieldsets)
+action_group_fieldsets[0][1]['fields'].append('category')
+
+
 class ActionGroupAdmin(DisplayableAdmin, OwnableAdmin):
-    fieldsets = deepcopy(PageAdmin.fieldsets)
+    fieldsets = action_group_fieldsets
 
     def in_menu(self):
         for (_name, items) in settings.ADMIN_MENU_ORDER:
@@ -55,7 +61,7 @@ class ActionGroupAdmin(DisplayableAdmin, OwnableAdmin):
 
 
 class CategoryAdmin(DisplayableAdmin, OwnableAdmin):
-    fieldsets = deepcopy(PageAdmin.fieldsets)
+    fieldsets = common_fieldsets
 
     def in_menu(self):
         for (_name, items) in settings.ADMIN_MENU_ORDER:

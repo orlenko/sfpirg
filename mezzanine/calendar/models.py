@@ -30,7 +30,17 @@ if settings.PACKAGE_NAME_FILEBROWSER in settings.INSTALLED_APPS:
         pass
 
 
+class DummyTable(models.Model):
+    pass
+
+
+def DummyEmptyResultSet():
+    return DummyTable.objects.filter(pk=-1)
+
+
 class Event(Displayable, RichText, AdminThumbMixin):
+    parent = None # To make it compatible with the side_menu template
+    children = DummyEmptyResultSet() # To make it compatible with the side_menu template
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
     type = models.ForeignKey('calendar.EventType', blank=True, null=True)
@@ -40,6 +50,15 @@ class Event(Displayable, RichText, AdminThumbMixin):
                     upload_to=upload_to("calendar.Event.zip_import", "events"),
                     help_text=_("Upload a zip file containing images, and "
                                   "they'll be imported into this event."))
+    featured_image = FileField(verbose_name=_("Featured Image"),
+        upload_to=upload_to("images", "images"),
+        format="Image", max_length=255, null=True, blank=True)
+    admin_thumb_field = "featured_image"
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ("event", (), {"event": self.slug})
+
 
     def save(self, delete_zip_import=True, *args, **kwargs):
         """

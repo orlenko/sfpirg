@@ -6,12 +6,12 @@
 {% block main %}{{ block.super }}
 
 	<div id="main-content-block">
-		{% if page.featured_image %}
-			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 200 0 %}" />
+		{% if actiongroup.featured_image %}
+			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail actiongroup.featured_image 200 0 %}" />
 		{% endif %}
 
-		{% editable page.actiongroup.content %}
-			{{ page.actiongroup.content|richtext_filter|safe }}
+		{% editable actiongroup.content %}
+			{{ actiongroup.content|richtext_filter|safe }}
 		{% endeditable %}
 	</div>
 

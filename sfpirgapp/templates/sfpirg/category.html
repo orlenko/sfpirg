@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block contentclass %}teal{% endblock %}
+
+{% block main %}
+
+	<h1>{{ category.title }}</h1>
+
+	<div id="main-content-block">
+		{% editable category.content %}
+			{{ category.content|richtext_filter|safe }}
+		{% endeditable %}
+	</div>
+
+	{% spaceless %}
+	<div id="category-list">
+		<ul>
+
+		{% for rec in aglist %}
+		    <li>
+			    <div class="main-cat-img">
+			    	<a href="{{rec.get_absolute_url}}">
+			    		{% if rec.featured_image %}
+			    			<img src="{{ MEDIA_URL }}{%  sfpirg_thumbnail rec.featured_image 177 200 %}" alt="{{rec.title}}" />
+			    		{% endif %}
+			    		{% if not rec.featured_image %}
+			    			<img src="{{ MEDIA_URL }}{%  sfpirg_thumbnail 'noimg.jpg' 177 200 %}" alt="{{rec.title}}" />
+			    		{% endif %}
+			    	</a>
+			    </div>
+			    <h2><a href="{{rec.get_absolute_url}}">{{rec.title}}</a></h2>
+			    <div class="cat-text">
+			    {{ rec.content|richtext_filter|safe|truncatechars:60 }}
+			    <a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>
+			    </div>
+		    </li>
+		 {% endfor %}
+
+		</ul>
+		<div id="pagination">
+			{% sfpirg_pagination aglist %}
+		</div>
+	</div>
+	{% endspaceless %}
+
+{% endblock %}
+

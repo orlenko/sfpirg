@@ -5,8 +5,14 @@
 
 	<h1>{{ t.title }}</h1>
 
-	{% if t.user.profile.photo %}
-		<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.user.profile.photo 90 0 %}" alt="Avatar" />
+	{% if t.featured_image %}
+		<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.featured_image 90 0 %}" alt="Featured Image" />
+	{% endif %}
+
+	{% if not t.featured_image %}
+		{% if t.user.profile.photo %}
+			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.user.profile.photo 90 0 %}" alt="Avatar" />
+		{% endif %}
 	{% endif %}
 
 	<h4>By {{ t.user.get_full_name|default:t.user.username }} {% if t.user.profile.title %}- {{ t.user.profile.title }}{% endif %}</h4>

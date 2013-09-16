@@ -17,9 +17,16 @@ urlpatterns = patterns("",
     url('^testimonial/(?P<slug>.*)/$', 'sfpirgapp.views.testimonial.testimonial', {}, name='testimonial'),
 
     url('^news$', 'sfpirgapp.views.newsposts.newslist', {}, name='news-list'),
-    url('^events$', 'sfpirgapp.views.events.eventslist', {}, name='events-list'),
+    url('^news/(?P<news>.*)/$', 'sfpirgapp.views.newsposts.newspost', {}, name='news-post'),
+
+    url('^events/list/$', 'sfpirgapp.views.events.eventslist', {}, name='events-list'),
+    url('^events/(?P<event>.*)/$', 'sfpirgapp.views.events.event', {}, name='event'),
+
     url('^arx$', 'sfpirgapp.views.arx.arxlist', {}, name='arx-list'),
-    url('^action-groups$', 'sfpirgapp.views.actiongroups.aglist', {}, name='action-groups-list'),
+    url('^actiongroups$', 'sfpirgapp.views.actiongroups.aglist', {}, name='action-groups-list'),
+    url('^actiongroups/(?P<slug>.*)/$', 'sfpirgapp.views.actiongroups.actiongroup', {}, name='action-group'),
+
+    url('^category/(?P<slug>.*)/$', 'sfpirgapp.views.category.category', {}, name='category'),
 
     ("^", include("mezzanine.urls")),
 

@@ -18,21 +18,21 @@ event_fieldsets[0][1]['fields'].remove(('publish_date', 'expiry_date'))
 event_fieldsets[1][1]['fields'].append('status')
 event_fieldsets[1][1]['fields'].append(('publish_date', 'expiry_date'))
 event_fieldsets[0][1]["fields"].extend([
-    "content", "start", "end", "type", "zip_import", "in_menus",
-    'login_required'])
+    "content", "start", "end", "type", "zip_import",
+    ])
 
 
 class EventImageInline(TabularDynamicInlineAdmin):
     model = EventImage
 
 
-class EventAdmin(DisplayableAdmin, OwnableAdmin):
+class EventAdmin(DisplayableAdmin):
     inlines = (EventImageInline,)
     fieldsets = event_fieldsets
 
     def get_form(self, request, obj=None, **kwargs):
         """Don't require content even when status is published"""
-        form = super(PageAdmin, self).get_form(request, obj, **kwargs)
+        form = super(EventAdmin, self).get_form(request, obj, **kwargs)
 
         def clean_content(form):
             content = form.cleaned_data.get("content")

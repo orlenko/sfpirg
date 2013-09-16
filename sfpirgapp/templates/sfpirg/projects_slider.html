@@ -1,0 +1,37 @@
+{% load i18n future pages_tags sfpirg_tags %}
+
+<div class="project-carousel-container col twelve tablet-full mobile-full">
+	<div id="project-carousel" class="cycle-slideshow"
+			data-cycle-fx="carousel"
+			data-cycle-timeout="0"
+			data-cycle-slides="div.slide"
+	        data-cycle-prev="#proj_slid_prev"
+	        data-cycle-next="#proj_slid_next">
+
+		{% spaceless %}
+			{% for page in pages %}
+			<div class="slide {{page.title|proj_lines_class}}">
+				<h4>
+					<a href="{{page.get_absolute_url}}">{{page.title}}</a>
+				</h4>
+				<a href="{{page.get_absolute_url}}">
+					<img src="{{MEDIA_URL}}{{ page.featured_image }}" alt="{{page.title}}" />
+				</a>
+			</div>
+			{% endfor %}
+		{% endspaceless %}
+
+	</div>
+	<div class="left-button" id="proj_slid_prev">
+		<a class="prev-small" href="">
+			<img src="../static/img/arrow-left-yellow.png" alt="next" />
+		</a>
+	</div>
+
+	<div class="right-button" id="proj_slid_next">
+		<a class="next-small" href="">
+			<img src="../static/img/arrow-right-yellow.png" alt="next" />
+		</a>
+	</div>
+</div>
+<!-- end of #project-carousel -->
