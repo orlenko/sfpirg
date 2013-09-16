@@ -8,15 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'ActionGroup.category'
-        db.add_column(u'sfpirgapp_actiongroup', 'category',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='action_groups', to=orm['sfpirgapp.Category']),
+        # Adding field 'NewsPost.category'
+        db.add_column(u'news_newspost', 'category',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='news_posts', to=orm['sfpirgapp.Category']),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'ActionGroup.category'
-        db.delete_column(u'sfpirgapp_actiongroup', 'category_id')
+        # Deleting field 'NewsPost.category'
+        db.delete_column(u'news_newspost', 'category_id')
 
 
     models = {
@@ -71,11 +71,14 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '500'})
         },
-        u'sfpirgapp.actiongroup': {
-            'Meta': {'ordering': "('_order',)", 'object_name': 'ActionGroup'},
+        u'news.dummytable': {
+            'Meta': {'object_name': 'DummyTable'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+        },
+        u'news.newspost': {
+            'Meta': {'object_name': 'NewsPost'},
             '_meta_title': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
-            '_order': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
-            'category': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'action_groups'", 'to': u"orm['sfpirgapp.Category']"}),
+            'category': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'news_posts'", 'to': u"orm['sfpirgapp.Category']"}),
             'content': ('mezzanine.core.fields.RichTextField', [], {}),
             'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'expiry_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
@@ -92,9 +95,7 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
             'status': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
             'theme_color': ('django.db.models.fields.CharField', [], {'default': "'grey'", 'max_length': '255'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
-            'titles': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'null': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'actiongroups'", 'to': u"orm['auth.User']"})
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '500'})
         },
         u'sfpirgapp.category': {
             'Meta': {'ordering': "('_order',)", 'object_name': 'Category'},
@@ -120,43 +121,6 @@ class Migration(SchemaMigration):
             'titles': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'null': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'categorys'", 'to': u"orm['auth.User']"})
         },
-        u'sfpirgapp.dummytable': {
-            'Meta': {'object_name': 'DummyTable'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        },
-        u'sfpirgapp.profile': {
-            'Meta': {'object_name': 'Profile'},
-            'bio': ('django.db.models.fields.TextField', [], {'null': 'True'}),
-            'date_of_birth': ('django.db.models.fields.DateField', [], {'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'photo': ('mezzanine.core.fields.FileField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
-        },
-        u'sfpirgapp.testimonial': {
-            'Meta': {'ordering': "('_order',)", 'object_name': 'Testimonial'},
-            '_meta_title': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
-            '_order': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
-            'content': ('mezzanine.core.fields.RichTextField', [], {}),
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'expiry_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'featured_image': ('mezzanine.core.fields.FileField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'gen_description': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'in_sitemap': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'keywords': ('mezzanine.generic.fields.KeywordsField', [], {'object_id_field': "'object_pk'", 'to': u"orm['generic.AssignedKeyword']", 'frozen_by_south': 'True'}),
-            'keywords_string': ('django.db.models.fields.CharField', [], {'max_length': '500', 'blank': 'True'}),
-            'login_required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'publish_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'short_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'site': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sites.Site']"}),
-            'slug': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
-            'status': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
-            'theme_color': ('django.db.models.fields.CharField', [], {'default': "'grey'", 'max_length': '255'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
-            'titles': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'null': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'testimonials'", 'to': u"orm['auth.User']"})
-        },
         u'sites.site': {
             'Meta': {'ordering': "('domain',)", 'object_name': 'Site', 'db_table': "'django_site'"},
             'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -165,4 +129,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['sfpirgapp']
+    complete_apps = ['news']

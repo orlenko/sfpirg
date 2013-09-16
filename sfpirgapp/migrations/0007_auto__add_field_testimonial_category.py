@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Testimonial.category'
         db.add_column(u'sfpirgapp_testimonial', 'category',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=0, related_name='testimonials', to=orm['sfpirgapp.Category']),
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='testimonials', to=orm['sfpirgapp.Category']),
                       keep_default=False)
 
 
