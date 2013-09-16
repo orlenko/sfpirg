@@ -4,7 +4,7 @@
 	<div class="section row grey">
 
 		<div id="navigation" class="col tablet-full mobile-full">
-			<h3><a href="#">Navigation</a></h3>
+			<h3>Navigation</h3>
 			{% sfpirg_side_menu  %}
 		</div><!-- end of #navigation -->
 
@@ -13,7 +13,7 @@
 	<div class="section row grey">
 
 		<div id="experience-widget" class="col tablet-full mobile-full">
-			<h3>EXPERIENCE SFPIRG</h3>
+			<h3><a href="/category/{{'Testimonial'|category_slug}}">EXPERIENCE SFPIRG</a></h3>
 			{% sfpirg_random_testimonial %}
 		</div><!-- end of #experience-widget -->
 
@@ -22,7 +22,7 @@
 	<div class="section row green">
 
 		<div id="what-is-happening" class="col tablet-full mobile-full">
-			<h3><a href="/events">What is happening</a></h3>
+			<h3><a href="/category/{{'Event'|category_slug}}">What is happening</a></h3>
 			{% calendar_event_slider %}
 		</div><!-- end of #what-is-happening -->
 	</div>

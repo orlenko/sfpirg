@@ -183,13 +183,13 @@
 
 	.prev-small {
 		/*activae when JS carousel is in:
-		background:url(../img/arrow-left-yellow.png) top center no-repeat;*/
+		background:url(../img/arrow-left-yellow.png) top left no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
 	.next-small {
 		/*activae when JS carousel is in:
-		background:url(../img/arrow-right-yellow.png) top center no-repeat;*/
+		background:url(../img/arrow-right-yellow.png) top left no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}

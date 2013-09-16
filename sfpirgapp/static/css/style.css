@@ -136,14 +136,14 @@
     top: 80px; }
   .project-carousel-container .prev-small {
     /*activae when JS carousel is in:
-    background:url(../img/arrow-left-yellow.png) top center no-repeat;*/ }
+    background:url(../img/arrow-left-yellow.png) top left no-repeat;*/ }
     .project-carousel-container .prev-small:hover {
       opacity: 0.6;
       filter: alpha(opacity=60);
       /* For IE8 and earlier */ }
   .project-carousel-container .next-small {
     /*activae when JS carousel is in:
-    background:url(../img/arrow-right-yellow.png) top center no-repeat;*/ }
+    background:url(../img/arrow-right-yellow.png) top left no-repeat;*/ }
     .project-carousel-container .next-small:hover {
       opacity: 0.6;
       filter: alpha(opacity=60);
@@ -859,14 +859,14 @@ textarea {
   background: url(../img/cat-middle-grey.jpg) repeat;
   float: left; }
 .grey #category-list .main-cat-img:after {
-  background: url(../img/cat-top-grey.png) top center no-repeat;
+  background: url(../img/cat-top-grey.png) top left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
   display: inline-block;
   margin: -4px 0; }
 .grey #category-list .cat-text:before {
-  background: url(../img/cat-bottom-grey.png) bottom center no-repeat;
+  background: url(../img/cat-bottom-grey.png) bottom left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
@@ -951,14 +951,14 @@ textarea {
   background: url(../img/cat-middle-green.jpg) repeat;
   float: left; }
 .green #category-list .main-cat-img:after {
-  background: url(../img/cat-top-green.png) top center no-repeat;
+  background: url(../img/cat-top-green.png) top left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
   display: inline-block;
   margin: -4px 0; }
 .green #category-list .cat-text:before {
-  background: url(../img/cat-bottom-green.png) bottom center no-repeat;
+  background: url(../img/cat-bottom-green.png) bottom left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
@@ -997,14 +997,14 @@ textarea {
   background: url(../img/cat-middle-yellow.jpg) repeat;
   float: left; }
 .yellow #category-list .main-cat-img:after {
-  background: url(../img/cat-top-yellow.png) top center no-repeat;
+  background: url(../img/cat-top-yellow.png) top left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
   display: inline-block;
   margin: -4px 0; }
 .yellow #category-list .cat-text:before {
-  background: url(../img/cat-bottom-yellow.png) bottom center no-repeat;
+  background: url(../img/cat-bottom-yellow.png) bottom left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
@@ -1043,14 +1043,14 @@ textarea {
   background: url(../img/cat-middle-red.jpg) repeat;
   float: left; }
 .red #category-list .main-cat-img:after {
-  background: url(../img/cat-top-red.png) top center no-repeat;
+  background: url(../img/cat-top-red.png) top left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
   display: inline-block;
   margin: -4px 0; }
 .red #category-list .cat-text:before {
-  background: url(../img/cat-bottom-red.png) bottom center no-repeat;
+  background: url(../img/cat-bottom-red.png) bottom left no-repeat;
   height: 28px;
   width: 100%;
   content: "";
