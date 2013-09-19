@@ -11,6 +11,13 @@ from sfpirgapp.models import (
 from mezzanine.pages.admin import PageAdmin
 from sfpirgapp.models import ActionGroup
 from sfpirgapp import settings
+from sfpirgapp.models import Address
+from sfpirgapp.models import Organization
+from sfpirgapp.models import Contact
+from sfpirgapp.models import ProjectType
+from sfpirgapp.models import ProjectSubject
+from sfpirgapp.models import Project
+from django.contrib.admin.options import ModelAdmin
 
 
 common_fieldsets = deepcopy(PageAdmin.fieldsets)
@@ -71,7 +78,21 @@ class CategoryAdmin(DisplayableAdmin, OwnableAdmin):
         return False
 
 
+class AddressAdmin(ModelAdmin):
+    def in_menu(self):
+        for (_name, items) in settings.ADMIN_MENU_ORDER:
+            if "sfpirgapp.Address" in items:
+                return True
+        return False
+
+
 admin.site.register(ActionGroup, ActionGroupAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Address)
+admin.site.register(Organization)
+admin.site.register(Contact)
+admin.site.register(ProjectType)
+admin.site.register(ProjectSubject)
+admin.site.register(Project)

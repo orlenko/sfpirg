@@ -13,7 +13,7 @@ import os
 from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 from django.template.base import Variable
 from mezzanine.pages.models import Page
-from sfpirgapp.models import ActionGroup, Testimonial
+from sfpirgapp.models import ActionGroup, Testimonial, Project
 from news.models import NewsPost
 from mezzanine.calendar.models import Event
 

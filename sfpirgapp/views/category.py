@@ -11,7 +11,8 @@ def category(request, slug):
     paginator = Paginator(category.action_groups.all()
                           or category.testimonials.all()
                           or category.news_posts.all()
-                          or category.events.all(), 6)
+                          or category.events.all()
+                          or category.arx_projects.all(), 6)
     pagenum = request.GET.get('page')
     try:
         aglist = paginator.page(pagenum)

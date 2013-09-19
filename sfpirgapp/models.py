@@ -26,15 +26,15 @@ class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
 
 class Profile(models.Model, AdminThumbMixin):
     user = models.OneToOneField(User)
-    date_of_birth = models.DateField(null=True)
-    title = models.CharField(null=True, max_length=255)
-    bio = models.TextField(null=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    title = models.CharField(null=True, blank=True, max_length=255)
+    bio = models.TextField(null=True, blank=True)
     photo = FileField(verbose_name="Photo",
         upload_to=upload_to("sfpirgapp.Profile.photo", "photos"),
         format="Image", max_length=255, null=True, blank=True,
         help_text='User photo')
     admin_thumb_field = "photo"
-    organization = ForeignKey('Organization', null=True)
+    organization = ForeignKey('Organization', null=True, blank=True)
 
 
 class Testimonial(PageLike, Ownable):
@@ -108,6 +108,14 @@ class Contact(models.Model):
     phone = models.CharField(max_length=255, verbose_name='Contact Phone Number')
     on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list to receive periodic information about ARX?')
 
+    def as_p(self):
+        retval = '<br/>'.join(['Name: %s' % self.name,
+                  'Position: %s' % self.position,
+                  'Email: %s %s' % (self.email, self.alt_email),
+                  'Phone: %s' % self.phone])
+        return '<p>%s</p>' % retval
+
+
 
 class ProjectType(Slugged):
     pass
@@ -135,10 +143,10 @@ class Project(Slugged, AdminThumbMixin):
                                    'This elevator pitch should be as brief as possible and should be designed to interest the student in your project. '
                                    'You will have a chance later to describe your project in greater detail.'))
     project_type = models.ManyToManyField(ProjectType)
-    project_type_other = models.CharField(max_length=255, verbose_name='Other Description',
+    project_type_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Description',
                             help_text='If you checked "other", please briefly describe your project type')
     project_subject = models.ManyToManyField(ProjectSubject)
-    project_subject_other = models.CharField(max_length=255, verbose_name='Other Subject',
+    project_subject_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Subject',
                                              help_text='If you checked "other", please briefly describe your project subject')
     size = models.CharField(null=True, blank=True, max_length=255, verbose_name='Size of Project',
                             help_text=('Please indicate the size of the project in quantifiable terms. '
@@ -163,6 +171,14 @@ class Project(Slugged, AdminThumbMixin):
                                     help_text='')
     researcher_qualities = models.TextField(blank=True, null=True, verbose_name='What Are You Looking For in a Student Researcher?',
                                     help_text='What skills or attributes do you hope the student researcher will possess?')
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_start = models.DateField(blank=True)
+
+    category = ForeignKey(Category, related_name='arx_projects')
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('arx-project', (), {'slug': self.slug})
 
 
 class Application(models.Model):

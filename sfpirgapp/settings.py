@@ -23,6 +23,14 @@ ADMIN_MENU_ORDER = (
       'sfpirgapp.ActionGroup',
       'sfpirgapp.Category'
     )),
+    ('Action Research Exchange', (
+      'sfpirgapp.Project',
+      'sfpirgapp.ProjectType',
+      'sfpirgapp.ProjectSubject',
+      'sfpirgapp.Organization',
+      'sfpirgapp.Contact',
+      'sfpirgapp.Address',
+    )),
     ('Content', (
       #'sfpirgapp.Testimonial',
       'pages.Page',

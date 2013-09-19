@@ -14,20 +14,16 @@ admin.autodiscover()
 urlpatterns = patterns("",
     ("^admin/", include(admin.site.urls)),
     url("^$", "sfpirgapp.views.home.homepage", {}, name="home"),
-    url('^testimonials/$', 'sfpirgapp.views.testimonial.testimoniallist', {}, name='testimoniallist'),
+
     url('^testimonial/(?P<slug>.*)/$', 'sfpirgapp.views.testimonial.testimonial', {}, name='testimonial'),
 
-    url('^news$', 'sfpirgapp.views.newsposts.newslist', {}, name='news-list'),
     url('^news/(?P<news>.*)/$', 'sfpirgapp.views.newsposts.newspost', {}, name='news-post'),
 
-    url('^events/list/$', 'sfpirgapp.views.events.eventslist', {}, name='events-list'),
     url('^events/(?P<event>.*)/$', 'sfpirgapp.views.events.event', {}, name='event'),
 
-    url('^arx$', 'sfpirgapp.views.arx.arxlist', {}, name='arx-list'),
+    url('^arx/project/create/$', 'sfpirgapp.views.arx.create', {}, name='arx-project-create'),
     url('^arx/project/(?P<slug>.*)/$', 'sfpirgapp.views.arx.project', {}, name='arx-project'),
-    url('^arx/project/(?P<slug>.*)/apply/$', 'sfpirgapp.views.arx.apply', {}, name='arx-project-apply'),
 
-    url('^actiongroups$', 'sfpirgapp.views.actiongroups.aglist', {}, name='action-groups-list'),
     url('^actiongroups/(?P<slug>.*)/$', 'sfpirgapp.views.actiongroups.actiongroup', {}, name='action-group'),
 
     url('^category/(?P<slug>.*)/$', 'sfpirgapp.views.category.category', {}, name='category'),
