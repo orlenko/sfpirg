@@ -187,7 +187,11 @@ form span.helptext {
 form input[type=text], form select {
   min-width: 300px;
   padding: 5px;
-  border: 1px solid #675f5f; }
+  border: 1px solid #827777; }
+form .errorlist {
+  border: 1px solid red;
+  padding: 20px 10px 5px 30px;
+  background-color: pink; }
 
 /* General Resets */
 * {
