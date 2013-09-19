@@ -108,6 +108,10 @@ class Contact(models.Model):
     phone = models.CharField(max_length=255, verbose_name='Contact Phone Number')
     on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list to receive periodic information about ARX?')
 
+    def __unicode__(self):
+        return self.name
+    __str__ = __unicode__
+
     def as_p(self):
         retval = '<br/>'.join(['Name: %s' % self.name,
                   'Position: %s' % self.position,
