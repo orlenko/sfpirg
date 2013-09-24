@@ -177,12 +177,20 @@ class Project(Slugged, AdminThumbMixin):
                                     help_text='What skills or attributes do you hope the student researcher will possess?')
     date_created = models.DateTimeField(auto_now_add=True)
     date_start = models.DateField(blank=True)
-
+    is_published = models.NullBooleanField(verbose_name='Publish this project',
+                                           help_text='Leave this box unchecked to save the project as draft',
+                                           null=True,
+                                           blank=True,
+                                           default=False)
     category = ForeignKey(Category, related_name='arx_projects')
 
     @models.permalink
     def get_absolute_url(self):
         return ('arx-project', (), {'slug': self.slug})
+
+    @models.permalink
+    def get_apply_url(self):
+        return ('arx-project-apply', (), {'slug': self.slug})
 
 
 class Application(models.Model):

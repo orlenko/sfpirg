@@ -1,18 +1,34 @@
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from sfpirgapp.models import ActionGroup, Category
+from sfpirgapp.models import Category
 from django.core.paginator import Paginator
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
+from django.db.models import Q
+
+
+def get_arx_query_set(request, category):
+    # Show all ARX projects to admin,
+    # all organization's projects to the organization user,
+    # or published projects only to general public.
+    user = request.user
+    if user and not user.is_anonymous():
+        if user.is_superuser:
+            return category.arx_projects.all()
+        else:
+            return category.arx_projects.filter(Q(is_published=True) | Q(user=user))
+    else:
+        return category.arx_projects.filter(is_published=True)
 
 
 def category(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    paginator = Paginator(category.action_groups.all()
-                          or category.testimonials.all()
-                          or category.news_posts.all()
-                          or category.events.all()
-                          or category.arx_projects.all(), 6)
+    queryset = (category.action_groups.all()
+                or category.testimonials.all()
+                or category.news_posts.all()
+                or category.events.all()
+                or get_arx_query_set(request, category))
+    paginator = Paginator(queryset, 6)
     pagenum = request.GET.get('page')
     try:
         aglist = paginator.page(pagenum)
