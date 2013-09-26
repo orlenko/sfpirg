@@ -43,6 +43,7 @@ def project_apply(request, slug):
     return render_to_response('sfpirg/project_apply.html', {}, context_instance=context)
 
 
+@login_required
 def create(request):
     form = ProjectForm(request.POST or None, initial={'user': request.user})
     if request.method == 'POST' and form.is_valid():
