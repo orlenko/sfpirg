@@ -207,11 +207,9 @@ class Project(Slugged, AdminThumbMixin):
                                     help_text='What skills or attributes do you hope the student researcher will possess?')
     date_created = models.DateTimeField(auto_now_add=True)
     date_start = models.DateField(blank=True, null=True, help_text='For example, 2013-12-31')
-    is_published = models.NullBooleanField(verbose_name='Publish this project',
-                                           help_text='Leave this box unchecked to save the project as draft',
-                                           null=True,
-                                           blank=True,
-                                           default=False)
+    is_published = models.BooleanField(verbose_name='Publish this project',
+                                       help_text='Leave this box unchecked to save the project as draft',
+                                       default=False)
     category = ForeignKey(Category, related_name='arx_projects')
 
     @models.permalink
@@ -224,7 +222,7 @@ class Project(Slugged, AdminThumbMixin):
 
 
 class Application(models.Model):
-    user = ForeignKey(User)
+    email = models.EmailField(null=True, blank=True, max_length=255, verbose_name='Your Email')
     project = ForeignKey(Project)
     timestamp = models.DateTimeField(default=datetime.datetime.utcnow)
     message = models.TextField()
