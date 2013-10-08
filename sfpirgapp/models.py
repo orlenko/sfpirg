@@ -226,3 +226,7 @@ class Application(models.Model):
     project = ForeignKey(Project)
     timestamp = models.DateTimeField(default=datetime.datetime.utcnow)
     message = models.TextField()
+
+    def __unicode__(self):
+        return '%s: %s (%s...)' % (self.email, self.project.title, self.message[:20])
+
