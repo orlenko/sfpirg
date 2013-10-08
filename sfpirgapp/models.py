@@ -171,6 +171,7 @@ class Project(Slugged, AdminThumbMixin):
         format="Image", max_length=255, null=True, blank=True,
         help_text='Please upload an image to represent the project, or your logo. If you do not have one, do not worry, just leave this section blank.')
     admin_thumb_field = "logo"
+
     description_short = models.TextField(blank=True, null=True,
                                    verbose_name='Research Question / Brief Project Description',
                                    help_text=('What is the central research question you want answered or what project would you like help with? '
@@ -211,6 +212,14 @@ class Project(Slugged, AdminThumbMixin):
                                        help_text='Leave this box unchecked to save the project as draft',
                                        default=False)
     category = ForeignKey(Category, related_name='arx_projects')
+
+    @property
+    def featured_image(self):
+        return self.logo
+
+    @property
+    def content(self):
+        return self.description_short
 
     @models.permalink
     def get_absolute_url(self):

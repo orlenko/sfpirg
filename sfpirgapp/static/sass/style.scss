@@ -1286,12 +1286,16 @@ select[multiple] {
 		height: 154px;
 		 p{padding:6px;}
 		}
-	.cat-more {
+	.cat-more, .cat-more-left {
 		position: absolute;
 		right: 6px;
 		bottom: 6px;
 		margin: 8px 2px 7px;
 		}
+	.cat-more-left {
+    left: 6px;
+    }
+
 }
 #pagination {
 	margin:20px 0;

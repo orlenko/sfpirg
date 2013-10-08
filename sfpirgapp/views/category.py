@@ -39,4 +39,7 @@ def category(request, slug):
         # If page is out of range (e.g. 9999), deliver last page of results.
         aglist = paginator.page(paginator.num_pages)
     context = RequestContext(request, locals())
-    return render_to_response('sfpirg/category.html', {}, context_instance=context)
+    template_name = 'sfpirg/category.html'
+    if category.arx_projects.all():
+        template_name = 'sfpirg/category_arx.html'
+    return render_to_response(template_name, {}, context_instance=context)

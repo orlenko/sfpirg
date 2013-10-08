@@ -1,0 +1,22 @@
+{% extends "sfpirg/category.html" %}
+{% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags %}
+
+{% block extra_js %}
+	<script src="{% static 'js/arx.js' %}"></script>
+{% endblock %}
+
+{% block category_tools %}
+	<div class="category-tools" style="display: none;" >
+		<h4>Selected Projects: <span class="selected-projects-count"></span>
+			<a href="/arx/apply/" title="Apply for selected projects"><img src="/static/img/arx/apply.png" /></a>
+		</h4>
+	</div>
+{% endblock %}
+
+{% block item_tools %}
+	<div>
+		<a href="" class="arx-project-select" id="arx-project-select-{{rec.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
+		<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{rec.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
+		<a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/arx/more.png" alt="Click for More" /></a>
+	</div>
+{% endblock %}

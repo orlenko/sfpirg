@@ -11,6 +11,10 @@ import logging
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from sfpirgapp.models import Category
+from sfpirgapp.forms import MultiApplicationForm
+from sfpirgapp.models import Application
+from django.http.response import HttpResponse
+from django.utils import simplejson
 
 
 log = logging.getLogger(__name__)
@@ -52,6 +56,38 @@ def project(request, slug):
             form = ProjectForm(instance=project)
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_project.html', {}, context_instance=context)
+
+
+SELECTED_PROJECTS = 'selected_projects'
+
+
+def toggle_project_selection(request, project):
+    project_id = int(project)
+    if request.method == 'POST':
+        if request.POST.get('include') == 'true':
+            request.session[SELECTED_PROJECTS] = list(set([project_id] + request.session.get(SELECTED_PROJECTS, [])))
+        else:
+            request.session[SELECTED_PROJECTS] = list(set([x for x in request.session.get(SELECTED_PROJECTS, []) if x != project_id]))
+    return HttpResponse(simplejson.dumps({SELECTED_PROJECTS: request.session[SELECTED_PROJECTS]}),
+                        content_type='application/json')
+
+
+
+def multi_apply(request):
+    form = MultiApplicationForm()
+    project_ids = request.session.get(SELECTED_PROJECTS, [])
+    count = len(project_ids)
+    projects = Project.objects.filter(pk__in=project_ids)
+    if request.method == 'POST':
+        form = MultiApplicationForm(request.POST)
+        if form.is_valid():
+            for proj_id in project_ids:
+                Application.objects.create(email=form.data['email'],
+                                           project_id=proj_id,
+                                           message=form.data['message'])
+            return HttpResponseRedirect('/category/action-research-exchange/')
+    context = RequestContext(request, locals())
+    return render_to_response('sfpirg/arx_multi_projects_apply.html', {}, context_instance=context)
 
 
 def project_apply(request, slug):

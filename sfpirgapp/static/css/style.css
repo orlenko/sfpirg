@@ -1425,11 +1425,13 @@ select[multiple] {
   height: 154px; }
   #category-list .cat-text p {
     padding: 6px; }
-#category-list .cat-more {
+#category-list .cat-more, #category-list .cat-more-left {
   position: absolute;
   right: 6px;
   bottom: 6px;
   margin: 8px 2px 7px; }
+#category-list .cat-more-left {
+  left: 6px; }
 
 #pagination {
   margin: 20px 0;

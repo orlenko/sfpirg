@@ -7,6 +7,7 @@ from sfpirgapp.models import Liaison
 import logging
 from django.forms.widgets import TextInput
 from django.forms.widgets import Select
+from django import forms
 
 
 log = logging.getLogger(__name__)
@@ -33,10 +34,14 @@ class ProjectForm(ModelForm):
 
 
 class ApplicationForm(ModelForm):
-
     class Meta:
         model = Application
         exclude = ('timestamp', )
+
+
+class MultiApplicationForm(forms.Form):
+    email = forms.EmailField(label='Your Email')
+    message = forms.CharField(widget=forms.Textarea())
 
 
 class OrganizationForm(ModelForm):

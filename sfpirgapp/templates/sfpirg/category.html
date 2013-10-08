@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% load i18n staticfiles mezzanine_tags sfpirg_tags %}
 
+{% block extra_js %}{% endblock %}
+
 {% block contentclass %}{{category.theme_color}}{% endblock %}
 
 {% block main %}
+
+
+	{% block category_tools %}
+	{% endblock %}
 
 	<h1>{{ category.title }}</h1>
 
@@ -32,7 +38,9 @@
 			    <h2><a href="{{rec.get_absolute_url}}">{{rec.title}}</a></h2>
 			    <div class="cat-text">
 			    {{ rec.content|richtext_filter|safe|truncatechars:60 }}
-			    <a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>
+			    {% block item_tools %}
+			    	<a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>
+			    {% endblock %}
 			    </div>
 		    </li>
 		 {% endfor %}

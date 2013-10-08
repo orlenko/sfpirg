@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block contentclass %}green{% endblock %}
+
+{% block main %}
+
+<div class="project">
+
+	<h1>Apply for {{count}} projects:</h1>
+	<ul>
+		{% for project in projects %}
+			<li>{{project.title}}</li>
+		{% endfor %}
+	</ul>
+
+	{% if form.subject.errors %}
+	    <ol>
+	    {% for error in form.subject.errors %}
+	        <li><strong>{{ error|escape }}</strong></li>
+	    {% endfor %}
+	    </ol>
+	{% endif %}
+
+	<form method='post' action=''>
+		{% csrf_token %}
+		{{form.as_p}}
+		<p><input type='submit' value='Apply!'/></p>
+	</form>
+
+</div>
+{% endblock %}

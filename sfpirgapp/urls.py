@@ -21,7 +21,9 @@ urlpatterns = patterns("",
 
     url('^events/(?P<event>.*)/$', 'sfpirgapp.views.events.event', {}, name='event'),
 
+    url(r'^arx/project/toggle-selection/(?P<project>\d+)/$', 'sfpirgapp.views.arx.toggle_project_selection', {}, name='arx-toggle'),
     url('^arx/project/create/$', 'sfpirgapp.views.arx.create', {}, name='arx-project-create'),
+    url('^arx/apply/$', 'sfpirgapp.views.arx.multi_apply', {}, name='arx-apply'),
     url('^arx/project/(?P<slug>[^/]*)/apply/$', 'sfpirgapp.views.arx.project_apply', {}, name='arx-project-apply'),
     url('^arx/project/(?P<slug>[^/]*)/$', 'sfpirgapp.views.arx.project', {}, name='arx-project'),
 
