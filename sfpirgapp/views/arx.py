@@ -54,7 +54,6 @@ def project(request, slug):
     return render_to_response('sfpirg/arx_project.html', {}, context_instance=context)
 
 
-@login_required
 def project_apply(request, slug):
     project = get_object_or_404(Project, slug=slug)
     form = ApplicationForm(initial={'project': project,
