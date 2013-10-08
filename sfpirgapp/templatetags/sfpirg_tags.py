@@ -268,3 +268,13 @@ def sfpirg_show_plus_field(context, token):
         return get_template('sfpirg/plus_field.html').render(Context(context))
     return ''
 
+
+@register.render_tag
+def sfpirg_bottom_menu(context, token):
+    published = Page.objects.published(for_user=context["request"].user)
+    pages = []
+    for page in published.order_by("_order"):
+        if page.in_menu_template('menus/bottom.html'):
+            pages.append(page)
+    context['pages'] = pages
+    return get_template('menus/bottom.html').render(Context(context))

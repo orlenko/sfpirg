@@ -200,6 +200,22 @@ form a.add-another {
   color: blue;
   text-decoration: none; }
 
+#searchform {
+  float: right;
+  margin-left: 20px; }
+
+.avatar-container {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 5px; }
+
+.user-greeting a {
+  display: inline-block;
+  margin: 0 5px;
+  line-height: 30px; }
+
 /* General Resets */
 * {
   -webkit-box-sizing: border-box;

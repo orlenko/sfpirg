@@ -44,6 +44,7 @@
 						n : 9
 					}
 				}
+
 				$buoop.ol = window.onload;
 				window.onload = function() {
 					try {
@@ -65,7 +66,7 @@
 
 	<body id="{% block body_id %}body{% endblock %}">
 
-		<div class="container {% block contentclass %}{{page.theme_color|default:'grey'}}{% endblock %}">
+		<div class="container">
 
 			<header>
 
@@ -80,6 +81,24 @@
 							<input type="text" class="field" name="q" id="q" placeholder="Search SFPIRG" />
 							<input type="submit" class="submit" name="submit" id="searchsubmit" value=""  />
 						</form>
+						<div class="user-greeting">
+							{% if request.user and not request.user.is_anonymous %}
+								Welcome,
+								<a href="/account/update/">
+									{% if request.user.profile.photo %}
+										<div class="avatar-container">
+											<img src="{{ MEDIA_URL }}{% sfpirg_thumbnail request.user.profile.photo 20 20 %}" />
+										</div>
+									{% endif %}
+									{{ request.user.get_full_name|default:request.user.username }}
+								</a>
+								<a href="/accounts/logout/">Log out</a>
+							{% endif %}
+
+							{% if not request.user or request.user.is_anonymous %}
+								<a href="/accounts/login/?next=/">Log in</a>
+							{% endif %}
+						</div>
 					</div>
 
 					<div id="main-title" class="col ten tablet-nine mobile-full">
@@ -100,7 +119,7 @@
 
 			{% block bodycontent %}
 			<div class="section row-one">
-				<section id="main-content" class="col eight tablet-seven mobile-full">
+				<section id="main-content" class="col eight tablet-seven mobile-full  {% block contentclass %}{{page.theme_color|default:'grey'}}{% endblock %}">
 					{% block main %}
 					{% endblock %}
 				</section>
@@ -112,7 +131,7 @@
 			<footer>
 				<div class="section row-two">
 					<nav id="footer-nav" class="col twelve red-nav tablet-full mobile-full">
-						{% page_menu "menus/bottom.html" %}
+						{% sfpirg_bottom_menu %}
 					</nav>
 				</div>
 
