@@ -1276,6 +1276,13 @@ select[multiple] {
 	.main-cat-img {
 		float:left;
 		background-color:transparent;
+
+		>a {
+			display: block;
+			height: 180px;
+			overflow: visible;
+		}
+
 		img {margin-bottom:-23px;}
 
 		}

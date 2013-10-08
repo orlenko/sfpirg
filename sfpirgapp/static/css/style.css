@@ -323,7 +323,7 @@ body {
   font-size: 14px;
   font-size: 0.875rem;
   color: #000;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
@@ -485,7 +485,7 @@ mark {
 /* Code */
 code, kbd, pre, samp {
   font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
+  _font-family: "courier new", monospace;
   font-size: 1em; }
 
 code {
@@ -527,8 +527,8 @@ table {
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
   word-wrap: break-word;
   -ms-word-wrap: break-word;
   *white-space: normal; }
@@ -538,8 +538,8 @@ table td {
   padding: 8px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid #eee;
-  border-left: 1px solid #eee; }
+  border-top: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee; }
 
 table thead th {
   vertical-align: bottom;
@@ -588,8 +588,8 @@ textarea {
   -moz-appearance: none;
   background-color: #fff;
   color: #777;
-  border: 1px solid #ddd;
-  border-top: 1px solid #999;
+  border: 1px solid #dddddd;
+  border-top: 1px solid #999999;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); }
@@ -603,7 +603,7 @@ input[type=radio] {
   *width: 13px; }
 
 .checkbox {
-  margin: .2em 0; }
+  margin: 0.2em 0; }
   .checkbox label {
     padding-left: 5px;
     overflow: hidden;
@@ -724,7 +724,7 @@ select[multiple] {
 
 /* Rows */
 .row {
-  margin: .5em 0; }
+  margin: 0.5em 0; }
 
 .row-one {
   margin: 1em 0; }
@@ -1416,6 +1416,10 @@ select[multiple] {
 #category-list .main-cat-img {
   float: left;
   background-color: transparent; }
+  #category-list .main-cat-img > a {
+    display: block;
+    height: 180px;
+    overflow: visible; }
   #category-list .main-cat-img img {
     margin-bottom: -23px; }
 #category-list .cat-text {
