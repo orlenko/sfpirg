@@ -192,6 +192,13 @@ form .errorlist {
   border: 1px solid red;
   padding: 20px 10px 5px 30px;
   background-color: pink; }
+form a.add-another {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 19px;
+  font-weight: bold;
+  color: blue;
+  text-decoration: none; }
 
 /* General Resets */
 * {
@@ -642,6 +649,11 @@ textarea {
   overflow: auto;
   vertical-align: top;
   resize: none; }
+
+textarea,
+select[multiple] {
+  min-width: 400px;
+  display: block; }
 
 /* Custom Buttons */
 .button {
@@ -1858,5 +1870,8 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
   #main-content h1 {
     font-size: 14px;
-    padding: 14px; } }
+    padding: 14px; }
+
+  form label {
+    display: block; } }
 /* End Mobile Media Query */

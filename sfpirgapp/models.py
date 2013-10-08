@@ -8,6 +8,7 @@ from mezzanine.core.models import Displayable, Orderable, RichText, Ownable,\
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
+from django.db.models.fields.related import OneToOneField
 
 
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
@@ -25,6 +26,7 @@ class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
 
 
 class Profile(models.Model, AdminThumbMixin):
+    organization = ForeignKey('Organization', null=True, blank=True)
     user = models.OneToOneField(User)
     date_of_birth = models.DateField(null=True, blank=True)
     title = models.CharField(null=True, blank=True, max_length=255)
@@ -34,7 +36,7 @@ class Profile(models.Model, AdminThumbMixin):
         format="Image", max_length=255, null=True, blank=True,
         help_text='User photo')
     admin_thumb_field = "photo"
-    organization = ForeignKey('Organization', null=True, blank=True)
+    on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list to receive periodic information about ARX?')
 
 
 class Testimonial(PageLike, Ownable):
@@ -78,8 +80,15 @@ class ActionGroup(PageLike, Ownable):
 class Address(models.Model):
     city = models.CharField(max_length=255)
     street = models.CharField(max_length=255)
-    street2 = models.CharField(max_length=255)
+    street2 = models.CharField(max_length=255, default='', blank=True, null=True)
     postal_code = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = u'Addresses'
+
+    def __unicode__(self):
+        return '%s %s %s %s' % (self.street, (self.street2 or ''), self.city, self.postal_code)
+    __str__ = __unicode__
 
 
 class Organization(Slugged):
@@ -95,7 +104,7 @@ class Organization(Slugged):
     is_registered = models.BooleanField(default=False, verbose_name='Are you a registered non-profit?')
     website = models.URLField(null=True, blank=True, verbose_name='Website URL',
                               help_text='Website must begin with "http://"')
-    contact = ForeignKey('Contact')
+    contact = OneToOneField('Contact', related_name='organization')
 
 
 class Contact(models.Model):
@@ -106,7 +115,28 @@ class Contact(models.Model):
     email = models.EmailField(max_length=255, verbose_name='Contact Email')
     alt_email = models.EmailField(max_length=255, blank=True, null=True, verbose_name='Alternative Email')
     phone = models.CharField(max_length=255, verbose_name='Contact Phone Number')
-    on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list to receive periodic information about ARX?')
+
+    def __unicode__(self):
+        return self.name
+    __str__ = __unicode__
+
+    def as_p(self):
+        retval = '<br/>'.join(['Name: %s' % self.name,
+                  'Position: %s' % self.position,
+                  'Email: %s %s' % (self.email, self.alt_email),
+                  'Phone: %s' % self.phone])
+        return '<p>%s</p>' % retval
+
+
+class Liaison(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Contact Name',
+                            help_text='Who can SFPIRG contact with questions about this projecct?')
+    position = models.CharField(max_length=255, verbose_name='Contact Position',
+                                help_text='What position do they hold in the organization?')
+    email = models.EmailField(max_length=255, verbose_name='Contact Email')
+    alt_email = models.EmailField(max_length=255, blank=True, null=True, verbose_name='Alternative Email')
+    phone = models.CharField(max_length=255, verbose_name='Contact Phone Number')
+    organization = ForeignKey(Organization, related_name='liaisons')
 
     def __unicode__(self):
         return self.name
@@ -131,7 +161,7 @@ class ProjectSubject(Slugged):
 
 class Project(Slugged, AdminThumbMixin):
     user = ForeignKey(User)
-    liaison = ForeignKey(Contact)
+    liaison = ForeignKey(Liaison)
     time_per_week = models.TextField(blank=True, null=True,
                                      verbose_name='How much time per week can the Contact/Liaison devote to the student?')
     support_method = models.TextField(blank=True, null=True,
@@ -176,7 +206,7 @@ class Project(Slugged, AdminThumbMixin):
     researcher_qualities = models.TextField(blank=True, null=True, verbose_name='What Are You Looking For in a Student Researcher?',
                                     help_text='What skills or attributes do you hope the student researcher will possess?')
     date_created = models.DateTimeField(auto_now_add=True)
-    date_start = models.DateField(blank=True)
+    date_start = models.DateField(blank=True, null=True, help_text='For example, 2013-12-31')
     is_published = models.NullBooleanField(verbose_name='Publish this project',
                                            help_text='Leave this box unchecked to save the project as draft',
                                            null=True,

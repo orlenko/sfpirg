@@ -19,6 +19,7 @@ from sfpirgapp.models import ProjectSubject
 from sfpirgapp.models import Project
 from django.contrib.admin.options import ModelAdmin
 from sfpirgapp.models import Application
+from sfpirgapp.models import Liaison
 
 
 common_fieldsets = deepcopy(PageAdmin.fieldsets)
@@ -98,3 +99,4 @@ admin.site.register(ProjectType)
 admin.site.register(ProjectSubject)
 admin.site.register(Project)
 admin.site.register(Application)
+admin.site.register(Liaison)

@@ -29,6 +29,10 @@ urlpatterns = patterns("",
 
     url('^category/(?P<slug>.*)/$', 'sfpirgapp.views.category.category', {}, name='category'),
 
+    url('^organization/create/$', 'sfpirgapp.views.organization.create', {}, name='organization-create'),
+    url('^organization/(?P<slug>.*)/$', 'sfpirgapp.views.organization.edit', {}, name='organization-edit'),
+    url('^add/(?P<model_name>.*)/$', 'sfpirgapp.views.add_new_model'),
+
     ("^", include("mezzanine.urls")),
 
 )

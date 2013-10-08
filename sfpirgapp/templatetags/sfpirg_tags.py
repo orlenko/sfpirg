@@ -13,9 +13,10 @@ import os
 from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 from django.template.base import Variable
 from mezzanine.pages.models import Page
-from sfpirgapp.models import ActionGroup, Testimonial, Project
-from news.models import NewsPost
-from mezzanine.calendar.models import Event
+from sfpirgapp.models import (ActionGroup,  # @UnusedImport - actually used through globals()
+    Testimonial, Project, Organization)  # @UnusedImport - actually used through globals()
+from news.models import NewsPost  # @UnusedImport - actually used through globals()
+from mezzanine.calendar.models import Event  # @UnusedImport - actually used through globals()
 
 # Try to import PIL in either of the two ways it can end up installed.
 try:
@@ -244,3 +245,26 @@ def category_slug(model_name):
     if not allrecs:
         return ''
     return allrecs[0].category.slug
+
+
+@register.render_tag
+def sfpirg_show_plus_field(context, token):
+    parts = token.split_contents()[1:]
+    form = None
+    field = None
+    for part in parts:
+        if not field:
+            field = Variable(part).resolve(context)
+            continue
+        if not form:
+            form = Variable(part).resolve(context)
+            break
+    plusable = getattr(form.Meta, 'plusable', {}).get(field.name)
+    if plusable:
+        context['form'] = form
+        context['field'] = field
+        model_name = plusable['model']
+        context['model_class'] = globals()[model_name]
+        return get_template('sfpirg/plus_field.html').render(Context(context))
+    return ''
+

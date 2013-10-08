@@ -9,6 +9,11 @@ from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from mezzanine.utils.models import get_user_model
 from mezzanine.utils.urls import slugify, unique_slug
+from sfpirgapp.widgets import SelectWithPopUp
+import logging
+
+
+log = logging.getLogger(__name__)
 
 
 User = get_user_model()
@@ -23,6 +28,9 @@ if Profile is not None:
         class Meta:
             model = Profile
             exclude = (get_profile_user_fieldname(),) + _exclude_fields
+            widgets = {
+                'organization': SelectWithPopUp('organization')
+            }
 
 if settings.ACCOUNTS_NO_USERNAME:
     _exclude_fields += ("username",)
@@ -77,8 +85,12 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
         model = User
         fields = ("first_name", "last_name", "email", "username")
         exclude = _exclude_fields
+        widgets = {
+            'organization': SelectWithPopUp('organization')
+        }
 
     def __init__(self, *args, **kwargs):
+        log.debug('Creating a profile form')
         super(ProfileForm, self).__init__(*args, **kwargs)
         self._signup = self.instance.id is None
         user_fields = User._meta.get_all_field_names()

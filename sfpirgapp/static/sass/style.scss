@@ -398,6 +398,12 @@ textarea {
   resize: none;
 }
 
+textarea,
+select[multiple] {
+  min-width: 400px;
+  display: block;
+}
+
 /* Custom Buttons */
 .button {
   @include rounded(5);
@@ -1808,6 +1814,10 @@ table td {
 #main-content h1 {
 	font-size:14px;
 	padding:14px;
+}
+
+form label {
+  display: block;
 }
 
 } /* End Mobile Media Query */

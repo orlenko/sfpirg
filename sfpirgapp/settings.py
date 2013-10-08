@@ -30,6 +30,8 @@ ADMIN_MENU_ORDER = (
       'sfpirgapp.Organization',
       'sfpirgapp.Contact',
       'sfpirgapp.Address',
+      'sfpirgapp.Liaison',
+      'sfpirgapp.Application',
     )),
     ('Content', (
       #'sfpirgapp.Testimonial',
@@ -128,7 +130,7 @@ MANAGERS = ADMINS
 TIME_ZONE = None
 
 # If you set this to True, Django will use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
