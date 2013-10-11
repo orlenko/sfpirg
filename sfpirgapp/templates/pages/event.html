@@ -10,7 +10,7 @@
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 200 0 %}" />
 		{% endif %}
 
-		<h4>{{ page.event.start|date:"M d, Y" }} at {{ page.event.start|date:"gA" }}</h4>
+		<h4>{{ page.event.start|date:"M d, Y" }} at {{ page.event.start|date:"g:iA" }}</h4>
 		{% editable page.event.content %}
 			{{ page.event.content|richtext_filter|safe }}
 		{% endeditable %}
