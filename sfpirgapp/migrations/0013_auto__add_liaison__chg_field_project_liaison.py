@@ -18,7 +18,7 @@ class Migration(SchemaMigration):
 
 
         # Changing field 'Project.liaison'
-        db.alter_column(u'sfpirgapp_project', 'liaison_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sfpirgapp.Liaison']))
+        db.alter_column(u'sfpirgapp_project', 'liaison_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sfpirgapp.Liaison'], default=None))
 
     def backwards(self, orm):
         # Deleting model 'Liaison'
