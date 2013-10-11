@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 {% load i18n staticfiles mezzanine_tags sfpirg_tags %}
 
+{% block extra_js %}
+	<script src="{% static 'js/arx.js' %}"></script>
+{% endblock %}
+
 {% block contentclass %}green{% endblock %}
 
 {% block main %}
+
+{% block category_tools %}
+	<div class="category-tools" style="display: none;" >
+		<h4>Selected Projects: <span class="selected-projects-count"></span>
+			<a href="/arx/apply/" title="Apply for selected projects"><img src="/static/img/arx/apply.png" /></a>
+		</h4>
+	</div>
+{% endblock %}
+
 
 <div class="project">
 
@@ -32,42 +45,66 @@
 			<p><a href="?edit=1">Edit this project</a></p>
 		{% endif %}
 
-		<p><a href="{{project.get_apply_url}}">Apply for this project</a></p>
+		{% if project.logo %}
+			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail project.logo 200 0 %}" alt="Project Logo" />
+		{% endif %}
 
-		<dl>
-			<dt>Author:</dt>
-				<dd>{{project.user.get_full_name}}</dd>
-			<dt>Liaison:</dt>
-				<dd>{{project.liaison.as_p|safe}}</dd>
-			<dt>How much time per week can the Contact/Liaison devote to the student?</dt>
-				<dd>{{project.time_per_week}}</dd>
-			<dt>How will the Contact/Liaison provide direction and support to the project?</dt>
-				<dd>{{project.support_method}}</dd>
-			<dt>Project Image:</dt>
-				<dd><img src="{{MEDIA_URL}}{{project.logo}}"/></dd>
-			<dt>Research Question / Brief Project Description:</dt>
-				<dd>{{project.description_short}}</dd>
-			<dt>Project Type:</dt>
-				<dd>{{project.project_type.all|join:', '}} {{project.project_type_other}}</dd>
-			<dt>Project Subject:</dt>
-				<dd>{{project.project_subject.all|join:', '}} {{project.project_subject_other}}</dd>
-			<dt>Size of Project:</dt>
-				<dd>{{project.size}}</dd>
-			<dt>Length of Project:</dt>
-				<dd>{{project.length}}</dd>
-			<dt>Project description:</dt>
-				<dd>{{project.description_long}}</dd>
-			<dt>Issues Addressed by the Project:</dt>
-				<dd>{{project.issues_addressed}}</dd>
-			<dt>How do you plan to use the results of this project?:</dt>
-				<dd>{{project.results_plan}}</dd>
-			<dt>What larger goal is served by undertaking this project?:</dt>
-				<dd>{{project.larger_goal}}</dd>
-			<dt>What Are You Looking For in a Student Researcher?:</dt>
-				<dd>{{project.researcher_qualities}}</dd>
-		</dl>
+		<h2>{{project.title}}</h2>
 
-		<p><a href="{{project.get_apply_url}}">Apply for this project</a></p>
+		<div class="project-summary">
+			<div class="project-info-line">
+				<span class="label">Organization:</span>
+				<span class="text">{{project.user.profile.organization.title}}</span>
+			</div>
+			<div class="project-info-line">
+				<span class="label">Type:</span>
+				<span class="text">{{project.project_type.all|join:', '}} {{project.project_type_other}}</span>
+			</div>
+			<div class="project-info-line">
+				<span class="label">Issues:</span>
+				<span class="text">{{project.issues_addressed}}</span>
+			</div>
+			<div class="project-info-line">
+				<span class="label">Duration:</span>
+				<span class="text">{{project.length}}</span>
+			</div>
+			<div class="project-info-line">
+				<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
+				<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
+				<span class="social-icons">[social icons placeholder!]</span>
+			</div>
+		</div>
+
+		<div class="project-details">
+			<h2>About this Project:</h2>
+			<div>
+				{{project.description_short|richtext_filter|safe}}
+			</div>
+
+			<h2>Deliverables:</h2>
+			<div>
+				{{project.description_long|richtext_filter|safe}}
+			</div>
+
+			<h2>The Student Researcher Must Possess:</h2>
+			<div>
+				{{project.researcher_qualities|richtext_filter|safe}}
+			</div>
+
+			<h2>Use of Project Results:</h2>
+			<div>
+				{{project.results_plan|richtext_filter|safe}}
+			</div>
+		</div>
+
+		<hr/>
+
+		<div class="organization">
+			<h2>About {{ project.user.profile.organization.title }}</h2>
+			<div>
+				{{ project.user.profile.organization.mandate|richtext_filter|safe }}
+			</div>
+		</div>
 	{% endif %}
 </div>
 {% endblock %}
