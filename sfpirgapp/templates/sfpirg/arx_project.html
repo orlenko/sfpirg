@@ -10,8 +10,8 @@
 {% block main %}
 
 {% block category_tools %}
-	<div class="category-tools" style="display: none;" >
-		<h4>Selected Projects: <span class="selected-projects-count"></span>
+	<div class="category-tools" {% if not request.session.selected_projects %} style="display: none;" {% endif %} >
+		<h4>Selected Projects: <span class="selected-projects-count">{{ request.session.selected_projects|length }}</span>
 			<a href="/arx/apply/" title="Apply for selected projects"><img src="/static/img/arx/apply.png" /></a>
 		</h4>
 	</div>

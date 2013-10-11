@@ -76,6 +76,7 @@ def toggle_project_selection(request, project):
 def multi_apply(request):
     form = MultiApplicationForm()
     project_ids = request.session.get(SELECTED_PROJECTS, [])
+    request.session[SELECTED_PROJECTS] = []
     count = len(project_ids)
     projects = Project.objects.filter(pk__in=project_ids)
     if request.method == 'POST':
