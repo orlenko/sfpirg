@@ -28,7 +28,6 @@ ADMIN_MENU_ORDER = (
       'sfpirgapp.ProjectType',
       'sfpirgapp.ProjectSubject',
       'sfpirgapp.Organization',
-      'sfpirgapp.Contact',
       'sfpirgapp.Address',
       'sfpirgapp.Liaison',
       'sfpirgapp.Application',

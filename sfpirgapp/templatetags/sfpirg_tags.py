@@ -28,6 +28,7 @@ except ImportError:
 
 
 log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
 
 register = template.Library()
 
@@ -278,3 +279,10 @@ def sfpirg_bottom_menu(context, token):
             pages.append(page)
     context['pages'] = pages
     return get_template('menus/bottom.html').render(Context(context))
+
+
+@register.inclusion_tag('include/field.html', takes_context=True)
+def sfpirg_field(context, field):
+    log.debug('Field: %r' % field)
+    context['field'] = field
+    return context

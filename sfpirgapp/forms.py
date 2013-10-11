@@ -5,9 +5,8 @@ from sfpirgapp.models import Organization
 from sfpirgapp.widgets import SelectWithPopUp
 from sfpirgapp.models import Liaison
 import logging
-from django.forms.widgets import TextInput
-from django.forms.widgets import Select
 from django import forms
+from django.forms.widgets import HiddenInput
 
 
 log = logging.getLogger(__name__)
@@ -24,12 +23,15 @@ class ProjectForm(ModelForm):
             qs = self.fields['liaison'].queryset
             self.fields['liaison'].queryset = qs.filter(organization=org)
 
+    def set_parent_record(self, record):
+        self.fields['user'].initial = record
+
     class Meta:
         model = Project
         exclude = ('slug',)
         widgets = {
             'liaison': SelectWithPopUp('Liaison'),
-            'user': Select(attrs={'readonly': 'readonly'})
+            'user': HiddenInput()
         }
 
 
@@ -48,7 +50,6 @@ class OrganizationForm(ModelForm):
     class Meta:
         model = Organization
         widgets = {
-            'contact': SelectWithPopUp('Contact'),
             'mailing_address': SelectWithPopUp('Address'),
         }
 
@@ -56,6 +57,3 @@ class OrganizationForm(ModelForm):
 class LiaisonForm(ModelForm):
     class Meta:
         model = Liaison
-        widgets = {
-           'organization': SelectWithPopUp('Organization'),
-        }

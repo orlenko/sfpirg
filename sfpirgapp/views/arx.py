@@ -30,11 +30,11 @@ def require_organization(request):
     profile = request.user.profile
     log.debug('Profile: %s' % profile)
     if not profile:
-        return HttpResponseRedirect('/account/update/?message=Please+update+your+profile&next=%s' % request.get_full_path())
+        return HttpResponseRedirect('/account/update/?profile=1next=%s' % request.get_full_path())
     organization = profile.organization
     log.debug('Organization: %s' % organization)
     if not organization:
-        return HttpResponseRedirect('/account/update/?message=Please+update+your+profile+and+organization&next=%s' % request.get_full_path())
+        return HttpResponseRedirect('/account/update/?profile=1&organization=1&next=%s' % request.get_full_path())
     log.debug('Organization: %s' % organization)
     return organization
 

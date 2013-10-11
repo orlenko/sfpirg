@@ -16,6 +16,14 @@ def add_new_model(request, model_name):
     else:
         normal_model_name = model_name
 
+    current_user = request.user
+    current_profile = current_user.profile
+    current_organization = current_profile and current_profile.organization
+
+    auto_fields = {
+        'organization': current_organization,
+    }
+
     app_list = get_apps()
     for app in app_list:
         for model in get_models(app):
@@ -37,6 +45,10 @@ def add_new_model(request, model_name):
 
                 else:
                     form = form()
+                for fieldname, field in form.fields.items():
+                    if fieldname in auto_fields:
+                        field.initial = auto_fields[fieldname]
+                        field.widget = forms.HiddenInput()
 
                 page_context = {'form': form, 'field': normal_model_name}
                 return render_to_response('popup.html', page_context, context_instance=RequestContext(request))

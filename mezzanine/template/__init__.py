@@ -117,7 +117,8 @@ class Library(template.Library):
                         result = tag_func(*parts)
                         autoescape = context.autoescape
                         context = context_class(result, autoescape=autoescape)
-                        return self.nodelist.render(context)
+                        rendered = self.nodelist.render(context)
+                        return rendered
 
                 return InclusionTagNode()
             return self.tag(tag_wrapper)

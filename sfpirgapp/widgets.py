@@ -4,7 +4,6 @@ import logging
 
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
 
 
 class SelectWithPopUp(forms.Select):
@@ -16,10 +15,7 @@ class SelectWithPopUp(forms.Select):
 
     def render(self, name, *args, **kwargs):
         html = super(SelectWithPopUp, self).render(name, *args, **kwargs)
-        log.debug('Rendering %s: %s' % (name, html))
-
         if not self.model:
             self.model = name
-
         popupplus = render_to_string("includes/formpopup.html", {'field': name, 'model': self.model})
         return html + popupplus

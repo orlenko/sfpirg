@@ -11,6 +11,7 @@ from mezzanine.utils.models import get_user_model
 from mezzanine.utils.urls import slugify, unique_slug
 from sfpirgapp.widgets import SelectWithPopUp
 import logging
+from django.forms.widgets import HiddenInput
 
 
 log = logging.getLogger(__name__)
@@ -83,7 +84,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "username")
+        fields = ("first_name", "last_name", "email", "username", "is_staff")
         exclude = _exclude_fields
         widgets = {
             'organization': SelectWithPopUp('organization')
@@ -122,6 +123,9 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
                 for field in profile_fields:
                     value = getattr(self.instance.get_profile(), field)
                     self.initial[field] = value
+        self.fields['is_staff'].initial = True
+        self.fields['is_staff'].widget = HiddenInput()
+        log.debug('Profile fields: %s' % self.fields)
 
     def clean_username(self):
         """

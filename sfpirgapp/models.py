@@ -8,7 +8,6 @@ from mezzanine.core.models import Displayable, Orderable, RichText, Ownable,\
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
-from django.db.models.fields.related import OneToOneField
 
 
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
@@ -104,33 +103,18 @@ class Organization(Slugged):
     is_registered = models.BooleanField(default=False, verbose_name='Are you a registered non-profit?')
     website = models.URLField(null=True, blank=True, verbose_name='Website URL',
                               help_text='Website must begin with "http://"')
-    contact = OneToOneField('Contact', related_name='organization')
-
-
-class Contact(models.Model):
-    name = models.CharField(max_length=255, verbose_name='Contact Name',
-                            help_text='Who can SFPIRG contact with questions about this projecct?')
-    position = models.CharField(max_length=255, verbose_name='Contact Position',
+    contact_name = models.CharField(null=True, blank=True, max_length=255, verbose_name='Contact Name',
+                            help_text='Who can SFPIRG contact with questions about this project?')
+    contact_position = models.CharField(null=True, blank=True, max_length=255, verbose_name='Contact Position',
                                 help_text='What position do they hold in the organization?')
-    email = models.EmailField(max_length=255, verbose_name='Contact Email')
-    alt_email = models.EmailField(max_length=255, blank=True, null=True, verbose_name='Alternative Email')
-    phone = models.CharField(max_length=255, verbose_name='Contact Phone Number')
-
-    def __unicode__(self):
-        return self.name
-    __str__ = __unicode__
-
-    def as_p(self):
-        retval = '<br/>'.join(['Name: %s' % self.name,
-                  'Position: %s' % self.position,
-                  'Email: %s %s' % (self.email, self.alt_email),
-                  'Phone: %s' % self.phone])
-        return '<p>%s</p>' % retval
+    contact_email = models.EmailField(null=True, blank=True, max_length=255, verbose_name='Contact Email')
+    contact_alt_email = models.EmailField(null=True, blank=True, max_length=255, verbose_name='Contact Alternative Email')
+    contact_phone = models.CharField(null=True, blank=True, max_length=255, verbose_name='Contact Phone Number')
 
 
 class Liaison(models.Model):
     name = models.CharField(max_length=255, verbose_name='Contact Name',
-                            help_text='Who can SFPIRG contact with questions about this projecct?')
+                            help_text='Who can SFPIRG contact with questions about this project?')
     position = models.CharField(max_length=255, verbose_name='Contact Position',
                                 help_text='What position do they hold in the organization?')
     email = models.EmailField(max_length=255, verbose_name='Contact Email')
@@ -161,7 +145,8 @@ class ProjectSubject(Slugged):
 
 class Project(Slugged, AdminThumbMixin):
     user = ForeignKey(User)
-    liaison = ForeignKey(Liaison)
+    liaison = ForeignKey(Liaison, blank=True, null=True,
+                         help_text='Who can SFPIRG contact with questions about this project?')
     time_per_week = models.TextField(blank=True, null=True,
                                      verbose_name='How much time per week can the Contact/Liaison devote to the student?')
     support_method = models.TextField(blank=True, null=True,

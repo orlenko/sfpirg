@@ -13,7 +13,6 @@ from sfpirgapp.models import ActionGroup
 from sfpirgapp import settings
 from sfpirgapp.models import Address
 from sfpirgapp.models import Organization
-from sfpirgapp.models import Contact
 from sfpirgapp.models import ProjectType
 from sfpirgapp.models import ProjectSubject
 from sfpirgapp.models import Project
@@ -94,7 +93,6 @@ admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Address)
 admin.site.register(Organization)
-admin.site.register(Contact)
 admin.site.register(ProjectType)
 admin.site.register(ProjectSubject)
 admin.site.register(Project)
