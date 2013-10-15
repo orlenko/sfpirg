@@ -87,7 +87,6 @@
   z-index: 700;
 }
 .event-slider-container .slide, .ag-slider-container .slide {
-  min-height: 120px;
   padding: 0 70px;
   white-space: normal;
   vertical-align: top;
@@ -1898,9 +1897,15 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 #sidebar #stay-connected {
   width: 100%;
 }
+#sidebar #what-is-happening {
+  min-height: 200px;
+}
 #sidebar #what-is-happening ul {
   margin: 0;
   height: 112px;
+}
+#sidebar #what-is-happening .slide {
+  min-height: 120px;
 }
 #sidebar #what-is-happening .event-img {
   padding: 6px 8px 8px 0;
