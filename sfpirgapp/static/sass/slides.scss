@@ -55,10 +55,10 @@
       background-image: url(/static/img/arrow-left-red-b.png);
     }
     &.green {
-      background-image: url(/static/img/arrow-left-green-b.png);
+      background-image: url(/static/img/arrow-left-green.png);
     }
     &.teal {
-      background-image: url(/static/img/arrow-left-teal-b.png);
+      background-image: url(/static/img/arrow-left-teal.png);
     }
   }
 
@@ -68,10 +68,10 @@
       background-image: url(/static/img/arrow-right-red-b.png);
     }
     &.green {
-      background-image: url(/static/img/arrow-right-green-b.png);
+      background-image: url(/static/img/arrow-right-green.png);
     }
     &.teal {
-      background-image: url(/static/img/arrow-right-teal-b.png);
+      background-image: url(/static/img/arrow-right-teal.png);
     }
   }
 
@@ -88,6 +88,7 @@
   }
 
   .slide {
+	min-height:120px;  
     padding: 0 70px;
     white-space: normal;
     vertical-align: top;
@@ -114,10 +115,10 @@
       background-image: url(/static/img/arrow-left-red-b.png);
     }
     &.green {
-      background-image: url(/static/img/arrow-left-green-b.png);
+      background-image: url(/static/img/arrow-left-green.png);
     }
     &.teal {
-      background-image: url(/static/img/arrow-left-teal-b.png);
+      background-image: url(/static/img/arrow-left-teal.png);
     }
   }
 
@@ -127,10 +128,10 @@
       background-image: url(/static/img/arrow-right-red-b.png);
     }
     &.green {
-      background-image: url(/static/img/arrow-right-green-b.png);
+      background-image: url(/static/img/arrow-right-green.png);
     }
     &.teal {
-      background-image: url(/static/img/arrow-right-teal-b.png);
+      background-image: url(/static/img/arrow-right-teal.png);
     }
   }
 
