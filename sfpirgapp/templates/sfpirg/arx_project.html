@@ -9,13 +9,16 @@
 
 {% block main %}
 
-{% block category_tools %}
-	<div class="category-tools" {% if not request.session.selected_projects %} style="display: none;" {% endif %} >
-		<h4>Selected Projects: <span class="selected-projects-count">{{ request.session.selected_projects|length }}</span>
-			<a href="/arx/apply/" title="Apply for selected projects"><img src="/static/img/arx/apply.png" /></a>
-		</h4>
-	</div>
-{% endblock %}
+{% if user.is_superuser or user == project.user %}
+{% else %}
+	{% block category_tools %}
+		<div class="category-tools" {% if not request.session.selected_projects %} style="display: none;" {% endif %} >
+			<h4>Selected Projects: <span class="selected-projects-count">{{ request.session.selected_projects|length }}</span>
+				<a href="/arx/apply/" title="Apply for selected projects"><img src="/static/img/arx/apply.png" /></a>
+			</h4>
+		</div>
+	{% endblock %}
+{% endif %}
 
 
 <div class="project">
@@ -71,9 +74,15 @@
 				<span class="text">{{project.length}}</span>
 			</div>
 			<div class="project-info-line">
-				{% if not user.is_superuser and user != project.user %}
-				<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
-				<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
+				{% if user.is_superuser or user == project.user %}
+					{% if project.is_published %}
+						<img src="/static/img/arx/published.png"/>
+					{% else %}
+						<a href="?edit=1"><img src="/static/img/arx/draft.png"/></a>
+					{% endif %}
+				{% else %}
+					<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
+					<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
 				{% endif %}
 				<span class="social-icons"><!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">

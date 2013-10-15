@@ -30,7 +30,7 @@ if Profile is not None:
             model = Profile
             exclude = (get_profile_user_fieldname(),) + _exclude_fields
             widgets = {
-                'organization': SelectWithPopUp('organization')
+                'organization': HiddenInput()
             }
 
 if settings.ACCOUNTS_NO_USERNAME:

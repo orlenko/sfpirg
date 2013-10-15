@@ -1,1 +1,6 @@
 {% extends "accounts/account_form.html" %}
+
+{% block main %}
+	{{ block.super }}
+	<p>To update your organization data, please click here: <a href="/profile/organization">Edit Organization Info</a>.</p>
+{% endblock %}
