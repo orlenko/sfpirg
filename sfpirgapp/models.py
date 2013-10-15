@@ -91,7 +91,11 @@ class Address(models.Model):
 
 
 class Organization(Slugged):
-    mailing_address = ForeignKey(Address)
+    mailing_city = models.CharField(max_length=255, verbose_name='City')
+    mailing_street = models.CharField(max_length=255, verbose_name='Street Address')
+    mailing_street2 = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name='Street Address (2nd line)')
+    mailing_postal_code = models.CharField(max_length=255, verbose_name='Postal Code')
+
     mandate = models.TextField(null=True, blank=True,
                                verbose_name="Organization's Goal",
                                help_text="What is your organization's goal or mandate?")
@@ -152,7 +156,7 @@ class Project(Slugged, AdminThumbMixin):
     support_method = models.TextField(blank=True, null=True,
                                       verbose_name='How will the Contact/Liaison provide direction and support to the project?')
     logo = FileField(verbose_name="Project Image",
-        upload_to=upload_to("sfpirgapp.project", "images"),
+        upload_to=upload_to("sfpirgapp.project", "project-images"),
         format="Image", max_length=255, null=True, blank=True,
         help_text='Please upload an image to represent the project, or your logo. If you do not have one, do not worry, just leave this section blank.')
     admin_thumb_field = "logo"
@@ -165,34 +169,32 @@ class Project(Slugged, AdminThumbMixin):
     project_type = models.ManyToManyField(ProjectType)
     project_type_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Description',
                             help_text='If you checked "other", please briefly describe your project type')
-    project_subject = models.ManyToManyField(ProjectSubject)
-    project_subject_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Subject',
+    project_subject = models.ManyToManyField(ProjectSubject, verbose_name='Project Issues',
+                                   help_text=('Please describe the social / environmental issues that are addressed by this project'))
+    project_subject_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Issues',
                                              help_text='If you checked "other", please briefly describe your project subject')
     size = models.CharField(null=True, blank=True, max_length=255, verbose_name='Size of Project',
                             help_text=('Please indicate the size of the project in quantifiable terms. '
                                        'e.g. word/page count, duration of radio show or video, number of hours'))
-    length = models.CharField(null=True, blank=True, max_length=255, verbose_name='Length of Project',
+    length = models.CharField(null=True, blank=True, max_length=255, verbose_name='Project Duration',
                             help_text=('Please indicate how many months you expect this project to take. '
                                        'Keep in mind that if your project will take longer than one semester '
                                        'to complete, the pool of students who can do it will be limited to '
                                        'grad students and students who choose to undertake the project '
                                        'independently / not for course credit. Semesters run from Sept-Dec, Jan-Apr & May-Aug.'))
     description_long = models.TextField(blank=True, null=True,
-                                   verbose_name='Project description',
+                                   verbose_name='About this Project',
                                    help_text=('Please provide a more detailed description of your project here, with particular focus on specific '
                                               'DELIVERABLES. For example, you might want a 10 page research paper on a topic, '
                                               'plus an executive summary, plus a powerpoint presentation to the organization\'s board of directors'))
-    issues_addressed = models.TextField(blank=True, null=True,
-                                   verbose_name='Issues Addressed by the Project',
-                                   help_text=('Please describe the social / environmental issues that are addressed by this project'))
-    results_plan = models.TextField(blank=True, null=True, verbose_name='Results Plan',
+    results_plan = models.TextField(blank=True, null=True, verbose_name='Use of Project Results',
                                     help_text='How do you plan to use the results of this project?')
-    larger_goal = models.TextField(blank=True, null=True, verbose_name='What larger goal is served by undertaking this project?',
-                                    help_text='')
-    researcher_qualities = models.TextField(blank=True, null=True, verbose_name='What Are You Looking For in a Student Researcher?',
-                                    help_text='What skills or attributes do you hope the student researcher will possess?')
+    larger_goal = models.TextField(blank=True, null=True, verbose_name='Deliverables',
+                                   help_text='What larger goal is served by undertaking this project?')
+    researcher_qualities = models.TextField(blank=True, null=True, verbose_name='The Student Researcher Must Possess',
+                                    help_text='What Are You Looking For in a Student Researcher?')
     date_created = models.DateTimeField(auto_now_add=True)
-    date_start = models.DateField(blank=True, null=True, help_text='For example, 2013-12-31')
+    date_start = models.DateField(blank=True, null=True)
     is_published = models.BooleanField(verbose_name='Publish this project',
                                        help_text='Leave this box unchecked to save the project as draft',
                                        default=False)
@@ -204,7 +206,7 @@ class Project(Slugged, AdminThumbMixin):
 
     @property
     def content(self):
-        return self.description_short
+        return self.description_long
 
     @models.permalink
     def get_absolute_url(self):
@@ -213,6 +215,13 @@ class Project(Slugged, AdminThumbMixin):
     @models.permalink
     def get_apply_url(self):
         return ('arx-project-apply', (), {'slug': self.slug})
+
+    @property
+    def formatted_project_subject(self):
+        subjects = [subj.title for subj in self.project_subject.all()]
+        if subjects == ['Other']:
+            return self.project_subject_other
+        return ', '.join(subjects)
 
 
 class Application(models.Model):

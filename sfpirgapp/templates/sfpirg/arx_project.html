@@ -22,26 +22,28 @@
 
 	<h1>{{project.title}}</h1>
 
-	{% if form and user.is_superuser %}
-		{% if form.subject.errors %}
-		    <ol>
-		    {% for error in form.subject.errors %}
-		        <li><strong>{{ error|escape }}</strong></li>
-		    {% endfor %}
-		    </ol>
-		{% endif %}
+	{% if form %}
+		{% if user.is_superuser or user == project.user %}
+			{% if form.subject.errors %}
+			    <ol>
+			    {% for error in form.subject.errors %}
+			        <li><strong>{{ error|escape }}</strong></li>
+			    {% endfor %}
+			    </ol>
+			{% endif %}
 
-		<form method='post' action=''>
-			{% csrf_token %}
-			<input type="hidden" name="id" value="{{form.instance.id}}"/>
-			{{form.as_p}}
-			<p><input type='submit' value='Save'/></p>
-		</form>
+			<form method='post' action=''>
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{form.instance.id}}"/>
+				{{form.as_p}}
+				<p><input type='submit' value='Save'/></p>
+			</form>
+		{% endif %}
 	{% endif %}
 
 	{% if not form %}
 
-		{% if user.is_superuser %}
+		{% if user.is_superuser or user == project.user %}
 			<p><a href="?edit=1">Edit this project</a></p>
 		{% endif %}
 
@@ -53,32 +55,40 @@
 
 		<div class="project-summary">
 			<div class="project-info-line">
-				<span class="label">Organization:</span>
+				<span class="label">Organization: </span>
 				<span class="text">{{project.user.profile.organization.title}}</span>
 			</div>
 			<div class="project-info-line">
-				<span class="label">Type:</span>
+				<span class="label">Type: </span>
 				<span class="text">{{project.project_type.all|join:', '}} {{project.project_type_other}}</span>
 			</div>
 			<div class="project-info-line">
-				<span class="label">Issues:</span>
-				<span class="text">{{project.issues_addressed}}</span>
+				<span class="label">Issues: </span>
+				<span class="text">{{project.formatted_project_subject}}</span>
 			</div>
 			<div class="project-info-line">
-				<span class="label">Duration:</span>
+				<span class="label">Duration: </span>
 				<span class="text">{{project.length}}</span>
 			</div>
 			<div class="project-info-line">
+				{% if not user.is_superuser and user != project.user %}
 				<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
 				<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
-				<span class="social-icons">[social icons placeholder!]</span>
+				{% endif %}
+				<span class="social-icons"><!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525da9880c8f9f5e"></script>
+<!-- AddThis Button END --></span>
 			</div>
 		</div>
 
 		<div class="project-details">
 			<h2>About this Project:</h2>
 			<div>
-				{{project.description_short|richtext_filter|safe}}
+				{{project.description_long|richtext_filter|safe}}
 			</div>
 
 			<h2>Deliverables:</h2>
@@ -100,6 +110,11 @@
 		<hr/>
 
 		<div class="organization">
+
+			{% if project.user.profile.photo %}
+				<img class="featured-image-right" style="float: right; padding: 10px;" src="{{ MEDIA_URL }}{% sfpirg_thumbnail project.user.profile.photo 200 0 %}" alt="Organization Logo" />
+			{% endif %}
+
 			<h2>About {{ project.user.profile.organization.title }}</h2>
 			<div>
 				{{ project.user.profile.organization.mandate|richtext_filter|safe }}

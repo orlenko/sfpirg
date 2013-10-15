@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block contentclass %}green{% endblock %}
+
+{% block main %}
+
+<div class="project">
+
+	<h1>About Your Organization</h1>
+
+	{% if form.subject.errors %}
+	    <ol>
+	    {% for error in form.subject.errors %}
+	        <li><strong>{{ error|escape }}</strong></li>
+	    {% endfor %}
+	    </ol>
+	{% endif %}
+
+	<form method='post' action=''>
+		{% csrf_token %}
+		<input type="hidden" name="id" value="{{form.instance.id}}"/>
+		{{form.as_p}}
+		<p><input type='submit' value='Save'/></p>
+	</form>
+</div>
+{% endblock %}

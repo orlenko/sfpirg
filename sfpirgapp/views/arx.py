@@ -6,10 +6,7 @@ from sfpirgapp.forms import ProjectForm
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from sfpirgapp.forms import ApplicationForm
-from django.contrib.auth.decorators import permission_required
 import logging
-from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth import REDIRECT_FIELD_NAME
 from sfpirgapp.models import Category
 from sfpirgapp.forms import MultiApplicationForm
 from sfpirgapp.models import Application
@@ -34,8 +31,7 @@ def require_organization(request):
     organization = profile.organization
     log.debug('Organization: %s' % organization)
     if not organization:
-        return HttpResponseRedirect('/account/update/?profile=1&organization=1&next=%s' % request.get_full_path())
-    log.debug('Organization: %s' % organization)
+        return HttpResponseRedirect('/profile/organization/?next=%s' % request.get_full_path())
     return organization
 
 

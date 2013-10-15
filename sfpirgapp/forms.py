@@ -31,7 +31,8 @@ class ProjectForm(ModelForm):
         exclude = ('slug',)
         widgets = {
             'liaison': SelectWithPopUp('Liaison'),
-            'user': HiddenInput()
+            'user': HiddenInput(),
+            'category': HiddenInput()
         }
 
 
@@ -47,10 +48,14 @@ class MultiApplicationForm(forms.Form):
 
 
 class OrganizationForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(OrganizationForm, self).__init__(*args, **kwargs)
+        self.fields['title'].label = 'Organization Name'
+
     class Meta:
         model = Organization
         widgets = {
-            'mailing_address': SelectWithPopUp('Address'),
+            'slug': forms.HiddenInput(),
         }
 
 
