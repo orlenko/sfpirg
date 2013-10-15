@@ -9,20 +9,20 @@
         data-cycle-next="#ag-nextslide">
 			<a href="#" id="ag-prevslide" class="arrow-left teal"></a>
 			<a href="#" id="ag-nextslide" class="arrow-right teal"></a>
-		{% for six in sixes %}
+		{% for four in fours %}
 	         <div class="slide">
 	         	<div class="slide-center">
-		         	{% for ag in six %}
+		         	{% for ag in four %}
 		         		<div class="ag">
 		         			<a href="{{ag.get_absolute_url}}">
 		         			{% if ag.featured_image %}
 		         				<img class="ag-img"
-		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 42 42 %}"
+		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 63 63 %}"
 		         					 alt="Action Group Picture" />
 		         			{% endif %}
 		         			{% if not ag.featured_image %}
 		         				<img class="ag-img"
-		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail 'noimg.jpg' 42 42 %}"
+		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail 'noimg.jpg' 63 63 %}"
 		         					 alt="Action Group Picture" />
 		         			{% endif %}
 		         			</a>

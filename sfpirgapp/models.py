@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import FileField as NativeFileField
 from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.utils.models import upload_to
 from mezzanine.core.fields import FileField
@@ -8,6 +9,13 @@ from mezzanine.core.models import Displayable, Orderable, RichText, Ownable,\
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
+
+
+class MyFileField(NativeFileField):
+    def __init__(self, *args, **kwargs):
+        for fb_arg in ("format", "extensions"):
+            kwargs.pop(fb_arg, None)
+        super(MyFileField, self).__init__(*args, **kwargs)
 
 
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
@@ -30,7 +38,7 @@ class Profile(models.Model, AdminThumbMixin):
     date_of_birth = models.DateField(null=True, blank=True)
     title = models.CharField(null=True, blank=True, max_length=255)
     bio = models.TextField(null=True, blank=True)
-    photo = FileField(verbose_name="Photo",
+    photo = MyFileField(verbose_name="Photo",
         upload_to=upload_to("sfpirgapp.Profile.photo", "photos"),
         format="Image", max_length=255, null=True, blank=True,
         help_text='User photo')
@@ -44,7 +52,6 @@ class Testimonial(PageLike, Ownable):
     @models.permalink
     def get_absolute_url(self):
         return ('testimonial', (), {'slug': self.slug})
-
 
 
 class DummyTable(models.Model):
@@ -155,7 +162,7 @@ class Project(Slugged, AdminThumbMixin):
                                      verbose_name='How much time per week can the Contact/Liaison devote to the student?')
     support_method = models.TextField(blank=True, null=True,
                                       verbose_name='How will the Contact/Liaison provide direction and support to the project?')
-    logo = FileField(verbose_name="Project Image",
+    logo = MyFileField(verbose_name="Project Image",
         upload_to=upload_to("sfpirgapp.project", "project-images"),
         format="Image", max_length=255, null=True, blank=True,
         help_text='Please upload an image to represent the project, or your logo. If you do not have one, do not worry, just leave this section blank.')

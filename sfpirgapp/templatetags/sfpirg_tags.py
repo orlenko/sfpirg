@@ -180,16 +180,16 @@ def sfpirg_pagination(context, token):
 @register.render_tag
 def action_group_slider(context, token):
     action_groups = models.ActionGroup.objects.all().order_by('title')[:200]
-    sixes = []
-    six = []
+    fours = []
+    four = []
     for ag in action_groups:
-        six.append(ag)
-        if len(six) == 6:
-            sixes.append(six)
-            six = []
-    if six:
-        sixes.append(six)
-    context['sixes'] = sixes
+        four.append(ag)
+        if len(four) == 4:
+            fours.append(four)
+            four = []
+    if four:
+        fours.append(four)
+    context['fours'] = fours
     t = get_template('sfpirg/action-group-slider.html')
     return t.render(Context(context))
 

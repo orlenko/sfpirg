@@ -9,9 +9,9 @@ from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from mezzanine.utils.models import get_user_model
 from mezzanine.utils.urls import slugify, unique_slug
-from sfpirgapp.widgets import SelectWithPopUp
+from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
 import logging
-from django.forms.widgets import HiddenInput
+from django.forms.widgets import HiddenInput, FileInput
 
 
 log = logging.getLogger(__name__)
@@ -30,7 +30,8 @@ if Profile is not None:
             model = Profile
             exclude = (get_profile_user_fieldname(),) + _exclude_fields
             widgets = {
-                'organization': HiddenInput()
+                'organization': HiddenInput(),
+                'photo': AdvancedFileInput()
             }
 
 if settings.ACCOUNTS_NO_USERNAME:
@@ -87,7 +88,8 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
         fields = ("first_name", "last_name", "email", "username", "is_staff")
         exclude = _exclude_fields
         widgets = {
-            'organization': SelectWithPopUp('organization')
+            'organization': HiddenInput(),
+            'photo': AdvancedFileInput()
         }
 
     def __init__(self, *args, **kwargs):
@@ -123,7 +125,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
                 for field in profile_fields:
                     value = getattr(self.instance.get_profile(), field)
                     self.initial[field] = value
-        self.fields['is_staff'].initial = True
+        self.fields['is_staff'].initial = False
         self.fields['is_staff'].widget = HiddenInput()
         log.debug('Profile fields: %s' % self.fields)
 
@@ -202,6 +204,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
         if self._has_profile:
             profile = user.get_profile()
             profile_fields_form = self.get_profile_fields_form()
+            log.debug('Saving profile: %s, %s' % (self.data, self.files))
             profile_fields_form(self.data, self.files, instance=profile).save()
 
         if self._signup:
