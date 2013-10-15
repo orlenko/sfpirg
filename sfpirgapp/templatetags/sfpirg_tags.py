@@ -199,7 +199,9 @@ def sfpirg_side_menu(context, token):
     links = []
     page = context.get('page')
     if page:
-        if page.parent:
+        if page.category:
+            links.append((page.category.get_absolute_url(), page.category.title))
+        elif page.parent:
             links.append((page.parent.get_absolute_url(), page.parent.title))
             for child in page.parent.children.all():
                 links.append((child.get_absolute_url(), child.title))

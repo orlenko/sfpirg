@@ -50,6 +50,7 @@ def project(request, slug):
                 return HttpResponseRedirect(project.get_absolute_url())
         else:
             form = ProjectForm(instance=project)
+    page = project
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_project.html', {}, context_instance=context)
 
