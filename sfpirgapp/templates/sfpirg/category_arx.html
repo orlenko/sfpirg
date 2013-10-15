@@ -17,9 +17,9 @@
 	<div>
 		{% if user.is_superuser or user == rec.user %}
 			{% if rec.is_published %}
-				<img src="/static/img/arx/published.png"/>
+				<img class="cat-more-left" src="/static/img/arx/published.png"/>
 			{% else %}
-				<a href="{{rec.get_absolute_url}}?edit=1"><img src="/static/img/arx/draft.png"/></a>
+				<a href="{{rec.get_absolute_url}}?edit=1"><img class="cat-more-left" src="/static/img/arx/draft.png"/></a>
 			{% endif %}
 		{% else %}
 			<a href="" class="arx-project-select" id="arx-project-select-{{rec.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
