@@ -678,7 +678,7 @@ select[multiple] {
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
-		margin: -4px 0;}
+		margin: -5px 0;}
 
 		.cat-text:before {background:url(../img/cat-bottom-grey.png) bottom left no-repeat;
 		height:28px;
@@ -729,7 +729,7 @@ select[multiple] {
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
-		margin: -4px 0;}
+		margin: -5px 0;}
 
 		.cat-text:before {background:url(../img/cat-bottom-teal.png) bottom left no-repeat;
 		height:28px;
@@ -780,7 +780,7 @@ select[multiple] {
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
-		margin: -4px 0;}
+		margin: -5px 0;}
 
 		.cat-text:before {background:url(../img/cat-bottom-green.png) bottom left no-repeat;
 		height:28px;
@@ -831,7 +831,7 @@ select[multiple] {
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
-		margin: -4px 0;}
+		margin: -5px 0;}
 
 		.cat-text:before {background:url(../img/cat-bottom-yellow.png) bottom left no-repeat;
 		height:28px;
@@ -882,7 +882,7 @@ select[multiple] {
 		height:28px;
 		width:100%;
 		content:""; display:inline-block;
-		margin: -4px 0;}
+		margin: -5px 0;}
 
 		.cat-text:before {background:url(../img/cat-bottom-red.png) bottom left no-repeat;
 		height:28px;
@@ -968,7 +968,7 @@ select[multiple] {
 }
 #values, #newsletter{
 	background:url(../img/background-grey-star.jpg) center bottom no-repeat;
-	height:115px;
+	height:123px;
 	text-align:center;
 
 	img {padding:0; margin: -16px 0;}
@@ -1090,7 +1090,7 @@ select[multiple] {
 	background:
 	url(../img/background-teil-star.jpg) left bottom no-repeat,
 	$paper repeat;
-	min-height:184px;
+	min-height:200px;
 
 		.arx-logo {float:left;
 		 margin: -12px 0;
@@ -1113,7 +1113,7 @@ select[multiple] {
 	background:
 	url(../img/background-teil-star.jpg) left bottom no-repeat,
 	$paper repeat;
-	min-height:184px;
+	min-height:200px;
 	position:relative;
 
 	.ag-logo {
@@ -1398,6 +1398,9 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 	margin: 6px 0 0;
 	h3 {margin:0;}
 	.x-name {font-size:13px;}
+	}
+	#stay-connected {
+		width:100%;
 	}
 
 	#what-is-happening {

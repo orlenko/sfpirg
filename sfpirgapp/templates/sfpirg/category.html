@@ -37,7 +37,7 @@
 			    </div>
 			    <h2><a href="{{rec.get_absolute_url}}">{{rec.title}}</a></h2>
 			    <div class="cat-text">
-			    {{ rec.content|striptags|truncatechars:60 }}
+			    <p>{{ rec.content|striptags|truncatechars:60 }}</p>
 			    {% block item_tools %}
 			    	<a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>
 			    {% endblock %}

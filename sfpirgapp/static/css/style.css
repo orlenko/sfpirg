@@ -59,10 +59,10 @@
   background-image: url(/static/img/arrow-left-red-b.png);
 }
 .menu-slideshow .arrow-left.green {
-  background-image: url(/static/img/arrow-left-green-b.png);
+  background-image: url(/static/img/arrow-left-green.png);
 }
 .menu-slideshow .arrow-left.teal {
-  background-image: url(/static/img/arrow-left-teal-b.png);
+  background-image: url(/static/img/arrow-left-teal.png);
 }
 .menu-slideshow .arrow-right {
   right: 10px;
@@ -71,10 +71,10 @@
   background-image: url(/static/img/arrow-right-red-b.png);
 }
 .menu-slideshow .arrow-right.green {
-  background-image: url(/static/img/arrow-right-green-b.png);
+  background-image: url(/static/img/arrow-right-green.png);
 }
 .menu-slideshow .arrow-right.teal {
-  background-image: url(/static/img/arrow-right-teal-b.png);
+  background-image: url(/static/img/arrow-right-teal.png);
 }
 
 .event-slider-container, .ag-slider-container {
@@ -87,6 +87,7 @@
   z-index: 700;
 }
 .event-slider-container .slide, .ag-slider-container .slide {
+  min-height: 120px;
   padding: 0 70px;
   white-space: normal;
   vertical-align: top;
@@ -112,10 +113,10 @@
   background-image: url(/static/img/arrow-left-red-b.png);
 }
 .event-slider-container .arrow-left.green, .ag-slider-container .arrow-left.green {
-  background-image: url(/static/img/arrow-left-green-b.png);
+  background-image: url(/static/img/arrow-left-green.png);
 }
 .event-slider-container .arrow-left.teal, .ag-slider-container .arrow-left.teal {
-  background-image: url(/static/img/arrow-left-teal-b.png);
+  background-image: url(/static/img/arrow-left-teal.png);
 }
 .event-slider-container .arrow-right, .ag-slider-container .arrow-right {
   right: 2px;
@@ -124,10 +125,10 @@
   background-image: url(/static/img/arrow-right-red-b.png);
 }
 .event-slider-container .arrow-right.green, .ag-slider-container .arrow-right.green {
-  background-image: url(/static/img/arrow-right-green-b.png);
+  background-image: url(/static/img/arrow-right-green.png);
 }
 .event-slider-container .arrow-right.teal, .ag-slider-container .arrow-right.teal {
-  background-image: url(/static/img/arrow-right-teal-b.png);
+  background-image: url(/static/img/arrow-right-teal.png);
 }
 
 .ag-slider-container .slide {
@@ -1150,7 +1151,7 @@ select[multiple] {
   width: 100%;
   content: "";
   display: inline-block;
-  margin: -4px 0;
+  margin: -5px 0;
 }
 .grey #category-list .cat-text:before {
   background: url(../img/cat-bottom-grey.png) bottom left no-repeat;
@@ -1206,7 +1207,7 @@ select[multiple] {
   width: 100%;
   content: "";
   display: inline-block;
-  margin: -4px 0;
+  margin: -5px 0;
 }
 .teal #category-list .cat-text:before {
   background: url(../img/cat-bottom-teal.png) bottom left no-repeat;
@@ -1262,7 +1263,7 @@ select[multiple] {
   width: 100%;
   content: "";
   display: inline-block;
-  margin: -4px 0;
+  margin: -5px 0;
 }
 .green #category-list .cat-text:before {
   background: url(../img/cat-bottom-green.png) bottom left no-repeat;
@@ -1318,7 +1319,7 @@ select[multiple] {
   width: 100%;
   content: "";
   display: inline-block;
-  margin: -4px 0;
+  margin: -5px 0;
 }
 .yellow #category-list .cat-text:before {
   background: url(../img/cat-bottom-yellow.png) bottom left no-repeat;
@@ -1374,7 +1375,7 @@ select[multiple] {
   width: 100%;
   content: "";
   display: inline-block;
-  margin: -4px 0;
+  margin: -5px 0;
 }
 .red #category-list .cat-text:before {
   background: url(../img/cat-bottom-red.png) bottom left no-repeat;
@@ -1459,7 +1460,7 @@ select[multiple] {
 
 #values, #newsletter {
   background: url(../img/background-grey-star.jpg) center bottom no-repeat;
-  height: 115px;
+  height: 123px;
   text-align: center;
 }
 #values img, #newsletter img {
@@ -1585,7 +1586,7 @@ select[multiple] {
 
 #get-involved {
   background: url(../img/background-teil-star.jpg) left bottom no-repeat, url(../img/extra_clean_paper.jpg) repeat;
-  min-height: 184px;
+  min-height: 200px;
 }
 #get-involved .arx-logo {
   float: left;
@@ -1606,7 +1607,7 @@ select[multiple] {
 
 #action-groups {
   background: url(../img/background-teil-star.jpg) left bottom no-repeat, url(../img/extra_clean_paper.jpg) repeat;
-  min-height: 184px;
+  min-height: 200px;
   position: relative;
 }
 #action-groups .ag-logo {
@@ -1893,6 +1894,9 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 #sidebar #experience-widget .x-name {
   font-size: 13px;
+}
+#sidebar #stay-connected {
+  width: 100%;
 }
 #sidebar #what-is-happening ul {
   margin: 0;
