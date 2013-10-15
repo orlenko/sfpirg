@@ -1037,13 +1037,13 @@ select[multiple] {
 
 		.prev-big {
 		/*activae when JS carousel is in:
-		background:url(../img/arrow-left-green-b.png) top center no-repeat;*/
+		background:url(../img/arrow-left-green.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
 		.next-big {
 		/*activae when JS carousel is in:
-		background:url(../img/arrow-right-green-b.png) top center no-repeat;*/
+		background:url(../img/arrow-right-green.png) top center no-repeat;*/
 		&:hover {opacity:0.6;
 					filter:alpha(opacity=60); /* For IE8 and earlier */}
 		}
@@ -1231,6 +1231,23 @@ select[multiple] {
 					filter:alpha(opacity=60); }
 		}
 }*/
+.content-grid-list {
+	list-style: inside none;
+	width:100%;
+	display:block;
+	padding:0;
+	margin:20px 0;
+	
+	li {
+	display:inline-block;
+	width:177px;
+	margin:20px;
+	height:330px;
+	}
+	
+}
+
+
 
 #main-content-block {margin:20px 0}
 #category-list {
@@ -1618,7 +1635,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 
 
-#category-list {
+#category-list  {
 
 	li {
     margin: 13px;
@@ -1814,7 +1831,9 @@ table td {
 			padding:0 80px;
 		}
 }
-
+.content-grid-list {
+	li {margin-left: 48px;}
+}
 #category-list {
 
 	ul {
