@@ -255,7 +255,7 @@ class Page(BasePage):
         self.branch_level = 0
 
     def in_menu_template(self, template_name):
-        print '%s in %s? ' % (template_name, self.in_menus)
+        #print '%s in %s? ' % (template_name, self.in_menus)
         if self.in_menus is not None:
             for i, l, t in settings.PAGE_MENU_TEMPLATES:
                 if not unicode(i) in self.in_menus and t == template_name:

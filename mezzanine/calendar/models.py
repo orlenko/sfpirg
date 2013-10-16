@@ -11,14 +11,12 @@ from django.core.files.storage import default_storage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from mezzanine.core.fields import RichTextField, FileField
+from mezzanine.core.fields import FileField
 from mezzanine.core.models import SiteRelated, Orderable
-from mezzanine.pages.models import Page
 from mezzanine.utils.importing import import_dotted_path
 from mezzanine.utils.models import upload_to
 from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.core.models import Displayable
-from mezzanine.core.models import Ownable
 from mezzanine.core.models import RichText
 from django.db.models.fields.related import ForeignKey
 
@@ -40,8 +38,8 @@ def DummyEmptyResultSet():
 
 
 class Event(Displayable, RichText, AdminThumbMixin):
-    parent = None # To make it compatible with the side_menu template
-    children = DummyEmptyResultSet() # To make it compatible with the side_menu template
+    parent = None  # To make it compatible with the side_menu template
+    children = DummyEmptyResultSet()
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
     type = models.ForeignKey('calendar.EventType', blank=True, null=True)
@@ -60,7 +58,6 @@ class Event(Displayable, RichText, AdminThumbMixin):
     @models.permalink
     def get_absolute_url(self):
         return ("event", (), {"event": self.slug})
-
 
     def save(self, delete_zip_import=True, *args, **kwargs):
         """

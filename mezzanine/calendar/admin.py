@@ -7,7 +7,6 @@ from mezzanine.pages.admin import PageAdmin
 
 from .models import Event, EventType, EventImage
 from mezzanine.core.admin import DisplayableAdmin
-from mezzanine.core.admin import OwnableAdmin
 
 
 event_fieldsets = deepcopy(PageAdmin.fieldsets)

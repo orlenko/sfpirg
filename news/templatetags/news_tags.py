@@ -8,7 +8,6 @@ from .. import models
 
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
 
 register = template.Library()
 

@@ -131,14 +131,14 @@ def profile_update(request, template="accounts/account_profile_update.html"):
     profile_form = get_profile_form()
     form = profile_form(request.POST or None, request.FILES or None,
                         instance=request.user)
-    print 'GET: %s' % request.GET
-    print 'POST: %s' % request.POST
-    print 'form valid? %s %s' % (form.is_valid(), form.errors)
+    #print 'GET: %s' % request.GET
+    #print 'POST: %s' % request.POST
+    #print 'form valid? %s %s' % (form.is_valid(), form.errors)
     if request.method == "POST" and form.is_valid():
         user = form.save()
         info(request, _("Profile updated"))
-        print 'GET: %s' % request.GET
-        print 'POST: %s' % request.POST
+        #print 'GET: %s' % request.GET
+        #print 'POST: %s' % request.POST
         try:
             if 'next' in request.GET:
                 return redirect(request.GET.get("next", "/"))

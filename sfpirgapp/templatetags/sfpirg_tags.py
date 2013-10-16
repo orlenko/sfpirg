@@ -28,14 +28,13 @@ except ImportError:
 
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
 
 register = template.Library()
 
 
 @register.render_tag
 def sfpirg_random_testimonial(context, token):
-    log.debug('Creating a random testimonial block')
+    #log.debug('Creating a random testimonial block')
     all_testimonials = models.Testimonial.objects.filter(status=CONTENT_STATUS_PUBLISHED)
     count = len(all_testimonials)
     if count:
@@ -126,14 +125,14 @@ def sfpirg_thumbnail(image_url, width, height, quality=95):
         return image_url
     # Set dimensions.
     if width and height:
-        print 'Both dimensions of %s are specified' % image_url
+        #print 'Both dimensions of %s are specified' % image_url
         if float(height) / width < float(image.size[1]) / image.size[0]:
-            print 'Original image is tall and slim, will resize by width only'
+            #print 'Original image is tall and slim, will resize by width only'
             height = 0
         else:
-            print 'Original image is wide and short, will resize by height only'
-            print 'Because %s is less than %s' % (float(image.size[1]) / image.size[0],
-                                                  float(height) / width)
+            #print 'Original image is wide and short, will resize by height only'
+            #print 'Because %s is less than %s' % (float(image.size[1]) / image.size[0],
+            #                                      float(height) / width)
             width = 0
     if not width:
         width = int(round(float(image.size[0]) * height / image.size[1]))
@@ -220,7 +219,7 @@ def sfpirg_side_menu(context, token):
 def projects_slider(context, token):
     pages = []
     for page in Page.objects.published(for_user=context["request"].user).order_by('_order'):
-        if page.in_menu_template('menus/projects.html'):
+        if page.in_menu_template('sfpirg/projects_slider.html'):
             pages.append(page)
     context['pages'] = pages
     return get_template('sfpirg/projects_slider.html').render(Context(context))

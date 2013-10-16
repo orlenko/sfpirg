@@ -202,7 +202,7 @@ class Displayable(Slugged, MetaData):
                                    max_length=255,
                                    default='grey',
                                    choices=THEME_CHOICES,
-                                   help_text='Select a Theme Colour for this page')
+                help_text='Select a Theme Colour for this page')
 
     objects = DisplayableManager()
     search_fields = {"keywords": 10, "title": 5}

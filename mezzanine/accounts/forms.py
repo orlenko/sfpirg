@@ -9,9 +9,9 @@ from mezzanine.conf import settings
 from mezzanine.core.forms import Html5Mixin
 from mezzanine.utils.models import get_user_model
 from mezzanine.utils.urls import slugify, unique_slug
-from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
+from sfpirgapp.widgets import AdvancedFileInput
 import logging
-from django.forms.widgets import HiddenInput, FileInput
+from django.forms.widgets import HiddenInput
 
 
 log = logging.getLogger(__name__)

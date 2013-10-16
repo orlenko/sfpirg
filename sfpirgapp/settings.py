@@ -64,7 +64,7 @@ PAGE_MENU_TEMPLATES = (
     (2, 'Right-hand sidebar', 'menus/side.html'),
     (3, 'Footer', 'menus/bottom.html'),
     (4, 'Front-page Slideshow', 'menus/slideshow.html'),
-    (5, 'Projects Carousel', 'menus/projects.html'),
+    (5, 'Projects Carousel', 'sfpirg/projects_slider.html'),
 )
 
 INLINE_EDITING_ENABLED = True
@@ -263,7 +263,7 @@ INSTALLED_APPS = (
     'mezzanine.conf',
     'mezzanine.core',
     'mezzanine.generic',
-    #'mezzanine.blog',
+    'mezzanine.blog',
     'mezzanine.forms',
     'mezzanine.pages',
     'mezzanine.galleries',
