@@ -1237,6 +1237,7 @@ select[multiple] {
 	display:block;
 	padding:0;
 	margin:20px 0;
+	font-size:12px;
 	
 	li {
 	display:inline-block;
@@ -1393,12 +1394,13 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 	#experience-widget {
 	width:100%;
-	margin-left:0;
 	font-size:12px;
-	margin: 6px 0 0;
+	margin: -10px 0 0;
 	h3 {margin:0;}
+	
 	.x-name {font-size:13px;}
 	}
+	
 	#stay-connected {
 		width:100%;
 	}
@@ -1838,7 +1840,9 @@ table td {
 		}
 }
 .content-grid-list {
-	li {margin-left: 48px;}
+	li {margin-left: 48px;
+	
+	}
 }
 #category-list {
 

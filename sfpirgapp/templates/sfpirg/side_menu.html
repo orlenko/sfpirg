@@ -1,9 +1,19 @@
-<ul>
-    {% for link, title in links %}
-	    <li>
-	        <a href="{{ link }}">
-	            {{ title }}
-	        </a>
-	    </li>
-    {% endfor %}
-</ul>
+	{% if links %}
+    <div class="section row grey">
+
+		<div id="navigation" class="col tablet-full mobile-full">
+
+          <ul>
+              {% for link, title in links %}
+                  <li>
+                      <a href="{{ link }}">
+                          {{ title }}
+                      </a>
+                  </li>
+              {% endfor %}
+          </ul>
+          
+		</div><!-- end of #navigation -->
+
+	</div>
+    {% endif %}
