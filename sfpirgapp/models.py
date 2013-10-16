@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
 from sfpirgapp.fields import MyImageField
+#from django import forms
 
 
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
@@ -252,7 +253,8 @@ class Project(Slugged, AdminThumbMixin):
 
     def save(self, *args, **kwargs):
         if self.is_approved and not self.is_submitted:
-            raise RuntimeError('Cannot approve a project that has not been submitted.')
+            return
+            #raise forms.ValidationError('Cannot approve a project that has not been submitted.')
         return super(Project, self).save(*args, **kwargs)
 
 
