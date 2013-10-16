@@ -16,9 +16,9 @@ def get_arx_query_set(request, category):
         if user.is_superuser:
             return category.arx_projects.all()
         else:
-            return category.arx_projects.filter(Q(is_published=True) | Q(user=user))
+            return category.arx_projects.filter(Q(is_approved=True) | Q(user=user))
     else:
-        return category.arx_projects.filter(is_published=True)
+        return category.arx_projects.filter(is_approved=True)
 
 
 def category(request, slug):

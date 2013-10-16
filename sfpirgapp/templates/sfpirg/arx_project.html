@@ -29,7 +29,7 @@
 		{% if user.is_superuser or user == project.user %}
 			{% if form.subject.errors %}
 			    <ol>
-			    {% for error in form.subject.errors %}
+				{% for error in form.subject.errors %}
 			        <li><strong>{{ error|escape }}</strong></li>
 			    {% endfor %}
 			    </ol>
@@ -47,7 +47,9 @@
 	{% if not form %}
 
 		{% if user.is_superuser or user == project.user %}
-			<p><a href="?edit=1">Edit this project</a></p>
+			{% if not project.is_approved %}
+				<p><a href="?edit=1">Edit this project</a></p>
+			{% endif %}
 		{% endif %}
 
 		{% if project.logo %}
@@ -75,10 +77,14 @@
 			</div>
 			<div class="project-info-line">
 				{% if user.is_superuser or user == project.user %}
-					{% if project.is_published %}
+					{% if project.is_approved %}
 						<img src="/static/img/arx/published.png"/>
 					{% else %}
-						<a href="?edit=1"><img src="/static/img/arx/draft.png"/></a>
+						{% if project.is_draft %}
+							<a href="?edit=1"><img src="/static/img/arx/draft.png"/></a>
+						{% else %}
+							<img src="/static/img/arx/submitted.png"/>
+						{% endif %}
 					{% endif %}
 				{% else %}
 					<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>

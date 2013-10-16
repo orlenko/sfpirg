@@ -1,6 +1,4 @@
-from django import forms
 from django.db import models
-from django.db.models import ImageField
 from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.utils.models import upload_to
 from mezzanine.core.fields import FileField
@@ -10,23 +8,7 @@ from mezzanine.core.models import Displayable, Orderable, RichText, Ownable,\
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
-from sfpirgapp.widgets import AdvancedFileInput
-
-
-class MyFormImageField(forms.ImageField):
-    widget = AdvancedFileInput
-
-
-class MyImageField(ImageField):
-    def __init__(self, *args, **kwargs):
-        for fb_arg in ("format", "extensions"):
-            kwargs.pop(fb_arg, None)
-        super(MyImageField, self).__init__(*args, **kwargs)
-
-    def formfield(self, **kwargs):
-        defaults = {'form_class': MyFormImageField}
-        defaults.update(kwargs)
-        return super(MyImageField, self).formfield(**defaults)
+from sfpirgapp.fields import MyImageField
 
 
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
@@ -213,10 +195,13 @@ class Project(Slugged, AdminThumbMixin):
                                     help_text='What Are You Looking For in a Student Researcher?')
     date_created = models.DateTimeField(auto_now_add=True)
     date_start = models.DateField(blank=True, null=True)
-    is_published = models.BooleanField(verbose_name='Publish this project',
-                                       help_text='Leave this box unchecked to save the project as draft',
-                                       default=False)
+    is_draft = models.BooleanField(default=True)
+    is_approved = models.BooleanField(default=False)
     category = ForeignKey(Category, related_name='arx_projects')
+
+    @property
+    def organization_title(self):
+        return self.user.profile.organization.title
 
     @property
     def featured_image(self):
