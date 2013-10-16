@@ -14,6 +14,7 @@
 
 ADMIN_MENU_ORDER = (
     ('SFPIRG', (
+      'sfpirgapp.Category',
       'sfpirgapp.Testimonial',
       'news.NewsPost',
       'calendar.Event',
@@ -21,7 +22,6 @@ ADMIN_MENU_ORDER = (
     )),
     ('Action Groups',(
       'sfpirgapp.ActionGroup',
-      'sfpirgapp.Category'
     )),
     ('Action Research Exchange', (
       'sfpirgapp.Project',
@@ -263,7 +263,7 @@ INSTALLED_APPS = (
     'mezzanine.conf',
     'mezzanine.core',
     'mezzanine.generic',
-    'mezzanine.blog',
+    #'mezzanine.blog',
     'mezzanine.forms',
     'mezzanine.pages',
     'mezzanine.galleries',
