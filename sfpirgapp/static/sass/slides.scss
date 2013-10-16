@@ -138,19 +138,32 @@
 }
 
 .ag-slider-container {
+	.arrow-left, .arrow-right {
+
+    top: 38px;
+  }
+    .arrow-right {
+    right: 34px;
+	}
+    .arrow-left {
+    left: 36px;
+	}
+}
+
+.ag-slider-container {
   .slide {
 
     width: 100%;
 
     .slide-center {
       margin: auto;
-      width: 156px;
+      width: 120px;
 
       .ag {
         display: block;
         float: left;
-        width: 63px;
-        height: 63px;
+        width: 50px;
+        height: 50px;
         overflow: hidden;
         margin: 5px;
         img {
@@ -225,3 +238,8 @@
 
 	}
 }
+
+
+
+
+

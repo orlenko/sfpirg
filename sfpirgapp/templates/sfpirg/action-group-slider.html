@@ -17,12 +17,12 @@
 		         			<a href="{{ag.get_absolute_url}}">
 		         			{% if ag.featured_image %}
 		         				<img class="ag-img"
-		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 63 63 %}"
+		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 50 50 %}"
 		         					 alt="Action Group Picture" />
 		         			{% endif %}
 		         			{% if not ag.featured_image %}
 		         				<img class="ag-img"
-		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail 'noimg.jpg' 63 63 %}"
+		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail 'noimg.jpg' 50 50 %}"
 		         					 alt="Action Group Picture" />
 		         			{% endif %}
 		         			</a>

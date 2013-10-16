@@ -131,18 +131,28 @@
   background-image: url(/static/img/arrow-right-teal.png);
 }
 
+.ag-slider-container .arrow-left, .ag-slider-container .arrow-right {
+  top: 38px;
+}
+.ag-slider-container .arrow-right {
+  right: 34px;
+}
+.ag-slider-container .arrow-left {
+  left: 36px;
+}
+
 .ag-slider-container .slide {
   width: 100%;
 }
 .ag-slider-container .slide .slide-center {
   margin: auto;
-  width: 156px;
+  width: 120px;
 }
 .ag-slider-container .slide .slide-center .ag {
   display: block;
   float: left;
-  width: 63px;
-  height: 63px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
   margin: 5px;
 }
@@ -232,7 +242,7 @@ form span.helptext {
   color: #675f5f;
 }
 form input[type=text], form select {
-  min-width: 300px;
+  min-width: 200px;
   padding: 5px;
   border: 1px solid #827777;
 }
@@ -560,20 +570,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, .h1 {
-  font-size: 36px;
-  font-size: 2.25rem;
+  font-size: 26px;
+  font-size: 1.625rem;
   margin-bottom: .2em;
 }
 
 h2, .h2 {
-  font-size: 32px;
-  font-size: 2rem;
+  font-size: 24px;
+  font-size: 1.5rem;
   margin-bottom: .33em;
 }
 
 h3, .h3 {
-  font-size: 26px;
-  font-size: 1.625rem;
+  font-size: 22px;
+  font-size: 1.375rem;
   margin-bottom: .5em;
 }
 
@@ -1087,17 +1097,16 @@ select[multiple] {
   text-align: right;
   margin-bottom: 1.5em;
 }
-#top-search-bar input[type="text"] {
+#top-search-bar form input[type="text"] {
   background: url(../img/search-left-box.png) left center no-repeat, url(../img/search-right-box.png) center right no-repeat, url(../img/search-center-box.png) center center repeat-x;
   height: 32px;
   border: none;
   color: #be1d2c;
   box-shadow: none;
-  width: 200px;
   text-align: left;
   vertical-align: top;
 }
-#top-search-bar input[type="submit"] {
+#top-search-bar form input[type="submit"] {
   height: 32px;
   width: 25px;
   background: url(../img/search-button.png) no-repeat;
@@ -1105,7 +1114,7 @@ select[multiple] {
   border: none;
   box-shadow: none;
 }
-#top-search-bar input[type="submit"]:hover {
+#top-search-bar form input[type="submit"]:hover {
   background: url(../img/search-button-hover.png) no-repeat;
 }
 
@@ -1440,12 +1449,15 @@ select[multiple] {
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 16px;
   padding: 4px 6px;
   display: block;
 }
 #navigation li a:hover {
   background: url(../img/sub-nav-hover.png) center left repeat-x;
+}
+#navigation li:last-child {
+  margin-bottom: 10px;
 }
 
 #values, #newsletter {
@@ -1576,18 +1588,18 @@ select[multiple] {
 
 #get-involved {
   background: url(../img/background-teil-star.jpg) left bottom no-repeat, url(../img/extra_clean_paper.jpg) repeat;
-  min-height: 200px;
+  min-height: 215px;
 }
 #get-involved .arx-logo {
   float: left;
-  margin: -12px 0;
+  margin: -6px 0;
   padding: 0 10px;
 }
 #get-involved .arx-text {
   float: left;
   font-size: 11px;
   font-weight: 300;
-  margin: -8px 0;
+  margin: -2px 0;
   width: 154px;
 }
 #get-involved .arx-browse {
@@ -1597,7 +1609,7 @@ select[multiple] {
 
 #action-groups {
   background: url(../img/background-teil-star.jpg) left bottom no-repeat, url(../img/extra_clean_paper.jpg) repeat;
-  min-height: 200px;
+  min-height: 215px;
   position: relative;
 }
 #action-groups .ag-logo {
@@ -2083,6 +2095,9 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     font-size: 16px;
   }
 
+  #stay-connected {
+    min-height: 210px;
+  }
   #stay-connected img {
     height: auto;
     padding: 15px 6px;
@@ -2123,6 +2138,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     background:url(../img/arrow-right-green.png) top center no-repeat;*/
   }
 
+  #news ul {
+    height: 155px;
+  }
+
   #get-involved .arx-text {
     width: 115px;
   }
@@ -2138,7 +2157,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     display: none;
   }
   #action-groups .ag-more {
-    margin: 19px 0;
+    margin: 12px 0;
     float: none;
   }
   #action-groups ul {
@@ -2153,8 +2172,12 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     right: 0px;
   }
 
-  #project-carousel ul {
-    padding: 0 61px;
+  .event-slider-container .slide {
+    min-height: 140px;
+  }
+
+  .project-carousel-container {
+    padding: 0 60px;
   }
 
   #category-list li {
@@ -2280,6 +2303,9 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
   #values, #newsletter {
     background: url(../img/extra_clean_paper-d.jpg) bottom right repeat-x;
   }
+  #values img, #newsletter img {
+    margin: 1px 0;
+  }
 
   #get-involved {
     background: url(../img/extra_clean_paper-dt.jpg) bottom right repeat-x;
@@ -2308,6 +2334,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     height: auto;
     padding: 15px 6px;
     width: 22%;
+  }
+
+  #news ul {
+    margin: 0;
   }
 
   #what-is-happening ul {
@@ -2376,8 +2406,15 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     margin: 0 auto;
   }
 
-  #project-carousel ul {
-    padding: 0 80px;
+  .ag-slider-container .arrow-right {
+    right: 2px;
+  }
+  .ag-slider-container .arrow-left {
+    left: 2px;
+  }
+
+  .project-carousel-container {
+    padding: 0 50px;
   }
 
   .content-grid-list li {
@@ -2388,6 +2425,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     padding-left: 30px;
   }
 
+  #get-involved .arx-logo {
+    margin: 18px 0 0;
+  }
+
   #main-content h1 {
     font-size: 14px;
     padding: 14px;
@@ -2395,6 +2436,28 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
   form label {
     display: block;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  #navigation li a {
+    font-size: 10px !important;
+    padding: 9px 6px;
+  }
+
+  #searchform {
+    float: none;
+  }
+
+  .user-greeting {
+    clear: both;
+    float: none;
+    width: 100%;
+    margin: 10px 0 0 0;
+    display: block;
+    text-align: center;
   }
 }
 /* End Mobile Media Query */

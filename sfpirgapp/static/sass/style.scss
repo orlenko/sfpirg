@@ -625,6 +625,8 @@ select[multiple] {
 	font-size:12px;
 	text-align:right;
 	margin-bottom: 1.5em;
+	
+	form{
 
 	input[type="text"] {
 	background:
@@ -635,7 +637,7 @@ select[multiple] {
 	border:none;
 	color:$red;
 	box-shadow:none;
-	width:200px;
+
 	text-align:left;
 	vertical-align:top;
 	}
@@ -648,6 +650,8 @@ select[multiple] {
 		box-shadow:none;
 		&:hover {background: url(../img/search-button-hover.png) no-repeat;}
 	}
+	
+	} //end of form
 }
 .grey {
 
@@ -958,11 +962,13 @@ select[multiple] {
 		color:#fff;
 		text-decoration:none;
 		text-transform:uppercase;
-		font-size:18px;
+		font-size:16px;
 		padding: 4px 6px;
 		display:block;
 		&:hover {background:url(../img/sub-nav-hover.png) center left repeat-x;}
-	}
+		}
+		&:last-child {
+			margin-bottom:10px;}
 	}
 
 }
@@ -1090,17 +1096,17 @@ select[multiple] {
 	background:
 	url(../img/background-teil-star.jpg) left bottom no-repeat,
 	$paper repeat;
-	min-height:200px;
+	min-height:215px;
 
 		.arx-logo {float:left;
-		 margin: -12px 0;
+		 margin: -6px 0;
     	padding: 0 10px;
 			}
 		.arx-text {
 		float: left;
 		font-size: 11px;
 		font-weight: 300;
-		margin: -8px 0;
+		margin: -2px 0;
 		width: 154px;
 			}
 		.arx-browse {
@@ -1113,7 +1119,7 @@ select[multiple] {
 	background:
 	url(../img/background-teil-star.jpg) left bottom no-repeat,
 	$paper repeat;
-	min-height:200px;
+	min-height:215px;
 	position:relative;
 
 	.ag-logo {
@@ -1553,10 +1559,13 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 	.x-name {font-size:16px;}
 }
 
-#stay-connected img {
+#stay-connected {
+	min-height:210px; 
+	img {
     height: auto;
     padding: 15px 6px;
-    width: 31%
+    width: 31%;
+	}
 }
 #what-is-happening {
 
@@ -1595,6 +1604,12 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		}
 
 }
+#news {
+	
+	ul {
+		height:155px;	
+	}
+}
 
 #get-involved {
 
@@ -1615,7 +1630,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
   }
 
 	.ag-more {
-		margin: 19px 0;
+		margin: 12px 0;
 		float:none;
 	}
 
@@ -1634,12 +1649,17 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		}
 
 }
+.event-slider-container {
 
-#project-carousel {
+  .slide {
+	min-height:140px;
+  }
+}
 
-		ul {
-			padding:0 61px;
-		}
+
+.project-carousel-container {
+	padding:0 60px;
+
 }
 
 
@@ -1722,6 +1742,10 @@ table td {
 }
 #values, #newsletter{
 	background:$dpaper bottom right repeat-x;
+	
+	img {
+		margin:1px 0;
+	}
 }
 
 #get-involved {
@@ -1753,7 +1777,11 @@ table td {
     padding: 15px 6px;
     width: 22%
 }
-
+#news {
+	ul {
+		margin:0;
+	}
+}
 #what-is-happening {
 
 
@@ -1833,11 +1861,18 @@ table td {
 		}
 
 }
-#project-carousel {
+.ag-slider-container {
 
-		ul {
-			padding:0 80px;
-		}
+    .arrow-right {
+    right: 2px;
+	}
+    .arrow-left {
+    left: 2px;
+	}
+}
+.project-carousel-container {
+	padding:0 50px;
+
 }
 .content-grid-list {
 	li {margin-left: 48px;
@@ -1850,6 +1885,11 @@ table td {
     padding-left: 30px;
 	}
 }
+#get-involved {
+	.arx-logo {
+	margin: 18px 0 0;
+	}
+}
 
 #main-content h1 {
 	font-size:14px;
@@ -1859,5 +1899,30 @@ table td {
 form label {
   display: block;
 }
+h3 {
+	font-size:15px;
+}
+#navigation{
+	
+ 	li {
+		
+	a {
+		font-size:10px !important;
+		padding:9px 6px; 
+		 
+	}
+	}
+ }
+ #searchform {
+	 float:none;
+ }
+ .user-greeting {
+	clear: both;
+  	float: none;
+  	width: 100%;
+  	margin: 10px 0 0 0;
+  	display: block;
+	text-align:center;
+ }
 
 } /* End Mobile Media Query */
