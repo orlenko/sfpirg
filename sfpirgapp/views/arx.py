@@ -44,7 +44,7 @@ def project(request, slug):
         if isinstance(organization, HttpResponseRedirect):
             return organization
         if request.method == 'POST':
-            form = ProjectForm(request.POST or None, instance=project)
+            form = ProjectForm(request.POST or None, request.files, instance=project)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect(project.get_absolute_url())
