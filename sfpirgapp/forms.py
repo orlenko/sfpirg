@@ -66,7 +66,7 @@ class ProjectForm(ModelForm):
             'liaison': SelectWithPopUp('Liaison'),
             'user': HiddenInput(),
             'category': HiddenInput(),
-            'is_draft': HiddenInput(),
+            'is_submitted': HiddenInput(),
             'is_approved': HiddenInput(),
             'date_start': DateInput()
         }

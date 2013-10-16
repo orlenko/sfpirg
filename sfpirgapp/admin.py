@@ -108,8 +108,8 @@ class AddressAdmin(ModelAdmin):
 
 
 class ProjectAdmin(ModelAdmin):
-    list_display = ['title', 'admin_thumb', 'user', 'organization_title', 'is_draft', 'is_approved']
-    list_filter = ['user', 'is_draft', 'is_approved']
+    list_display = ['title', 'admin_thumb', 'user', 'organization_title', 'is_submitted', 'is_approved']
+    list_filter = ['user', 'is_submitted', 'is_approved']
     list_editable = ['is_approved']
     formfield_overrides = {
         MyImageField: {'widget': AdvancedFileInput},

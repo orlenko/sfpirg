@@ -216,7 +216,7 @@ class Project(Slugged, AdminThumbMixin):
                                     help_text='What Are You Looking For in a Student Researcher?')
     date_created = models.DateTimeField(auto_now_add=True)
     date_start = models.DateField(blank=True, null=True)
-    is_draft = models.BooleanField(default=True)
+    is_submitted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     category = ForeignKey(Category, related_name='arx_projects')
 
