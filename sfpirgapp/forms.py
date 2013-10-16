@@ -1,15 +1,48 @@
-from sfpirgapp.models import Project
-from django.forms.models import ModelForm
-from sfpirgapp.models import Application
-from sfpirgapp.models import Organization
-from sfpirgapp.widgets import SelectWithPopUp
-from sfpirgapp.models import Liaison
 import logging
+
 from django import forms
+from django.forms.models import ModelForm
 from django.forms.widgets import HiddenInput
+
+from sfpirgapp.models import (Application, Liaison, Organization, Project,
+    ActionGroup)
+from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
 
 
 log = logging.getLogger(__name__)
+
+
+class ActionGroupForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ActionGroupForm, self).__init__(*args, **kwargs)
+        self.fields['content'].label = 'Action Group Description'
+
+    def save(self, *args, **kwargs):
+        self.data['status'] = self.data['is_approved'] == 'True' and 2 or 1
+        return super(ActionGroupForm, self).save(*args, **kwargs)
+
+    class Meta:
+        model = ActionGroup
+        exclude = ('keywords',)
+        widgets = {
+            'status': HiddenInput(),
+            'user': HiddenInput(),
+            'category': HiddenInput(),
+            'featured_image': AdvancedFileInput(),
+            'is_approved': HiddenInput(),
+            'slug': HiddenInput(),
+            '_meta_title': HiddenInput(),
+            'description': HiddenInput(),
+            'gen_description': HiddenInput(),
+            'keywords': HiddenInput(),
+            'short_url': HiddenInput(),
+            'publish_date': HiddenInput(),
+            'expiry_date': HiddenInput(),
+            'in_sitemap': HiddenInput(),
+            'theme_color': HiddenInput(),
+            '_order': HiddenInput(),
+            'login_required': HiddenInput(),
+        }
 
 
 class ProjectForm(ModelForm):

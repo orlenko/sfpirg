@@ -3,17 +3,82 @@
 {% load mezzanine_tags sfpirg_tags %}
 
 {% block contentclass %}teal{% endblock %}
-{% block main %}{{ block.super }}
+{% block main %}
+
+{% if form %}
+	<form method='post' action='' enctype="multipart/form-data">
+		{% csrf_token %}
+		{{form.as_p}}
+		<p>
+			{% if actiongroup.is_approved %}
+			<input type='submit' value='Update'/>
+			{% else %}
+			<input type='submit' value='Submit for Approval' />
+			{% endif %}
+		</p>
+	</form>
+{% else %}
+
+
+	<h1>{{ page.title }}</h1>
+
+	{% if request.user == actiongroup.user or request.user.is_superuser %}
+		<a href="?edit=1">Edit this page</a>
+	{% endif %}
 
 	<div id="main-content-block">
+
 		{% if actiongroup.featured_image %}
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail actiongroup.featured_image 200 0 %}" />
 		{% endif %}
 
-		{% editable actiongroup.content %}
-			{{ actiongroup.content|richtext_filter|safe }}
-		{% endeditable %}
+		{{ actiongroup.content|richtext_filter|safe }}
+
+		{% if actiongroup.announcements %}
+			<h2>Announcements</h2>
+			{{ actiongroup.announcements|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.meetings %}
+			<h2>Meetings</h2>
+			{{ actiongroup.meetings|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.contact_email %}
+			<h2>Contact Email</h2>
+			{{ actiongroup.contact_email|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.contact_phone %}
+			<h2>Contact Phone</h2>
+			{{ actiongroup.contact_phone|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.links %}
+			<h2>Links</h2>
+			{{ actiongroup.links|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.facebook_url %}
+			<h2>Facebook</h2>
+			{{ actiongroup.facebook_url|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.twitter %}
+			<h2>Twitter</h2>
+			{{ actiongroup.twitter|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.google_plus_url %}
+			<h2>Google+</h2>
+			{{ actiongroup.google_plus_url|richtext_filter|safe }}
+		{% endif %}
+
+		{% if actiongroup.mailing_list_url %}
+			<h2>Mailing List</h2>
+			{{ actiongroup.mailing_list_url|richtext_filter|safe }}
+		{% endif %}
 	</div>
 
-
+{% endif %}
 {% endblock %}

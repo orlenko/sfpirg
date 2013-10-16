@@ -60,11 +60,27 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 action_group_fieldsets = deepcopy(common_fieldsets)
-action_group_fieldsets[0][1]['fields'].append('category')
+action_group_fieldsets[0][1]['fields'].extend([
+    'category',
+    'announcements',
+    'meetings',
+    'contact_email',
+    'contact_phone',
+    'links',
+    'facebook_url',
+    'twitter',
+    'google_plus_url',
+    'mailing_list_url',
+    'is_approved'
+])
 
 
 class ActionGroupAdmin(DisplayableAdmin, OwnableAdmin):
     fieldsets = action_group_fieldsets
+
+    list_display = ['title', 'user', 'is_approved']
+    list_editable = ['is_approved']
+    list_filter = ['is_approved']
 
     def in_menu(self):
         for (_name, items) in settings.ADMIN_MENU_ORDER:

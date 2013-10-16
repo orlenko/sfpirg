@@ -178,7 +178,7 @@ def sfpirg_pagination(context, token):
 
 @register.render_tag
 def action_group_slider(context, token):
-    action_groups = models.ActionGroup.objects.all().order_by('title')[:200]
+    action_groups = models.ActionGroup.objects.filter(is_approved=True).order_by('title')[:200]
     fours = []
     four = []
     for ag in action_groups:

@@ -45,10 +45,7 @@
 				</p>
 			</form>
 		{% endif %}
-	{% endif %}
-
-	{% if not form %}
-
+	{% else %}
 		{% if user.is_superuser or user == project.user %}
 			{% if project.is_draft %}
 				<p><a href="?edit=1">Edit this project</a></p>

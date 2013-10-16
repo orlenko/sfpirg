@@ -1,9 +1,16 @@
-from django.template.context import RequestContext
+import logging
+
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
-from sfpirgapp.models import ActionGroup
-from django.core.paginator import Paginator
-from django.core.paginator import PageNotAnInteger
-from django.core.paginator import EmptyPage
+from django.template.context import RequestContext
+
+from sfpirgapp.forms import ActionGroupForm
+from sfpirgapp.models import ActionGroup, Category
+
+
+log = logging.getLogger(__name__)
 
 
 def aglist(request):
@@ -25,5 +32,31 @@ def aglist(request):
 def actiongroup(request, slug):
     actiongroup = get_object_or_404(ActionGroup, slug=slug)
     page = actiongroup
+    form = None
+
+    if 'edit' in request.REQUEST:
+        form = ActionGroupForm(request.POST or None, request.FILES or None, instance=actiongroup)
+        if request.method == 'POST' and form.is_valid():
+            form.save()
+            return HttpResponseRedirect(actiongroup.get_absolute_url())
+
     context = RequestContext(request, locals())
     return render_to_response('pages/actiongroup.html', {}, context_instance=context)
+
+
+@login_required
+def create(request):
+    # See if this user already has an actiongroup - no need to create then.
+    for existing in ActionGroup.objects.filter(user=request.user):
+        return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
+    initial = {'user': request.user, 'status': 1}
+    cat = Category.objects.filter(title='Action Groups')
+    if len(cat):
+        initial['category'] = cat[0]
+    form = ActionGroupForm(request.POST or None, request.FILES or None, initial=initial)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(form.instance.get_absolute_url())
+    user = request.user
+    context = RequestContext(request, locals())
+    return render_to_response('sfpirg/action_group_create.html', {}, context_instance=context)

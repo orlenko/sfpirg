@@ -1,7 +1,7 @@
 from django.db import models
 from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.utils.models import upload_to
-from mezzanine.core.fields import FileField
+from mezzanine.core.fields import RichTextField
 from django.contrib.auth.models import User
 from mezzanine.core.models import Displayable, Orderable, RichText, Ownable,\
     Slugged
@@ -16,7 +16,7 @@ class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
     login_required = models.BooleanField(_("Login required"),
         default=False,
         help_text=_("If checked, only logged in users can view this page"))
-    featured_image = FileField(verbose_name=_("Featured Image"),
+    featured_image = MyImageField(verbose_name=_("Featured Image"),
         upload_to=upload_to("images", "uploads/images"),
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
@@ -70,6 +70,27 @@ class ActionGroup(PageLike, Ownable):
     children = DummyEmptyResultSet() # To make it compatible with the side_menu template
 
     category = ForeignKey(Category, related_name='action_groups')
+
+    announcements = RichTextField(null=True, blank=True,
+                                  verbose_name='Announcements',
+                                  help_text='Use this section to let people know about any upcoming events, volunteer opportunities, new initiatives - or just anything you want to draw attention to.')
+    meetings = RichTextField(null=True, blank=True,
+                                  verbose_name='Meetings',
+                                  help_text='Let people know when & where you meet if you have regular meeting times. Don\'t forget you can book the SFPIRG lounge or meeting room to host your meetings.')
+    contact_email = models.EmailField(null=True, blank=True, max_length=255,
+                                      verbose_name='Contact Email')
+    contact_phone = models.CharField(null=True, blank=True, max_length=255,
+                                     verbose_name='Contact Telephone')
+    links = RichTextField(null=True, blank=True,
+                                  verbose_name='Links',
+                                  help_text='Either to your website, or anywhere else you want to direct people to')
+    facebook_url = models.URLField(null=True, blank=True, max_length=255)
+    twitter = models.CharField(null=True, blank=True, max_length=255)
+    google_plus_url = models.URLField(null=True, blank=True, max_length=255)
+    mailing_list_url = models.URLField(null=True, blank=True, max_length=255,
+                                       verbose_name='Link to Mailing List',
+                                       help_text='You can create a free html email newsletter using mailchimp (www.mailchimp.com). Then people can automatically subscribe to your news. If you already have one, put in your Mailchimp List page address here. Visit mailchimp.com to get it quick')
+    is_approved = models.BooleanField(default=False)
 
     @models.permalink
     def get_absolute_url(self):

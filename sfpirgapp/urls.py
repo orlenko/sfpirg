@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^arx/project/(?P<slug>[^/]*)/$', 'sfpirgapp.views.arx.project', {}, name='arx-project'),
 
     url(r'^actiongroups/(?P<slug>.*)/$', 'sfpirgapp.views.actiongroups.actiongroup', {}, name='action-group'),
+    url(r'^actiongroup/create/$', 'sfpirgapp.views.actiongroups.create', {}, name='action-group-create'),
 
     url(r'^category/(?P<slug>.*)/$', 'sfpirgapp.views.category.category', {}, name='category'),
 

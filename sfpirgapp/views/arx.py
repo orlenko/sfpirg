@@ -44,7 +44,7 @@ def project(request, slug):
         if isinstance(organization, HttpResponseRedirect):
             return organization
         if request.method == 'POST':
-            form = ProjectForm(request.POST or None, request.FILES, instance=project)
+            form = ProjectForm(request.POST, request.FILES, instance=project)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect(project.get_absolute_url())
@@ -111,10 +111,11 @@ def create(request):
     cat = Category.objects.filter(title='Action Research Exchange')
     if len(cat):
         initial['category'] = cat[0]
-    form = ProjectForm(request.POST or None, initial=initial)
+    form = ProjectForm(request.POST or None, request.FILES or None, initial=initial)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return HttpResponseRedirect(form.instance.get_absolute_url())
+    log.debug('Form errors: %s' % form.errors)
     user = request.user
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_project_create.html', {}, context_instance=context)
