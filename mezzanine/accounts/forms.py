@@ -85,7 +85,7 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "username", "is_staff")
+        fields = ("first_name", "last_name", "email", "username")
         exclude = _exclude_fields
         widgets = {
             'organization': HiddenInput(),
@@ -125,8 +125,8 @@ class ProfileForm(Html5Mixin, forms.ModelForm):
                 for field in profile_fields:
                     value = getattr(self.instance.get_profile(), field)
                     self.initial[field] = value
-        self.fields['is_staff'].initial = False
-        self.fields['is_staff'].widget = HiddenInput()
+        #self.fields['is_staff'].initial = False
+        #self.fields['is_staff'].widget = HiddenInput()
         log.debug('Profile fields: %s' % self.fields)
 
     def clean_username(self):

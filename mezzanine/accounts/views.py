@@ -15,6 +15,10 @@ from mezzanine.conf import settings
 from mezzanine.utils.email import send_verification_mail, send_approve_mail
 from mezzanine.utils.urls import login_redirect
 from mezzanine.utils.views import render
+import logging
+
+
+log = logging.getLogger(__name__)
 
 
 User = get_user_model()
@@ -65,6 +69,8 @@ def signup(request, template="accounts/account_signup.html"):
             info(request, _("Successfully signed up"))
             auth_login(request, new_user)
             return login_redirect(request)
+    else:
+        log.debug('Form is not valid. Errors: %s' % form.errors)
     context = {"form": form, "title": _("Sign up")}
     return render(request, template, context)
 
