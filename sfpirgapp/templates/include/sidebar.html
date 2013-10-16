@@ -1,13 +1,9 @@
 {% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags calendar_tags news_tags  %}
 <section id="sidebar" class="col four tablet-five mobile-full">
 
-	<div class="section row grey">
 
-		<div id="navigation" class="col tablet-full mobile-full">
 			{% sfpirg_side_menu  %}
-		</div><!-- end of #navigation -->
-
-	</div>
+	
 
 	<div class="section row grey">
 
@@ -21,7 +17,7 @@
 	<div class="section row green">
 
 		<div id="what-is-happening" class="col tablet-full mobile-full">
-			<h3><a href="/category/{{'Event'|category_slug}}">What is happening</a></h3>
+			<h3><a href="/category/{{'Event'|category_slug}}">What's happening</a></h3>
 			{% calendar_event_slider %}
 		</div><!-- end of #what-is-happening -->
 	</div>
