@@ -2,7 +2,7 @@ from sfpirgapp.models import Project
 from django.forms.models import ModelForm
 from sfpirgapp.models import Application
 from sfpirgapp.models import Organization
-from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
+from sfpirgapp.widgets import SelectWithPopUp
 from sfpirgapp.models import Liaison
 import logging
 from django import forms
@@ -33,7 +33,6 @@ class ProjectForm(ModelForm):
             'liaison': SelectWithPopUp('Liaison'),
             'user': HiddenInput(),
             'category': HiddenInput(),
-            'logo': AdvancedFileInput()
         }
 
 

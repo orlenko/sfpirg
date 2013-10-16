@@ -6,6 +6,8 @@ from mezzanine.core.admin import SitePermissionUserAdmin
 from mezzanine.conf import settings
 from mezzanine.utils.email import send_approved_mail
 from mezzanine.utils.models import get_user_model
+from sfpirgapp.widgets import AdvancedFileInput
+from sfpirgapp.models import MyImageField
 
 
 Profile = get_profile_model()
@@ -26,6 +28,9 @@ user_list_display += ("is_active", "date_joined", "last_login")
 class UserProfileAdmin(SitePermissionUserAdmin):
 
     list_display = user_list_display
+    formfield_overrides = {
+        MyImageField: {'widget': AdvancedFileInput},
+    }
 
     def save_model(self, request, obj, form, change):
         """

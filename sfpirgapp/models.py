@@ -1,5 +1,6 @@
+from django import forms
 from django.db import models
-from django.db.models import FileField as NativeFileField
+from django.db.models import ImageField
 from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.utils.models import upload_to
 from mezzanine.core.fields import FileField
@@ -9,13 +10,23 @@ from mezzanine.core.models import Displayable, Orderable, RichText, Ownable,\
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
+from sfpirgapp.widgets import AdvancedFileInput
 
 
-class MyFileField(NativeFileField):
+class MyFormImageField(forms.ImageField):
+    widget = AdvancedFileInput
+
+
+class MyImageField(ImageField):
     def __init__(self, *args, **kwargs):
         for fb_arg in ("format", "extensions"):
             kwargs.pop(fb_arg, None)
-        super(MyFileField, self).__init__(*args, **kwargs)
+        super(MyImageField, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        defaults = {'form_class': MyFormImageField}
+        defaults.update(kwargs)
+        return super(MyImageField, self).formfield(**defaults)
 
 
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
@@ -24,7 +35,7 @@ class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
         default=False,
         help_text=_("If checked, only logged in users can view this page"))
     featured_image = FileField(verbose_name=_("Featured Image"),
-        upload_to=upload_to("images", "images"),
+        upload_to=upload_to("images", "uploads/images"),
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
 
@@ -38,8 +49,8 @@ class Profile(models.Model, AdminThumbMixin):
     date_of_birth = models.DateField(null=True, blank=True)
     title = models.CharField(null=True, blank=True, max_length=255)
     bio = models.TextField(null=True, blank=True)
-    photo = MyFileField(verbose_name="Photo",
-        upload_to=upload_to("sfpirgapp.Profile.photo", "photos"),
+    photo = MyImageField(verbose_name="Photo",
+        upload_to=upload_to("sfpirgapp.Profile.photo", "uploads/profile-photos"),
         format="Image", max_length=255, null=True, blank=True,
         help_text='User photo')
     admin_thumb_field = "photo"
@@ -162,8 +173,8 @@ class Project(Slugged, AdminThumbMixin):
                                      verbose_name='How much time per week can the Contact/Liaison devote to the student?')
     support_method = models.TextField(blank=True, null=True,
                                       verbose_name='How will the Contact/Liaison provide direction and support to the project?')
-    logo = MyFileField(verbose_name="Project Image",
-        upload_to=upload_to("sfpirgapp.project", "project-images"),
+    logo = MyImageField(verbose_name="Project Image",
+        upload_to=upload_to("sfpirgapp.project", "uploads/project-images"),
         format="Image", max_length=255, null=True, blank=True,
         help_text='Please upload an image to represent the project, or your logo. If you do not have one, do not worry, just leave this section blank.')
     admin_thumb_field = "logo"

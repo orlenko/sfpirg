@@ -7,7 +7,7 @@ from sfpirgapp.models import (
     Testimonial,
     Profile,
     Category,
-)
+    MyImageField)
 from mezzanine.pages.admin import PageAdmin
 from sfpirgapp.models import ActionGroup
 from sfpirgapp import settings
@@ -19,6 +19,7 @@ from sfpirgapp.models import Project
 from django.contrib.admin.options import ModelAdmin
 from sfpirgapp.models import Application
 from sfpirgapp.models import Liaison
+from sfpirgapp.widgets import AdvancedFileInput
 
 
 common_fieldsets = deepcopy(PageAdmin.fieldsets)
@@ -47,6 +48,9 @@ class ProfileAdmin(admin.ModelAdmin):
     )
     list_display = ['user', 'date_of_birth']
     list_filter = []
+    formfield_overrides = {
+        MyImageField: {'widget': AdvancedFileInput},
+    }
 
     def in_menu(self):
         for (_name, items) in settings.ADMIN_MENU_ORDER:
@@ -87,6 +91,12 @@ class AddressAdmin(ModelAdmin):
         return False
 
 
+class ProjectAdmin(ModelAdmin):
+    formfield_overrides = {
+        MyImageField: {'widget': AdvancedFileInput},
+    }
+
+
 admin.site.register(ActionGroup, ActionGroupAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Profile, ProfileAdmin)
@@ -95,6 +105,6 @@ admin.site.register(Address)
 admin.site.register(Organization)
 admin.site.register(ProjectType)
 admin.site.register(ProjectSubject)
-admin.site.register(Project)
+admin.site.register(Project, ProjectAdmin)
 admin.site.register(Application)
 admin.site.register(Liaison)
