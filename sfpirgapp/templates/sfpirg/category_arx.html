@@ -26,8 +26,10 @@
 				{% endif %}
 			{% endif %}
 		{% else %}
+		{% if rec.is_approved %}
 			<a href="" class="arx-project-select" id="arx-project-select-{{rec.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
 			<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{rec.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
+		{% endif %}
 		{% endif %}
 		<a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/arx/more.png" alt="Click for More" /></a>
 	</div>
