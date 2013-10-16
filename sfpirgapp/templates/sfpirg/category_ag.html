@@ -1,0 +1,21 @@
+{% extends "sfpirg/category.html" %}
+{% load pages_tags mezzanine_tags i18n future staticfiles sfpirg_tags %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block category_tools %}
+{% endblock %}
+
+{% block item_tools %}
+	<div>
+		{% if user.is_superuser or user == rec.user %}
+			{% if rec.is_approved %}
+				<img class="cat-more-left" src="/static/img/arx/published.png"/>
+			{% else %}
+				<img class="cat-more-left" src="/static/img/arx/submitted.png"/>
+			{% endif %}
+		{% endif %}
+		<a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/arx/more.png" alt="Click for More" /></a>
+	</div>
+{% endblock %}

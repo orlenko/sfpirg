@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags sfpirg_tags %}
+
+{% block main %}
+<div class="project">
+	<h1>New Action Group</h1>
+
+	{% if form.subject.errors %}
+	    <ol>
+	    {% for error in form.subject.errors %}
+	        <li><strong>{{ error|escape }}</strong></li>
+	    {% endfor %}
+	    </ol>
+	{% endif %}
+
+	<form method='post' action='' enctype="multipart/form-data">
+		{% csrf_token %}
+		{{form.as_p}}
+		<p>
+			<input type='submit' value='Save as Draft'/>
+			<input type='submit' onclick='$("#id_is_draft").val("False");return true;' value='Submit for Approval' />
+		</p>
+	</form>
+</div>
+{% endblock %}
+
