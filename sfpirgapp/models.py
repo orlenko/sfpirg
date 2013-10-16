@@ -222,7 +222,10 @@ class Project(Slugged, AdminThumbMixin):
 
     @property
     def organization_title(self):
-        return self.user.profile.organization.title
+        try:
+            return self.user.profile.organization.title
+        except:
+            return '[None]'
 
     @property
     def featured_image(self):
