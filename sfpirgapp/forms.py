@@ -2,7 +2,7 @@ import logging
 
 from django import forms
 from django.forms.models import ModelForm
-from django.forms.widgets import HiddenInput
+from django.forms.widgets import HiddenInput, DateInput
 
 from sfpirgapp.models import (Application, Liaison, Organization, Project,
     ActionGroup)
@@ -68,6 +68,7 @@ class ProjectForm(ModelForm):
             'category': HiddenInput(),
             'is_draft': HiddenInput(),
             'is_approved': HiddenInput(),
+            'date_start': DateInput()
         }
 
 

@@ -49,7 +49,7 @@ def create(request):
     # See if this user already has an actiongroup - no need to create then.
     for existing in ActionGroup.objects.filter(user=request.user):
         return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
-    initial = {'user': request.user, 'status': 1}
+    initial = {'user': request.user, 'status': 1, '_order': 0}
     cat = Category.objects.filter(title='Action Groups')
     if len(cat):
         initial['category'] = cat[0]

@@ -57,4 +57,8 @@ $(function() {
 	window.setTimeout(restyleProjectCarouselHeaders, 200);
 
 	$(window).resize(function() {window.setTimeout(restyleProjectCarouselHeaders, 200);});
+
+	$('input[name=date_start]').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
 })
