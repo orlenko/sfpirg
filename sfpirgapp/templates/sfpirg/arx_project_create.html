@@ -16,7 +16,10 @@
 	<form method='post' action=''>
 		{% csrf_token %}
 		{{form.as_p}}
-		<p><input type='submit' value='Save'/></p>
+		<p>
+			<input type='submit' value='Save as Draft'/>
+			<input type='submit' onclick='$("#id_is_draft").val("False");return true;' value='Submit for Approval' />
+		</p>
 	</form>
 </div>
 {% endblock %}
