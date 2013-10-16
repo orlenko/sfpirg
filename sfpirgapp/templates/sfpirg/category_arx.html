@@ -19,7 +19,7 @@
 			{% if rec.is_approved %}
 				<img class="cat-more-left" src="/static/img/arx/published.png"/>
 			{% else %}
-				{% if rec.is_draft %}
+				{% if not rec.is_submitted %}
 					<a href="{{rec.get_absolute_url}}?edit=1"><img class="cat-more-left" src="/static/img/arx/draft.png"/></a>
 				{% else %}
 					<img class="cat-more-left" src="/static/img/arx/submitted.png"/>

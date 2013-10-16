@@ -25,7 +25,7 @@
 
 	<h1>{{project.title}}</h1>
 
-	{% if form and project.is_draft %}
+	{% if form and not project.is_submitted %}
 		{% if user.is_superuser or user == project.user %}
 			{% if form.subject.errors %}
 			    <ol>
@@ -41,13 +41,13 @@
 				{{form.as_p}}
 				<p>
 					<input type='submit' value='Save as Draft'/>
-					<input type='submit' onclick='$("#id_is_draft").val("False");return true;' value='Submit for Approval' />
+					<input type='submit' onclick='$("#id_is_submitted").val("False");return true;' value='Submit for Approval' />
 				</p>
 			</form>
 		{% endif %}
 	{% else %}
 		{% if user.is_superuser or user == project.user %}
-			{% if project.is_draft %}
+			{% if not project.is_submitted %}
 				<p><a href="?edit=1">Edit this project</a></p>
 			{% endif %}
 		{% endif %}
@@ -80,7 +80,7 @@
 					{% if project.is_approved %}
 						<img src="/static/img/arx/published.png"/>
 					{% else %}
-						{% if project.is_draft %}
+						{% if not project.is_submitted %}
 							<a href="?edit=1"><img src="/static/img/arx/draft.png"/></a>
 						{% else %}
 							<img src="/static/img/arx/submitted.png"/>
