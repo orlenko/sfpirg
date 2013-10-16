@@ -250,6 +250,11 @@ class Project(Slugged, AdminThumbMixin):
             return self.project_subject_other
         return ', '.join(subjects)
 
+    def save(self, *args, **kwargs):
+        if self.is_approved and not self.is_submitted:
+            raise RuntimeError('Cannot approve a project that has not been submitted.')
+        return super(Project, self).save(*args, **kwargs)
+
 
 class Application(models.Model):
     email = models.EmailField(null=True, blank=True, max_length=255, verbose_name='Your Email')
