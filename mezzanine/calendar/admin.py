@@ -10,7 +10,6 @@ from mezzanine.core.admin import DisplayableAdmin
 
 
 event_fieldsets = deepcopy(PageAdmin.fieldsets)
-event_fieldsets[0][1]['fields'].remove('in_menus')
 event_fieldsets[0][1]['fields'].remove('login_required')
 event_fieldsets[0][1]['fields'].remove('status')
 event_fieldsets[0][1]['fields'].remove(('publish_date', 'expiry_date'))

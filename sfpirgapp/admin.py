@@ -71,7 +71,8 @@ action_group_fieldsets[0][1]['fields'].extend([
     'twitter',
     'google_plus_url',
     'mailing_list_url',
-    'is_approved'
+    'is_approved',
+    'in_menus',
 ])
 
 

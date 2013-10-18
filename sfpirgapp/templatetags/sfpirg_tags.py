@@ -287,3 +287,22 @@ def sfpirg_field(context, field):
     log.debug('Field: %r' % field)
     context['field'] = field
     return context
+
+
+@register.render_tag
+def sfpirg_page_menu(context, token):
+    parts = token.split_contents()[1:]
+    templatename = None
+    for part in parts:
+        templatename = Variable(part).resolve(context)
+        break
+    user = context['request'].user
+    filterfunc = lambda collection: [x for x in collection if x.in_menu_template(templatename)]
+    context['pages'] = (
+        filterfunc(Page.objects.published(for_user=user))
+        + filterfunc(NewsPost.objects.filter(status=2))
+        + filterfunc(Event.objects.filter(status=2))
+        + filterfunc(ActionGroup.objects.filter(is_approved=True))
+        + filterfunc(Project.objects.filter(is_approved=True))
+    )
+    return get_template(templatename).render(Context(context))

@@ -9,6 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.fields.related import ForeignKey
 import datetime
 from sfpirgapp.fields import MyImageField
+from mezzanine.pages.fields import MenusField
+from django.conf import settings
 #from django import forms
 
 
@@ -92,6 +94,18 @@ class ActionGroup(PageLike, Ownable):
                                        verbose_name='Link to Mailing List',
                                        help_text='You can create a free html email newsletter using mailchimp (www.mailchimp.com). Then people can automatically subscribe to your news. If you already have one, put in your Mailchimp List page address here. Visit mailchimp.com to get it quick')
     is_approved = models.BooleanField(default=False)
+    in_menus = MenusField("Show in menus", blank=True, null=True)
+
+    @property
+    def richtextpage(self):
+        return self
+
+    def in_menu_template(self, template_name):
+        if self.in_menus is not None:
+            for i, l, t in settings.PAGE_MENU_TEMPLATES:
+                if not unicode(i) in self.in_menus and t == template_name:
+                    return False
+        return True
 
     @models.permalink
     def get_absolute_url(self):
@@ -220,6 +234,18 @@ class Project(Slugged, AdminThumbMixin):
     is_submitted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     category = ForeignKey(Category, related_name='arx_projects')
+    in_menus = MenusField("Show in menus", blank=True, null=True)
+
+    @property
+    def richtextpage(self):
+        return self
+
+    def in_menu_template(self, template_name):
+        if self.in_menus is not None:
+            for i, l, t in settings.PAGE_MENU_TEMPLATES:
+                if not unicode(i) in self.in_menus and t == template_name:
+                    return False
+        return True
 
     @property
     def organization_title(self):

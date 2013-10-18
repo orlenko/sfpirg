@@ -19,6 +19,7 @@ from mezzanine.utils.models import AdminThumbMixin
 from mezzanine.core.models import Displayable
 from mezzanine.core.models import RichText
 from django.db.models.fields.related import ForeignKey
+from mezzanine.pages.fields import MenusField
 
 EVENTS_UPLOAD_DIR = "galleries"
 if settings.PACKAGE_NAME_FILEBROWSER in settings.INSTALLED_APPS:
@@ -54,6 +55,18 @@ class Event(Displayable, RichText, AdminThumbMixin):
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
     category = ForeignKey('sfpirgapp.Category', related_name='events')
+    in_menus = MenusField("Show in menus", blank=True, null=True)
+
+    @property
+    def richtextpage(self):
+        return self
+
+    def in_menu_template(self, template_name):
+        if self.in_menus is not None:
+            for i, l, t in settings.PAGE_MENU_TEMPLATES:
+                if not unicode(i) in self.in_menus and t == template_name:
+                    return False
+        return True
 
     @models.permalink
     def get_absolute_url(self):

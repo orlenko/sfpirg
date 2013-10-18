@@ -1,28 +1,22 @@
 {% load i18n future pages_tags sfpirg_tags %}
 {% spaceless %}
-	{% if page_branch_in_menu %}
-		{% if branch_level == 0 %}
-			<div class="col eight tablet-full mobile-full cycle-slideshow menu-slideshow"
-					data-cycle-fx="fade"
-    				data-cycle-timeout="10000"
-    				data-cycle-slides="> div.slidecontent"
-			        data-cycle-prev="#prevslide"
-			        data-cycle-next="#nextslide"
-			        data-overlay-template="<div>{% templatetag openvariable %}title{% templatetag closevariable %}</div><div>{% templatetag openvariable %}desc{% templatetag closevariable %}</div><a class='button-more red' href='{% templatetag openvariable %}url{% templatetag closevariable %}'></a>">
-			    <a href="#" id="prevslide" class="arrow-left red"></a>
-            	<a href="#" id="nextslide" class="arrow-right red"></a>
-    			<div class="cycle-overlay"></div>
-			    {% for page in page_branch %}
-				    {% if page.in_menu %}
-				    	<div class="slidecontent"
-				    		data-cycle-title="{{ page.title }}"
-						    data-cycle-desc="{{ page.richtextpage.content|striptags|truncatewords:30 }}"
-						    data-cycle-url="{{ page.get_absolute_url }}">
-					    	<img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 661 0 %}" />
-					    </div>
-				    {% endif %}
-			    {% endfor %}
-			</div>
-		{% endif %}
-	{% endif %}
+	<div class="col eight tablet-full mobile-full cycle-slideshow menu-slideshow"
+			data-cycle-fx="fade"
+			data-cycle-timeout="10000"
+			data-cycle-slides="> div.slidecontent"
+	        data-cycle-prev="#prevslide"
+	        data-cycle-next="#nextslide"
+	        data-overlay-template="<div>{% templatetag openvariable %}title{% templatetag closevariable %}</div><div>{% templatetag openvariable %}desc{% templatetag closevariable %}</div><a class='button-more red' href='{% templatetag openvariable %}url{% templatetag closevariable %}'></a>">
+	    <a href="#" id="prevslide" class="arrow-left red"></a>
+    	<a href="#" id="nextslide" class="arrow-right red"></a>
+		<div class="cycle-overlay"></div>
+	    {% for page in pages %}
+	    	<div class="slidecontent"
+	    		data-cycle-title="{{ page.title }}"
+			    data-cycle-desc="{{ page.richtextpage.content|striptags|truncatewords:30 }}"
+			    data-cycle-url="{{ page.get_absolute_url }}">
+		    	<img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 661 0 %}" />
+		    </div>
+	    {% endfor %}
+	</div>
 {% endspaceless %}
