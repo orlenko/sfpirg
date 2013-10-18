@@ -70,7 +70,7 @@ def toggle_project_selection(request, project):
             request.session[SELECTED_PROJECTS] = list(set([project_id] + request.session.get(SELECTED_PROJECTS, [])))
         else:
             request.session[SELECTED_PROJECTS] = list(set([x for x in request.session.get(SELECTED_PROJECTS, []) if x != project_id]))
-    return HttpResponse(simplejson.dumps({SELECTED_PROJECTS: request.session[SELECTED_PROJECTS]}),
+    return HttpResponse(simplejson.dumps({SELECTED_PROJECTS: request.session.get(SELECTED_PROJECTS, [])}),
                         content_type='application/json')
 
 

@@ -45,6 +45,7 @@ USE_SOUTH = True
 ADMINS = (
     ('SFPIRG Admin', 'sfpirg@bjola.ca'),
 )
+SERVER_EMAIL = 'noreply@sfpirg.ca'
 MANAGERS = ADMINS
 TIME_ZONE = None
 USE_TZ = False
