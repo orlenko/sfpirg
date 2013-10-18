@@ -68,6 +68,9 @@ class ProjectForm(ModelForm):
             'category': HiddenInput(),
             'is_submitted': HiddenInput(),
             'is_approved': HiddenInput(),
+            'is_underway': HiddenInput(),
+            'is_finished': HiddenInput(),
+            'is_completed_successfully': HiddenInput(),
             'date_start': DateInput()
         }
 

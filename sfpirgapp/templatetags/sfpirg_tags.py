@@ -303,6 +303,6 @@ def sfpirg_page_menu(context, token):
         + filterfunc(NewsPost.objects.filter(status=2))
         + filterfunc(Event.objects.filter(status=2))
         + filterfunc(ActionGroup.objects.filter(is_approved=True))
-        + filterfunc(Project.objects.filter(is_approved=True))
+        + filterfunc(Project.objects.filter(is_approved=True, is_underway=False))
     )
     return get_template(templatename).render(Context(context))

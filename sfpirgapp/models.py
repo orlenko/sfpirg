@@ -233,6 +233,9 @@ class Project(Slugged, AdminThumbMixin):
     date_start = models.DateField(blank=True, null=True)
     is_submitted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    is_underway = models.BooleanField(default=False)
+    is_finished = models.BooleanField(default=False)
+    is_completed_successfully = models.BooleanField(default=False)
     category = ForeignKey(Category, related_name='arx_projects')
     in_menus = MenusField("Show in menus", blank=True, null=True)
 
@@ -278,9 +281,17 @@ class Project(Slugged, AdminThumbMixin):
         return ', '.join(subjects)
 
     def save(self, *args, **kwargs):
+        # Can't save a state that violates consistency
         if self.is_approved and not self.is_submitted:
             return
-            #raise forms.ValidationError('Cannot approve a project that has not been submitted.')
+        if ((self.is_completed_successfully or self.is_finished or self.is_underway)
+                and not (self.is_approved and self.is_submitted)):
+            return
+        if ((self.is_completed_successfully or self.is_finished)
+                and not (self.is_approved and self.is_submitted and self.is_underway)):
+            return
+        if self.is_completed_successfully and not self.is_finished:
+            return
         return super(Project, self).save(*args, **kwargs)
 
 

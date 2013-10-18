@@ -16,9 +16,9 @@ def get_arx_query_set(request, category):
         if user.is_superuser:
             return category.arx_projects.all()
         else:
-            return category.arx_projects.filter(Q(is_approved=True) | Q(user=user))
+            return category.arx_projects.filter(Q(is_approved=True, is_underway=False) | Q(user=user))
     else:
-        return category.arx_projects.filter(is_approved=True)
+        return category.arx_projects.filter(is_approved=True, is_underway=False)
 
 
 def get_ag_query_set(request, category):
@@ -31,9 +31,9 @@ def get_ag_query_set(request, category):
         if user.is_superuser:
             return category.action_groups.all()
         else:
-            return category.action_groups.filter(Q(is_approved=True) | Q(user=user))
+            return category.action_groups.filter(Q(is_approved=True, is_underway=False) | Q(user=user))
     else:
-        return category.action_groups.filter(is_approved=True)
+        return category.action_groups.filter(is_approved=True, is_underway=False)
 
 
 def category(request, slug):
