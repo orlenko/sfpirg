@@ -47,6 +47,7 @@ class ActionGroupForm(ModelForm):
             'theme_color': HiddenInput(),
             '_order': HiddenInput(),
             'login_required': HiddenInput(),
+            'in_menus': HiddenInput(),
         }
 
 
@@ -76,7 +77,8 @@ class ProjectForm(ModelForm):
             'is_underway': HiddenInput(),
             'is_finished': HiddenInput(),
             'is_completed_successfully': HiddenInput(),
-            'date_start': DateInput()
+            'date_start': DateInput(),
+            'in_menus': HiddenInput(),
         }
 
 
