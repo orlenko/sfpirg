@@ -147,6 +147,11 @@
 
 		</div><!-- End Class ="container" -->
 
+
+		<form id="dummy-form-just-for-csrf">
+			{% csrf_token %}
+		</form>
+
 		{% include "includes/footer_scripts.html" %}
 
 		<script src="{% static "js/jquery.cycle2.min.js" %}"></script>

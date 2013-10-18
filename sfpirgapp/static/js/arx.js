@@ -20,7 +20,7 @@ $(function() {
 
 	function toggle(projId, value) {
 		$.ajax({
-			type: 'post',
+			type: projId?'post':'get',
 			dataType: 'json',
 			url: '/arx/project/toggle-selection/' + projId + '/',
 			data: {
@@ -46,4 +46,6 @@ $(function() {
 		toggle(projId, 'false');
 		return false;
 	});
+
+	toggle(0, 'false');
 });
