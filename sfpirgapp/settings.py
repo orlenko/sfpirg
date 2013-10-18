@@ -259,6 +259,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
+    'ckeditor',
     'mezzanine.boot',
     'mezzanine.conf',
     'mezzanine.core',
@@ -330,6 +331,53 @@ OPTIONAL_APPS = (
 )
 
 DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbarGroups':  [
+            { 'name': 'clipboard',   'groups': [ 'clipboard', 'undo' ] },
+            { 'name': 'editing',     'groups': [ 'find', 'selection', 'spellchecker' ] },
+            { 'name': 'links' },
+            { 'name': 'insert' },
+            { 'name': 'forms' },
+            { 'name': 'tools' },
+            { 'name': 'document',       'groups': [ 'mode', 'document', 'doctools' ] },
+            { 'name': 'others' },
+            '/',
+            { 'name': 'basicstyles', 'groups': [ 'basicstyles', 'cleanup' ] },
+            { 'name': 'paragraph',   'groups': [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+            { 'name': 'styles' },
+            { 'name': 'colors' },
+            { 'name': 'about' }
+        ],
+        'width': 692,
+        'height': 300,
+    },
+    'basic': {
+        'toolbar': 'Basic',
+        'toolbarGroups': [
+           # { 'name': 'clipboard',   'groups': [ 'clipboard', 'undo' ] },
+           # { 'name': 'editing',     'groups': [ 'find', 'selection', 'spellchecker' ] },
+            { 'name': 'links' },
+           # { 'name': 'insert' },
+           # { 'name': 'forms' },
+           # { 'name': 'tools' },
+           # { 'name': 'document',       'groups': [ 'mode', 'document', 'doctools' ] },
+           # { 'name': 'others' },
+           # '/',
+            { 'name': 'basicstyles', 'groups': [ 'basicstyles', 'cleanup' ] },
+           # { 'name': 'paragraph',   'groups': [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+           # { 'name': 'styles' },
+           # { 'name': 'colors' },
+           # { 'name': 'about' }
+        ],
+        'width': '100%',
+        'height': 300,
+    }
+}
+CKEDITOR_MEDIA_URL = '/static'
+RICHTEXT_WIDGET_CLASS = 'ckeditor.widgets.CKEditor'
 
 ###################
 # DEPLOY SETTINGS #

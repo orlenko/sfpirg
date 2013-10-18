@@ -7,6 +7,7 @@ from django.forms.widgets import HiddenInput, DateInput
 from sfpirgapp.models import (Application, Liaison, Organization, Project,
     ActionGroup)
 from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
+from ckeditor.widgets import CKEditor
 
 
 log = logging.getLogger(__name__)
@@ -25,6 +26,10 @@ class ActionGroupForm(ModelForm):
         model = ActionGroup
         exclude = ('keywords',)
         widgets = {
+            'content': CKEditor(ckeditor_config='basic'),
+            'announcements': CKEditor(ckeditor_config='basic'),
+            'meetings': CKEditor(ckeditor_config='basic'),
+            'links': CKEditor(ckeditor_config='basic'),
             'status': HiddenInput(),
             'user': HiddenInput(),
             'category': HiddenInput(),
