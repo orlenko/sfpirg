@@ -24,7 +24,7 @@ class ActionGroupForm(ModelForm):
 
     class Meta:
         model = ActionGroup
-        exclude = ('keywords',)
+        exclude = ('keywords', 'in_menus',)
         widgets = {
             'content': CKEditor(ckeditor_config='basic'),
             'announcements': CKEditor(ckeditor_config='basic'),
@@ -67,7 +67,7 @@ class ProjectForm(ModelForm):
 
     class Meta:
         model = Project
-        exclude = ('slug',)
+        exclude = ('slug', 'in_menus',)
         widgets = {
             'liaison': SelectWithPopUp('Liaison'),
             'user': HiddenInput(),
@@ -78,7 +78,6 @@ class ProjectForm(ModelForm):
             'is_finished': HiddenInput(),
             'is_completed_successfully': HiddenInput(),
             'date_start': DateInput(),
-            'in_menus': HiddenInput(),
         }
 
 
