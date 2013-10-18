@@ -18,22 +18,25 @@
  * TODO: Experiment with frequencies to find a good combination of responsiveness and CPU-eating.
  */
 
-window.Django_CKEditor_Configs = [];
+if (!window.Django_CKEditor_Configs) {
+	window.Django_CKEditor_Configs = [];
+}
 
-(function() {
+$(function() {
     var done = [];
 
     var InitCKEditors = function() {
-        django.jQuery('.django-ckeditor').each(function(i, el) {
-            var elid = django.jQuery(el).attr('id');
+    	var jq = $ || django.jQuery;
+        jq('.django-ckeditor').each(function(i, el) {
+            var elid = jq(el).attr('id');
 
             // Don't mess with the "template" versions.
             if (elid.indexOf('__prefix__') == -1) {
-                if (django.jQuery.inArray(elid, done) == -1) {
+                if (jq.inArray(elid, done) == -1) {
                     var config = null;
 
-                    // Find the config that applies to this CKEditor. 
-                    django.jQuery.each(window.Django_CKEditor_Configs, function(i, val) {
+                    // Find the config that applies to this CKEditor.
+                    jq.each(window.Django_CKEditor_Configs, function(i, val) {
                         if (val.re.test(elid)) {
                             config = val.config;
                             return false;
@@ -49,5 +52,5 @@ window.Django_CKEditor_Configs = [];
         setTimeout(InitCKEditors, 1000);
     };
 
-    InitCKEditors();
-})()
+    setTimeout(InitCKEditors, 100);
+})
