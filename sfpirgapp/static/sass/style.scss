@@ -2105,3 +2105,10 @@ h3 {
 
 
 } /* End Mobile Media Query */
+
+
+
+/* Override stupid bug in Grapelli */
+input[type=text], input[type=password] {
+	line-height: normal !important;
+}

@@ -42,12 +42,19 @@ class Profile(models.Model, AdminThumbMixin):
     on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list to receive periodic information about ARX?')
 
 
-class Testimonial(PageLike, Ownable):
+class Testimonial(PageLike):
+    user = ForeignKey(User, null=True, blank=True, verbose_name=_("Author"), related_name="testimonials")
     category = ForeignKey('Category', related_name='testimonials')
+    author_full_name = models.CharField(verbose_name='Your Full Name', max_length=255, null=True, blank=True)
+    author_title = models.CharField(verbose_name='Your Title', max_length=255 ,null=True, blank=True)
 
     @models.permalink
     def get_absolute_url(self):
         return ('testimonial', (), {'slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Experience'
+        verbose_name_plural = 'Experiences'
 
 
 class DummyTable(models.Model):

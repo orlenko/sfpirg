@@ -5,7 +5,7 @@ from django.forms.models import ModelForm
 from django.forms.widgets import HiddenInput, DateInput
 
 from sfpirgapp.models import (Application, Liaison, Organization, Project,
-    ActionGroup)
+    ActionGroup, Testimonial)
 from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
 from ckeditor.widgets import CKEditor
 
@@ -107,3 +107,33 @@ class OrganizationForm(ModelForm):
 class LiaisonForm(ModelForm):
     class Meta:
         model = Liaison
+
+
+class TestimonialForm(ModelForm):
+    class Meta:
+        model = Testimonial
+        exclude = ('keywords', 'in_menus',)
+        widgets = {
+            'content': CKEditor(ckeditor_config='basic'),
+            'announcements': CKEditor(ckeditor_config='basic'),
+            'meetings': CKEditor(ckeditor_config='basic'),
+            'links': CKEditor(ckeditor_config='basic'),
+            'status': HiddenInput(),
+            'user': HiddenInput(),
+            'category': HiddenInput(),
+            'featured_image': AdvancedFileInput(),
+            'is_approved': HiddenInput(),
+            'slug': HiddenInput(),
+            '_meta_title': HiddenInput(),
+            'description': HiddenInput(),
+            'gen_description': HiddenInput(),
+            'keywords': HiddenInput(),
+            'short_url': HiddenInput(),
+            'publish_date': HiddenInput(),
+            'expiry_date': HiddenInput(),
+            'in_sitemap': HiddenInput(),
+            'theme_color': HiddenInput(),
+            '_order': HiddenInput(),
+            'login_required': HiddenInput(),
+            'in_menus': HiddenInput(),
+        }

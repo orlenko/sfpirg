@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     url(r'^$', 'sfpirgapp.views.home.homepage', {}, name='home'),
 
+    url(r'^testimonial/add/$', 'sfpirgapp.views.testimonial.add_testimonial', {}, name='add-testimonial'),
+    url(r'^testimonial/random/$', 'sfpirgapp.views.testimonial.random_testimonial', {}, name='random-testimonial'),
     url(r'^testimonial/(?P<slug>.*)/$', 'sfpirgapp.views.testimonial.testimonial', {}, name='testimonial'),
 
     url(r'^news/(?P<news>.*)/$', 'sfpirgapp.views.newsposts.newspost', {}, name='news-post'),

@@ -238,15 +238,18 @@ def proj_lines_class(title):
     return 'fourline'
 
 
+def _category_by_model(model):
+    allrecs = model.objects.all()
+    return allrecs and allrecs[0].category or None
+
+
 @register.filter
 def category_slug(model_name):
     model = globals().get(model_name)
     if not model:
         return ''
-    allrecs = model.objects.all()
-    if not allrecs:
-        return ''
-    return allrecs[0].category.slug
+    categ = _category_by_model(model)
+    return categ and categ.slug or ''
 
 
 @register.render_tag

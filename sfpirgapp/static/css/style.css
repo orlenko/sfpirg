@@ -2126,3 +2126,6 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     display: block;
     text-align: center; } }
 /* End Mobile Media Query */
+/* Override stupid bug in Grapelli */
+input[type=text], input[type=password] {
+  line-height: normal !important; }
