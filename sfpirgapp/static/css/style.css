@@ -242,7 +242,7 @@ form span.helptext {
   color: #675f5f;
 }
 form input[type=text], form select {
-  min-width: 200px;
+  width: 100%;
   padding: 5px;
   border: 1px solid #827777;
 }
@@ -277,39 +277,24 @@ a.add-another {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  font: 14px/100% Arial, Helvetica, sans-serif;
+  font-size: 14px;
   padding: .5em 2em .55em;
-  margin-left: .3em;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  /*-webkit-border-radius: .5em;
-  -moz-border-radius: .5em;
-  border-radius: .5em;*/
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  color: #fef4e9;
-  border: solid 1px #da7c0c;
-  background: #f78d1d;
-  background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
-  background: -moz-linear-gradient(top, #faa51a, #f47a20);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  margin: 5px;
+  color: #fff;
+  border: solid 1px #675f5f;
+  background: #be1d2c;
 }
 
 a.add-another:hover {
   text-decoration: none;
-  background: #f47c20;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
-  background: -moz-linear-gradient(top, #f88e11, #f06015);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+  background: #675f5f;
+  color: #fff;
 }
 
 a.add-another:active {
   position: relative;
   top: 1px;
-  color: #fcd3a5;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
-  background: -moz-linear-gradient(top, #f47a20, #faa51a);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+  color: #fff;
 }
 
 /* General Resets */
@@ -785,6 +770,10 @@ textarea {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+input[type=password] {
+  width: 100%;
+}
+
 input[type=checkbox],
 input[type=radio] {
   cursor: pointer;
@@ -854,7 +843,8 @@ textarea {
 
 textarea,
 select[multiple] {
-  min-width: 400px;
+  width: 100%;
+  min-height: 170px;
   display: block;
 }
 
@@ -1043,6 +1033,24 @@ select[multiple] {
   width: 100%;
 }
 
+iframe {
+  width: 100% !important;
+}
+
+.project-info-line .label {
+  font-weight: bold;
+}
+.project-info-line .name-org {
+  font-size: 18px;
+}
+.project-info-line .icon {
+  float: left;
+  width: 85px;
+}
+.project-info-line .social-icons {
+  width: auto;
+}
+
 .red-nav {
   background: url(../img/left-red-menu.png) left center no-repeat, url(../img/right-red-menu.png) center right no-repeat, url(../img/red-menu.png) center center repeat-x;
   height: 61px;
@@ -1099,6 +1107,7 @@ select[multiple] {
 }
 #top-search-bar form input[type="text"] {
   background: url(../img/search-left-box.png) left center no-repeat, url(../img/search-right-box.png) center right no-repeat, url(../img/search-center-box.png) center center repeat-x;
+  width: 200px !important;
   height: 32px;
   border: none;
   color: #be1d2c;
@@ -1124,7 +1133,7 @@ select[multiple] {
 }
 .grey h1 {
   text-align: left;
-  padding-left: 20px;
+  padding: 8px 0 8px 10px;
 }
 .grey h1, .grey h3 {
   background: url(../img/panel-grey-left.png) left center no-repeat, url(../img/panel-grey-right.png) center right no-repeat, url(../img/panel-grey-center.png) center center repeat-x, url(../img/white-mask.gif) top repeat-x;
@@ -1180,7 +1189,7 @@ select[multiple] {
 }
 .teal h1 {
   text-align: left;
-  padding-left: 20px;
+  padding: 8px 0 8px 10px;
 }
 .teal h1, .teal h3 {
   background: url(../img/panel-teal-left.png) left center no-repeat, url(../img/panel-teal-right.png) center right no-repeat, url(../img/panel-teal-center.png) center center repeat-x, url(../img/white-mask.gif) top repeat-x;
@@ -1236,7 +1245,7 @@ select[multiple] {
 }
 .green h1 {
   text-align: left;
-  padding-left: 20px;
+  padding: 8px 0 8px 10px;
 }
 .green h1, .green h3 {
   background: url(../img/panel-green-left.png) left center no-repeat, url(../img/panel-green-right.png) center right no-repeat, url(../img/panel-green-center.png) center center repeat-x, url(../img/white-mask.gif) top repeat-x;
@@ -1292,7 +1301,7 @@ select[multiple] {
 }
 .yellow h1 {
   text-align: left;
-  padding-left: 20px;
+  padding: 8px 0 8px 10px;
 }
 .yellow h1, .yellow h3 {
   background: url(../img/panel-yellow-left.png) left center no-repeat, url(../img/panel-yellow-right.png) center right no-repeat, url(../img/panel-yellow-center.png) center center repeat-x, url(../img/white-mask.gif) top repeat-x;
@@ -1348,7 +1357,7 @@ select[multiple] {
 }
 .red h1 {
   text-align: left;
-  padding-left: 20px;
+  padding: 8px 0 8px 10px;
 }
 .red h1, .red h3 {
   background: url(../img/panel-red-left.png) left center no-repeat, url(../img/panel-red-right.png) center right no-repeat, url(../img/panel-red-center.png) center center repeat-x, url(../img/white-mask.gif) top repeat-x;
@@ -1412,12 +1421,12 @@ select[multiple] {
   padding: 6px 8px 20px 4px;
 }
 #experience-widget .x-name {
-  font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   margin: 0;
 }
 #experience-widget .x-title-story {
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: bold;
   margin: 0;
 }
 #experience-widget .x-text {
@@ -1428,6 +1437,7 @@ select[multiple] {
 #experience-widget .x-more {
   float: right;
   padding: 5px 10px 10px;
+  margin-top: 30px;
 }
 
 #navigation {
@@ -1946,6 +1956,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 
 /*Side bar Adjustments END */
+.selected-projects-count {
+  padding: 0 30px 0 10px;
+}
+
 /* ==========================================================================
 /* -- Tablet Devices (Layout, Modifications, etc)
    ========================================================================== */
@@ -2142,6 +2156,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     height: 155px;
   }
 
+  #newsletter img {
+    margin: -12px 0;
+  }
+
   #get-involved .arx-text {
     width: 115px;
   }
@@ -2172,6 +2190,9 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     right: 0px;
   }
 
+  .event-slider-container {
+    height: 150px;
+  }
   .event-slider-container .slide {
     min-height: 140px;
   }

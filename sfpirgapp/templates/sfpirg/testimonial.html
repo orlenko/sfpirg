@@ -6,19 +6,34 @@
 	<h1>{{ t.title }}</h1>
 
 	{% if t.featured_image %}
-		<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.featured_image 90 0 %}" alt="Featured Image" />
+		<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.featured_image 177 0 %}" alt="Featured Image" />
 	{% endif %}
 
 	{% if not t.featured_image %}
 		{% if t.user.profile.photo %}
-			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.user.profile.photo 90 0 %}" alt="Avatar" />
+			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.user.profile.photo 177 0 %}" alt="Avatar" />
 		{% endif %}
 	{% endif %}
-
-	<h4>By {{ t.user.get_full_name|default:t.user.username }} {% if t.user.profile.title %}- {{ t.user.profile.title }}{% endif %}</h4>
+	<h2>{{ t.title }}</h2>
+	<h4 style="line-height:10px;"><span style="font-size:12px; font-weight:normal;">By:</span> {{ t.user.get_full_name|default:t.user.username }}</h4>
+    <p>{% if t.user.profile.title %}{{ t.user.profile.title }}{% endif %}</p>
 
 	{% editable t.content %}
 		{{ t.content|richtext_filter|safe }}
 	{% endeditable %}
+    
+    <div style="clear:both; margin:20px 0;">
+    	<span style="width:auto; float:left;">
+         <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525da9880c8f9f5e"></script>
+        <!-- AddThis Button END -->
+        </span>
+        <span style="width:auto; float:right;"><a href="#"><img src="/static/img/next-experience.png" alt="Next Experience"/></a></span>
+        
+    </div>
 {% endblock %}
 

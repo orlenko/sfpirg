@@ -13,7 +13,7 @@
 {% else %}
 	{% block category_tools %}
 		<div class="category-tools" {% if not request.session.selected_projects %} style="display: none;" {% endif %} >
-			<h4>Selected Projects: <span class="selected-projects-count">{{ request.session.selected_projects|length }}</span>
+			<h4>Selected Projects:<span class="selected-projects-count">{{ request.session.selected_projects|length }}</span>
 				<a href="/arx/apply/" title="Apply for selected projects"><img src="/static/img/arx/apply.png" /></a>
 			</h4>
 		</div>
@@ -61,21 +61,22 @@
 		<div class="project-summary">
 			<div class="project-info-line">
 				<span class="label">Organization: </span>
-				<span class="text">{{project.user.profile.organization.title}}</span>
+				<span class="name-org">{{project.user.profile.organization.title}}</span>
 			</div>
 			<div class="project-info-line">
-				<span class="label">Type: </span>
+				<span class="label">Type(s): </span>
 				<span class="text">{{project.project_type.all|join:', '}} {{project.project_type_other}}</span>
 			</div>
 			<div class="project-info-line">
-				<span class="label">Issues: </span>
+				<span class="label">Issue(s): </span>
 				<span class="text">{{project.formatted_project_subject}}</span>
 			</div>
 			<div class="project-info-line">
 				<span class="label">Duration: </span>
 				<span class="text">{{project.length}}</span>
 			</div>
-			<div class="project-info-line">
+			<div class="project-info-line row">
+            <span class="icon">
 				{% if user.is_superuser or user == project.user %}
 					{% if project.is_approved %}
 						<img src="/static/img/arx/published.png"/>
@@ -90,6 +91,8 @@
 					<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
 					<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
 				{% endif %}
+                </span>
+                
 				<span class="social-icons"><!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
@@ -101,25 +104,54 @@
 		</div>
 
 		<div class="project-details">
-			<h2>About this Project:</h2>
+			<h4>About this Project:</h4>
 			<div>
 				{{project.description_long|richtext_filter|safe}}
 			</div>
 
-			<h2>Deliverables:</h2>
+			<h4>Deliverables:</h4>
 			<div>
 				{{project.description_long|richtext_filter|safe}}
 			</div>
 
-			<h2>The Student Researcher Must Possess:</h2>
+			<h4>The Student Researcher Must Possess:</h4>
 			<div>
 				{{project.researcher_qualities|richtext_filter|safe}}
 			</div>
 
-			<h2>Use of Project Results:</h2>
+			<h4>Use of Project Results:</h4>
 			<div>
 				{{project.results_plan|richtext_filter|safe}}
 			</div>
+            
+            <div class="project-info-line row">
+            <span class="icon">
+				{% if user.is_superuser or user == project.user %}
+					{% if project.is_approved %}
+						<img src="/static/img/arx/published.png"/>
+					{% else %}
+						{% if not project.is_submitted %}
+							<a href="?edit=1"><img src="/static/img/arx/draft.png"/></a>
+						{% else %}
+							<img src="/static/img/arx/submitted.png"/>
+						{% endif %}
+					{% endif %}
+				{% else %}
+					<a href="" class="arx-project-select" id="arx-project-select-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/select.png" /></a>
+					<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
+				{% endif %}
+                </span>
+                
+				<span class="social-icons"><!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525da9880c8f9f5e"></script>
+<!-- AddThis Button END --></span>
+			</div>
+            
+            
 		</div>
 
 		<hr/>

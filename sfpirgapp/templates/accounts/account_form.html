@@ -13,7 +13,7 @@
 {% block main %}
 
 <fieldset>
-    <legend>{{ title }}</legend>
+    <legend style="width:100%; margin-top:-4px;"><h1>{{ title }}</h1></legend>
     {% if request.REQUEST.message %}
     	<p class="message">{{ request.REQUEST.message }}</p>
     {% endif %}

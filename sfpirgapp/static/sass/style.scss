@@ -339,6 +339,9 @@ textarea {
   -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+input[type=password] {
+	width:100%;
+}
 input[type=checkbox],
 input[type=radio] {
   cursor: pointer;
@@ -400,7 +403,8 @@ textarea {
 
 textarea,
 select[multiple] {
-  min-width: 400px;
+  width: 100%;
+  min-height:170px;
   display: block;
 }
 
@@ -573,6 +577,25 @@ select[multiple] {
 // -- Custom Website Styles for Desktop
 // ==========================================================================
 
+iframe {
+	width:100% !important;	
+}
+.project-info-line {
+	.label {
+		font-weight:bold;
+	}
+	.name-org {
+		font-size:18px;
+	}
+	.icon {
+		float:left;
+    	width: 85px;;
+	}
+	.social-icons {
+		width:auto;
+	}
+}
+
 .red-nav {
 	background:
 	url(../img/left-red-menu.png) left center no-repeat,
@@ -633,6 +656,7 @@ select[multiple] {
 	url(../img/search-left-box.png) left center no-repeat,
 	url(../img/search-right-box.png) center right no-repeat,
 	url(../img/search-center-box.png) center center repeat-x;
+	width:200px !important;
 	height:32px;
 	border:none;
 	color:$red;
@@ -656,7 +680,7 @@ select[multiple] {
 .grey {
 
 	h3 {text-align:center; 	padding:10px 0px;}
-	h1 {text-align:left; padding-left:20px;}
+	h1 {text-align:left; padding: 8px 0 8px 10px;}
 
 	h1, h3{
 	background:
@@ -707,7 +731,7 @@ select[multiple] {
 .teal {
 
 	h3 {text-align:center;	padding:10px 0px;}
-	h1 {text-align:left; padding-left:20px;}
+	h1 {text-align:left; padding: 8px 0 8px 10px;}
 
 	h1, h3{
 	background:
@@ -758,7 +782,7 @@ select[multiple] {
 .green {
 
 	h3 {text-align:center; 	padding:10px 0px;}
-	h1 {text-align:left; padding-left:20px;}
+	h1 {text-align:left; padding: 8px 0 8px 10px;}
 
 	h1, h3{
 	background:
@@ -809,7 +833,7 @@ select[multiple] {
 .yellow {
 
 	h3 {text-align:center;	padding:10px 0px;}
-	h1 {text-align:left; padding-left:20px;}
+	h1 {text-align:left; padding: 8px 0 8px 10px;}
 
 	h1, h3{
 	background:
@@ -860,7 +884,7 @@ select[multiple] {
 .red {
 
 	h3 {text-align:center; 	padding:10px 0px;}
-	h1 {text-align:left; padding-left:20px;}
+	h1 {text-align:left; padding: 8px 0 8px 10px;}
 
 	h1, h3{
 	background:
@@ -921,12 +945,13 @@ select[multiple] {
 	img {float:left;
 	padding: 6px 8px 20px 4px;}
 
-	.x-name {font-size:14px;
-	font-weight:bold;
+	.x-name {
+	font-weight:600;
 	margin:0;}
 
 	.x-title-story {
-		font-weight:600;
+		font-size:14px;
+		font-weight:bold;
 		margin:0;}
 
 	.x-text {
@@ -935,7 +960,8 @@ select[multiple] {
 		padding: 4px 0 0;}
 
 	.x-more {float:right;
-	padding: 5px 10px 10px;}
+	padding: 5px 10px 10px;
+	margin-top:30px;}
 
 }
 #navigation {
@@ -1458,6 +1484,12 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 /*Side bar Adjustments END */
 
+.selected-projects-count {
+	padding: 0 30px 0 10px;
+	
+}
+
+
 
 /* ==========================================================================
 /* -- Tablet Devices (Layout, Modifications, etc)
@@ -1610,6 +1642,12 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 		height:155px;	
 	}
 }
+#newsletter{ 
+
+	img {
+    margin: -12px 0;
+	}
+}
 
 #get-involved {
 
@@ -1650,12 +1688,12 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 }
 .event-slider-container {
-
+	height: 150px;
   .slide {
 	min-height:140px;
   }
 }
-
+    
 
 .project-carousel-container {
 	padding:0 60px;
@@ -1924,5 +1962,6 @@ h3 {
   	display: block;
 	text-align:center;
  }
+
 
 } /* End Mobile Media Query */
