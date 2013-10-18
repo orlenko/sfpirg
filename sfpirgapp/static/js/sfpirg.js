@@ -61,4 +61,17 @@ $(function() {
 	$('input[name=date_start]').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
+
+	window.setTimeout(function() {
+		$("a#responsive_menu_button, #responsive_current_menu_item").click(function() {
+			$(".js #main-nav .menu").slideToggle(function() {
+				if ($(this).is(":visible")) {
+					$("a#responsive_menu_button").addClass("responsive-toggle-open")
+				} else {
+					$("a#responsive_menu_button").removeClass("responsive-toggle-open");
+					$(".js #main-nav .menu").removeAttr("style")
+				}
+			})
+		})
+	}, 200);
 })

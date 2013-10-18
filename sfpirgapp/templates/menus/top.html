@@ -2,15 +2,15 @@
 {% spaceless %}
 	{% if page_branch_in_menu %}
 		{% if branch_level == 0 %}
-			<ul>
+			<ul id="menu-main-menu" class="menu">
 			    {% for page in page_branch %}
 			    {% if not has_home and page.is_primary and forloop.first %}
-			    <li class="{% if on_home %} active{% endif %}" id="dropdown-menu-home">
+			    <li class="menu-item {% if on_home %} active{% endif %}" id="dropdown-menu-home">
 			        <a href="{% url "home" %}">{% trans "Home" %}</a>
 			    </li>
 			    {% endif %}
 				    {% if page.in_menu %}
-					    <li class="dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
+					    <li class="menu-item dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
 					        id="dropdown-menu-{{ page.html_id }}">
 					        <a href="{{ page.get_absolute_url }}">
 					            {{ page.title }}
@@ -19,6 +19,7 @@
 				    {% endif %}
 			    {% endfor %}
 			</ul>
+			<a id="responsive_menu_button"></a>
 		{% endif %}
 	{% endif %}
 {% endspaceless %}

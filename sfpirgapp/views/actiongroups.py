@@ -32,6 +32,7 @@ def aglist(request):
 def actiongroup(request, slug):
     actiongroup = get_object_or_404(ActionGroup, slug=slug)
     page = actiongroup
+    current_item = page.title
     form = None
 
     if 'edit' in request.REQUEST:
@@ -58,5 +59,6 @@ def create(request):
         form.save()
         return HttpResponseRedirect(form.instance.get_absolute_url())
     user = request.user
+    current_item = 'Create Action Group'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/action_group_create.html', {}, context_instance=context)

@@ -262,6 +262,18 @@ nav ul, nav ol {
   margin: 0;
 }
 
+.menu a#responsive_menu_button {
+	display: none;
+}
+
+#main-nav #responsive_current_menu_item {
+	display: none;
+}
+
+.js #main-nav .menu {
+	display: block;
+}
+
 /* 1.4 Tables
    ========================================================================== */
 table {
@@ -578,7 +590,7 @@ select[multiple] {
 // ==========================================================================
 
 iframe {
-	width:100% !important;	
+	width:100% !important;
 }
 .project-info-line {
 	.label {
@@ -648,7 +660,7 @@ iframe {
 	font-size:12px;
 	text-align:right;
 	margin-bottom: 1.5em;
-	
+
 	form{
 
 	input[type="text"] {
@@ -674,7 +686,7 @@ iframe {
 		box-shadow:none;
 		&:hover {background: url(../img/search-button-hover.png) no-repeat;}
 	}
-	
+
 	} //end of form
 }
 .grey {
@@ -1270,14 +1282,14 @@ iframe {
 	padding:0;
 	margin:20px 0;
 	font-size:12px;
-	
+
 	li {
 	display:inline-block;
 	width:177px;
 	margin:20px;
 	height:330px;
 	}
-	
+
 }
 
 
@@ -1429,10 +1441,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 	font-size:12px;
 	margin: -10px 0 0;
 	h3 {margin:0;}
-	
+
 	.x-name {font-size:13px;}
 	}
-	
+
 	#stay-connected {
 		width:100%;
 	}
@@ -1486,7 +1498,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 .selected-projects-count {
 	padding: 0 30px 0 10px;
-	
+
 }
 
 
@@ -1556,7 +1568,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 		li {
     		padding: 24px 8px;
-			}
+		}
 }
 
 #sfpirg-logo {
@@ -1592,7 +1604,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 }
 
 #stay-connected {
-	min-height:210px; 
+	min-height:210px;
 	img {
     height: auto;
     padding: 15px 6px;
@@ -1637,12 +1649,12 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 }
 #news {
-	
+
 	ul {
-		height:155px;	
+		height:155px;
 	}
 }
-#newsletter{ 
+#newsletter{
 
 	img {
     margin: -12px 0;
@@ -1693,7 +1705,7 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 	min-height:140px;
   }
 }
-    
+
 
 .project-carousel-container {
 	padding:0 60px;
@@ -1730,6 +1742,134 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 .mobile-ten { width: 83%; }
 .mobile-eleven { width: 91.5%; }
 .mobile-twelve { width: 100%; }
+
+
+
+	.js #main-nav {
+		position: relative;
+		height: 30px;
+		background-color: #F15A23;
+		clear: both;
+		margin: 0 auto;
+		width:300px;
+		margin-bottom:20px;
+	}
+
+	.js #main-nav .menu {
+		display: none;
+		position: absolute;
+		width: 100%;
+		top: 30px;
+		z-index: 1000;
+	}
+
+	.js #main-nav .menu ul {
+		margin-top: 1px;
+	}
+
+	.js #main-nav .menu li {
+		float: none;
+		background-color: #fff;
+		border: none;
+	}
+
+	.js #main-nav .menu li a {
+		color: #444;
+		background-image: none;
+		font-size: 13px;
+		font-weight: normal;
+		height: 45px;
+		line-height: 45px;
+		padding: 0 15px;
+		border: none;
+		border-bottom: 1px solid #f5f5f5;
+		text-shadow: none;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.js #main-nav .menu li.current_page_item,
+	.js .menu .current_page_item a,
+	.js .menu .current-menu-item a {
+		background-color: #f5f5f5;
+	}
+
+	.js #main-nav .menu li li:hover {
+		background: none!important;
+	}
+
+	.js #main-nav .menu li li a {
+		position: relative;
+		padding: 0 10px 0 30px;
+	}
+
+	.js #main-nav .menu li li li a {
+		position: relative;
+		padding: 0 10px 0 40px;
+	}
+
+	.js #main-nav .menu li a:hover,
+	.js #main-nav .menu li li a:hover {
+		background-image: none;
+		filter: none;
+		background-color: #f5f5f5!important;
+	}
+
+	.js #main-nav .menu li li a::before {
+		content: '\2013';
+		position: absolute;
+		top: 0;
+		left: 20px;
+	}
+
+	.js #main-nav .menu li li li a::before {
+		content: '\2013';
+		position: absolute;
+		top: 0;
+		left: 20px;
+	}
+
+	.js #main-nav .menu li li li a::after {
+		content: '\2013';
+		position: absolute;
+		top: 0;
+		left: 30px;
+	}
+
+	.js #main-nav .menu li ul {
+		position: static;
+		visibility: visible;
+		background-color: #fff;
+	}
+
+	.js #main-nav .menu ul {
+		min-width: 0;
+	}
+
+	.js #main-nav #responsive_current_menu_item {
+		display: block;
+		padding: 5px 40px 5px 10px;
+		color: #fff;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.js #main-nav a#responsive_menu_button {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 100%;
+		height: 30px;
+		width: 23px;
+		margin-left: -30px;
+		background: url(/static/img/select-icons.png) 0 5px no-repeat;
+		cursor: pointer;
+	}
+
+	.js #main-nav a#responsive_menu_button.responsive-toggle-open {
+		background: url(/static/img/select-icons.png) 0 -46px no-repeat;
+	}
+
 
 .mobile-full {
   clear: both;
@@ -1780,7 +1920,7 @@ table td {
 }
 #values, #newsletter{
 	background:$dpaper bottom right repeat-x;
-	
+
 	img {
 		margin:1px 0;
 	}
@@ -1914,7 +2054,7 @@ table td {
 }
 .content-grid-list {
 	li {margin-left: 48px;
-	
+
 	}
 }
 #category-list {
@@ -1941,13 +2081,13 @@ h3 {
 	font-size:15px;
 }
 #navigation{
-	
+
  	li {
-		
+
 	a {
 		font-size:10px !important;
-		padding:9px 6px; 
-		 
+		padding:9px 6px;
+
 	}
 	}
  }

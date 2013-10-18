@@ -56,6 +56,7 @@ def project(request, slug):
         else:
             form = ProjectForm(instance=project)
     page = project
+    current_item = page.title
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_project.html', {}, context_instance=context)
 
@@ -80,6 +81,7 @@ def multi_apply(request):
     project_ids = request.session.get(SELECTED_PROJECTS, [])
     request.session[SELECTED_PROJECTS] = []
     count = len(project_ids)
+    current_item = 'Apply for Projects'
     projects = Project.objects.filter(pk__in=project_ids)
     if request.method == 'POST':
         form = MultiApplicationForm(request.POST)
@@ -122,5 +124,6 @@ def create(request):
         return HttpResponseRedirect(form.instance.get_absolute_url())
     log.debug('Form errors: %s' % form.errors)
     user = request.user
+    current_item = 'Create Project'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_project_create.html', {}, context_instance=context)

@@ -53,6 +53,7 @@ def category(request, slug):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         aglist = paginator.page(paginator.num_pages)
+    current_item = category.title
     context = RequestContext(request, locals())
     template_name = 'sfpirg/category.html'
     if category.arx_projects.all():

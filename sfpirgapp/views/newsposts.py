@@ -25,5 +25,6 @@ def newslist(request):
 def newspost(request, news):
     newspost = get_object_or_404(NewsPost, slug=news)
     page = newspost
+    current_item = page.title
     context = RequestContext(request, locals())
     return render_to_response('pages/newspost.html', {}, context_instance=context)
