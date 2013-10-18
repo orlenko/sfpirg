@@ -16,7 +16,7 @@ event_fieldsets[0][1]['fields'].remove(('publish_date', 'expiry_date'))
 event_fieldsets[1][1]['fields'].append('status')
 event_fieldsets[1][1]['fields'].append(('publish_date', 'expiry_date'))
 event_fieldsets[0][1]["fields"].extend([
-    "content", "start", "end", "type", "category", "zip_import",
+    "content", "start", "end", "type", "category", "location", "link_url",
     ])
 
 
