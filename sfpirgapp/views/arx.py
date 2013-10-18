@@ -12,6 +12,7 @@ from sfpirgapp.forms import MultiApplicationForm
 from sfpirgapp.models import Application
 from django.http.response import HttpResponse
 from django.utils import simplejson
+from django.core.mail import send_mail
 
 
 log = logging.getLogger(__name__)
@@ -47,6 +48,10 @@ def project(request, slug):
             form = ProjectForm(request.POST, request.FILES, instance=project)
             if form.is_valid():
                 form.save()
+                send_mail('ARX Project updated', 'check it out: %s' % form.instance.get_absolute_url(),
+                          'noreply@sfpirg.ca',
+                          ['vlad@bjola.ca'],
+                          fail_silently=False)
                 return HttpResponseRedirect(project.get_absolute_url())
         else:
             form = ProjectForm(instance=project)
