@@ -1,6 +1,6 @@
 Dear {{ user.get_full_name|default:user.username }},
 
-Thanks for {{ action }} an ARX project proposal on our website. To finish your proposal, please go to http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}. If you need any help completing your proposal, please feel free to email our Research Coordinator on arx@sfpirg.ca.
+Thanks for {{ action }} an ARX project proposal on our website. To finish your proposal, please go to http://{{ request.META.HTTP_HOST }}{{ project.get_absolute_url }}. If you need any help completing your proposal, please feel free to email our Research Coordinator on arx@sfpirg.ca.
 
 Warmly,
 

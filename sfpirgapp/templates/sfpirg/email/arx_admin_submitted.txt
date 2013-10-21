@@ -4,7 +4,7 @@ An organization has just submitted an ARX proposal. The details are below.
 
 -------------------------------
 
-Project title:  {{project.title}} - http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}
+Project title:  {{project.title}} - http://{{ request.META.HTTP_HOST }}{{ project.get_absolute_url }}
 
 Organization: {{project.user.profile.organization.title}}
 

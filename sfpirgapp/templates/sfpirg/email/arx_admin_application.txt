@@ -8,7 +8,7 @@ Student's email: {{ email }}
 
 Project(s):
 	{% for project in projects %}
-		* {{ project.title }} - http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}
+		* {{ project.title }} - http://{{ request.META.HTTP_HOST }}{{ project.get_absolute_url }}
 	{% endfor %}
 
 Comments: {{ comments }}

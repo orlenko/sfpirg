@@ -4,7 +4,7 @@ You have received a new Action Group application. See below.
 
 -------------------------------
 
-Action Group: {{ actiongroup.title }} - http://{{ request.META.SERVER_NAME }}{{ actiongroup.get_absolute_url }}
+Action Group: {{ actiongroup.title }} - http://{{ request.META.HTTP_HOST }}{{ actiongroup.get_absolute_url }}
 
 Description:  {{ actiongroup.content|striptags }}
 

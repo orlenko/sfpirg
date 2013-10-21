@@ -42,11 +42,6 @@ def add_testimonial(request):
         form = TestimonialForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            send_mail('New experience needing review', 'check it out: http://%s%s' % (request.META['SERVER_NAME'],
-                                                                                      form.instance.get_absolute_url()),
-                      'noreply@sfpirg.ca',
-                      ['vlad@bjola.ca'],
-                      fail_silently=settings.DEBUG)
             return HttpResponseRedirect('/')
     else:
         form = TestimonialForm(initial={'category': _category_by_model(Testimonial),
