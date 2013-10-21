@@ -16,7 +16,7 @@ Sources of funding: {{user.profile.organization.sources_of_funding}}
 
 Website: {{user.profile.organization.website}}
 
-Contact: {{{{user.profile.organization.contact_name}}, {{user.profile.organization.contact_position}}
+Contact: {{user.profile.organization.contact_name}}, {{user.profile.organization.contact_position}}
 	{{user.profile.organization.contact_email}}
 	{{user.profile.organization.contact_alt_email}}
 	{{user.profile.organization.contact_phone}}
