@@ -48,6 +48,16 @@ class Testimonial(PageLike):
     author_full_name = models.CharField(verbose_name='Your Full Name', max_length=255, null=True, blank=True)
     author_title = models.CharField(verbose_name='Your Title', max_length=255 ,null=True, blank=True)
 
+    def get_author_full_name(self):
+        if self.author_full_name:
+            return self.author_full_name
+        if self.user:
+            return self.user.get_full_name() or self.user.username
+        return ''
+
+    def get_author_title(self):
+        return self.author_title or (self.user and self.user.profile and self.user.profile.title) or ''
+
     @models.permalink
     def get_absolute_url(self):
         return ('testimonial', (), {'slug': self.slug})

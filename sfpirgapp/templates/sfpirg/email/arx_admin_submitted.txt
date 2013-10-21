@@ -1,0 +1,30 @@
+Hello ARX Admin,
+
+An organization has just submitted an ARX proposal. The details are below.
+
+-------------------------------
+
+Project title:  {{project.title}} - http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}
+
+Organization: {{project.user.profile.organization.title}}
+
+Type(s): {{project.project_type.all|join:', '}} {{project.project_type_other}}
+
+Issue(s): {{project.formatted_project_subject}}
+
+Duration: {{project.length}}
+
+About this Project: {{ project.description_long|striptags }}
+
+The Student Researcher Must Possess: {{ project.researcher_qualities|striptags }}
+
+Use of Project Results: {{project.results_plan|striptags}}
+
+-------------------------------
+
+
+Also, have I told you lately what an awesome job you’re doing?
+
+Love,
+
+~ The SFPIRG Website

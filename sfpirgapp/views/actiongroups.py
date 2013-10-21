@@ -1,13 +1,14 @@
-import logging
-
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-
 from sfpirgapp.forms import ActionGroupForm
-from sfpirgapp.models import ActionGroup, Category
+from sfpirgapp.models import ActionGroup
+from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
+import logging
+from mezzanine.utils.email import send_mail_template
+from django.conf import settings
 
 
 log = logging.getLogger(__name__)
@@ -51,12 +52,28 @@ def create(request):
     for existing in ActionGroup.objects.filter(user=request.user):
         return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
     initial = {'user': request.user, 'status': 1, '_order': 0}
-    cat = Category.objects.filter(title='Action Groups')
-    if len(cat):
-        initial['category'] = cat[0]
+    cat = _category_by_model(ActionGroup)
+    initial['category'] = cat
     form = ActionGroupForm(request.POST or None, request.FILES or None, initial=initial)
     if request.method == 'POST' and form.is_valid():
         form.save()
+        actiongroup = form.instance
+        send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
+               'sfpirg/email/ag_application.txt',
+               settings.SERVER_EMAIL,
+               request.user.email,
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
+        send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
+               'sfpirg/email/ag_admin_application.txt',
+               settings.SERVER_EMAIL,
+               settings.ACTION_GROUPS_ADMIN_EMAIL,
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
         return HttpResponseRedirect(form.instance.get_absolute_url())
     user = request.user
     current_item = 'Create Action Group'

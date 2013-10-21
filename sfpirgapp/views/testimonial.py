@@ -10,6 +10,7 @@ import random
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from django.conf import settings
 
+
 def testimoniallist(request):
     testimonials = Testimonial.objects.all().order_by('-publish_date')
     paginator = Paginator(testimonials, 10)
@@ -48,7 +49,10 @@ def add_testimonial(request):
                       fail_silently=settings.DEBUG)
             return HttpResponseRedirect('/')
     else:
-        form = TestimonialForm(initial={'category': _category_by_model(Testimonial), 'status': 2, '_order': 0})
+        form = TestimonialForm(initial={'category': _category_by_model(Testimonial),
+                                        'status': 1,
+                                        '_order': 0,
+                                        })
     current_item = 'Add Testimonial'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/add_testimonial.html', {}, context_instance=context)

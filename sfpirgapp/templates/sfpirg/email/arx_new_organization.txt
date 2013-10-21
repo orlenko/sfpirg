@@ -1,0 +1,27 @@
+Dear {{user.get_full_name|default:user.username}},
+
+Thanks for creating an account on SFPIRG’s website. The details you submitted are below.
+
+Username: {{ user.username }}
+
+Full name: {{user.get_full_name}}
+
+Organization mailing address: {{user.profile.organization.mailing_street}} {{user.profile.organization.mailing_street2}} {{user.profile.organization.mailing_city}} {{user.profile.organization.mailing_postal_code}}
+
+Description: {{user.profile.organization.mandate}}
+
+Communities: {{user.profile.organization.communities}}
+
+Sources of funding: {{user.profile.organization.sources_of_funding}}
+
+Website: {{user.profile.organization.website}}
+
+Contact: {{{{user.profile.organization.contact_name}}, {{user.profile.organization.contact_position}}
+	{{user.profile.organization.contact_email}}
+	{{user.profile.organization.contact_alt_email}}
+	{{user.profile.organization.contact_phone}}
+
+
+Warmly,
+
+~ The SFPIRG Team

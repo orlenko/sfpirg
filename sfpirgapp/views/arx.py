@@ -1,19 +1,19 @@
-from django.template.context import RequestContext
-from django.shortcuts import render_to_response
-from django.shortcuts import get_object_or_404
-from sfpirgapp.models import Project
-from sfpirgapp.forms import ProjectForm
-from django.http.response import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from sfpirgapp.forms import ApplicationForm
-import logging
-from sfpirgapp.models import Category
-from sfpirgapp.forms import MultiApplicationForm
-from sfpirgapp.models import Application
-from django.http.response import HttpResponse
-from django.utils import simplejson
-from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.http.response import HttpResponse
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
+from django.utils import simplejson
+from mezzanine.utils.email import send_mail_template
+from sfpirgapp.forms import ApplicationForm
+from sfpirgapp.forms import MultiApplicationForm
+from sfpirgapp.forms import ProjectForm
+from sfpirgapp.models import Application
+from sfpirgapp.models import Project
+from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
+import logging
 
 
 log = logging.getLogger(__name__)
@@ -38,7 +38,9 @@ def require_organization(request):
 
 
 def project(request, slug):
+    user = request.user
     project = get_object_or_404(Project, slug=slug)
+    was_submitted = project.is_submitted
     form = None
     if 'edit' in request.REQUEST:
         # User must belong to an organization
@@ -49,10 +51,35 @@ def project(request, slug):
             form = ProjectForm(request.POST, request.FILES, instance=project)
             if form.is_valid():
                 form.save()
-                send_mail('ARX Project updated', 'check it out: %s' % form.instance.get_absolute_url(),
-                          'noreply@sfpirg.ca',
-                          ['vlad@bjola.ca'],
-                          fail_silently=settings.DEBUG)
+                if not project.is_submitted:
+                    # Project draft was saved.
+                    action = 'updating'
+                    send_mail_template('ARX Project updated: %s' % project.title,
+                                       'sfpirg/email/arx_draft.txt',
+                                       settings.SERVER_EMAIL,
+                                       request.user.email,
+                                       context=locals(),
+                                       attachments=None,
+                                       fail_silently=settings.DEBUG,
+                                       addr_bcc=None)
+                elif not was_submitted:
+                    # Project was not submitted before, but now it is.
+                    send_mail_template('ARX Project submitted: %s' % project.title,
+                                       'sfpirg/email/arx_submitted.txt',
+                                       settings.SERVER_EMAIL,
+                                       request.user.email,
+                                       context=locals(),
+                                       attachments=None,
+                                       fail_silently=settings.DEBUG,
+                                       addr_bcc=None)
+                    send_mail_template('ARX Project submitted: %s' % project.title,
+                                       'sfpirg/email/arx_admin_submitted.txt',
+                                       settings.SERVER_EMAIL,
+                                       settings.ARX_ADMIN_EMAIL,
+                                       context=locals(),
+                                       attachments=None,
+                                       fail_silently=settings.DEBUG,
+                                       addr_bcc=None)
                 return HttpResponseRedirect(project.get_absolute_url())
         else:
             form = ProjectForm(instance=project)
@@ -86,11 +113,27 @@ def multi_apply(request):
     projects = Project.objects.filter(pk__in=project_ids)
     if request.method == 'POST':
         form = MultiApplicationForm(request.POST)
+        name = email = form.data['email']
+        comments = form.data['message']
         if form.is_valid():
             for proj_id in project_ids:
-                Application.objects.create(email=form.data['email'],
-                                           project_id=proj_id,
-                                           message=form.data['message'])
+                Application.objects.create(email=email, project_id=proj_id, message=comments)
+            send_mail_template('ARX Project application submitted',
+               'sfpirg/email/arx_application.txt',
+               settings.SERVER_EMAIL,
+               email,
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
+            send_mail_template('ARX Project application submitted',
+               'sfpirg/email/arx_admin_application.txt',
+               settings.SERVER_EMAIL,
+               settings.ARX_ADMIN_EMAIL,
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
             return HttpResponseRedirect('/category/action-research-exchange/')
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_multi_projects_apply.html', {}, context_instance=context)
@@ -111,17 +154,44 @@ def project_apply(request, slug):
 
 @login_required
 def create(request):
+    user = request.user
     # User must belong to an organization
     organization = require_organization(request)
     if isinstance(organization, HttpResponseRedirect):
         return organization
     initial = {'user': request.user}
-    cat = Category.objects.filter(title='Action Research Exchange')
-    if len(cat):
-        initial['category'] = cat[0]
+    cat = _category_by_model(Project)
+    initial['category'] = cat
     form = ProjectForm(request.POST or None, request.FILES or None, initial=initial)
     if request.method == 'POST' and form.is_valid():
         form.save()
+        action = 'creating'
+        project = form.instance
+        send_mail_template('ARX Project created: %s' % project.title,
+               'sfpirg/email/arx_draft.txt',
+               settings.SERVER_EMAIL,
+               request.user.email,
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
+        if project.is_submitted:
+            send_mail_template('ARX Project submitted: %s' % project.title,
+                               'sfpirg/email/arx_submitted.txt',
+                               settings.SERVER_EMAIL,
+                               request.user.email,
+                               context=locals(),
+                               attachments=None,
+                               fail_silently=settings.DEBUG,
+                               addr_bcc=None)
+            send_mail_template('ARX Project submitted: %s' % project.title,
+                               'sfpirg/email/arx_admin_submitted.txt',
+                               settings.SERVER_EMAIL,
+                               settings.ARX_ADMIN_EMAIL,
+                               context=locals(),
+                               attachments=None,
+                               fail_silently=settings.DEBUG,
+                               addr_bcc=None)
         return HttpResponseRedirect(form.instance.get_absolute_url())
     log.debug('Form errors: %s' % form.errors)
     user = request.user

@@ -15,8 +15,8 @@
 		{% endif %}
 	{% endif %}
 	<h2>{{ t.title }}</h2>
-	<h4 style="line-height:10px;"><span style="font-size:12px; font-weight:normal;">By:</span> {{ t.user.get_full_name|default:t.user.username }}</h4>
-    <p>{% if t.user.profile.title %}{{ t.user.profile.title }}{% endif %}</p>
+	<h4 style="line-height:10px;"><span style="font-size:12px; font-weight:normal;">By:</span> {{ t.get_author_full_name }}</h4>
+    <p>{{ t.get_author_title }}</p>
 
 	{% editable t.content %}
 		{{ t.content|richtext_filter|safe }}

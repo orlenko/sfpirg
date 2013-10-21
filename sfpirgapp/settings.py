@@ -46,6 +46,8 @@ ADMINS = (
     ('SFPIRG Admin', 'sfpirg@bjola.ca'),
 )
 SERVER_EMAIL = 'noreply@sfpirg.ca'
+ARX_ADMIN_EMAIL = 'arx@sfpirg.ca'
+ACTION_GROUPS_ADMIN_EMAIL = 'actiongroups@sfpirg.ca'
 MANAGERS = ADMINS
 TIME_ZONE = None
 USE_TZ = False

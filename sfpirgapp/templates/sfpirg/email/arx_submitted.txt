@@ -1,0 +1,11 @@
+Dear {{ user.get_full_name|default:user.username }},
+
+Thank you for submitting an ARX proposal! Our Research Coordinator will look through it and get back to you soon with next steps.
+
+In the meantime, to view your proposal, please go to http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}. Please don’t make any changes to your proposal now that it is submitted.
+
+If you have any further questions, please feel free to email our ARX Coordinator on arx@sfpirg.ca.
+
+Warmly,
+
+~ The SFPIRG Team

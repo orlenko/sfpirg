@@ -1,0 +1,13 @@
+Dear {{name}},
+
+Thank you for letting us know that you are interested in taking on an ARX project! You indicated interest in the following project(s):
+
+{% for project in projects %}
+	{{ project.title }} - http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}
+{% endfor %}
+
+Our Research Coordinator will get back to you shortly with next steps. If you have any further questions, you can email them to us directly at arx@sfpirg.ca.
+
+Warmly,
+
+~ The SFPIRG Team

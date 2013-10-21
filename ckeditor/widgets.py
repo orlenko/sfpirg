@@ -24,24 +24,15 @@ _CSS_FILE = 'grappelli.css' if GRAPPELLI_PRESENT else 'standard.css'
 
 class CKEditor(forms.Textarea):
     def __init__(self, *args, **kwargs):
-        #print 'Instantiating CKEditor widget: %s %s' % (list(args), kwargs)
-
         attrs = kwargs.get('attrs', {})
         attrs['class'] = 'django-ckeditor'
         kwargs['attrs'] = attrs
-
         self.ckeditor_config = kwargs.pop('ckeditor_config', 'default')
-        #print 'SPECIFIED CKEDITOR CONFIG for %s-%s: %s' % (attrs, kwargs, self.ckeditor_config)
-
         super(CKEditor, self).__init__(*args, **kwargs)
 
     def render(self, name, value, attrs=None, **kwargs):
         rendered = super(CKEditor, self).render(name, value, attrs)
-
         ckconfig = CKEDITOR_CONFIGS[self.ckeditor_config]
-        #print '\n\n\nCKConfig "%s" for %s: %s' % (self.ckeditor_config, attrs, ckconfig)
-        traceback.print_stack()
-
         context = {
             'name': name,
             'config': ckconfig,
@@ -52,9 +43,6 @@ class CKEditor(forms.Textarea):
             # IDs like: id_subsection-6-description
             'regex': attrs.get('id', '').replace('__prefix__', r'\d+'),
         }
-
-        #print 'Rendering CKEditor with context: %s' % context
-
         return rendered +  mark_safe(render_to_string(
             'ckeditor/ckeditor_script.html', context
         ))

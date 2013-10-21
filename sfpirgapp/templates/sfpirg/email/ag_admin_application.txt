@@ -1,0 +1,36 @@
+Hello Action Groups Admin,
+
+You have received a new Action Group application. See below.
+
+-------------------------------
+
+Action Group: {{ actiongroup.title }} - http://{{ request.META.SERVER_NAME }}{{ actiongroup.get_absolute_url }}
+
+Description:  {{ actiongroup.content|striptags }}
+
+Announcements: {{ actiongroup.announcements|striptags }}
+
+Meetings: {{ actiongroup.meetings|striptags }}
+
+Contact Email: {{ actiongroup.contact_email|striptags }}
+
+Contact Phone: {{ actiongroup.contact_phone|striptags }}
+
+Links: {{ actiongroup.links|striptags }}
+
+Facebook: {{ actiongroup.facebook_url }}
+
+Twitter: {{ actiongroup.twitter }}
+
+Google+: {{ actiongroup.google_plus_url }}
+
+Mailing List: {{ actiongroup.mailing_list_url }}
+
+-------------------------------
+
+
+Also, have I told you lately how lovely you are?
+
+Love,
+
+~ The SFPIRG Website

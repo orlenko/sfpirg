@@ -3,15 +3,13 @@
 
 {% if testimonial.featured_image %}
 	<a href="{{ testimonial.get_absolute_url }}"><img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail testimonial.featured_image 90 0 %}" alt="Featured Image" /></a>
-{% endif %}
-
-{% if not testimonial.featured_image %}
+{% else %}
 	{% if testimonial.user.profile.photo %}
 		<a href="{{ testimonial.get_absolute_url }}"><img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail testimonial.user.profile.photo 90 0 %}" alt="Avatar" /></a>
 	{% endif %}
 {% endif %}
 <p class="x-title-story">{{ testimonial.title|truncatewords:4 }}</p>
-<p class="x-name">By: {{ testimonial.user.get_full_name|default:testimonial.user.username|truncatechars:30 }}</p>
+<p class="x-name">By:{{ testimonial.get_author_full_name|truncatechars:30 }}</p>
 
-	{{ testimonial.content|richtext_filter|safe|truncatewords:15 }}
+{{ testimonial.content|richtext_filter|safe|truncatewords:15 }}
 <a href="{{ testimonial.get_absolute_url }}"><img class="x-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>

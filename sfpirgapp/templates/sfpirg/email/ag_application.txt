@@ -1,0 +1,42 @@
+Dear {{Name of user}},
+
+Thank you for submitting an Action Group application! Please print out a copy for your records. You can find it here:
+
+Action Group: {{ actiongroup.title }}
+
+Description:  {{ actiongroup.content|striptags }}
+
+Announcements: {{ actiongroup.announcements|striptags }}
+
+Meetings: {{ actiongroup.meetings|striptags }}
+
+Contact Email: {{ actiongroup.contact_email|striptags }}
+
+Contact Phone: {{ actiongroup.contact_phone|striptags }}
+
+Links: {{ actiongroup.links|striptags }}
+
+Facebook: {{ actiongroup.facebook_url }}
+
+Twitter: {{ actiongroup.twitter }}
+
+Google+: {{ actiongroup.google_plus_url }}
+
+Mailing List: {{ actiongroup.mailing_list_url }}
+
+
+Your application will now go to SFPIRG’s Board of Directors for consideration. Please bear with us as this can take a few weeks. We will get back to you with a decision as soon as we can.
+
+If you have any questions about your application, you can speak to our Media & Outreach Coordinator by emailing them at outreach@sfpirg.ca.
+
+In the meantime, any student groups involved in social and environmental justice are welcome to use SFPIRG’s resources. This includes:
+
+	- using our lounge & meeting room for your events and meetings
+	- access to supplies like the button maker, megaphone, office supplies, paints & banner paper, coffee maker, etc
+	- use of the photocopier for printing your posters and other materials
+
+Just drop in anytime and ask one of our staff members for assistance. We are open Monday to Friday, 10:30am to 4:30pm. We are located in TC326 in the Rotunda, SFU Burnaby.
+
+Warmly,
+
+~ The SFPIRG Team

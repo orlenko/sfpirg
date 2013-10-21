@@ -1,0 +1,23 @@
+Hello ARX Admin,
+
+A student has just applied for one or more ARX projects through the SFPIRG website. The details are below.
+
+-------------------------------
+
+Student's email: {{ email }}
+
+Project(s):
+	{% for project in projects %}
+		* {{ project.title }} - http://{{ request.META.SERVER_NAME }}{{ project.get_absolute_url }}
+	{% endfor %}
+
+Comments: {{ comments }}
+
+-------------------------------
+
+
+Also, have I told you lately how lovely you are?
+
+Love,
+
+~ The SFPIRG Website

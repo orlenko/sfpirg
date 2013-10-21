@@ -3,6 +3,9 @@ from django.shortcuts import render_to_response
 from sfpirgapp.forms import OrganizationForm
 from django.http.response import HttpResponseRedirect
 import logging
+from sfpirgapp.views.actiongroups import actiongroup
+from mezzanine.utils.email import send_mail_template
+from django.conf import settings
 
 
 log = logging.getLogger(__name__)
@@ -29,6 +32,16 @@ def organization(request):
         form.save()
         user.profile.organization = form.instance
         user.profile.save()
+        if not org:
+            # This is a new organization!
+            send_mail_template('Action Group Application Submitted: %s' % organization.title,
+                   'sfpirg/email/arx_new_organization.txt',
+                   settings.SERVER_EMAIL,
+                   request.user.email,
+                   context=locals(),
+                   attachments=None,
+                   fail_silently=settings.DEBUG,
+                   addr_bcc=None)
         return HttpResponseRedirect(request.GET.get('next'))
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/organization.html', {}, context_instance=context)
