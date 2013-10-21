@@ -59,7 +59,7 @@ def create(request):
         form.save()
         actiongroup = form.instance
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
-               'sfpirg/email/ag_application.txt',
+               'sfpirg/email/ag_application',
                settings.SERVER_EMAIL,
                request.user.email,
                context=locals(),
@@ -67,7 +67,7 @@ def create(request):
                fail_silently=settings.DEBUG,
                addr_bcc=None)
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
-               'sfpirg/email/ag_admin_application.txt',
+               'sfpirg/email/ag_admin_application',
                settings.SERVER_EMAIL,
                settings.ACTION_GROUPS_ADMIN_EMAIL,
                context=locals(),
