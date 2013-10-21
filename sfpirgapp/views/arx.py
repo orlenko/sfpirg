@@ -55,7 +55,7 @@ def project(request, slug):
                     # Project draft was saved.
                     action = 'updating'
                     send_mail_template('ARX Project updated: %s' % project.title,
-                                       'sfpirg/email/arx_draft.txt',
+                                       'sfpirg/email/arx_draft',
                                        settings.SERVER_EMAIL,
                                        request.user.email,
                                        context=locals(),
@@ -65,7 +65,7 @@ def project(request, slug):
                 elif not was_submitted:
                     # Project was not submitted before, but now it is.
                     send_mail_template('ARX Project submitted: %s' % project.title,
-                                       'sfpirg/email/arx_submitted.txt',
+                                       'sfpirg/email/arx_submitted',
                                        settings.SERVER_EMAIL,
                                        request.user.email,
                                        context=locals(),
@@ -73,7 +73,7 @@ def project(request, slug):
                                        fail_silently=settings.DEBUG,
                                        addr_bcc=None)
                     send_mail_template('ARX Project submitted: %s' % project.title,
-                                       'sfpirg/email/arx_admin_submitted.txt',
+                                       'sfpirg/email/arx_admin_submitted',
                                        settings.SERVER_EMAIL,
                                        settings.ARX_ADMIN_EMAIL,
                                        context=locals(),
@@ -119,7 +119,7 @@ def multi_apply(request):
             for proj_id in project_ids:
                 Application.objects.create(email=email, project_id=proj_id, message=comments)
             send_mail_template('ARX Project application submitted',
-               'sfpirg/email/arx_application.txt',
+               'sfpirg/email/arx_application',
                settings.SERVER_EMAIL,
                email,
                context=locals(),
@@ -127,7 +127,7 @@ def multi_apply(request):
                fail_silently=settings.DEBUG,
                addr_bcc=None)
             send_mail_template('ARX Project application submitted',
-               'sfpirg/email/arx_admin_application.txt',
+               'sfpirg/email/arx_admin_application',
                settings.SERVER_EMAIL,
                settings.ARX_ADMIN_EMAIL,
                context=locals(),
@@ -168,7 +168,7 @@ def create(request):
         action = 'creating'
         project = form.instance
         send_mail_template('ARX Project created: %s' % project.title,
-               'sfpirg/email/arx_draft.txt',
+               'sfpirg/email/arx_draft',
                settings.SERVER_EMAIL,
                request.user.email,
                context=locals(),
@@ -177,7 +177,7 @@ def create(request):
                addr_bcc=None)
         if project.is_submitted:
             send_mail_template('ARX Project submitted: %s' % project.title,
-                               'sfpirg/email/arx_submitted.txt',
+                               'sfpirg/email/arx_submitted',
                                settings.SERVER_EMAIL,
                                request.user.email,
                                context=locals(),
@@ -185,7 +185,7 @@ def create(request):
                                fail_silently=settings.DEBUG,
                                addr_bcc=None)
             send_mail_template('ARX Project submitted: %s' % project.title,
-                               'sfpirg/email/arx_admin_submitted.txt',
+                               'sfpirg/email/arx_admin_submitted',
                                settings.SERVER_EMAIL,
                                settings.ARX_ADMIN_EMAIL,
                                context=locals(),

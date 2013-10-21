@@ -35,13 +35,13 @@ def organization(request):
         if not org:
             # This is a new organization!
             send_mail_template('Action Group Application Submitted: %s' % organization.title,
-                   'sfpirg/email/arx_new_organization.txt',
+                   'sfpirg/email/arx_new_organization',
                    settings.SERVER_EMAIL,
                    request.user.email,
                    context=locals(),
                    attachments=None,
                    fail_silently=settings.DEBUG,
                    addr_bcc=None)
-        return HttpResponseRedirect(request.GET.get('next'))
+        return HttpResponseRedirect(request.GET.get('next', '/'))
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/organization.html', {}, context_instance=context)
