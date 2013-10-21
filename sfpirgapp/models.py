@@ -327,6 +327,9 @@ class Settings(models.Model):
     name = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.name
+
     @classmethod
     def get_setting(cls, name, default_value=None):
         for rec in cls.objects.filter(name=name):

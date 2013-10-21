@@ -6,7 +6,8 @@ ADMIN_MENU_ORDER = (
       'sfpirgapp.Testimonial',
       'news.NewsPost',
       'calendar.Event',
-      'calendar.EventType'
+      'calendar.EventType',
+      'sfpirgapp.Settings',
     )),
     ('Action Groups',(
       'sfpirgapp.ActionGroup',

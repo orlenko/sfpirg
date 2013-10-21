@@ -117,6 +117,11 @@ class ProjectAdmin(ModelAdmin):
     }
 
 
+class SettingsAdmin(ModelAdmin):
+    list_display = ['name', 'value']
+    list_editable = ['value']
+
+
 admin.site.register(ActionGroup, ActionGroupAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Profile, ProfileAdmin)
@@ -128,4 +133,4 @@ admin.site.register(ProjectSubject)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Application)
 admin.site.register(Liaison)
-admin.site.register(Settings)
+admin.site.register(Settings, SettingsAdmin)
