@@ -48,10 +48,11 @@ def actiongroup(request, slug):
 
 @login_required
 def create(request):
+    user = request.user
     # See if this user already has an actiongroup - no need to create then.
-    for existing in ActionGroup.objects.filter(user=request.user):
+    for existing in ActionGroup.objects.filter(user=user):
         return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
-    initial = {'user': request.user, 'status': 1, '_order': 0}
+    initial = {'user': user, 'status': 1, '_order': 0}
     cat = _category_by_model(ActionGroup)
     initial['category'] = cat
     form = ActionGroupForm(request.POST or None, request.FILES or None, initial=initial)
@@ -61,7 +62,7 @@ def create(request):
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
                'sfpirg/email/ag_application',
                settings.SERVER_EMAIL,
-               request.user.email,
+               user.email,
                context=locals(),
                attachments=None,
                fail_silently=settings.DEBUG,
@@ -75,7 +76,6 @@ def create(request):
                fail_silently=settings.DEBUG,
                addr_bcc=None)
         return HttpResponseRedirect(form.instance.get_absolute_url())
-    user = request.user
     current_item = 'Create Action Group'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/action_group_create.html', {}, context_instance=context)
