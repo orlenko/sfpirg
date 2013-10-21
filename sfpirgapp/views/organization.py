@@ -35,7 +35,7 @@ def organization(request):
         user.profile.save()
         if not org:
             # This is a new organization!
-            send_mail_template('Action Group Application Submitted: %s' % organization.title,
+            send_mail_template('Action Group Application Submitted: %s' % form.instance.title,
                    'sfpirg/email/arx_new_organization',
                    Settings.get_setting('SERVER_EMAIL'),
                    request.user.email,
