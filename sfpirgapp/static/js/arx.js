@@ -22,7 +22,7 @@ $(function() {
 		$.ajax({
 			type: projId?'post':'get',
 			dataType: 'json',
-			url: '/arx/project/toggle-selection/' + projId + '/',
+			url: '/arx/project/toggle-selection/' + projId + '/?random=' + Math.random(),
 			data: {
 				include: value
 			}
