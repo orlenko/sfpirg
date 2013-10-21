@@ -6,6 +6,7 @@ import logging
 from sfpirgapp.views.actiongroups import actiongroup
 from mezzanine.utils.email import send_mail_template
 from django.conf import settings
+from sfpirgapp.models import Settings
 
 
 log = logging.getLogger(__name__)
@@ -36,7 +37,7 @@ def organization(request):
             # This is a new organization!
             send_mail_template('Action Group Application Submitted: %s' % organization.title,
                    'sfpirg/email/arx_new_organization',
-                   settings.SERVER_EMAIL,
+                   Settings.get_setting('SERVER_EMAIL'),
                    request.user.email,
                    context=locals(),
                    attachments=None,

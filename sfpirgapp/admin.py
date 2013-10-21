@@ -7,7 +7,7 @@ from sfpirgapp.models import (
     Testimonial,
     Profile,
     Category,
-    MyImageField)
+    MyImageField, Settings)
 from mezzanine.pages.admin import PageAdmin
 from sfpirgapp.models import ActionGroup
 from sfpirgapp import settings
@@ -128,3 +128,4 @@ admin.site.register(ProjectSubject)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Application)
 admin.site.register(Liaison)
+admin.site.register(Settings)

@@ -10,7 +10,7 @@ from mezzanine.utils.email import send_mail_template
 from sfpirgapp.forms import ApplicationForm
 from sfpirgapp.forms import MultiApplicationForm
 from sfpirgapp.forms import ProjectForm
-from sfpirgapp.models import Application
+from sfpirgapp.models import Application, Settings
 from sfpirgapp.models import Project
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
@@ -56,7 +56,7 @@ def project(request, slug):
                     action = 'updating'
                     send_mail_template('ARX Project updated: %s' % project.title,
                                        'sfpirg/email/arx_draft',
-                                       settings.SERVER_EMAIL,
+                                       Settings.get_setting('SERVER_EMAIL'),
                                        request.user.email,
                                        context=locals(),
                                        attachments=None,
@@ -66,7 +66,7 @@ def project(request, slug):
                     # Project was not submitted before, but now it is.
                     send_mail_template('ARX Project submitted: %s' % project.title,
                                        'sfpirg/email/arx_submitted',
-                                       settings.SERVER_EMAIL,
+                                       Settings.get_setting('SERVER_EMAIL'),
                                        request.user.email,
                                        context=locals(),
                                        attachments=None,
@@ -74,8 +74,8 @@ def project(request, slug):
                                        addr_bcc=None)
                     send_mail_template('ARX Project submitted: %s' % project.title,
                                        'sfpirg/email/arx_admin_submitted',
-                                       settings.SERVER_EMAIL,
-                                       settings.ARX_ADMIN_EMAIL,
+                                       Settings.get_setting('SERVER_EMAIL'),
+                                       Settings.get_setting('ARX_ADMIN_EMAIL'),
                                        context=locals(),
                                        attachments=None,
                                        fail_silently=settings.DEBUG,
@@ -120,7 +120,7 @@ def multi_apply(request):
                 Application.objects.create(email=email, project_id=proj_id, message=comments)
             send_mail_template('ARX Project application submitted',
                'sfpirg/email/arx_application',
-               settings.SERVER_EMAIL,
+               Settings.get_setting('SERVER_EMAIL'),
                email,
                context=locals(),
                attachments=None,
@@ -128,8 +128,8 @@ def multi_apply(request):
                addr_bcc=None)
             send_mail_template('ARX Project application submitted',
                'sfpirg/email/arx_admin_application',
-               settings.SERVER_EMAIL,
-               settings.ARX_ADMIN_EMAIL,
+               Settings.get_setting('SERVER_EMAIL'),
+               Settings.get_setting('ARX_ADMIN_EMAIL'),
                context=locals(),
                attachments=None,
                fail_silently=settings.DEBUG,
@@ -169,7 +169,7 @@ def create(request):
         project = form.instance
         send_mail_template('ARX Project created: %s' % project.title,
                'sfpirg/email/arx_draft',
-               settings.SERVER_EMAIL,
+               Settings.get_setting('SERVER_EMAIL'),
                request.user.email,
                context=locals(),
                attachments=None,
@@ -178,7 +178,7 @@ def create(request):
         if project.is_submitted:
             send_mail_template('ARX Project submitted: %s' % project.title,
                                'sfpirg/email/arx_submitted',
-                               settings.SERVER_EMAIL,
+                               Settings.get_setting('SERVER_EMAIL'),
                                request.user.email,
                                context=locals(),
                                attachments=None,
@@ -186,8 +186,8 @@ def create(request):
                                addr_bcc=None)
             send_mail_template('ARX Project submitted: %s' % project.title,
                                'sfpirg/email/arx_admin_submitted',
-                               settings.SERVER_EMAIL,
-                               settings.ARX_ADMIN_EMAIL,
+                               Settings.get_setting('SERVER_EMAIL'),
+                               Settings.get_setting('ARX_ADMIN_EMAIL'),
                                context=locals(),
                                attachments=None,
                                fail_silently=settings.DEBUG,

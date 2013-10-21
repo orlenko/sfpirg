@@ -321,3 +321,16 @@ class Application(models.Model):
     def __unicode__(self):
         return '%s: %s (%s...)' % (self.email, self.project.title, self.message[:20])
 
+
+
+class Settings(models.Model):
+    name = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
+
+    @classmethod
+    def get_setting(cls, name, default_value=None):
+        for rec in cls.objects.filter(name=name):
+            return rec.value
+        retval = getattr(settings, name, default_value or '-')
+        cls.objects.create(name=name, value=retval)
+        return retval

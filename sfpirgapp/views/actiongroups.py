@@ -4,7 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from sfpirgapp.forms import ActionGroupForm
-from sfpirgapp.models import ActionGroup
+from sfpirgapp.models import ActionGroup, Settings
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
 from mezzanine.utils.email import send_mail_template
@@ -61,7 +61,7 @@ def create(request):
         actiongroup = form.instance
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
                'sfpirg/email/ag_application',
-               settings.SERVER_EMAIL,
+               Settings.get_setting('SERVER_EMAIL'),
                user.email,
                context=locals(),
                attachments=None,
@@ -69,8 +69,8 @@ def create(request):
                addr_bcc=None)
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
                'sfpirg/email/ag_admin_application',
-               settings.SERVER_EMAIL,
-               settings.ACTION_GROUPS_ADMIN_EMAIL,
+               Settings.get_setting('SERVER_EMAIL'),
+               Settings.get_setting('ACTION_GROUPS_ADMIN_EMAIL'),
                context=locals(),
                attachments=None,
                fail_silently=settings.DEBUG,
