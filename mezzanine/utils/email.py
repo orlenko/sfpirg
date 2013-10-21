@@ -45,7 +45,12 @@ def send_mail_template(subject, template, addr_from, addr_to, context=None,
     # Create and send email.
     msg = EmailMultiAlternatives(subject, render("txt"),
                                  addr_from, addr_to, addr_bcc)
-    msg.attach_alternative(render("html"), "text/html")
+    try:
+        template = loader.get_template('%s.html' % template).render(Context(context))
+        msg.attach_alternative(template, 'text/html')
+    except:
+        pass
+    #msg.attach_alternative(render("html"), "text/html")
     for attachment in attachments:
         msg.attach(*attachment)
     msg.send(fail_silently=fail_silently)
