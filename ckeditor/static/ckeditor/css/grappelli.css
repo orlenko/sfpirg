@@ -20,4 +20,5 @@ span.cke_wrapper iframe {
 /* Override stupid bug in Grapelli */
 input[type=text], input[type=password] {
 	line-height: normal !important;
+	height: 24px;
 }
