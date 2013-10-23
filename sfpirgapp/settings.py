@@ -85,6 +85,9 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip('/').split('/'))
 ROOT_URLCONF = '%s.urls' % PROJECT_DIRNAME
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, 'templates'),)
 AUTH_PROFILE_MODULE = 'sfpirgapp.profile'
+GRAPPELLI_ADMIN_TITLE = 'SFPIRG'
+GRAPPELLI_ADMIN_HEADLINE = 'SFPIRG'
+
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
