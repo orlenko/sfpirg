@@ -25,8 +25,10 @@
 
 			{% if request.REQUEST.organization %}
 				{% sfpirg_field form.organization %}
+                
 				<div style="display:none;">
 			{% endif %}
+            <div class="arx-steps clear"><img src="../../static/img/arx-steps-1.png" alt="3 Easy Steps " /></div>
 
 			{% if form.first_name %}{% sfpirg_field form.first_name %}{% endif %}
 			{% if form.last_name %}{% sfpirg_field form.last_name %}{% endif %}

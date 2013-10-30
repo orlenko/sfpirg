@@ -73,5 +73,18 @@ $(function() {
 				}
 			})
 		})
+		
+		$("a#responsive_menu_button_footer, #responsive_current_menu_item_footer").click(function() {
+			$(".js #footer-nav .menu").slideToggle(function() {
+				if ($(this).is(":visible")) {
+					$("a#responsive_menu_button_footer").addClass("responsive-toggle-open")
+				} else {
+					$("a#responsive_menu_button_footer").removeClass("responsive-toggle-open");
+					$(".js #footer-nav .menu").removeAttr("style")
+				}
+			})
+		})
+		
+		
 	}, 200);
 })

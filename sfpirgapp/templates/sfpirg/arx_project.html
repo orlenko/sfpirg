@@ -105,22 +105,22 @@
 
 		<div class="project-details">
 			<h4>About this Project:</h4>
-			<div>
+			<div class="arx-progect-text">
 				{{project.description_long|richtext_filter|safe}}
 			</div>
 
 			<h4>Deliverables:</h4>
-			<div>
+			<div class="arx-progect-text">
 				{{project.description_long|richtext_filter|safe}}
 			</div>
 
 			<h4>The Student Researcher Must Possess:</h4>
-			<div>
+			<div class="arx-progect-text">
 				{{project.researcher_qualities|richtext_filter|safe}}
 			</div>
 
 			<h4>Use of Project Results:</h4>
-			<div>
+			<div class="arx-progect-text">
 				{{project.results_plan|richtext_filter|safe}}
 			</div>
             
@@ -163,7 +163,7 @@
 			{% endif %}
 
 			<h2>About {{ project.user.profile.organization.title }}</h2>
-			<div>
+			<div class="arx-progect-text">
 				{{ project.user.profile.organization.mandate|richtext_filter|safe }}
 			</div>
 		</div>
