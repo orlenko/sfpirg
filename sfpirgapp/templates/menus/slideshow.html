@@ -12,7 +12,7 @@
 		<div class="cycle-overlay"></div>
 	    {% for page in pages %}
 	    	<div class="slidecontent"
-	    		data-cycle-title="{{ page.title }}"
+	    		data-cycle-title="{{ page.title|truncatewords:6 }}"
 			    data-cycle-desc="{{ page.richtextpage.content|striptags|truncatewords:30 }}"
 			    data-cycle-url="{{ page.get_absolute_url }}">
 		    	<img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 785 0 %}" />

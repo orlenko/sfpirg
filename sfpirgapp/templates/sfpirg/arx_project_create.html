@@ -15,7 +15,28 @@
 
 	<form method='post' action='' enctype="multipart/form-data">
 		{% csrf_token %}
-		{{form.as_p}}
+		{% for field in form %}
+			<div title="{{field.help_text}}"
+				{% if field.errors %} class="errorlist" {% endif %}
+				style="margin: 0 0 10px 0;">
+
+				{% if field.errors %}
+					<ul>
+						{% for error in field.errors %}
+							<li>{{ error }}</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				{% if not field.is_hidden %}
+					{{field.label_tag}}
+					{% if field.help_text %}
+						<div class="helptext">{{ field.help_text }}</div>
+					{% endif %}
+				{% endif %}
+				{{ field }}
+			</div>
+		{% endfor %}
 		<p>
 			<input type='submit' value='Save as Draft'/>
 			<input type='submit' onclick='$("#id_is_submitted").val("True");return true;' value='Submit for Approval' />

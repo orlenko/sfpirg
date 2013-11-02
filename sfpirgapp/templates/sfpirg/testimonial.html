@@ -3,7 +3,7 @@
 
 {% block main %}
 
-	<h1>{{ t.title }}</h1>
+	<h1>{{ t.title|truncatewords:6 }}</h1>
 
 	{% if t.featured_image %}
 		<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.featured_image 177 0 %}" alt="Featured Image" />
@@ -14,7 +14,7 @@
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail t.user.profile.photo 177 0 %}" alt="Avatar" />
 		{% endif %}
 	{% endif %}
-	<h2>{{ t.title }}</h2>
+	<h2>{{ t.title|truncatewords:6 }}</h2>
 	<h4 style="line-height:10px;"><span style="font-size:12px; font-weight:normal;">By:</span> {{ t.get_author_full_name }}</h4>
     <p>{{ t.get_author_title }}</p>
 

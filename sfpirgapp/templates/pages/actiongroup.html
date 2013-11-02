@@ -20,7 +20,7 @@
 {% else %}
 
 
-	<h1>{{ page.title }}</h1>
+	<h1>{{ page.title|truncatewords:6 }}</h1>
 
 	{% if request.user == actiongroup.user or request.user.is_superuser %}
 		<a href="?edit=1">Edit this page</a>
@@ -60,23 +60,19 @@
 		{% endif %}
 
 		{% if actiongroup.facebook_url %}
-			<h2>Facebook</h2>
-			{{ actiongroup.facebook_url|richtext_filter|safe }}
+			<a href="{{ actiongroup.facebook_url }}"><img src="/static/img/icon-fb.png" title="Facebook: {{ actiongroup.facebook_url }}" /></a>
 		{% endif %}
 
 		{% if actiongroup.twitter %}
-			<h2>Twitter</h2>
-			{{ actiongroup.twitter|richtext_filter|safe }}
+			<a href="{{ actiongroup.twitter_url }}"><img src="/static/img/icon-tw.png" title="Twitter: {{ actiongroup.twitter }}"  /></a>
 		{% endif %}
 
 		{% if actiongroup.google_plus_url %}
-			<h2>Google+</h2>
-			{{ actiongroup.google_plus_url|richtext_filter|safe }}
+			<a href="{{ actiongroup.google_plus_url }}"><img src="/static/img/icon-g-plus.png" title="Google+: {{ actiongroup.google_plus_url }}" /></a>
 		{% endif %}
 
 		{% if actiongroup.mailing_list_url %}
-			<h2>Mailing List</h2>
-			{{ actiongroup.mailing_list_url|richtext_filter|safe }}
+			<a href="{{ actiongroup.mailing_list_url }}"><img src="/static/img/icon-email.png" title="Mailing List+: {{ actiongroup.mailing_list_url }}" /></a>
 		{% endif %}
 	</div>
 

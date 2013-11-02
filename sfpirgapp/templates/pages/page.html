@@ -16,5 +16,5 @@
 {% endmetablock %}{% endblock %}
 
 {% block main %}
-	<h1>{% editable page.title %}{{ page.title }}{% endeditable %}</h1>
+	<h1>{% editable page.title %}{{ page.title|truncatewords:6 }}{% endeditable %}</h1>
 {% endblock %}

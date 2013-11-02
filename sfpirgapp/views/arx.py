@@ -113,11 +113,12 @@ def multi_apply(request):
     projects = Project.objects.filter(pk__in=project_ids)
     if request.method == 'POST':
         form = MultiApplicationForm(request.POST)
-        name = email = form.data['email']
+        name = form.data['name']
+        email = form.data['email']
         comments = form.data['message']
         if form.is_valid():
             for proj_id in project_ids:
-                Application.objects.create(email=email, project_id=proj_id, message=comments)
+                Application.objects.create(name=name, email=email, project_id=proj_id, message=comments)
             send_mail_template('ARX Project application submitted',
                'sfpirg/email/arx_application',
                Settings.get_setting('SERVER_EMAIL'),

@@ -18,12 +18,14 @@
 		         			{% if ag.featured_image %}
 		         				<img class="ag-img"
 		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail ag.featured_image 50 50 %}"
-		         					 alt="Action Group Picture" />
+		         					 alt="{{ag.title}}"
+		         					 title="{{ag.title}}" />
 		         			{% endif %}
 		         			{% if not ag.featured_image %}
 		         				<img class="ag-img"
 		         					 src="{{ MEDIA_URL }}{% sfpirg_thumbnail 'noimg.jpg' 50 50 %}"
-		         					 alt="Action Group Picture" />
+		         					 alt="{{ag.title}}"
+		         					 title="{{ag.title}}" />
 		         			{% endif %}
 		         			</a>
 		         		</div>

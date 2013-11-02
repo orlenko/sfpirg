@@ -1,7 +1,7 @@
 <ul>
 	{% for rec in news %}
 	<li>
-		<a href="{{ rec.get_absolute_url }}">{{ rec.title }}</a>
+		<a href="{{ rec.get_absolute_url }}">{{ rec.title|truncatewords:6 }}</a>
 	</li>
 	{% endfor %}
 </ul>

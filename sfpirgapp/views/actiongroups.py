@@ -1,13 +1,14 @@
+from django.conf import settings
+from django.contrib.auth import login
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
+from mezzanine.utils.email import send_mail_template
+from sfpirgapp.forms import ActionGroupCreateForm
 from sfpirgapp.forms import ActionGroupForm
 from sfpirgapp.models import ActionGroup, Settings
 import logging
-from mezzanine.utils.email import send_mail_template
-from django.conf import settings
-from sfpirgapp.forms import ActionGroupCreateForm
 
 
 log = logging.getLogger(__name__)
@@ -40,7 +41,9 @@ def actiongroup(request, slug):
         if request.method == 'POST' and form.is_valid():
             form.save()
             return HttpResponseRedirect(actiongroup.get_absolute_url())
-
+        else:
+            if not (request.user.is_superuser or request.user == actiongroup.user):
+                return HttpResponseRedirect(actiongroup.get_absolute_url())
     context = RequestContext(request, locals())
     return render_to_response('pages/actiongroup.html', {}, context_instance=context)
 
@@ -54,7 +57,9 @@ def create(request):
     form = ActionGroupCreateForm(request.POST or None, user=user)
     if request.method == 'POST' and form.is_valid():
         if not user or user.is_anonymous() or not user.profile:
-            user = request.user = form.save_user()
+            user = form.save_user()
+            if user:
+                login(request, user)
         actiongroup = form.save_action_group()
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
                'sfpirg/email/ag_application',
@@ -72,7 +77,7 @@ def create(request):
                attachments=None,
                fail_silently=settings.DEBUG,
                addr_bcc=None)
-        return HttpResponseRedirect(form.instance.get_absolute_url())
+        return HttpResponseRedirect(actiongroup.get_absolute_url())
     current_item = 'Create Action Group'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/action_group_create.html', {}, context_instance=context)

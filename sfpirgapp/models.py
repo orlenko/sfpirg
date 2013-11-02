@@ -47,7 +47,7 @@ class Testimonial(PageLike):
     user = ForeignKey(User, null=True, blank=True, verbose_name=_("Author"), related_name="testimonials")
     category = ForeignKey('Category', related_name='testimonials')
     author_full_name = models.CharField(verbose_name='Your Full Name', max_length=255, null=True, blank=True)
-    author_title = models.CharField(verbose_name='Your Title', max_length=255 ,null=True, blank=True)
+    author_title = models.CharField(verbose_name='Your area of study or job title', max_length=255 ,null=True, blank=True)
 
     def get_author_full_name(self):
         if self.author_full_name:
@@ -110,9 +110,8 @@ class ActionGroup(PageLike, Ownable):
     goals = models.TextField('Main Goal(s)', null=True, blank=True)
     timeline = models.TextField('Plans and Timeline', null=True, blank=True,
                                 help_text='Specific Plans and timeline for the semester (please be as concrete as possible)')
-    oneliner = models.TextField('One-liner', null=True, blank=True,
-                                help_text='One-liner for SFPIRG promotional materials')
-    twoliner = models.TextField(' paragraph for SFPIRG website', null=True, blank=True)
+    oneliner = models.TextField('One-liner for SFPIRG promotional materials', null=True, blank=True)
+    twoliner = models.TextField('One paragraph for SFPIRG website', null=True, blank=True)
     potential_members = models.TextField('Potential members of your group', null=True, blank=True,
                                          help_text='Please include the members of your potential Action Group: (NAME, PHONE, EMAIL)')
     links = RichTextField(null=True, blank=True,
@@ -142,6 +141,15 @@ class ActionGroup(PageLike, Ownable):
     @models.permalink
     def get_absolute_url(self):
         return ('action-group', (), {'slug': self.slug})
+
+    def twitter_url(self):
+        if not self.twitter:
+            return ''
+        if self.twitter.startswith('http://') or self.twitter.startswith('https://'):
+            return self.twitter
+        if self.twitter.startswith('@'):
+            return 'http://twitter.com/%s' % self.twitter[1:]
+        return 'http://twitter.com/%s' % self.twitter
 
 
 class Address(models.Model):
@@ -328,6 +336,7 @@ class Project(Slugged, AdminThumbMixin):
 
 
 class Application(models.Model):
+    name = models.CharField('Your Name', max_length=255)
     email = models.EmailField(null=True, blank=True, max_length=255, verbose_name='Your Email')
     project = ForeignKey(Project)
     timestamp = models.DateTimeField(default=datetime.datetime.utcnow)

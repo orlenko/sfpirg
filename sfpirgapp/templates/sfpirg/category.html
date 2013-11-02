@@ -11,7 +11,7 @@
 	{% block category_tools %}
 	{% endblock %}
 
-	<h1>{{ category.title }}</h1>
+	<h1>{{ category.title|truncatewords:6 }}</h1>
 
 	<div id="main-content-block">
 		{% editable category.content %}

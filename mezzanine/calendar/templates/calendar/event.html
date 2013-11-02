@@ -9,7 +9,7 @@
 		{% if event.featured_image %}
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 250 0 %}" />
 		{% endif %}
-        <h2>{{event.title}}</h2>
+        <h2>{{event.title|truncatewords:6}}</h2>
 		<p>{{ event.start|date:"M d" }}, {{ event.start|date:"g:iA" }}<br/>
 
 		{% if event.location %}

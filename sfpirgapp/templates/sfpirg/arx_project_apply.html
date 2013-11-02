@@ -7,7 +7,7 @@
 
 <div class="project">
 
-	<h1>Apply for {{project.title}}</h1>
+	<h1>Apply for {{project.title|truncatewords:6}}</h1>
 
 	{% if form.subject.errors %}
 	    <ol>
@@ -21,7 +21,7 @@
 		{% csrf_token %}
 		<input type="hidden" name="id" value="{{form.instance.id}}"/>
 		{{form.as_p}}
-		<p><input type='submit' value='Apply!'/></p>
+		<p><input type='submit' value='Submit'/></p>
 	</form>
 
 </div>

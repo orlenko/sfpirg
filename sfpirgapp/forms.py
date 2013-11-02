@@ -1,5 +1,6 @@
 from ckeditor.widgets import CKEditor
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.forms.models import ModelForm
 from django.forms.widgets import DateInput
@@ -12,7 +13,6 @@ from sfpirgapp.models import Profile
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
 import logging
-from django.contrib.auth import authenticate
 
 
 log = logging.getLogger(__name__)
@@ -66,20 +66,23 @@ class ActionGroupCreateForm(forms.Form):
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'email': user.email,
-                'on_mailing_list': user.on_mailing_list,
                 'contact_name': user.get_full_name(),
                 'contact_email': user.email,
             }
-            self.username.widget = forms.HiddenInput()
-            self.first_name.widget = forms.HiddenInput()
-            self.last_name.widget = forms.HiddenInput()
-            self.email.widget = forms.HiddenInput()
-            self.password1.widget = forms.HiddenInput()
-            self.password2.widget = forms.HiddenInput()
             if user.profile:
                 self.initial['on_mailing_list'] = user.profile.on_mailing_list
-                self.on_mailing_list.widget = forms.HiddenInput()
         super(ActionGroupCreateForm, self).__init__(data, initial=self.initial)
+        if user and not user.is_anonymous():
+            self.fields['username'].widget = forms.HiddenInput()
+            self.fields['first_name'].widget = forms.HiddenInput()
+            self.fields['last_name'].widget = forms.HiddenInput()
+            self.fields['email'].widget = forms.HiddenInput()
+            self.fields['password1'].widget = forms.HiddenInput()
+            self.fields['password1'].required = False
+            self.fields['password2'].widget = forms.HiddenInput()
+            self.fields['password2'].required = False
+            if user.profile:
+                self.fields['on_mailing_list'].widget = forms.HiddenInput()
 
     # User fields
     username = forms.CharField(label='Username',
@@ -173,7 +176,7 @@ class ActionGroupCreateForm(forms.Form):
                                     is_active=True)
         if not self.user.profile:
             _profile = Profile.objects.create(user=self.user,
-                        on_mailing_list=self.clened_data.get('on_mailing_list'))
+                        on_mailing_list=self.cleaned_data.get('on_mailing_list'))
         return self.user
 
     def save_action_group(self):
@@ -211,6 +214,13 @@ class ProjectForm(ModelForm):
         model = Project
         exclude = ('slug', 'in_menus',)
         widgets = {
+            'time_per_week': CKEditor(ckeditor_config='basic'),
+            'support_method': CKEditor(ckeditor_config='basic'),
+            'results_plan': CKEditor(ckeditor_config='basic'),
+            'larger_goal': CKEditor(ckeditor_config='basic'),
+            'researcher_qualities': CKEditor(ckeditor_config='basic'),
+            'description_short': CKEditor(ckeditor_config='basic'),
+            'description_long': CKEditor(ckeditor_config='basic'),
             'liaison': SelectWithPopUp('Liaison'),
             'user': HiddenInput(),
             'category': HiddenInput(),
@@ -230,7 +240,8 @@ class ApplicationForm(ModelForm):
 
 
 class MultiApplicationForm(forms.Form):
-    email = forms.EmailField(label='Your Email')
+    name = forms.CharField(label='Your Name')
+    email = forms.EmailField(label='Email')
     message = forms.CharField(widget=forms.Textarea())
 
 

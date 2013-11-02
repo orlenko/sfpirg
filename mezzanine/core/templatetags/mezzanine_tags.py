@@ -353,11 +353,11 @@ def editable_loader(context):
     """
     user = context["request"].user
     context["has_site_permission"] = has_site_permission(user)
+    context["richtext_media"] = RichTextField().formfield().widget.media
     if settings.INLINE_EDITING_ENABLED and context["has_site_permission"]:
         t = get_template("includes/editable_toolbar.html")
         context["REDIRECT_FIELD_NAME"] = REDIRECT_FIELD_NAME
         context["toolbar"] = t.render(Context(context))
-        context["richtext_media"] = RichTextField().formfield().widget.media
     return context
 
 
