@@ -39,7 +39,8 @@ class Profile(models.Model, AdminThumbMixin):
         format="Image", max_length=255, null=True, blank=True,
         help_text='User photo')
     admin_thumb_field = "photo"
-    on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list to receive periodic information about ARX?')
+    on_mailing_list = models.BooleanField(default=True, verbose_name='Would you like to be added to our mailing list?',
+                                          help_text='Would you like to be added to our mailing list to receive periodic information about social and environmental justice happenings on and off campus?')
 
 
 class Testimonial(PageLike):
@@ -97,13 +98,26 @@ class ActionGroup(PageLike, Ownable):
     meetings = RichTextField(null=True, blank=True,
                                   verbose_name='Meetings',
                                   help_text='Let people know when & where you meet if you have regular meeting times. Don\'t forget you can book the SFPIRG lounge or meeting room to host your meetings.')
+    contact_name = models.CharField('Main Contact Person',
+                                    null=True, blank=True, max_length=255)
     contact_email = models.EmailField(null=True, blank=True, max_length=255,
                                       verbose_name='Contact Email')
     contact_phone = models.CharField(null=True, blank=True, max_length=255,
                                      verbose_name='Contact Telephone')
+    group_email = models.EmailField(null=True, blank=True, max_length=255,
+                                      verbose_name='Group Email')
+    basis_of_unity = models.TextField('General Basis of Unity / Objective', null=True, blank=True)
+    goals = models.TextField('Main Goal(s)', null=True, blank=True)
+    timeline = models.TextField('Plans and Timeline', null=True, blank=True,
+                                help_text='Specific Plans and timeline for the semester (please be as concrete as possible)')
+    oneliner = models.TextField('One-liner', null=True, blank=True,
+                                help_text='One-liner for SFPIRG promotional materials')
+    twoliner = models.TextField(' paragraph for SFPIRG website', null=True, blank=True)
+    potential_members = models.TextField('Potential members of your group', null=True, blank=True,
+                                         help_text='Please include the members of your potential Action Group: (NAME, PHONE, EMAIL)')
     links = RichTextField(null=True, blank=True,
-                                  verbose_name='Links',
-                                  help_text='Either to your website, or anywhere else you want to direct people to')
+                          verbose_name='Links',
+                          help_text='Either to your website, or anywhere else you want to direct people to')
     facebook_url = models.URLField(null=True, blank=True, max_length=255)
     twitter = models.CharField(null=True, blank=True, max_length=255)
     google_plus_url = models.URLField(null=True, blank=True, max_length=255)
@@ -113,13 +127,14 @@ class ActionGroup(PageLike, Ownable):
     is_approved = models.BooleanField(default=False)
     in_menus = MenusField("Show in menus", blank=True, null=True)
 
+
     @property
     def richtextpage(self):
         return self
 
     def in_menu_template(self, template_name):
         if self.in_menus is not None:
-            for i, l, t in settings.PAGE_MENU_TEMPLATES:
+            for i, _l, t in settings.PAGE_MENU_TEMPLATES:
                 if not unicode(i) in self.in_menus and t == template_name:
                     return False
         return True

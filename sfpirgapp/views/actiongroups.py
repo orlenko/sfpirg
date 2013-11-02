@@ -1,14 +1,13 @@
-from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from sfpirgapp.forms import ActionGroupForm
 from sfpirgapp.models import ActionGroup, Settings
-from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
 from mezzanine.utils.email import send_mail_template
 from django.conf import settings
+from sfpirgapp.forms import ActionGroupCreateForm
 
 
 log = logging.getLogger(__name__)
@@ -46,19 +45,17 @@ def actiongroup(request, slug):
     return render_to_response('pages/actiongroup.html', {}, context_instance=context)
 
 
-@login_required
 def create(request):
     user = request.user
-    # See if this user already has an actiongroup - no need to create then.
-    for existing in ActionGroup.objects.filter(user=user):
-        return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
-    initial = {'user': user, 'status': 1, '_order': 0}
-    cat = _category_by_model(ActionGroup)
-    initial['category'] = cat
-    form = ActionGroupForm(request.POST or None, request.FILES or None, initial=initial)
+    if user and not user.is_anonymous():
+        # See if this user already has an actiongroup - no need to create then.
+        for existing in ActionGroup.objects.filter(user=user):
+            return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
+    form = ActionGroupCreateForm(request.POST or None, user=user)
     if request.method == 'POST' and form.is_valid():
-        form.save()
-        actiongroup = form.instance
+        if not user or user.is_anonymous() or not user.profile:
+            user = request.user = form.save_user()
+        actiongroup = form.save_action_group()
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
                'sfpirg/email/ag_application',
                Settings.get_setting('SERVER_EMAIL'),
