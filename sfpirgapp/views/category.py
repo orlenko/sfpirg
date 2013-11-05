@@ -6,6 +6,8 @@ from django.core.paginator import PageNotAnInteger
 from django.core.paginator import EmptyPage
 from django.db.models import Q
 import datetime
+from sfpirgapp.forms import ActionGroupFilterForm
+from sfpirgapp.forms import ArxFilterForm
 
 
 def get_arx_query_set(request, category):
@@ -39,11 +41,31 @@ def get_ag_query_set(request, category):
 
 def category(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    queryset = (get_ag_query_set(request, category)
-                or category.testimonials.filter(status=2)
+    kw = request.REQUEST
+    filterform = None
+    queryset = get_ag_query_set(request, category)
+    if queryset:
+        filterform = ActionGroupFilterForm(kw)
+        if filterform.is_valid():
+            print 'Filtering: %s' % filterform.cleaned_data
+            queryset = queryset.filter(**filterform.cleaned_data)
+        else:
+            print 'Invalid filters! %s' % filterform.errors
+    else:
+        queryset = (category.testimonials.filter(status=2)
                 or category.news_posts.filter(publish_date__lt=datetime.datetime.now()).order_by('-publish_date')
-                or category.events.filter(start__gt=datetime.datetime.now()).order_by('start')
-                or get_arx_query_set(request, category))
+                or category.events.filter(start__gt=datetime.datetime.now()).order_by('start'))
+    if not queryset:
+        queryset = get_arx_query_set(request, category)
+        filterform = ArxFilterForm(kw)
+        if filterform.is_valid():
+            print 'Filtering: %s' % filterform.cleaned_data
+            if filterform.cleaned_data.get('project_type'):
+                queryset = queryset.filter(project_type__in=filterform.cleaned_data['project_type'])
+            if filterform.cleaned_data.get('project_subject'):
+                queryset = queryset.filter(project_subject__in=filterform.cleaned_data['project_subject'])
+        else:
+            print 'Invalid filters! %s' % filterform.errors
     paginator = Paginator(queryset, 6)
     pagenum = request.GET.get('page')
     try:

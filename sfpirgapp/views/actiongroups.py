@@ -1,11 +1,9 @@
 from django.conf import settings
-from django.contrib.auth import login
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from mezzanine.utils.email import send_mail_template
-from sfpirgapp.forms import ActionGroupCreateForm
 from sfpirgapp.forms import ActionGroupForm
 from sfpirgapp.models import ActionGroup, Settings
 import logging
