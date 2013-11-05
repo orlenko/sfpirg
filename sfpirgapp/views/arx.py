@@ -15,6 +15,7 @@ from sfpirgapp.models import Project
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
 from django.contrib import messages
+from sfpirgapp.models import Liaison
 
 
 log = logging.getLogger(__name__)
@@ -164,6 +165,12 @@ def create(request):
     if isinstance(organization, HttpResponseRedirect):
         return organization
     initial = {'user': request.user}
+    if not organization.liaisons.count():
+        user = request.user
+        liaison = Liaison.objects.create(name=(user.get_full_name() or user.username),
+                                         email=user.email,
+                                         organization=organization)
+        initial = {'liaison': liaison}
     cat = _category_by_model(Project)
     initial['category'] = cat
     form = ProjectForm(request.POST or None, request.FILES or None, initial=initial)
