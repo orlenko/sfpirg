@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n staticfiles mezzanine_tags sfpirg_tags %}
 
+{% block contentclass %}blue{% endblock %}
+
 {% block main %}
 <div class="project">
 	<h1>New ARX Project</h1>
@@ -15,6 +17,7 @@
 
 	<form method='post' action='' enctype="multipart/form-data">
 		{% csrf_token %}
+		<div class="arx-steps clear"><img src="/static/img/arx-steps-3.png" alt="3 Easy Steps " /></div>
 		{% for field in form %}
 			<div title="{{field.help_text}}"
 				{% if field.errors %} class="errorlist" {% endif %}

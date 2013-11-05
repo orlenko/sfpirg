@@ -71,7 +71,7 @@ def signup(request, template="accounts/account_signup.html"):
             return login_redirect(request)
     else:
         log.debug('Form is not valid. Errors: %s' % form.errors)
-    context = {"form": form, "title": _("Sign up")}
+    context = {"form": form, "title": _("Create an Account"), "submit_label": "Next Step"}
     return render(request, template, context)
 
 

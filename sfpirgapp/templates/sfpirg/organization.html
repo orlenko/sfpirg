@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n staticfiles mezzanine_tags sfpirg_tags %}
 
-{% block contentclass %}green{% endblock %}
+{% block contentclass %}blue{% endblock %}
 
 {% block main %}
 
@@ -20,6 +20,8 @@
 	<form method='post' action=''>
 		{% csrf_token %}
 		<input type="hidden" name="id" value="{{form.instance.id}}"/>
+
+		<div class="arx-steps clear"><img src="/static/img/arx-steps-2.png" alt="3 Easy Steps " /></div>
 
 		{% for field in form %}
 			<div title="{{field.help_text}}"
@@ -43,7 +45,7 @@
 				{{ field }}
 			</div>
 		{% endfor %}
-		<p><input type='submit' value='Save'/></p>
+		<p><input type='submit' value='Next Step'/></p>
 	</form>
 </div>
 {% endblock %}
