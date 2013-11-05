@@ -13,11 +13,13 @@
 
 	<h1>{{ category.title|truncatewords:6 }}</h1>
 
-	<div id="main-content-block">
-		{% editable category.content %}
-			{{ category.content|richtext_filter|safe }}
-		{% endeditable %}
-	</div>
+	{% if not aglist.has_previous %}
+		<div id="main-content-block">
+			{% editable category.content %}
+				{{ category.content|richtext_filter|safe }}
+			{% endeditable %}
+		</div>
+	{% endif %}
 
 	{% spaceless %}
 	<div id="category-list">
