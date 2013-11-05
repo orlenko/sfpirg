@@ -16,6 +16,7 @@ from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
 from django.contrib import messages
 from sfpirgapp.models import Liaison
+from django.shortcuts import resolve_url
 
 
 log = logging.getLogger(__name__)
@@ -138,8 +139,7 @@ def multi_apply(request):
                attachments=None,
                fail_silently=settings.DEBUG,
                addr_bcc=None)
-            messages.info(request, 'Thank you! Please check your email for a confirmation message. Check your spam folder if you don\'t see it. We will get back to you very soon.')
-            return HttpResponseRedirect('/category/action-research-exchange/')
+            return HttpResponseRedirect(resolve_url('thankyou'))
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_multi_projects_apply.html', {}, context_instance=context)
 

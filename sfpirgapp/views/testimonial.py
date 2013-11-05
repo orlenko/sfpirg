@@ -9,6 +9,7 @@ from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
 import random
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from django.conf import settings
+from django.shortcuts import resolve_url
 
 
 def testimoniallist(request):
@@ -42,7 +43,7 @@ def add_testimonial(request):
         form = TestimonialForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(resolve_url('thankyou'))
     else:
         form = TestimonialForm(initial={'category': _category_by_model(Testimonial),
                                         'status': 1,

@@ -30,6 +30,9 @@
 
 				{% if not field.is_hidden %}
 					{{field.label_tag}}
+					{% if field.help_text %}
+						<div class="help-inline">{{ field.help_text }}</div>
+					{% endif %}
 				{% endif %}
 				{{ field }}
 			</div>

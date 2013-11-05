@@ -89,7 +89,7 @@ def create(request):
                attachments=None,
                fail_silently=settings.DEBUG,
                addr_bcc=None)
-        return HttpResponseRedirect(form.instance.get_absolute_url())
+        return HttpResponseRedirect(resolve_url('thankyou'))
     current_item = 'Create Action Group'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/action_group_create.html', {}, context_instance=context)
