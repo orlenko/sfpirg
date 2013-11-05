@@ -13,9 +13,16 @@ from sfpirgapp.models import Profile
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
 import logging
+from sfpirgapp.models import ActionGroupRequest
 
 
 log = logging.getLogger(__name__)
+
+
+class ActionGroupRequestForm(ModelForm):
+    class Meta:
+        model = ActionGroupRequest
+        exclude = ('is_processed',)
 
 
 class ActionGroupForm(ModelForm):
@@ -23,13 +30,9 @@ class ActionGroupForm(ModelForm):
         super(ActionGroupForm, self).__init__(*args, **kwargs)
         self.fields['content'].label = 'Action Group Description'
 
-    def save(self, *args, **kwargs):
-        self.data['status'] = self.data['is_approved'] == 'True' and 2 or 1
-        return super(ActionGroupForm, self).save(*args, **kwargs)
-
     class Meta:
         model = ActionGroup
-        exclude = ('keywords', 'in_menus',)
+        exclude = ('keywords', 'in_menus', 'goals', 'timeline', 'oneliner', 'twoliner', 'potential_members', 'links')
         widgets = {
             'content': CKEditor(ckeditor_config='basic'),
             'announcements': CKEditor(ckeditor_config='basic'),
@@ -200,6 +203,10 @@ class ProjectForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
+        self.fields['title'].help_text = (
+            '(Please keep the title clear, short and descriptive. Keep in mind that the title should indicate '
+            'what the project is actually about and it should be something that will attract a student\'s '
+            'interest. Avoid acronyms).')
         user = (self.instance.pk and self.instance.user) or kwargs.get('initial', {}).get('user')
         org = user and user.profile and user.profile.organization
         log.debug('Do we have an organization for this form? %s' % org)

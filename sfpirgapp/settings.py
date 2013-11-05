@@ -11,6 +11,7 @@ ADMIN_MENU_ORDER = (
     )),
     ('Action Groups',(
       'sfpirgapp.ActionGroup',
+      'sfpirgapp.ActionGroupRequest',
     )),
     ('Action Research Exchange', (
       'sfpirgapp.Project',

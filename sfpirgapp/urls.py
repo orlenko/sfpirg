@@ -31,11 +31,14 @@ urlpatterns = patterns('',
     url(r'^arx/project/(?P<slug>[^/]*)/$', 'sfpirgapp.views.arx.project', {}, name='arx-project'),
 
     url(r'^actiongroups/(?P<slug>.*)/$', 'sfpirgapp.views.actiongroups.actiongroup', {}, name='action-group'),
+    url(r'^actiongroup/request/$', 'sfpirgapp.views.actiongroups.request_group', {}, name='action-group-request'),
     url(r'^actiongroup/create/$', 'sfpirgapp.views.actiongroups.create', {}, name='action-group-create'),
 
     url(r'^category/(?P<slug>.*)/$', 'sfpirgapp.views.category.category', {}, name='category'),
 
     url(r'^add/(?P<model_name>.*)/$', 'sfpirgapp.views.add_new_model'),
+
+    url(r'^thank-you/$', 'sfpirgapp.views.thankyou.thankyou', {}, name='thankyou'),
 
     (r'^', include('mezzanine.urls')),
 

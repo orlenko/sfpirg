@@ -9,6 +9,10 @@ from sfpirgapp.forms import ActionGroupCreateForm
 from sfpirgapp.forms import ActionGroupForm
 from sfpirgapp.models import ActionGroup, Settings
 import logging
+from sfpirgapp.forms import ActionGroupRequestForm
+from django.shortcuts import resolve_url
+from django.contrib.auth.decorators import login_required
+from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 
 
 log = logging.getLogger(__name__)
@@ -48,19 +52,29 @@ def actiongroup(request, slug):
     return render_to_response('pages/actiongroup.html', {}, context_instance=context)
 
 
+def request_group(request):
+    form = ActionGroupRequestForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(resolve_url('thankyou'))
+    current_item = 'Action Group Request'
+    context = RequestContext(request, locals())
+    return render_to_response('sfpirg/action_group_request.html', {}, context_instance=context)
+
+
+@login_required
 def create(request):
     user = request.user
-    if user and not user.is_anonymous():
-        # See if this user already has an actiongroup - no need to create then.
-        for existing in ActionGroup.objects.filter(user=user):
-            return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
-    form = ActionGroupCreateForm(request.POST or None, user=user)
+    # See if this user already has an actiongroup - no need to create then.
+    for existing in ActionGroup.objects.filter(user=user):
+        return HttpResponseRedirect(existing.get_absolute_url() + '?edit=1')
+    initial = {'user': user, 'status': 1, '_order': 0}
+    cat = _category_by_model(ActionGroup)
+    initial['category'] = cat
+    form = ActionGroupForm(request.POST or None, request.FILES or None, initial=initial)
     if request.method == 'POST' and form.is_valid():
-        if not user or user.is_anonymous() or not user.profile:
-            user = form.save_user()
-            if user:
-                login(request, user)
-        actiongroup = form.save_action_group()
+        form.save()
+        actiongroup = form.instance
         send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
                'sfpirg/email/ag_application',
                Settings.get_setting('SERVER_EMAIL'),
@@ -77,7 +91,7 @@ def create(request):
                attachments=None,
                fail_silently=settings.DEBUG,
                addr_bcc=None)
-        return HttpResponseRedirect(actiongroup.get_absolute_url())
+        return HttpResponseRedirect(form.instance.get_absolute_url())
     current_item = 'Create Action Group'
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/action_group_create.html', {}, context_instance=context)

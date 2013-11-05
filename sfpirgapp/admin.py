@@ -7,7 +7,9 @@ from sfpirgapp.models import (
     Testimonial,
     Profile,
     Category,
-    MyImageField, Settings)
+    MyImageField,
+    Settings,
+    ActionGroupRequest)
 from mezzanine.pages.admin import PageAdmin
 from sfpirgapp.models import ActionGroup
 from sfpirgapp import settings
@@ -122,6 +124,12 @@ class SettingsAdmin(ModelAdmin):
     list_editable = ['value']
 
 
+class ActionGroupRequestAdmin(ModelAdmin):
+    list_display = ['title', 'contact_person', 'contact_email', 'is_processed']
+    list_filter = ['is_processed']
+    list_editable = ['is_processed']
+
+
 admin.site.register(ActionGroup, ActionGroupAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Profile, ProfileAdmin)
@@ -134,3 +142,4 @@ admin.site.register(Project, ProjectAdmin)
 admin.site.register(Application)
 admin.site.register(Liaison)
 admin.site.register(Settings, SettingsAdmin)
+admin.site.register(ActionGroupRequest, ActionGroupRequestAdmin)

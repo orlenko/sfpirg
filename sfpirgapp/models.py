@@ -11,6 +11,8 @@ import datetime
 from sfpirgapp.fields import MyImageField
 from mezzanine.pages.fields import MenusField
 from django.conf import settings
+from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
+from mezzanine.core.models import CONTENT_STATUS_DRAFT
 #from django import forms
 
 
@@ -29,7 +31,8 @@ class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
 
 
 class Profile(models.Model, AdminThumbMixin):
-    organization = ForeignKey('Organization', null=True, blank=True)
+    organization = ForeignKey('Organization', null=True, blank=True,
+                              on_delete=models.SET_NULL,)
     user = models.OneToOneField(User)
     date_of_birth = models.DateField(null=True, blank=True)
     title = models.CharField(null=True, blank=True, max_length=255)
@@ -44,7 +47,8 @@ class Profile(models.Model, AdminThumbMixin):
 
 
 class Testimonial(PageLike):
-    user = ForeignKey(User, null=True, blank=True, verbose_name=_("Author"), related_name="testimonials")
+    user = ForeignKey(User, null=True, blank=True, verbose_name=_("Author"), related_name="testimonials",
+                      on_delete=models.SET_NULL,)
     category = ForeignKey('Category', related_name='testimonials')
     author_full_name = models.CharField(verbose_name='Your Full Name', max_length=255, null=True, blank=True)
     author_title = models.CharField(verbose_name='Your area of study or job title', max_length=255 ,null=True, blank=True)
@@ -86,6 +90,34 @@ class Category(PageLike, Ownable):
         return ('category', (), {'slug': self.slug})
 
 
+class ActionGroupRequest(models.Model):
+    title = models.CharField('Proposed Action Group Name', max_length=255)
+    contact_person = models.CharField('Main Contact Person', max_length=255, null=True, blank=True)
+    contact_email = models.EmailField('Email', max_length=255, null=True, blank=True)
+    contact_phone = models.CharField('Phone', max_length=255, null=True, blank=True)
+    group_email = models.CharField('Desired email address for Action Group',
+                                   max_length=255,
+                                   null=True,
+                                   blank=True,
+        help_text='Desired email address for Action Group: (___________________@sfpirg.ca)')
+    basis_of_unity = models.TextField('General Basis of Unity / Objective',
+                                      null=True,
+                                      blank=True)
+    goals = models.TextField('Main Goal(s)',
+                             null=True,
+                             blank=True)
+    timeline = models.TextField('Plans and Timeline', null=True, blank=True,
+        help_text='Specific Plans and timeline for the semester (please be as concrete as possible)')
+    oneliner = models.TextField('One-liner for SFPIRG promotional materials', null=True, blank=True)
+    twoliner = models.TextField('One paragraph for SFPIRG website', null=True, blank=True)
+    potential_members = models.TextField('Potential members of your group', null=True, blank=True,
+        help_text='Please include the members of your potential Action Group: (NAME, PHONE, EMAIL)')
+    on_mailing_list = models.BooleanField('Would you like to be added to our mailing list?',
+                                          default=True,
+        help_text='Would you like to be added to our mailing list to receive periodic information about social and environmental justice happenings on and off campus?')
+    is_processed = models.BooleanField('Request already processed', default=False)
+
+
 class ActionGroup(PageLike, Ownable):
     parent = None # To make it compatible with the side_menu template
     children = DummyEmptyResultSet() # To make it compatible with the side_menu template
@@ -106,7 +138,6 @@ class ActionGroup(PageLike, Ownable):
                                      verbose_name='Contact Telephone')
     group_email = models.EmailField(null=True, blank=True, max_length=255,
                                       verbose_name='Group Email')
-    basis_of_unity = models.TextField('General Basis of Unity / Objective', null=True, blank=True)
     goals = models.TextField('Main Goal(s)', null=True, blank=True)
     timeline = models.TextField('Plans and Timeline', null=True, blank=True,
                                 help_text='Specific Plans and timeline for the semester (please be as concrete as possible)')
@@ -150,6 +181,13 @@ class ActionGroup(PageLike, Ownable):
         if self.twitter.startswith('@'):
             return 'http://twitter.com/%s' % self.twitter[1:]
         return 'http://twitter.com/%s' % self.twitter
+
+    def save(self, *args, **kwargs):
+        if self.is_approved:
+            self.status = CONTENT_STATUS_PUBLISHED
+        else:
+            self.status = CONTENT_STATUS_DRAFT
+        return super(ActionGroup, self).save(*args, **kwargs)
 
 
 class Address(models.Model):
@@ -226,6 +264,7 @@ class ProjectSubject(Slugged):
 class Project(Slugged, AdminThumbMixin):
     user = ForeignKey(User)
     liaison = ForeignKey(Liaison, blank=True, null=True,
+                         on_delete=models.SET_NULL,
                          help_text='Who can SFPIRG contact with questions about this project?')
     time_per_week = models.TextField(blank=True, null=True,
                                      verbose_name='How much time per week can the Contact/Liaison devote to the student?')

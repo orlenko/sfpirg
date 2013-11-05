@@ -3,7 +3,7 @@
 
 {% block main %}
 <div class="project">
-	<h1>New ARX Project</h1>
+	<h1>Request for an Action Group</h1>
 
 	{% if form.subject.errors %}
 	    <ol>
@@ -13,7 +13,7 @@
 	    </ol>
 	{% endif %}
 
-	<form method='post' action='' enctype="multipart/form-data">
+	<form method='post' action=''>
 		{% csrf_token %}
 		{% for field in form %}
 			<div title="{{field.help_text}}"
@@ -30,16 +30,12 @@
 
 				{% if not field.is_hidden %}
 					{{field.label_tag}}
-					{% if field.help_text %}
-						<div class="help-inline">{{ field.help_text }}</div>
-					{% endif %}
 				{% endif %}
 				{{ field }}
 			</div>
 		{% endfor %}
 		<p>
-			<input type='submit' value='Save as Draft'/>
-			<input type='submit' onclick='$("#id_is_submitted").val("True");return true;' value='Submit for Approval' />
+			<input type='submit' value='Submit' />
 		</p>
 	</form>
 </div>

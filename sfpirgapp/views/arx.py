@@ -14,6 +14,7 @@ from sfpirgapp.models import Application, Settings
 from sfpirgapp.models import Project
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
+from django.contrib import messages
 
 
 log = logging.getLogger(__name__)
@@ -80,6 +81,7 @@ def project(request, slug):
                                        attachments=None,
                                        fail_silently=settings.DEBUG,
                                        addr_bcc=None)
+                messages.info(request, 'Thank you! Please check your email for a confirmation message. Check your spam folder if you don\'t see it. We will get back to you very soon.')
                 return HttpResponseRedirect(project.get_absolute_url())
         else:
             form = ProjectForm(instance=project)
@@ -135,6 +137,7 @@ def multi_apply(request):
                attachments=None,
                fail_silently=settings.DEBUG,
                addr_bcc=None)
+            messages.info(request, 'Thank you! Please check your email for a confirmation message. Check your spam folder if you don\'t see it. We will get back to you very soon.')
             return HttpResponseRedirect('/category/action-research-exchange/')
     context = RequestContext(request, locals())
     return render_to_response('sfpirg/arx_multi_projects_apply.html', {}, context_instance=context)
@@ -193,6 +196,7 @@ def create(request):
                                attachments=None,
                                fail_silently=settings.DEBUG,
                                addr_bcc=None)
+        messages.info(request, 'Thank you! Please check your email for a confirmation message. Check your spam folder if you don\'t see it. We will get back to you very soon.')
         return HttpResponseRedirect(form.instance.get_absolute_url())
     log.debug('Form errors: %s' % form.errors)
     user = request.user
