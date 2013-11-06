@@ -36,7 +36,7 @@ class Profile(models.Model, AdminThumbMixin):
     user = models.OneToOneField(User)
     date_of_birth = models.DateField(null=True, blank=True)
     title = models.CharField(null=True, blank=True, max_length=255)
-    bio = models.TextField(null=True, blank=True)
+    bio = RichTextField(null=True, blank=True)
     photo = MyImageField(verbose_name="Photo",
         upload_to=upload_to("sfpirgapp.Profile.photo", "uploads/profile-photos"),
         format="Image", max_length=255, null=True, blank=True,
@@ -138,12 +138,12 @@ class ActionGroup(PageLike, Ownable):
                                      verbose_name='Contact Telephone')
     group_email = models.EmailField(null=True, blank=True, max_length=255,
                                       verbose_name='Group Email')
-    goals = models.TextField('Main Goal(s)', null=True, blank=True)
-    timeline = models.TextField('Plans and Timeline', null=True, blank=True,
+    goals = RichTextField('Main Goal(s)', null=True, blank=True)
+    timeline = RichTextField('Plans and Timeline', null=True, blank=True,
                                 help_text='Specific Plans and timeline for the semester (please be as concrete as possible)')
-    oneliner = models.TextField('One-liner for SFPIRG promotional materials', null=True, blank=True)
-    twoliner = models.TextField('One paragraph for SFPIRG website', null=True, blank=True)
-    potential_members = models.TextField('Potential members of your group', null=True, blank=True,
+    oneliner = RichTextField('One-liner for SFPIRG promotional materials', null=True, blank=True)
+    twoliner = RichTextField('One paragraph for SFPIRG website', null=True, blank=True)
+    potential_members = RichTextField('Potential members of your group', null=True, blank=True,
                                          help_text='Please include the members of your potential Action Group: (NAME, PHONE, EMAIL)')
     links = RichTextField(null=True, blank=True,
                           verbose_name='Links',
@@ -266,9 +266,9 @@ class Project(Slugged, AdminThumbMixin):
     liaison = ForeignKey(Liaison, blank=True, null=True,
                          on_delete=models.SET_NULL,
                          help_text='Who can SFPIRG contact with questions about this project?')
-    time_per_week = models.TextField(blank=True, null=True,
+    time_per_week = RichTextField(blank=True, null=True,
                                      verbose_name='How much time per week can the Contact/Liaison devote to the student?')
-    support_method = models.TextField(blank=True, null=True,
+    support_method = RichTextField(blank=True, null=True,
                                       verbose_name='How will the Contact/Liaison provide direction and support to the project?')
     logo = MyImageField(verbose_name="Project Image",
         upload_to=upload_to("sfpirgapp.project", "uploads/project-images"),
@@ -276,9 +276,6 @@ class Project(Slugged, AdminThumbMixin):
         help_text='Please upload an image to represent the project, or your logo. If you do not have one, do not worry, just leave this section blank.')
     admin_thumb_field = "logo"
 
-    description_short = models.TextField(blank=True, null=True,
-        verbose_name='Research Question / Brief Project Description',
-        help_text=('(What is the central research question you want answered or what project would you like help with?  Please provide a detailed description of your project here.)'))
     project_type = models.ManyToManyField(ProjectType, help_text='(Please select all that apply)')
     project_type_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Description',
         help_text='If you checked "other", please briefly describe your project type')
@@ -286,25 +283,20 @@ class Project(Slugged, AdminThumbMixin):
         help_text='(Please select all that apply)')
     project_subject_other = models.CharField(blank=True, null=True, max_length=255, verbose_name='Other Issues',
         help_text='If you checked "other", please briefly describe your project subject')
-    size = models.CharField(null=True, blank=True, max_length=255, verbose_name='Size of Project',
-        help_text=('Please indicate the size of the project in quantifiable terms. '
-                   'e.g. word/page count, duration of radio show or video, number of hours'))
     length = models.CharField(null=True, blank=True, max_length=255, verbose_name='Project Duration',
         help_text=('(Please indicate how many months you expect this project to take; '
                    'keeping in mind that if your project will take longer than one semester '
                    'to complete the pool of students who can undertake it will be limited '
                    'to grad students and students who undertake the project independently/not '
                    'for course credit. Semesters run from Sept-Dec, Jan-Apr & May-Aug.)'))
-    description_long = models.TextField(blank=True, null=True,
+    description_long = RichTextField(blank=True, null=True,
                                    verbose_name='About this Project',
-                                   help_text=('Please provide a more detailed description of your project here, with particular focus on specific '
-                                              'DELIVERABLES. For example, you might want a 10 page research paper on a topic, '
-                                              'plus an executive summary, plus a powerpoint presentation to the organization\'s board of directors'))
-    results_plan = models.TextField(blank=True, null=True, verbose_name='Use of Project Results',
+                                   help_text='(What is the central research question you want answered or what project would you like help with? Please provide a detailed description of your project here.)')
+    results_plan = RichTextField(blank=True, null=True, verbose_name='Use of Project Results',
         help_text='(How do you plan to use the results of this project? For example, do you plan to publish it or will it be kept internal to your organization?)')
-    larger_goal = models.TextField(blank=True, null=True, verbose_name='Deliverables',
+    larger_goal = RichTextField(blank=True, null=True, verbose_name='Deliverables',
         help_text='(What do you want as specific deliverables for this project? For example, you might want a 10 page research paper on a topic, plus an executive summary, plus a power-point presentation to your organization\'s board of directors.)')
-    researcher_qualities = models.TextField(blank=True, null=True, verbose_name='The Student Researcher Must Possess',
+    researcher_qualities = RichTextField(blank=True, null=True, verbose_name='The Student Researcher Must Possess',
         help_text='(What skills or attributes do you hope the student researcher will possess?)')
     date_created = models.DateTimeField(auto_now_add=True)
     date_start = models.DateField(blank=True, null=True)
