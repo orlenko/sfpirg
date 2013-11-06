@@ -1,9 +1,12 @@
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http.response import Http404
 from django.http.response import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
+from django.shortcuts import resolve_url
 from django.template.context import RequestContext
 from django.utils import simplejson
 from mezzanine.utils.email import send_mail_template
@@ -11,12 +14,10 @@ from sfpirgapp.forms import ApplicationForm
 from sfpirgapp.forms import MultiApplicationForm
 from sfpirgapp.forms import ProjectForm
 from sfpirgapp.models import Application, Settings
+from sfpirgapp.models import Liaison
 from sfpirgapp.models import Project
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 import logging
-from django.contrib import messages
-from sfpirgapp.models import Liaison
-from django.shortcuts import resolve_url
 
 
 log = logging.getLogger(__name__)
@@ -28,8 +29,14 @@ def arxlist(request):
     return render_to_response('sfpirg/arxlist.html', {}, context_instance=context)
 
 
-def require_organization(request):
-    profile = request.user.profile
+def require_organization(request, project):
+    is_admin = request.user and not request.user.is_anonymous() and request.user.is_superuser
+    if project and (project.user != request.user):
+        if not is_admin:
+            raise Http404('Cannot edit other people\'s projects!')
+        profile = project.user.profile
+    else:
+        profile = request.user.profile
     log.debug('Profile: %s' % profile)
     if not profile:
         return HttpResponseRedirect('/account/update/?profile=1next=%s' % request.get_full_path())
@@ -47,7 +54,7 @@ def project(request, slug):
     form = None
     if 'edit' in request.REQUEST:
         # User must belong to an organization
-        organization = require_organization(request)
+        organization = require_organization(request, project)
         if isinstance(organization, HttpResponseRedirect):
             return organization
         if request.method == 'POST':
@@ -60,7 +67,7 @@ def project(request, slug):
                     send_mail_template('ARX Project updated: %s' % project.title,
                                        'sfpirg/email/arx_draft',
                                        Settings.get_setting('SERVER_EMAIL'),
-                                       request.user.email,
+                                       project.user.email,
                                        context=locals(),
                                        attachments=None,
                                        fail_silently=settings.DEBUG,
@@ -70,7 +77,7 @@ def project(request, slug):
                     send_mail_template('ARX Project submitted: %s' % project.title,
                                        'sfpirg/email/arx_submitted',
                                        Settings.get_setting('SERVER_EMAIL'),
-                                       request.user.email,
+                                       project.user.email,
                                        context=locals(),
                                        attachments=None,
                                        fail_silently=settings.DEBUG,
@@ -161,7 +168,7 @@ def project_apply(request, slug):
 def create(request):
     user = request.user
     # User must belong to an organization
-    organization = require_organization(request)
+    organization = require_organization(request, None)
     if isinstance(organization, HttpResponseRedirect):
         return organization
     initial = {'user': request.user}
