@@ -1538,7 +1538,7 @@ legend.cke_voice_label {
 }
 
 /* django admin */
-.form-row.content div.cke_chrome,.form-row.announcements div.cke_chrome,.form-row.links div.cke_chrome,.form-row.meetings div.cke_chrome
-	{
+fieldset.module.aligned  div.cke_chrome
+{
 	display: inline-block;
 }
