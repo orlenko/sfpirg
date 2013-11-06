@@ -14,14 +14,22 @@
 	<h1>{{ category.title|truncatewords:6 }}</h1>
 
 	{% if not aglist.has_previous %}
-		{% if filterform %}
+
+		<div id="main-content-block">
+			{% editable category.content %}
+				{{ category.content|richtext_filter|safe }}
+			{% endeditable %}
+		</div>
+        
+        		{% if filterform %}
 			<div class="filtercontainer">
-				<h3>Filters</h3>
+				<p>Filter by project type or issue</p>
 				<form class="filters" method="get" action="">
 					{% for field in filterform %}
 						<div class="filter">
 							{{ field.label_tag }}
 							{{ field }}
+                            <p class="help-inline">Hold "ctrl" to select multiple choices</p>
 						</div>
 					{% endfor %}
 					<input type="submit" value="Filter"/>
@@ -30,11 +38,7 @@
 				</form>
 			</div>
 		{% endif %}
-		<div id="main-content-block">
-			{% editable category.content %}
-				{{ category.content|richtext_filter|safe }}
-			{% endeditable %}
-		</div>
+        
 	{% endif %}
 
 	{% spaceless %}
