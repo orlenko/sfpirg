@@ -66,11 +66,6 @@
 			{{ actiongroup.meetings|richtext_filter|safe }}
 		{% endif %}
 
-		{% if actiongroup.contact_email %}
-			<h2>Contact Email</h2>
-			{{ actiongroup.contact_email|richtext_filter|safe }}
-		{% endif %}
-
 		{% if actiongroup.contact_phone %}
 			<h2>Contact Phone</h2>
 			{{ actiongroup.contact_phone|richtext_filter|safe }}
@@ -79,6 +74,11 @@
 		{% if actiongroup.links %}
 			<h2>Links</h2>
 			{{ actiongroup.links|richtext_filter|safe }}
+		{% endif %}
+
+		<h2>Email or Follow Us:</h2>
+		{% if actiongroup.contact_email %}
+			<a href="mailto:{{ actiongroup.contact_email }}"><img src="/static/img/icon-email.png" title="Email: {{ actiongroup.contact_email }}" /></a>
 		{% endif %}
 
 		{% if actiongroup.facebook_url %}
