@@ -45,12 +45,14 @@ def category(request, slug):
     filterform = None
     queryset = get_ag_query_set(request, category)
     if queryset:
-        filterform = ActionGroupFilterForm(kw)
-        if filterform.is_valid():
-            print 'Filtering: %s' % filterform.cleaned_data
-            queryset = queryset.filter(**filterform.cleaned_data)
-        else:
-            print 'Invalid filters! %s' % filterform.errors
+        # TODO: add filters when we need them for Action Group
+        #filterform = ActionGroupFilterForm(kw)
+        #if filterform.is_valid():
+        #    print 'Filtering: %s' % filterform.cleaned_data
+        #    queryset = queryset.filter(**filterform.cleaned_data)
+        #else:
+        #    print 'Invalid filters! %s' % filterform.errors
+        pass
     else:
         queryset = (category.testimonials.filter(status=2)
                 or category.news_posts.filter(publish_date__lt=datetime.datetime.now()).order_by('-publish_date')
