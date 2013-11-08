@@ -23,10 +23,9 @@ jQuery(function($) {
         if (typeof tinyMCE != "undefined" ) {
             tinyMCE.triggerSave();
         }
-        $('textarea.django-ckeditor').each(function() {
-			var $textarea = $(this);
-			$textarea.val(CKEDITOR.instances[$textarea.attr('id')].getData());
-        });
+        for(var instanceName in CKEDITOR.instances) {
+    		CKEDITOR.instances[instanceName].updateElement();
+    	}
         form.ajaxSubmit({success: function(data) {
             if (data && data != '<head></head><body></body>') {
                 showError(data);
