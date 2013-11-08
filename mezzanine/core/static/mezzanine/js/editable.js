@@ -25,7 +25,7 @@ jQuery(function($) {
         }
         $('textarea.django-ckeditor').each(function() {
 			var $textarea = $(this);
-			$textarea.val(CKEDITOR.instances[$textarea.attr('name')].getData());
+			$textarea.val(CKEDITOR.instances[$textarea.attr('id')].getData());
         });
         form.ajaxSubmit({success: function(data) {
             if (data && data != '<head></head><body></body>') {
