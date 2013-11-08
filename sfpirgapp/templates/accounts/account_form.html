@@ -28,6 +28,10 @@
         	{% endif %}
 		{% endif %}
 
+
+		{% block pre_login_msg %}
+		{% endblock %}
+
     	{% if request.REQUEST.next == '/arx/project/create/' %}
 
 			{% csrf_token %}

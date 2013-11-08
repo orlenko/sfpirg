@@ -7,7 +7,6 @@
     <p>{% trans "You're already logged in." %}</p>
 {% else %}
     {{ block.super }}
-    <p>Login if you already have an account on our website, or click the create an account button below.</p>
 
     {% url "signup" as signup_url %}
     <p>{% blocktrans with request.GET.next as next %}<a href="{{ signup_url }}?next={{ next }}"><img src="/static/img/create-new-account.png"  alt="Create New Account"/></a>{% endblocktrans %}</p>
@@ -18,3 +17,7 @@
 
 {% endblock %}
 
+
+{% block pre_login_msg %}
+	<p>Login if you already have an account on our website, or click the create an account button below.</p>
+{% endblock %}
