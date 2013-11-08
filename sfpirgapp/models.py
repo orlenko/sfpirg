@@ -210,13 +210,13 @@ class Organization(Slugged):
     mailing_street2 = models.CharField(max_length=255, default='', blank=True, null=True, verbose_name='Street Address (2nd line)')
     mailing_postal_code = models.CharField(max_length=255, verbose_name='Postal Code')
 
-    mandate = models.TextField(null=True, blank=True,
-                               verbose_name="Organization's Goal",
-                               help_text="What is your organization's goal or mandate?")
-    communities = models.TextField(null=True, blank=True,
+    mandate = RichTextField(null=True, blank=True,
+                            verbose_name="Organization's Goal",
+                            help_text="What is your organization's goal or mandate?")
+    communities = RichTextField(null=True, blank=True,
                                    verbose_name='Communities you work with',
                                    help_text='What community or communities do you represent or work with?')
-    sources_of_funding = models.TextField(verbose_name="Organization's sources of funding",
+    sources_of_funding = RichTextField(verbose_name="Organization's sources of funding",
                                           help_text="What are your organization's principal sources of funding?")
     is_registered = models.BooleanField(default=False, verbose_name='Are you a registered non-profit?')
     website = models.URLField(null=True, blank=True, verbose_name='Website URL',

@@ -11,6 +11,7 @@ from mezzanine.utils.models import get_user_model
 from mezzanine.utils.urls import slugify, unique_slug
 import logging
 from django.forms.widgets import HiddenInput
+from ckeditor.widgets import CKEditor
 
 
 log = logging.getLogger(__name__)
@@ -30,6 +31,7 @@ if Profile is not None:
             exclude = (get_profile_user_fieldname(),) + _exclude_fields
             widgets = {
                 'organization': HiddenInput(),
+                'bio': CKEditor(ckeditor_config='basic')
             }
 
 if settings.ACCOUNTS_NO_USERNAME:

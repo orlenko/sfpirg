@@ -124,6 +124,9 @@ class OrganizationForm(ModelForm):
         model = Organization
         widgets = {
             'slug': forms.HiddenInput(),
+            'mandate': CKEditor(ckeditor_config='basic'),
+            'communities': CKEditor(ckeditor_config='basic'),
+            'sources_of_funding': CKEditor(ckeditor_config='basic'),
         }
 
 

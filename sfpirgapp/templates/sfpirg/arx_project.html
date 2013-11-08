@@ -136,10 +136,12 @@
 				{{project.larger_goal|richtext_filter|safe}}
 			</div>
 
-			<h4>The Student Researcher Must Possess:</h4>
-			<div class="arx-progect-text">
-				{{project.researcher_qualities|richtext_filter|safe}}
-			</div>
+			{% if project.researcher_qualities %}
+				<h4>The Student Researcher Must Possess:</h4>
+				<div class="arx-progect-text">
+					{{project.researcher_qualities|richtext_filter|safe}}
+				</div>
+			{% endif %}
 
 			<h4>Use of Project Results:</h4>
 			<div class="arx-progect-text">
