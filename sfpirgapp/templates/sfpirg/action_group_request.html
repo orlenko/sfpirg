@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% load i18n staticfiles mezzanine_tags sfpirg_tags %}
 
+{% block contentclass %}teal{% endblock %}
+
 {% block main %}
 <div class="project">
-	<h1>Request for an Action Group</h1>
+	<h1>Apply to Be an Action Group</h1>
 
 	{% if form.subject.errors %}
 	    <ol>

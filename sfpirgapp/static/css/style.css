@@ -1103,6 +1103,14 @@ iframe {
   color: #999;
 }
 
+.ag-social-icons img {
+  padding: 10px 6px;
+}
+
+.project-info-line {
+  margin: 8px 0;
+}
+
 .red-nav {
   background: url(../img/left-red-menu.png) left top no-repeat, url(../img/right-red-menu.png) top right no-repeat, url(../img/red-menu.png) center top repeat-x;
   height: 61px;
@@ -1140,12 +1148,12 @@ iframe {
   font-size: 34px;
   color: #be1d2c;
   background: transparent;
+  margin: 0;
 }
 
 #tag-line {
   text-transform: uppercase;
   text-align: center;
-  padding: 10px 0;
 }
 #tag-line h2 {
   font-size: 18px;
@@ -1155,7 +1163,7 @@ iframe {
 #top-search-bar {
   font-size: 12px;
   text-align: right;
-  margin-bottom: 1.5em;
+  margin-bottom: 10px;
 }
 #top-search-bar form input[type="text"] {
   background: url(../img/search-left-box.png) left center no-repeat, url(../img/search-right-box.png) center right no-repeat, url(../img/search-center-box.png) center center repeat-x;
@@ -1235,6 +1243,11 @@ iframe {
   color: #fff;
   background: url(../img/cat-pagination-grey.png) top center no-repeat;
 }
+.grey #pagination li .current {
+  padding: 0 8px;
+  color: #fff;
+  background: url(../img/cat-pagination-grey.png) top center no-repeat;
+}
 
 .teal h3 {
   text-align: center;
@@ -1289,6 +1302,11 @@ iframe {
   display: inline-block;
 }
 .teal #pagination li a:hover, .teal #pagination li a:active {
+  color: #fff;
+  background: url(../img/cat-pagination-teal.png) top center no-repeat;
+}
+.teal #pagination li .current {
+  padding: 0 8px;
   color: #fff;
   background: url(../img/cat-pagination-teal.png) top center no-repeat;
 }
@@ -1349,6 +1367,11 @@ iframe {
   color: #fff;
   background: url(../img/cat-pagination-green.png) top center no-repeat;
 }
+.green #pagination li .current {
+  padding: 0 8px;
+  color: #fff;
+  background: url(../img/cat-pagination-green.png) top center no-repeat;
+}
 
 .yellow h3 {
   text-align: center;
@@ -1406,6 +1429,11 @@ iframe {
   color: #fff;
   background: url(../img/cat-pagination-yellow.png) top center no-repeat;
 }
+.yellow #pagination li .current {
+  padding: 0 8px;
+  color: #fff;
+  background: url(../img/cat-pagination-yellow.png) top center no-repeat;
+}
 
 .red h3 {
   text-align: center;
@@ -1460,6 +1488,11 @@ iframe {
   display: inline-block;
 }
 .red #pagination li a:hover, .red #pagination li a:active {
+  color: #fff;
+  background: url(../img/cat-pagination-red.png) top center no-repeat;
+}
+.red #pagination li .current {
+  padding: 0 8px;
   color: #fff;
   background: url(../img/cat-pagination-red.png) top center no-repeat;
 }
@@ -2557,6 +2590,10 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
     margin: 1px 0;
   }
 
+  .menu-slideshow .arrow-left, .menu-slideshow .arrow-right {
+    top: 44px;
+  }
+
   #get-involved {
     background: url(../img/extra_clean_paper-dt.jpg) bottom right repeat-x;
     text-align: center;
@@ -2728,8 +2765,8 @@ input[type=text], input[type=password] {
   padding: 8px 35px 8px 14px;
   margin-bottom: 20px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  background-color: #fcf8e3;
-  border: 1px solid #fbeed5;
+  background-color: #be1d2c;
+  border: 1px solid #675f5f;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -2737,7 +2774,7 @@ input[type=text], input[type=password] {
 
 .alert,
 .alert h4 {
-  color: #c09853;
+  color: #fff;
 }
 
 .alert h4 {
@@ -2752,9 +2789,9 @@ input[type=text], input[type=password] {
 }
 
 .alert-success {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  color: #fff;
+  background-color: #be1d2c;
+  border-color: #675f5f;
 }
 
 .alert-success h4 {
@@ -2764,8 +2801,8 @@ input[type=text], input[type=password] {
 .alert-danger,
 .alert-error {
   color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+  background-color: #be1d2c;
+  border-color: #675f5f;
 }
 
 .alert-danger h4,
@@ -2774,13 +2811,13 @@ input[type=text], input[type=password] {
 }
 
 .alert-info {
-  color: #3a87ad;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  color: #fff;
+  background-color: #be1d2c;
+  border-color: #675f5f;
 }
 
 .alert-info h4 {
-  color: #3a87ad;
+  color: #fff;
 }
 
 .alert-block {

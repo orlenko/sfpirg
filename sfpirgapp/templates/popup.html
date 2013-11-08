@@ -4,7 +4,7 @@
 	<link href="/static/css/style.css" rel="stylesheet" type="text/css">
     <script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
 </head>
-<body>
+<body style="padding:30px;">
     <h1>Add {{ field }}</h1>
     <form method="POST" action="/add/{{ field }}/">
         {% csrf_token %}

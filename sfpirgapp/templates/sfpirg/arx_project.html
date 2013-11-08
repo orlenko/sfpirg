@@ -5,7 +5,7 @@
 	<script src="{% static 'js/arx.js' %}"></script>
 {% endblock %}
 
-{% block contentclass %}green{% endblock %}
+{% block contentclass %}teal{% endblock %}
 
 {% block main %}
 
@@ -185,9 +185,9 @@
 			{% endif %}
 
 			{% if project.user.profile.organization.website %}
-				<h2>About <a href="{{ project.user.profile.organization.website }}" target="_blank">{{ project.user.profile.organization.title }}</a></h2>
+				<h2>About<br> <a href="{{ project.user.profile.organization.website }}" target="_blank">{{ project.user.profile.organization.title }}</a></h2>
 			{% else %}
-				<h2>About {{ project.user.profile.organization.title }}</h2>
+				<h2>About<br> {{ project.user.profile.organization.title }}</h2>
 			{% endif %}
 
 			<div class="arx-progect-text">

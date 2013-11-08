@@ -7,11 +7,13 @@
     <p>{% trans "You're already logged in." %}</p>
 {% else %}
     {{ block.super }}
+    <p>Login if you already have an account on our website, or click the create an account button below.</p>
+    
     {% url "signup" as signup_url %}
-    <p>{% blocktrans with request.GET.next as next %}If you don't have an account you can <a href="{{ signup_url }}?next={{ next }}">create one</a> now.{% endblocktrans %}</p>
+    <p>{% blocktrans with request.GET.next as next %}<a href="{{ signup_url }}?next={{ next }}"><img src="/static/img/create-new-account.png"  alt="Create New Account"/></a>{% endblocktrans %}</p>
     {% url "mezzanine_password_reset" as password_reset_url %}
     {% url "profile_update" as profile_update_url %}
-    {% blocktrans %}<p>You can also <a href="{{ password_reset_url }}?next={{ profile_update_url }}">reset your password</a> if you've forgotten it.</p>{% endblocktrans %}</p>
+    {% blocktrans %}<p>Have you forgotten your password?<br><a href="{{ password_reset_url }}?next={{ profile_update_url }}"><img src="/static/img/reset-your-password.png" alt="Reset Your Password"/></a></p>{% endblocktrans %}</p>
 {% endif %}
 
 {% endblock %}

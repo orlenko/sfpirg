@@ -21,9 +21,10 @@
 
 		{% if not form.password %}
 			{% if request.REQUEST.next == '/actiongroup/create/' %}
-        		<div class="ag-steps clear"><img src="/static/img/ag-steps-1.png" alt="2 Easy Steps " /></div>
-        	{% else %}
-        		<div class="arx-steps clear"><img src="/static/img/arx-steps-1.png" alt="3 Easy Steps " /></div>
+        		<div class="ag-steps clear"><img src="/static/img/ag-steps-1.png" alt="Step 1 of 2 Easy Steps " /></div>
+        	{% endif %}
+            {% if request.REQUEST.next == '/arx/project/create/' %}
+        		<div class="arx-steps clear"><img src="/static/img/arx-steps-1.png" alt="Step 1 of 3 Easy Steps " /></div>
         	{% endif %}
 		{% endif %}
 

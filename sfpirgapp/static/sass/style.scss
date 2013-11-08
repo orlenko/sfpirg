@@ -613,6 +613,15 @@ iframe {
 	font-size:12px; 
 	color:#999;
 }
+.ag-social-icons {
+	img {padding:10px 6px;
+	}
+	
+}
+.project-info-line {
+	margin: 8px 0;
+
+}
 
 .red-nav {
 	background:
@@ -651,12 +660,12 @@ iframe {
 	font-size:34px;
 	color:$red;
   background: transparent;
+  margin:0;
 	}
 }
 #tag-line {
 	text-transform:uppercase;
 	text-align:center;
-	padding:10px 0;
 
 	h2 {font-size:18px;
 		color:$dgrey;
@@ -665,7 +674,7 @@ iframe {
 #top-search-bar {
 	font-size:12px;
 	text-align:right;
-	margin-bottom: 1.5em;
+	margin-bottom: 10px;
 
 	form{
 
@@ -732,7 +741,10 @@ iframe {
 		width:100%;
 		content:""; display:inline-block;}
 	}
-	#pagination li a{
+	#pagination li { 
+	
+	
+	a{
 		height: 16px;
     	width: 23px;
 		color:#000;
@@ -742,6 +754,13 @@ iframe {
 		text-decoration:none;
 		display:inline-block;
 		&:hover, &:active{
+			color:#fff;
+			background:url(../img/cat-pagination-grey.png) top center no-repeat;
+			}
+	}
+	
+	.current {
+		padding:0 8px;
 			color:#fff;
 			background:url(../img/cat-pagination-grey.png) top center no-repeat;
 			}
@@ -784,7 +803,10 @@ iframe {
 		width:100%;
 		content:""; display:inline-block;}
 	}
-	#pagination li a{
+	#pagination li {
+	
+	
+	a{
 		height: 16px;
     	width: 23px;
 		color:#000;
@@ -794,6 +816,12 @@ iframe {
 		text-decoration:none;
 		display:inline-block;
 		&:hover, &:active{
+			color:#fff;
+			background:url(../img/cat-pagination-teal.png) top center no-repeat;
+			}
+	}
+	.current {
+		padding:0 8px;
 			color:#fff;
 			background:url(../img/cat-pagination-teal.png) top center no-repeat;
 			}
@@ -836,7 +864,10 @@ iframe {
 		width:100%;
 		content:""; display:inline-block;}
 	}
-	#pagination li a{
+	#pagination li {
+	
+	
+	a{
 		height: 16px;
     	width: 23px;
 		color:#000;
@@ -846,6 +877,12 @@ iframe {
 		text-decoration:none;
 		display:inline-block;
 		&:hover, &:active{
+			color:#fff;
+			background:url(../img/cat-pagination-green.png) top center no-repeat;
+			}
+	}
+	.current {
+		padding:0 8px;
 			color:#fff;
 			background:url(../img/cat-pagination-green.png) top center no-repeat;
 			}
@@ -888,7 +925,10 @@ iframe {
 		width:100%;
 		content:""; display:inline-block;}
 	}
-	#pagination li a{
+	#pagination li {
+	
+	
+	a{
 		height: 16px;
     	width: 23px;
 		color:#000;
@@ -898,6 +938,12 @@ iframe {
 		text-decoration:none;
 		display:inline-block;
 		&:hover, &:active{
+			color:#fff;
+			background:url(../img/cat-pagination-yellow.png) top center no-repeat;
+			}
+	}
+	.current {
+		padding:0 8px;
 			color:#fff;
 			background:url(../img/cat-pagination-yellow.png) top center no-repeat;
 			}
@@ -941,7 +987,10 @@ iframe {
 		width:100%;
 		content:""; display:inline-block;}
 	}
-	#pagination li a{
+	#pagination li {
+	
+	
+	a{
 		height: 16px;
     	width: 23px;
 		color:#000;
@@ -951,6 +1000,12 @@ iframe {
 		text-decoration:none;
 		display:inline-block;
 		&:hover, &:active{
+			color:#fff;
+			background:url(../img/cat-pagination-red.png) top center no-repeat;
+			}
+	}
+	.current {
+		padding:0 8px;
 			color:#fff;
 			background:url(../img/cat-pagination-red.png) top center no-repeat;
 			}
@@ -2201,8 +2256,8 @@ input[type=text], input[type=password] {
   padding: 8px 35px 8px 14px;
   margin-bottom: 20px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  background-color: #fcf8e3;
-  border: 1px solid #fbeed5;
+  background-color: $red;
+  border: 1px solid $grey;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
@@ -2210,7 +2265,7 @@ input[type=text], input[type=password] {
 
 .alert,
 .alert h4 {
-  color: #c09853;
+  color: #fff;
 }
 
 .alert h4 {
@@ -2225,9 +2280,9 @@ input[type=text], input[type=password] {
 }
 
 .alert-success {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  color: #fff;
+  background-color: $red;
+  border-color: $grey;
 }
 
 .alert-success h4 {
@@ -2237,8 +2292,8 @@ input[type=text], input[type=password] {
 .alert-danger,
 .alert-error {
   color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+  background-color: $red;
+  border-color: $grey;
 }
 
 .alert-danger h4,
@@ -2247,13 +2302,13 @@ input[type=text], input[type=password] {
 }
 
 .alert-info {
-  color: #3a87ad;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  color: #fff;
+  background-color: $red;
+  border-color: $grey;
 }
 
 .alert-info h4 {
-  color: #3a87ad;
+  color: #fff;
 }
 
 .alert-block {
