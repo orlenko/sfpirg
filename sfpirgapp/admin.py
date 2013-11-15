@@ -61,6 +61,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 action_group_fieldsets = deepcopy(common_fieldsets)
 action_group_fieldsets[0][1]['fields'].extend([
+    'user',
     'category',
     'announcements',
     'meetings',
