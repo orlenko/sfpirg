@@ -11,6 +11,7 @@ ADMIN_MENU_ORDER = (
     )),
     ('Action Groups',(
       'sfpirgapp.ActionGroup',
+      'sfpirgapp.ActionGroupRequest',
     )),
     ('Action Research Exchange', (
       'sfpirgapp.Project',
@@ -180,6 +181,7 @@ CKEDITOR_CONFIGS = {
         ],
         'width': 692,
         'height': 300,
+        'allowedContent': True,
     },
     'basic': {
         'toolbar': 'Basic',
@@ -201,6 +203,7 @@ CKEDITOR_CONFIGS = {
         ],
         'width': '100%',
         'height': 300,
+        'allowedContent': True,
     }
 }
 RICHTEXT_WIDGET_CLASS = 'ckeditor.widgets.CKEditor'

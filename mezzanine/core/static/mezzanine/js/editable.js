@@ -23,6 +23,9 @@ jQuery(function($) {
         if (typeof tinyMCE != "undefined" ) {
             tinyMCE.triggerSave();
         }
+        for(var instanceName in CKEDITOR.instances) {
+    		CKEDITOR.instances[instanceName].updateElement();
+    	}
         form.ajaxSubmit({success: function(data) {
             if (data && data != '<head></head><body></body>') {
                 showError(data);
@@ -33,7 +36,7 @@ jQuery(function($) {
             showError();
         }});
         return false;
-    })
+    });
 
     // Iterate through each of the editable areas and set them up.
     var realign = function() {
@@ -48,7 +51,7 @@ jQuery(function($) {
             var overlay = {expose: expose, closeOnClick: true, close: ':button', left: 'center', top: 'center'};
             link.overlay(overlay);
             // Position the editable area's highlight.
-            var highlight = link.next('.editable-highlight')
+            var highlight = link.next('.editable-highlight');
             highlight.css({
                 width: editable.width(),
                 height: editable.height()

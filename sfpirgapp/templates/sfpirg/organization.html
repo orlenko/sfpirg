@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n staticfiles mezzanine_tags sfpirg_tags %}
 
-{% block contentclass %}green{% endblock %}
+{% block contentclass %}teal{% endblock %}
 
 {% block main %}
 
@@ -20,8 +20,36 @@
 	<form method='post' action=''>
 		{% csrf_token %}
 		<input type="hidden" name="id" value="{{form.instance.id}}"/>
-		{{form.as_p}}
-		<p><input type='submit' value='Save'/></p>
+
+		{% if request.REQUEST.next == '/arx/project/create/' %}
+        		<div class="arx-steps clear"><img src="/static/img/arx-steps-2.png" alt="Step 2 of 3 Easy Steps " /></div>
+        	{% endif %}
+        
+        
+
+		{% for field in form %}
+			<div title="{{field.help_text}}"
+				{% if field.errors %} class="errorlist" {% endif %}
+				style="margin: 0 0 10px 0;">
+
+				{% if field.errors %}
+					<ul>
+						{% for error in field.errors %}
+							<li>{{ error }}</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				{% if not field.is_hidden %}
+					{{field.label_tag}}
+					{% if field.help_text %}
+						<div class="help-inline">{{ field.help_text }}</div>
+					{% endif %}
+				{% endif %}
+				{{ field }}
+			</div>
+		{% endfor %}
+		<p><input type='submit' value='Next Step'/></p>
 	</form>
 </div>
 {% endblock %}

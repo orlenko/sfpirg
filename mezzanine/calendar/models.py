@@ -57,7 +57,7 @@ class Event(Displayable, RichText, AdminThumbMixin):
     category = ForeignKey('sfpirgapp.Category', related_name='events')
     in_menus = MenusField("Show in menus", blank=True, null=True)
     location = models.TextField(blank=True, null=True)
-    link_url = models.URLField(blank=True, null=True)
+    link_url = models.URLField('Registration URL', blank=True, null=True)
 
     @property
     def richtextpage(self):

@@ -1,13 +1,14 @@
 {% load i18n future pages_tags %}
 {% spaceless %}
-<ul>
+<ul class="menu">
     {% for page in pages %}
 		    <li class="dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
 		        id="dropdown-menu-{{ page.html_id }}">
 		        <a href="{{ page.get_absolute_url }}">
-		            {{ page.title }}
+		            {{ page.title|truncatewords:6 }}
 		        </a>
 		    </li>
     {% endfor %}
 </ul>
+<a id="responsive_menu_button_footer"></a>
 {% endspaceless %}

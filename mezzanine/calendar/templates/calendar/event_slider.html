@@ -16,7 +16,7 @@
 	         			src="{{ MEDIA_URL }}{% sfpirg_thumbnail event.featured_image 150 0 %}"
 	         			alt="Event Picture" />
 	         	{% endif %}
-                <p class="ev-title">{{ event.title }}</p>
+                <p class="ev-title">{{ event.title|truncatewords:6 }}</p>
                 <p class="ev-date">{{ event.start|date:"M d, Y" }} at {{ event.start|date:"g:iA" }}</p>
                 <p class="ev-text">{{ event.content|striptags|truncatewords:10 }}</p>
                 <a href="{{ event.get_absolute_url }}"><img class="ev-more" src="/static/img/more-button-green.png" alt="Click for More" /></a>

@@ -5,7 +5,7 @@
 	<script src="{% static 'js/arx.js' %}"></script>
 {% endblock %}
 
-{% block contentclass %}green{% endblock %}
+{% block contentclass %}teal{% endblock %}
 
 {% block main %}
 
@@ -23,7 +23,7 @@
 
 <div class="project">
 
-	<h1>{{project.title}}</h1>
+	<h1>{{project.title|truncatewords:6}}</h1>
 
 	{% if form and not project.is_submitted %}
 		{% if user.is_superuser or user == project.user %}
@@ -38,7 +38,29 @@
 			<form method='post' action='' enctype="multipart/form-data">
 				{% csrf_token %}
 				<input type="hidden" name="id" value="{{form.instance.id}}"/>
-				{{form.as_p}}
+
+				{% for field in form %}
+					<div title="{{field.help_text}}"
+						{% if field.errors %} class="errorlist" {% endif %}
+						style="margin: 0 0 10px 0;">
+
+						{% if field.errors %}
+							<ul>
+								{% for error in field.errors %}
+									<li>{{ error }}</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+
+						{% if not field.is_hidden %}
+							{{field.label_tag}}
+							{% if field.help_text %}
+								<div class="help-inline">{{ field.help_text }}</div>
+							{% endif %}
+						{% endif %}
+						{{ field }}
+					</div>
+				{% endfor %}
 				<p>
 					<input type='submit' value='Save as Draft'/>
 					<input type='submit' onclick='$("#id_is_submitted").val("True");return true;' value='Submit for Approval' />
@@ -92,7 +114,7 @@
 					<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
 				{% endif %}
                 </span>
-                
+
 				<span class="social-icons"><!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
@@ -105,25 +127,27 @@
 
 		<div class="project-details">
 			<h4>About this Project:</h4>
-			<div>
+			<div class="arx-progect-text">
 				{{project.description_long|richtext_filter|safe}}
 			</div>
 
 			<h4>Deliverables:</h4>
-			<div>
-				{{project.description_long|richtext_filter|safe}}
+			<div class="arx-progect-text">
+				{{project.larger_goal|richtext_filter|safe}}
 			</div>
 
-			<h4>The Student Researcher Must Possess:</h4>
-			<div>
-				{{project.researcher_qualities|richtext_filter|safe}}
-			</div>
+			{% if project.researcher_qualities %}
+				<h4>The Student Researcher Must Possess:</h4>
+				<div class="arx-progect-text">
+					{{project.researcher_qualities|richtext_filter|safe}}
+				</div>
+			{% endif %}
 
 			<h4>Use of Project Results:</h4>
-			<div>
+			<div class="arx-progect-text">
 				{{project.results_plan|richtext_filter|safe}}
 			</div>
-            
+
             <div class="project-info-line row">
             <span class="icon">
 				{% if user.is_superuser or user == project.user %}
@@ -141,7 +165,7 @@
 					<a href="" class="arx-project-deselect" style="display: none;" id="arx-project-deselect-{{project.pk}}"><img class="cat-more-left" src="/static/img/arx/added.png" /></a>
 				{% endif %}
                 </span>
-                
+
 				<span class="social-icons"><!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
@@ -150,8 +174,8 @@
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525da9880c8f9f5e"></script>
 <!-- AddThis Button END --></span>
 			</div>
-            
-            
+
+
 		</div>
 
 		<hr/>
@@ -162,8 +186,13 @@
 				<img class="featured-image-right" style="float: right; padding: 10px;" src="{{ MEDIA_URL }}{% sfpirg_thumbnail project.user.profile.photo 200 0 %}" alt="Organization Logo" />
 			{% endif %}
 
-			<h2>About {{ project.user.profile.organization.title }}</h2>
-			<div>
+			{% if project.user.profile.organization.website %}
+				<h2>About<br> <a href="{{ project.user.profile.organization.website }}" target="_blank">{{ project.user.profile.organization.title }}</a></h2>
+			{% else %}
+				<h2>About<br> {{ project.user.profile.organization.title }}</h2>
+			{% endif %}
+
+			<div class="arx-progect-text">
 				{{ project.user.profile.organization.mandate|richtext_filter|safe }}
 			</div>
 		</div>

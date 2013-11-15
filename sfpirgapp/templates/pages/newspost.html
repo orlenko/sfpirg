@@ -9,7 +9,7 @@
 		{% if newspost.featured_image %}
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 250 0 %}" />
 		{% endif %}
-		<h2>{{newspost.title}}</h2>
+		<h2>{{newspost.title|truncatewords:6}}</h2>
 		<p><span style="font-weight:bold;">Published on:</span> {{ newspost.publish_date|date:"M d, Y" }} at {{ newspost.publish_date|date:"g:iA" }}</p>
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">

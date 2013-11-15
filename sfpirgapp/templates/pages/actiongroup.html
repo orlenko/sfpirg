@@ -8,7 +8,29 @@
 {% if form %}
 	<form method='post' action='' enctype="multipart/form-data">
 		{% csrf_token %}
-		{{form.as_p}}
+
+		{% for field in form %}
+			<div title="{{field.help_text}}"
+				{% if field.errors %} class="errorlist" {% endif %}
+				style="margin: 0 0 10px 0;">
+
+				{% if field.errors %}
+					<ul>
+						{% for error in field.errors %}
+							<li>{{ error }}</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				{% if not field.is_hidden %}
+					{{field.label_tag}}
+					{% if field.help_text %}
+						<div class="help-inline">{{ field.help_text }}</div>
+					{% endif %}
+				{% endif %}
+				{{ field }}
+			</div>
+		{% endfor %}
 		<p>
 			{% if actiongroup.is_approved %}
 			<input type='submit' value='Update'/>
@@ -20,7 +42,7 @@
 {% else %}
 
 
-	<h1>{{ page.title }}</h1>
+	<h1>{{ page.title|truncatewords:6 }}</h1>
 
 	{% if request.user == actiongroup.user or request.user.is_superuser %}
 		<a href="?edit=1">Edit this page</a>
@@ -31,54 +53,73 @@
 		{% if actiongroup.featured_image %}
 			<img class="featured-image" src="{{ MEDIA_URL }}{% sfpirg_thumbnail actiongroup.featured_image 200 0 %}" />
 		{% endif %}
+        
+        <h2>{{ page.title }}</h2>
+        
+        {% if actiongroup.contact_phone %}
+			<p><strong>Contact Phone:</strong> {{ actiongroup.contact_phone|richtext_filter|safe }}</p>		
+		{% endif %}
+        
+ 
+     
+        <p class="ag-social-icons">
+		{% if actiongroup.contact_email %}
+			<a href="mailto:{{ actiongroup.contact_email }}" target="_blank"><img src="/static/img/icon-email.png" title="Email: {{ actiongroup.contact_email }}" /></a>
+		{% endif %}
 
+		{% if actiongroup.facebook_url %}
+			<a href="{{ actiongroup.facebook_url }}" target="_blank"><img src="/static/img/icon-fb.png" title="Facebook: {{ actiongroup.facebook_url }}" /></a>
+		{% endif %}
+
+		{% if actiongroup.twitter %}
+			<a href="{{ actiongroup.twitter_url }}" target="_blank"><img src="/static/img/icon-tw.png" title="Twitter: {{ actiongroup.twitter }}"  /></a>
+		{% endif %}
+
+		{% if actiongroup.google_plus_url %}
+			<a href="{{ actiongroup.google_plus_url }}" target="_blank"><img src="/static/img/icon-g-plus.png" title="Google+: {{ actiongroup.google_plus_url }}" /></a>
+		{% endif %}
+
+		{% if actiongroup.mailing_list_url %}
+			<a href="{{ actiongroup.mailing_list_url }}" target="_blank"><img src="/static/img/icon-email.png" title="Mailing List+: {{ actiongroup.mailing_list_url }}" /></a></p>
+		{% endif %}
+
+
+        
+
+		<h2>About this Action Group:</h2>
 		{{ actiongroup.content|richtext_filter|safe }}
+        
+
+        
+
 
 		{% if actiongroup.announcements %}
-			<h2>Announcements</h2>
+	  <h2>Announcements:</h2>
 			{{ actiongroup.announcements|richtext_filter|safe }}
 		{% endif %}
 
 		{% if actiongroup.meetings %}
-			<h2>Meetings</h2>
+			<h2>Meetings:</h2>
 			{{ actiongroup.meetings|richtext_filter|safe }}
 		{% endif %}
 
-		{% if actiongroup.contact_email %}
-			<h2>Contact Email</h2>
-			{{ actiongroup.contact_email|richtext_filter|safe }}
-		{% endif %}
-
-		{% if actiongroup.contact_phone %}
-			<h2>Contact Phone</h2>
-			{{ actiongroup.contact_phone|richtext_filter|safe }}
-		{% endif %}
 
 		{% if actiongroup.links %}
-			<h2>Links</h2>
+	  <h2>Links:</h2>
 			{{ actiongroup.links|richtext_filter|safe }}
 		{% endif %}
+        
+         <p>      
+                <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525da9880c8f9f5e"></script>
+<!-- AddThis Button END -->
+</p>
 
-		{% if actiongroup.facebook_url %}
-			<h2>Facebook</h2>
-			{{ actiongroup.facebook_url|richtext_filter|safe }}
-		{% endif %}
-
-		{% if actiongroup.twitter %}
-			<h2>Twitter</h2>
-			{{ actiongroup.twitter|richtext_filter|safe }}
-		{% endif %}
-
-		{% if actiongroup.google_plus_url %}
-			<h2>Google+</h2>
-			{{ actiongroup.google_plus_url|richtext_filter|safe }}
-		{% endif %}
-
-		{% if actiongroup.mailing_list_url %}
-			<h2>Mailing List</h2>
-			{{ actiongroup.mailing_list_url|richtext_filter|safe }}
-		{% endif %}
-	</div>
+</div>
 
 {% endif %}
 {% endblock %}

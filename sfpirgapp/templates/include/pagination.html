@@ -1,3 +1,5 @@
+{% load append_to_get %}
+
 <div id="pagination">
     <ul>
 
@@ -12,7 +14,7 @@
 	        {% endif %}
 
 	        {% if num != recordlist.number %}
-	        	<a href="?page={{num}}">{{num}}</a>
+	        	<a href="{% append_to_get page=num %}">{{num}}</a>
 	        {% endif %}
 
 			</li>

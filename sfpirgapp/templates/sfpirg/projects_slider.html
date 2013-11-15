@@ -12,7 +12,7 @@
 			{% for page in pages %}
 			<div class="slide {{page.title|proj_lines_class}}">
 				<h4>
-					<a href="{{page.get_absolute_url}}">{{page.title}}</a>
+					<a href="{{page.get_absolute_url}}">{{page.title|truncatewords:6}}</a>
 				</h4>
 				<a href="{{page.get_absolute_url}}">
 					<img src="{{MEDIA_URL}}{{ page.featured_image }}" alt="{{page.title}}" />

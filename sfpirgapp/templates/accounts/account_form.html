@@ -19,12 +19,26 @@
     {% endif %}
     <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
 
+		{% if not form.password %}
+			{% if request.REQUEST.next == '/actiongroup/create/' %}
+        		<div class="ag-steps clear"><img src="/static/img/ag-steps-1.png" alt="Step 1 of 2 Easy Steps " /></div>
+        	{% endif %}
+            {% if request.REQUEST.next == '/arx/project/create/' %}
+        		<div class="arx-steps clear"><img src="/static/img/arx-steps-1.png" alt="Step 1 of 3 Easy Steps " /></div>
+        	{% endif %}
+		{% endif %}
+
+
+		{% block pre_login_msg %}
+		{% endblock %}
+
     	{% if request.REQUEST.next == '/arx/project/create/' %}
 
 			{% csrf_token %}
 
 			{% if request.REQUEST.organization %}
 				{% sfpirg_field form.organization %}
+
 				<div style="display:none;">
 			{% endif %}
 
@@ -47,7 +61,7 @@
 		{% endif %}
 
 	    <div class="form-actions">
-	        <input class="btn btn-primary btn-large" type="submit" value="{{ title }}">
+	        <input class="btn btn-primary btn-large" type="submit" value="{{ submit_label|default:title }}">
 	    </div>
     </form>
 </fieldset>

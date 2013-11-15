@@ -241,5 +241,41 @@
 
 
 
+@media only screen and (max-width: $mobile-breakpoint) {
+.menu-slideshow {
+  .cycle-overlay {
+    div {
+      display: none;
+    }
+    div:first-child {
+      display: block;
+    }
+  }
 
+  .arrow-left {
+    left: 2px;
+    &.red {
+      background-image: url(/static/img/arrow-left-red.png);
+    }
+    &.green {
+      background-image: url(/static/img/arrow-left-green.png);
+    }
+    &.teal {
+      background-image: url(/static/img/arrow-left-teal.png);
+    }
+  }
 
+  .arrow-right {
+    right: 2px;
+    &.red {
+      background-image: url(/static/img/arrow-right-red.png);
+    }
+    &.green {
+      background-image: url(/static/img/arrow-right-green.png);
+    }
+    &.teal {
+      background-image: url(/static/img/arrow-right-teal.png);
+    }
+  }
+}
+}

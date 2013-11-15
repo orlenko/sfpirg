@@ -13,7 +13,7 @@
 					    <li class="menu-item dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
 					        id="dropdown-menu-{{ page.html_id }}">
 					        <a href="{{ page.get_absolute_url }}">
-					            {{ page.title }}
+					            {{ page.title|truncatewords:6 }}
 					        </a>
 					    </li>
 				    {% endif %}

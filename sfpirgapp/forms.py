@@ -1,16 +1,30 @@
-import logging
-
+from ckeditor.widgets import CKEditor
 from django import forms
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.forms.models import ModelForm
-from django.forms.widgets import HiddenInput, DateInput
-
+from django.forms.widgets import DateInput
+from django.forms.widgets import HiddenInput
+from django.utils.text import slugify
+from mezzanine.conf import settings
 from sfpirgapp.models import (Application, Liaison, Organization, Project,
     ActionGroup, Testimonial)
+from sfpirgapp.models import Profile
+from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
-from ckeditor.widgets import CKEditor
+import logging
+from sfpirgapp.models import ActionGroupRequest
+from sfpirgapp.models import ProjectType
+from sfpirgapp.models import ProjectSubject
 
 
 log = logging.getLogger(__name__)
+
+
+class ActionGroupRequestForm(ModelForm):
+    class Meta:
+        model = ActionGroupRequest
+        exclude = ('is_processed',)
 
 
 class ActionGroupForm(ModelForm):
@@ -18,13 +32,9 @@ class ActionGroupForm(ModelForm):
         super(ActionGroupForm, self).__init__(*args, **kwargs)
         self.fields['content'].label = 'Action Group Description'
 
-    def save(self, *args, **kwargs):
-        self.data['status'] = self.data['is_approved'] == 'True' and 2 or 1
-        return super(ActionGroupForm, self).save(*args, **kwargs)
-
     class Meta:
         model = ActionGroup
-        exclude = ('keywords', 'in_menus',)
+        exclude = ('keywords', 'in_menus', 'goals', 'timeline', 'oneliner', 'twoliner', 'potential_members', 'links')
         widgets = {
             'content': CKEditor(ckeditor_config='basic'),
             'announcements': CKEditor(ckeditor_config='basic'),
@@ -55,6 +65,10 @@ class ProjectForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
+        self.fields['title'].help_text = (
+            '(Please keep the title clear, short and descriptive. Keep in mind that the title should indicate '
+            'what the project is actually about and it should be something that will attract a student\'s '
+            'interest. Avoid acronyms).')
         user = (self.instance.pk and self.instance.user) or kwargs.get('initial', {}).get('user')
         org = user and user.profile and user.profile.organization
         log.debug('Do we have an organization for this form? %s' % org)
@@ -69,6 +83,14 @@ class ProjectForm(ModelForm):
         model = Project
         exclude = ('slug', 'in_menus',)
         widgets = {
+            'time_per_week': CKEditor(ckeditor_config='basic'),
+            'support_method': CKEditor(ckeditor_config='basic'),
+            'results_plan': CKEditor(ckeditor_config='basic'),
+            'larger_goal': CKEditor(ckeditor_config='basic'),
+            'researcher_qualities': CKEditor(ckeditor_config='basic'),
+            'description_short': HiddenInput(),
+            'size': HiddenInput(),
+            'description_long': CKEditor(ckeditor_config='basic'),
             'liaison': SelectWithPopUp('Liaison'),
             'user': HiddenInput(),
             'category': HiddenInput(),
@@ -88,7 +110,8 @@ class ApplicationForm(ModelForm):
 
 
 class MultiApplicationForm(forms.Form):
-    email = forms.EmailField(label='Your Email')
+    name = forms.CharField(label='Your Name')
+    email = forms.EmailField(label='Email')
     message = forms.CharField(widget=forms.Textarea())
 
 
@@ -101,6 +124,9 @@ class OrganizationForm(ModelForm):
         model = Organization
         widgets = {
             'slug': forms.HiddenInput(),
+            'mandate': CKEditor(ckeditor_config='basic'),
+            'communities': CKEditor(ckeditor_config='basic'),
+            'sources_of_funding': CKEditor(ckeditor_config='basic'),
         }
 
 
@@ -137,3 +163,17 @@ class TestimonialForm(ModelForm):
             'login_required': HiddenInput(),
             'in_menus': HiddenInput(),
         }
+
+
+class ActionGroupFilterForm(forms.Form):
+    pass
+
+
+class ArxFilterForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(ArxFilterForm, self).__init__(*args, **kwargs)
+        self.fields['project_type'].choices = [(rec.id, rec.title) for rec in ProjectType.objects.all()]
+        self.fields['project_subject'].choices = [(rec.id, rec.title) for rec in ProjectSubject.objects.all()]
+
+    project_type = forms.MultipleChoiceField(required=False)
+    project_subject = forms.MultipleChoiceField(label='Project Issues', required=False)
