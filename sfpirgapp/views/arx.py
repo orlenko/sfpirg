@@ -118,7 +118,6 @@ def toggle_project_selection(request, project):
 def multi_apply(request):
     form = MultiApplicationForm()
     project_ids = request.session.get(SELECTED_PROJECTS, [])
-    request.session[SELECTED_PROJECTS] = []
     count = len(project_ids)
     current_item = 'Apply for Projects'
     projects = Project.objects.filter(pk__in=project_ids)
@@ -128,6 +127,7 @@ def multi_apply(request):
         email = form.data['email']
         comments = form.data['message']
         if form.is_valid():
+            request.session[SELECTED_PROJECTS] = []
             for proj_id in project_ids:
                 Application.objects.create(name=name, email=email, project_id=proj_id, message=comments)
             send_mail_template('ARX Project application submitted',
