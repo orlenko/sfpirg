@@ -36,6 +36,10 @@ def send_mail_template(subject, template, addr_from, addr_to, context=None,
         context = {}
     if attachments is None:
         attachments = []
+    if ',' in addr_to:
+        addr_to = addr_to.split(',')
+    elif ';' in addr_to:
+        addr_to = addr_to.split(';')
     # Allow for a single address to be passed in.
     if not hasattr(addr_to, "__iter__"):
         addr_to = [addr_to]
