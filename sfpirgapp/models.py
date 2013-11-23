@@ -300,7 +300,7 @@ class Project(Slugged, AdminThumbMixin):
     researcher_qualities = RichTextField(blank=True, null=True, verbose_name='The Student Researcher Must Possess',
         help_text='(What skills or attributes do you hope the student researcher will possess?)')
     date_created = models.DateTimeField(auto_now_add=True)
-    date_start = models.DateField(blank=True, null=True)
+    date_start = models.DateField('Approval Date', blank=True, null=True)
     is_submitted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     is_underway = models.BooleanField(default=False)
@@ -362,6 +362,8 @@ class Project(Slugged, AdminThumbMixin):
             return
         if self.is_completed_successfully and not self.is_finished:
             return
+        if self.is_approved:
+            self.date_start = datetime.datetime.now()
         return super(Project, self).save(*args, **kwargs)
 
 

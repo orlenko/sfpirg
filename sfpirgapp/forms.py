@@ -99,7 +99,7 @@ class ProjectForm(ModelForm):
             'is_underway': HiddenInput(),
             'is_finished': HiddenInput(),
             'is_completed_successfully': HiddenInput(),
-            'date_start': DateInput(),
+            'date_start': HiddenInput(),
         }
 
 
