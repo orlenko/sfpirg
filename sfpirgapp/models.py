@@ -52,6 +52,7 @@ class Testimonial(PageLike):
     category = ForeignKey('Category', related_name='testimonials')
     author_full_name = models.CharField(verbose_name='Your Full Name', max_length=255, null=True, blank=True)
     author_title = models.CharField(verbose_name='Your area of study or job title', max_length=255 ,null=True, blank=True)
+    author_email = models.EmailField('Email', max_length=255, null=True, blank=True)
 
     def get_author_full_name(self):
         if self.author_full_name:

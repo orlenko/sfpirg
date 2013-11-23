@@ -1,0 +1,14 @@
+Dear {{ testimonial.author_full_name }},
+
+Your SFPIRG experience has been submitted.
+
+	Experience Title: {{ testimonial.title }}
+
+	Name: {{ testimonial.author_full_name }}
+	Email: {{ testimonial.author_email }}
+	Area of Study / Job Title: {{ testimonial.author_title }}
+	Content: {{ testimonial.content|striptags }}
+
+Warmly,
+
+~ The SFPIRG Team
