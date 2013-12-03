@@ -110,5 +110,6 @@ $(function() {
 			'margin-left': '-' + (dialog.width() / 2) + 'px',
 			'margin-top': '-' + (dialog.height() / 2) + 'px'
 		});
+		dialog.find('input[type=text]').css('height', 'auto');
 	});
 });
