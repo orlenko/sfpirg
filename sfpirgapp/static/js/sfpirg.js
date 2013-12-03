@@ -108,7 +108,7 @@ $(function() {
 			left: '50%',
 			top: '50%',
 			'margin-left': '-' + (dialog.outerWidth() / 2) + 'px',
-			'margin-top': '-' + (dialog.outerHight() / 2) + 'px'
+			'margin-top': '-' + (dialog.outerHeight() / 2) + 'px'
 		});
 		dialog.find('input[type=text]').css('height', 'auto');
 	});
