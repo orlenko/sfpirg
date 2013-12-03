@@ -208,6 +208,9 @@ CKEDITOR_CONFIGS = {
 }
 RICHTEXT_WIDGET_CLASS = 'ckeditor.widgets.CKEditor'
 
+
+SEARCH_MODEL_CHOICES = ("pages.Page", "blog.BlogPost", "sfpirgapp.Project", "sfpirgapp.ActionGroup")
+
 try:
     from local_settings import *
 except ImportError:

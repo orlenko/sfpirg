@@ -74,7 +74,7 @@ class ProjectForm(ModelForm):
         log.debug('Do we have an organization for this form? %s' % org)
         if org:
             qs = self.fields['liaison'].queryset
-            self.fields['liaison'].queryset = qs.filter(organization=org)
+            self.fields['liaison'].queryset = qs.filter(organization=org).order_by('name')
 
     def set_parent_record(self, record):
         self.fields['user'].initial = record
@@ -99,7 +99,7 @@ class ProjectForm(ModelForm):
             'is_underway': HiddenInput(),
             'is_finished': HiddenInput(),
             'is_completed_successfully': HiddenInput(),
-            'date_start': DateInput(),
+            'date_start': HiddenInput(),
         }
 
 

@@ -55,6 +55,7 @@ class Testimonial(PageLike):
     category = ForeignKey('Category', related_name='testimonials')
     author_full_name = models.CharField(verbose_name='Your Full Name', max_length=255, null=True, blank=True)
     author_title = models.CharField(verbose_name='Your area of study or job title', max_length=255 ,null=True, blank=True)
+    author_email = models.EmailField('Email', max_length=255, null=True, blank=True)
 
     def get_author_full_name(self):
         if self.author_full_name:
@@ -302,7 +303,7 @@ class Project(Slugged, AdminThumbMixin):
     researcher_qualities = RichTextField(blank=True, null=True, verbose_name='The Student Researcher Must Possess',
         help_text='(What skills or attributes do you hope the student researcher will possess?)')
     date_created = models.DateTimeField(auto_now_add=True)
-    date_start = models.DateField(blank=True, null=True)
+    date_start = models.DateField('Approval Date', blank=True, null=True)
     is_submitted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     is_underway = models.BooleanField(default=False)
@@ -310,6 +311,8 @@ class Project(Slugged, AdminThumbMixin):
     is_completed_successfully = models.BooleanField(default=False)
     category = ForeignKey(Category, related_name='arx_projects')
     in_menus = MenusField("Show in menus", blank=True, null=True)
+    admin_notes = models.TextField(blank=True, null=True,
+                                   help_text='Internal Admin notes, not shown to the front-end users')
 
     @property
     def richtextpage(self):
@@ -364,6 +367,8 @@ class Project(Slugged, AdminThumbMixin):
             return
         if self.is_completed_successfully and not self.is_finished:
             return
+        if self.is_approved:
+            self.date_start = datetime.datetime.now()
         return super(Project, self).save(*args, **kwargs)
 
 

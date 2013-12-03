@@ -10,6 +10,8 @@ import random
 from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from django.conf import settings
 from django.shortcuts import resolve_url
+from mezzanine.utils.email import send_mail_template
+from sfpirgapp.models import Settings
 
 
 def testimoniallist(request):
@@ -43,6 +45,24 @@ def add_testimonial(request):
         form = TestimonialForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            testimonial = form.instance
+            send_mail_template('New experience submitted: %s' % form.instance.title,
+                   'sfpirg/email/experience_admin',
+                   Settings.get_setting('SERVER_EMAIL'),
+                   Settings.get_setting('ARX_ADMIN_EMAIL'),
+                   context=locals(),
+                   attachments=None,
+                   fail_silently=settings.DEBUG,
+                   addr_bcc=None)
+            if form.cleaned_data.get('author_email'):
+                send_mail_template('Your experience submitted: %s' % form.instance.title,
+                       'sfpirg/email/experience_user',
+                       Settings.get_setting('SERVER_EMAIL'),
+                       form.cleaned_data.get('author_email'),
+                       context=locals(),
+                       attachments=None,
+                       fail_silently=settings.DEBUG,
+                       addr_bcc=None)
             return HttpResponseRedirect(resolve_url('thankyou'))
     else:
         form = TestimonialForm(initial={'category': _category_by_model(Testimonial),

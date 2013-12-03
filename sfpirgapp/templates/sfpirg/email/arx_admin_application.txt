@@ -4,6 +4,7 @@ A student has just applied for one or more ARX projects through the SFPIRG websi
 
 -------------------------------
 
+Student's name: {{ name }}
 Student's email: {{ email }}
 
 Project(s):
