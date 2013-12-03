@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n future mezzanine_tags %}
+{% load i18n future mezzanine_tags sfpirg_tags %}
 
 {% block meta_title %}{% trans "Search Results" %}{% endblock %}
 {% block title %}{% trans "Search Results" %}{% endblock %}
@@ -15,6 +15,8 @@
 
 {% block main %}
 
+<h1>Search Result(s)</h1>
+
 <p>
 {% if results.paginator.count == 0 %}
 {% blocktrans %}
@@ -22,20 +24,24 @@ No results were found in {{ search_type }} matching your query: {{ query }}
 {% endblocktrans %}
 {% else %}
 {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: <strong>{{ query }}</strong>
 {% endblocktrans %}
 {% endif %}
 </p>
 
 <div id="search-results">
+
     {% for result in results.object_list %}
+    <div class="sfpirg-results">
     <h5>{{ forloop.counter0|add:results.start_index }})
         <a href="{{ result.get_absolute_url }}">{{ result }}</a></h5>
-    <p>{{ result.description|truncatewords_html:20|safe }}</p>
-    <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
+    <p>{{ result.description|truncatewords_html:20|safe }} <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a></p>
+    
+    </div>
     {% endfor %}
 </div>
 
-{% pagination_for results %}
+{% sfpirg_pagination results %}
+
 
 {% endblock %}

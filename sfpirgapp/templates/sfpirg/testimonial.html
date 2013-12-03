@@ -17,7 +17,7 @@
 	<h2>{{ t.title|truncatewords:6 }}</h2>
 	<h4 style="line-height:10px;">
 		<span style="font-size:12px; font-weight:normal;">By:</span> {{ t.get_author_full_name }}
-		<span style="font-size:12px; font-weight:normal;">on {{ t.publish_date|date:"M d, Y"  }}</span>
+		
 	</h4>
 
     <p>{{ t.get_author_title }}</p>
@@ -25,6 +25,8 @@
 	{% editable t.content %}
 		{{ t.content|richtext_filter|safe }}
 	{% endeditable %}
+    
+    <p>Published on {{ t.publish_date|date:"M d, Y"  }}</p>
 
     <div style="clear:both; margin:20px 0;">
     	<span style="width:auto; float:left;">

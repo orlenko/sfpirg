@@ -1445,12 +1445,15 @@ iframe {
 		min-width:200px;
 		margin:0;
 		padding:0;
+		list-style:none;
 	}
 	li {
 	height: 16px;
     width: 23px;
     margin: 5px;
     text-align: center;
+	display:inline-block;
+	background:$paper repeat;
 	}
 }
 
@@ -1591,6 +1594,14 @@ NOTE: img is based on an image no more than: 150px wide and 135px high. */
 
 .arx-progect-text{
 	margin:10px 0 40px;
+}
+.sfpirg-results {
+	float:left;
+	clear:both;
+	margin:10px 0;
+	border-bottom:1px dotted #000;
+	padding:10px 0;
+	width:100%;
 }
 
 
