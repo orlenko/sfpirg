@@ -16,6 +16,9 @@ from mezzanine.core.models import CONTENT_STATUS_DRAFT
 #from django import forms
 
 
+User._meta.ordering=["username"]
+
+
 class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
     titles = models.CharField(editable=False, max_length=1000, null=True)
     login_required = models.BooleanField(_("Login required"),
