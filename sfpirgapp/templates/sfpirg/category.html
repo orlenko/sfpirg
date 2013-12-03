@@ -20,7 +20,7 @@
 				{{ category.content|richtext_filter|safe }}
 			{% endeditable %}
 		</div>
-        
+
         		{% if filterform %}
 			<div class="filtercontainer">
 				<p>Filter by project type or issue</p>
@@ -38,7 +38,7 @@
 				</form>
 			</div>
 		{% endif %}
-        
+
 	{% endif %}
 
 	{% spaceless %}
@@ -62,7 +62,7 @@
 			    </div>
 			    <h2><a href="{{rec.get_absolute_url}}">{{rec.title|truncatewords:5}}</a></h2>
 			    <div class="cat-text">
-			    <p>{{ rec.content|striptags|truncatewords:10 }}</p>
+			    <p>{{ rec.content|striptags|safe|truncatewords:10 }}</p>
 			    {% block item_tools %}
 			    	<a href="{{rec.get_absolute_url}}"><img class="cat-more" src="/static/img/more-button-grey.png" alt="Click for More" /></a>
 			    {% endblock %}

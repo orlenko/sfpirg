@@ -308,6 +308,8 @@ class Project(Slugged, AdminThumbMixin):
     is_completed_successfully = models.BooleanField(default=False)
     category = ForeignKey(Category, related_name='arx_projects')
     in_menus = MenusField("Show in menus", blank=True, null=True)
+    admin_notes = models.TextField(blank=True, null=True,
+                                   help_text='Internal Admin notes, not shown to the front-end users')
 
     @property
     def richtextpage(self):

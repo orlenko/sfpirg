@@ -18,13 +18,13 @@
         <br>
 		{{ event.start|date:"g:iA" }} to {{ event.end|date:"g:iA" }}<br>
 		@ {{ event.location }}</p>
-        
+
         <div class="project-info-line row">
             <span class="icon">
-            <a href="#" target="_blank"><img src="/static/img/register.png"/ alt="Register"></a>
-				
+            <a href="{{ event.link_url }}" target="_blank"><img src="/static/img/register.png"/ alt="Register"></a>
+
                 </span>
-                
+
 				<span class="social-icons"><!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
@@ -33,15 +33,15 @@
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525da9880c8f9f5e"></script>
 <!-- AddThis Button END --></span>
 			</div>
-        
-        
-        
-        
+
+
+
+
 		{% editable event.content %}
 			{{ event.content|richtext_filter|safe }}
 		{% endeditable %}
-        
-        
+
+
 	</div>
 
 {% endblock %}

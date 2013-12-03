@@ -1,6 +1,6 @@
 Dear {{ testimonial.author_full_name }},
 
-Your SFPIRG experience has been submitted.
+Thanks so much for sharing your SFPIRG experience.  Here’s what you sent us:
 
 	Experience Title: {{ testimonial.title }}
 
