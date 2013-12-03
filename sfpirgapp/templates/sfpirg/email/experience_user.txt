@@ -9,6 +9,8 @@ Thanks so much for sharing your SFPIRG experience.  Here’s what you sent us:
 	Area of Study / Job Title: {{ testimonial.author_title }}
 	Content: {{ testimonial.content|striptags }}
 
+We will let you know when it is published on our website. If you haven’t included an image, can you please email one to outreach@sfpirg.ca?
+
 Warmly,
 
 ~ The SFPIRG Team
