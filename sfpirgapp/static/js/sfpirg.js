@@ -101,15 +101,17 @@ $(function() {
 		});
 	}, 200);
 
-	$('.editable-link').each(function(){
-		var link = $(this);
-		var dialog = $(link.attr('rel'));
-		dialog.css({
-			left: '50%',
-			top: '50%',
-			'margin-left': '-' + (dialog.outerWidth() / 2) + 'px',
-			'margin-top': '-' + (dialog.outerHeight() / 2) + 'px'
+	window.setTimeout(function() {
+		$('.editable-link').each(function(){
+			var link = $(this);
+			var dialog = $(link.attr('rel'));
+			dialog.css({
+				left: '50%',
+				top: '50%',
+				'margin-left': '-' + (dialog.outerWidth() / 2) + 'px',
+				'margin-top': '-' + (dialog.outerHeight() / 2) + 'px'
+			});
+			dialog.find('input[type=text]').css('height', 'auto');
 		});
-		dialog.find('input[type=text]').css('height', 'auto');
-	});
+	}, 500);
 });
