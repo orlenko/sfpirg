@@ -20,12 +20,14 @@
 		@ {{ event.location }}</p>
 
         <div class="project-info-line row">
+
+            {% if event.link_url %}
             <span class="icon">
-            <a href="{{ event.link_url }}" target="_blank"><img src="/static/img/register.png"/ alt="Register"></a>
+            	<a href="{{ event.link_url }}" target="_blank"><img src="/static/img/register.png"/ alt="Register"></a>
+            </span>
+            {% endif %}
 
-                </span>
-
-				<span class="social-icons"><!-- AddThis Button BEGIN -->
+			<span class="social-icons"><!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 <a class="addthis_counter addthis_pill_style"></a>
