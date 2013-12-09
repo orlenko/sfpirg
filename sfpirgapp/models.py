@@ -28,6 +28,7 @@ class PageLike(Orderable, Displayable, RichText, AdminThumbMixin):
         upload_to=upload_to("images", "uploads/images"),
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
+    search_fields = ('title', 'content')
 
     class Meta:
         abstract = True
@@ -268,7 +269,7 @@ class ProjectSubject(Slugged):
     pass
 
 
-class Project(Slugged, AdminThumbMixin):
+class Project(Displayable, AdminThumbMixin):
     user = ForeignKey(User)
     liaison = ForeignKey(Liaison, blank=True, null=True,
                          on_delete=models.SET_NULL,
@@ -316,6 +317,13 @@ class Project(Slugged, AdminThumbMixin):
     in_menus = MenusField("Show in menus", blank=True, null=True)
     admin_notes = models.TextField(blank=True, null=True,
                                    help_text='Internal Admin notes, not shown to the front-end users')
+    search_fields = ('title', 'description_long', 'results_plan', 'larger_goal', 'researcher_qualities')
+
+    def get_description(self):
+        return self.description_long
+    def set_description(self, value):
+        pass
+    description = property(get_description, set_description)
 
     @property
     def richtextpage(self):
