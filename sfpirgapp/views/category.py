@@ -54,7 +54,7 @@ def category(request, slug):
         #    print 'Invalid filters! %s' % filterform.errors
         pass
     else:
-        queryset = (category.testimonials.filter(status=2)
+        queryset = (category.testimonials.filter(status=2).order_by('-publish_date')
                 or category.news_posts.filter(publish_date__lt=datetime.datetime.now()).order_by('-publish_date')
                 or category.events.filter(start__gt=datetime.datetime.now()).order_by('start'))
     if not queryset:
