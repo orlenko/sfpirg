@@ -9,6 +9,16 @@
         data-cycle-next="#event-nextslide">
 			<a href="#" id="event-prevslide" class="arrow-left green"></a>
 			<a href="#" id="event-nextslide" class="arrow-right green"></a>
+		{% if not events %}
+			<div class="slide">
+	         	<img class="event-img"
+	         			src="/static/img/noevent.jpg"
+	         			alt="No Events" />
+	         	<p class="ev-title">Sorry</p>
+                <p class="ev-date">No Current Events</p>
+                <p class="ev-text">Please check back soon - events will be added shortly</p>
+             </div>
+		{% endif %}
 		{% for event in events %}
 	         <div class="slide">
 	         	{% if event.featured_image %}
