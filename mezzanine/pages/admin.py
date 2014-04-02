@@ -20,6 +20,9 @@ log = logging.getLogger(__name__)
 page_fieldsets = deepcopy(DisplayableAdmin.fieldsets)
 page_fieldsets[0][1]["fields"] += ("in_menus", "login_required",)
 page_fieldsets[0][1]["fields"].insert(-2, "featured_image")
+page_fieldsets[0][1]["fields"].insert(-2, "featured_image_wide")
+page_fieldsets[0][1]["fields"].insert(-2, "marquee_caption")
+print 'PAGE_FIELDSETS', page_fieldsets
 
 
 class PageAdminForm(DisplayableAdminForm):
