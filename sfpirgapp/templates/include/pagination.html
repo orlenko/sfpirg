@@ -3,6 +3,10 @@
 <div id="pagination">
     <ul>
 
+    	{% if recordlist.has_previous %}
+    		<li style="width:auto;" ><a style="width:auto;" href="{% append_to_get page=recordlist.previous_page_number %}">Previous</a></li>
+    	{% endif %}
+
         {% for num in recordlist.paginator.page_range %}
 
 			<li>
@@ -19,6 +23,11 @@
 
 			</li>
         {% endfor %}
+
+
+    	{% if recordlist.has_next %}
+    		<li style="width:auto;" ><a style="width:auto;" href="{% append_to_get page=recordlist.next_page_number %}">Next</a></li>
+    	{% endif %}
 
     </ul>
 </div>

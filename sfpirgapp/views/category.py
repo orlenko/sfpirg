@@ -68,7 +68,7 @@ def category(request, slug):
                 queryset = queryset.filter(project_subject__in=filterform.cleaned_data['project_subject'])
         else:
             print 'Invalid filters! %s' % filterform.errors
-    paginator = Paginator(queryset, 6)
+    paginator = Paginator(queryset, 9)
     pagenum = request.GET.get('page')
     try:
         aglist = paginator.page(pagenum)

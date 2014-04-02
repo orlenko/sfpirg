@@ -610,13 +610,13 @@ iframe {
 	}
 }
 .help-inline {
-	font-size:12px; 
+	font-size:12px;
 	color:#999;
 }
 .ag-social-icons {
 	img {padding:10px 6px;
 	}
-	
+
 }
 .project-info-line {
 	margin: 8px 0;
@@ -741,9 +741,9 @@ iframe {
 		width:100%;
 		content:""; display:inline-block;}
 	}
-	#pagination li { 
-	
-	
+	#pagination li {
+
+
 	a{
 		height: 16px;
     	width: 23px;
@@ -755,14 +755,14 @@ iframe {
 		display:inline-block;
 		&:hover, &:active{
 			color:#fff;
-			background:url(../img/cat-pagination-grey.png) top center no-repeat;
+			background:url(../img/cat-pagination-grey.png) top center /*no-repeat*/;
 			}
 	}
-	
+
 	.current {
 		padding:0 8px;
 			color:#fff;
-			background:url(../img/cat-pagination-grey.png) top center no-repeat;
+			background:url(../img/cat-pagination-grey.png) top center /*no-repeat*/;
 			}
 	}
 }
@@ -804,8 +804,8 @@ iframe {
 		content:""; display:inline-block;}
 	}
 	#pagination li {
-	
-	
+
+
 	a{
 		height: 16px;
     	width: 23px;
@@ -865,8 +865,8 @@ iframe {
 		content:""; display:inline-block;}
 	}
 	#pagination li {
-	
-	
+
+
 	a{
 		height: 16px;
     	width: 23px;
@@ -926,8 +926,8 @@ iframe {
 		content:""; display:inline-block;}
 	}
 	#pagination li {
-	
-	
+
+
 	a{
 		height: 16px;
     	width: 23px;
@@ -988,8 +988,8 @@ iframe {
 		content:""; display:inline-block;}
 	}
 	#pagination li {
-	
-	
+
+
 	a{
 		height: 16px;
     	width: 23px;
