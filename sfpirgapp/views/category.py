@@ -17,11 +17,11 @@ def get_arx_query_set(request, category):
     user = request.user
     if user and not user.is_anonymous():
         if user.is_superuser:
-            return category.arx_projects.all().order_by('pk', '-date_start')
+            return category.arx_projects.all().order_by('-date_start', 'pk')
         else:
-            return category.arx_projects.filter(Q(is_approved=True, is_underway=False) | Q(user=user)).order_by('pk', '-date_start')
+            return category.arx_projects.filter(Q(is_approved=True, is_underway=False) | Q(user=user)).order_by('-date_start', 'pk')
     else:
-        return category.arx_projects.filter(is_approved=True, is_underway=False).order_by('pk', '-date_start')
+        return category.arx_projects.filter(is_approved=True, is_underway=False).order_by('-date_start', 'pk')
 
 
 def get_ag_query_set(request, category):
