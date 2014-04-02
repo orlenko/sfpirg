@@ -16,9 +16,9 @@
 			    data-cycle-desc="{{ page.richtextpage.content|striptags|truncatewords:30 }}"
 			    data-cycle-url="{{ page.get_absolute_url }}">
 			    {% if page.featured_image_wide %}
-			    	<img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image_wide 785 0 %}" />
+			    	<a href="{{ page.get_absolute_url }}"><img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image_wide 785 0 %}" /></a>
 			    {% else %}
-			    	<img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 785 0 %}" />
+			    	<a href="{{ page.get_absolute_url }}"><img src="{{ MEDIA_URL }}{% sfpirg_thumbnail page.featured_image 785 0 %}" /></a>
 			    {% endif %}
 
 		    </div>
