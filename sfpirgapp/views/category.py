@@ -32,11 +32,11 @@ def get_ag_query_set(request, category):
     user = request.user
     if user and not user.is_anonymous():
         if user.is_superuser:
-            return category.action_groups.all().order_by('-publish_date')
+            return category.action_groups.all().order_by('-publish_date', 'pk')
         else:
-            return category.action_groups.filter(Q(is_approved=True) | Q(user=user)).order_by('-publish_date')
+            return category.action_groups.filter(Q(is_approved=True) | Q(user=user)).order_by('-publish_date', 'pk')
     else:
-        return category.action_groups.filter(is_approved=True).order_by('-publish_date')
+        return category.action_groups.filter(is_approved=True).order_by('-publish_date', 'pk')
 
 
 def category(request, slug):
