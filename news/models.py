@@ -23,7 +23,8 @@ class NewsPost(Displayable, RichText, AdminThumbMixin):
     admin_thumb_field = "featured_image"
     featured_image_wide = FileField(verbose_name="Featured Image (Wide)",
         upload_to=upload_to("images", "images"),
-        format="Image", max_length=255, null=True, blank=True)
+        format="Image", max_length=255, null=True, blank=True,
+        help_text="For front-page slider images, please make sure they are at least 785px wide and 400px tall.")
     marquee_caption = models.CharField(null=True, blank=True, max_length=255)
     login_required = models.BooleanField("Login required",
         default=False,
