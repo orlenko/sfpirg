@@ -9,18 +9,21 @@ import logging
 from sfpirgapp.models import ActionGroupRequest
 from sfpirgapp.models import ProjectType
 from sfpirgapp.models import ProjectSubject
+from captcha.fields import CaptchaField
 
 
 log = logging.getLogger(__name__)
 
 
 class ActionGroupRequestForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = ActionGroupRequest
         exclude = ('is_processed',)
 
 
 class ActionGroupForm(ModelForm):
+    captcha = CaptchaField()
     def __init__(self, *args, **kwargs):
         super(ActionGroupForm, self).__init__(*args, **kwargs)
         self.fields['content'].label = 'Action Group Description'
@@ -56,6 +59,7 @@ class ActionGroupForm(ModelForm):
 
 class ProjectForm(ModelForm):
 
+    captcha = CaptchaField()
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
         self.fields['title'].help_text = (
@@ -97,18 +101,21 @@ class ProjectForm(ModelForm):
 
 
 class ApplicationForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = Application
         exclude = ('timestamp', )
 
 
 class MultiApplicationForm(forms.Form):
+    captcha = CaptchaField()
     name = forms.CharField(label='Your Name')
     email = forms.EmailField(label='Email')
     message = forms.CharField(widget=forms.Textarea())
 
 
 class OrganizationForm(ModelForm):
+    captcha = CaptchaField()
     def __init__(self, *args, **kwargs):
         super(OrganizationForm, self).__init__(*args, **kwargs)
         self.fields['title'].label = 'Organization Name'
@@ -124,11 +131,13 @@ class OrganizationForm(ModelForm):
 
 
 class LiaisonForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = Liaison
 
 
 class TestimonialForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = Testimonial
         exclude = ('keywords', 'in_menus',)

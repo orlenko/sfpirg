@@ -113,7 +113,8 @@ INSTALLED_APPS = (
     'mezzanine.accounts',
     'mezzanine.calendar',
     'news',
-    'sfpirgapp'
+    'sfpirgapp',
+    'captcha',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

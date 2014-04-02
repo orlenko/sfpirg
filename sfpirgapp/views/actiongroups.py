@@ -51,31 +51,33 @@ def actiongroup(request, slug):
 
 
 def request_group(request):
-    form = ActionGroupRequestForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        user = request.user
-        actiongroup = form.instance
-        send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
-               'sfpirg/email/ag_application',
-               Settings.get_setting('SERVER_EMAIL'),
-               user.email,
-               context=locals(),
-               attachments=None,
-               fail_silently=settings.DEBUG,
-               addr_bcc=None)
-        send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
-               'sfpirg/email/ag_admin_application',
-               Settings.get_setting('SERVER_EMAIL'),
-               Settings.get_setting('ACTION_GROUPS_ADMIN_EMAIL'),
-               context=locals(),
-               attachments=None,
-               fail_silently=settings.DEBUG,
-               addr_bcc=None)
-        return HttpResponseRedirect(resolve_url('thankyou'))
-    current_item = 'Action Group Request'
-    context = RequestContext(request, locals())
-    return render_to_response('sfpirg/action_group_request.html', {}, context_instance=context)
+    try:
+        form = ActionGroupRequestForm(request.POST or None)
+        if request.method == 'POST' and form.is_valid():
+            form.save()
+            actiongroup = form.instance
+            send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
+                   'sfpirg/email/ag_application',
+                   Settings.get_setting('SERVER_EMAIL'),
+                   actiongroup.contact_email,
+                   context=locals(),
+                   attachments=None,
+                   fail_silently=settings.DEBUG,
+                   addr_bcc=None)
+            send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
+                   'sfpirg/email/ag_admin_application',
+                   Settings.get_setting('SERVER_EMAIL'),
+                   Settings.get_setting('ACTION_GROUPS_ADMIN_EMAIL'),
+                   context=locals(),
+                   attachments=None,
+                   fail_silently=settings.DEBUG,
+                   addr_bcc=None)
+            return HttpResponseRedirect(resolve_url('thankyou'))
+        current_item = 'Action Group Request'
+        context = RequestContext(request, locals())
+        return render_to_response('sfpirg/action_group_request.html', {}, context_instance=context)
+    except:
+        log.error('Failed to process request', exc_info=1)
 
 
 @login_required
