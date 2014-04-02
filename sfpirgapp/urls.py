@@ -13,6 +13,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
+    url(r'^captcha/', include('captcha.urls')),
+
     url(r'^$', 'sfpirgapp.views.home.homepage', {}, name='home'),
 
     url(r'^testimonial/add/$', 'sfpirgapp.views.testimonial.add_testimonial', {}, name='add-testimonial'),

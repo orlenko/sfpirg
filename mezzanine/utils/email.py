@@ -7,6 +7,10 @@ from django.utils.http import int_to_base36
 
 from mezzanine.conf import settings
 from mezzanine.utils.urls import admin_url
+import logging
+
+
+log = logging.getLogger(__name__)
 
 
 def split_addresses(email_string_list):
