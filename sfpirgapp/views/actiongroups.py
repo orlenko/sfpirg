@@ -54,6 +54,24 @@ def request_group(request):
     form = ActionGroupRequestForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
+        user = request.user
+        actiongroup = form.instance
+        send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
+               'sfpirg/email/ag_application',
+               Settings.get_setting('SERVER_EMAIL'),
+               user.email,
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
+        send_mail_template('Action Group Application Submitted: %s' % actiongroup.title,
+               'sfpirg/email/ag_admin_application',
+               Settings.get_setting('SERVER_EMAIL'),
+               Settings.get_setting('ACTION_GROUPS_ADMIN_EMAIL'),
+               context=locals(),
+               attachments=None,
+               fail_silently=settings.DEBUG,
+               addr_bcc=None)
         return HttpResponseRedirect(resolve_url('thankyou'))
     current_item = 'Action Group Request'
     context = RequestContext(request, locals())

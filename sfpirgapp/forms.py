@@ -1,16 +1,9 @@
 from ckeditor.widgets import CKEditor
 from django import forms
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.forms.models import ModelForm
-from django.forms.widgets import DateInput
 from django.forms.widgets import HiddenInput
-from django.utils.text import slugify
-from mezzanine.conf import settings
 from sfpirgapp.models import (Application, Liaison, Organization, Project,
     ActionGroup, Testimonial)
-from sfpirgapp.models import Profile
-from sfpirgapp.templatetags.sfpirg_tags import _category_by_model
 from sfpirgapp.widgets import SelectWithPopUp, AdvancedFileInput
 import logging
 from sfpirgapp.models import ActionGroupRequest
