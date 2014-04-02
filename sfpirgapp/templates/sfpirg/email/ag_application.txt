@@ -1,4 +1,4 @@
-Dear {{ user.get_full_name|default:user.username }},
+Dear {{ actiongroup.contact_person }},
 
 Thank you for submitting an Action Group application! Please print out a copy for your records. You can find it here:
 
