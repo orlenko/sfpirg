@@ -21,6 +21,10 @@ class NewsPost(Displayable, RichText, AdminThumbMixin):
         upload_to=upload_to("images", "images"),
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
+    featured_image_wide = FileField(verbose_name="Featured Image (Wide)",
+        upload_to=upload_to("images", "images"),
+        format="Image", max_length=255, null=True, blank=True)
+    marquee_caption = models.CharField(null=True, blank=True, max_length=255)
     login_required = models.BooleanField("Login required",
         default=False,
         help_text="If checked, only logged in users can view this page")

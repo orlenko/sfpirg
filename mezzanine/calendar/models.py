@@ -54,6 +54,10 @@ class Event(Displayable, RichText, AdminThumbMixin):
         upload_to=upload_to("images", "images"),
         format="Image", max_length=255, null=True, blank=True)
     admin_thumb_field = "featured_image"
+    featured_image_wide = FileField(verbose_name=_("Featured Image (Wide)"),
+        upload_to=upload_to("images", "images"),
+        format="Image", max_length=255, null=True, blank=True)
+    marquee_caption = models.CharField(null=True, blank=True, max_length=255)
     category = ForeignKey('sfpirgapp.Category', related_name='events')
     in_menus = MenusField("Show in menus", blank=True, null=True)
     location = models.TextField(blank=True, null=True)

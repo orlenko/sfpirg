@@ -27,6 +27,8 @@ from sfpirgapp.widgets import AdvancedFileInput
 common_fieldsets = deepcopy(PageAdmin.fieldsets)
 common_fieldsets[0][1]['fields'].append('content')
 common_fieldsets[0][1]['fields'].remove('in_menus')
+common_fieldsets[0][1]['fields'].remove('featured_image_wide')
+common_fieldsets[0][1]['fields'].remove('marquee_caption')
 
 testimonial_fieldsets = deepcopy(common_fieldsets)
 testimonial_fieldsets[0][1]['fields'].append('user')
