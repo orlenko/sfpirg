@@ -66,6 +66,7 @@ def category(request, slug):
                 queryset = queryset.filter(project_type__in=filterform.cleaned_data['project_type'])
             if filterform.cleaned_data.get('project_subject'):
                 queryset = queryset.filter(project_subject__in=filterform.cleaned_data['project_subject'])
+            queryset = queryset.distinct()
         else:
             print 'Invalid filters! %s' % filterform.errors
     paginator = Paginator(queryset, 9)
