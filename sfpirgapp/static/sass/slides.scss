@@ -6,7 +6,7 @@
 .menu-slideshow {
   position: relative;
   overflow: hidden;
-  max-height: 330px;
+  height: 330px;
 
   .button-more {
     position: absolute;
@@ -243,6 +243,7 @@
 
 @media only screen and (max-width: $mobile-breakpoint) {
 .menu-slideshow {
+	max-height: 330px;
   .cycle-overlay {
     div {
       display: none;
