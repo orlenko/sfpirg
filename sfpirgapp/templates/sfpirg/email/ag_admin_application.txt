@@ -4,27 +4,26 @@ You have received a new Action Group application. See below.
 
 -------------------------------
 
-Action Group: {{ actiongroup.title }} - http://{{ request.META.HTTP_HOST }}{{ actiongroup.get_absolute_url }}
+Action Group: {{ actiongroup.title }}
+
+Main Contact Person: {{ actiongroup.contact_person }}
+
+Email: {{ actiongroup.contact_email }}
+
+Phone: {{ actiongroup.contact_phone }}
+
+Desired email address for Action Group: {{ actiongroup.group_email }}
+
+General Basis of Unity / Objective: {{ actiongroup.basis_of_unity|striptags }}
+
+Main Goal(s): {{ actiongroup.goals|striptags }}
+
+Plans and Timeline: {{ actiongroup.timeline|striptags }}
 
 Description:  {{ actiongroup.content|striptags }}
 
-Announcements: {{ actiongroup.announcements|striptags }}
+Potential members of your group: {{ actiongroup.potential_members|striptags }}
 
-Meetings: {{ actiongroup.meetings|striptags }}
-
-Contact Email: {{ actiongroup.contact_email|striptags }}
-
-Contact Phone: {{ actiongroup.contact_phone|striptags }}
-
-Links: {{ actiongroup.links|striptags }}
-
-Facebook: {{ actiongroup.facebook_url }}
-
-Twitter: {{ actiongroup.twitter }}
-
-Google+: {{ actiongroup.google_plus_url }}
-
-Mailing List: {{ actiongroup.mailing_list_url }}
 
 -------------------------------
 

@@ -4,25 +4,23 @@ Thank you for submitting an Action Group application! Please print out a copy fo
 
 Action Group: {{ actiongroup.title }}
 
+Main Contact Person: {{ actiongroup.contact_person }}
+
+Email: {{ actiongroup.contact_email }}
+
+Phone: {{ actiongroup.contact_phone }}
+
+Desired email address for Action Group: {{ actiongroup.group_email }}
+
+General Basis of Unity / Objective: {{ actiongroup.basis_of_unity|striptags }}
+
+Main Goal(s): {{ actiongroup.goals|striptags }}
+
+Plans and Timeline: {{ actiongroup.timeline|striptags }}
+
 Description:  {{ actiongroup.content|striptags }}
 
-Announcements: {{ actiongroup.announcements|striptags }}
-
-Meetings: {{ actiongroup.meetings|striptags }}
-
-Contact Email: {{ actiongroup.contact_email|striptags }}
-
-Contact Phone: {{ actiongroup.contact_phone|striptags }}
-
-Links: {{ actiongroup.links|striptags }}
-
-Facebook: {{ actiongroup.facebook_url }}
-
-Twitter: {{ actiongroup.twitter }}
-
-Google+: {{ actiongroup.google_plus_url }}
-
-Mailing List: {{ actiongroup.mailing_list_url }}
+Potential members of your group: {{ actiongroup.potential_members|striptags }}
 
 
 Your application will now go to SFPIRG’s Board of Directors for consideration. Please bear with us as this can take a few weeks. We will get back to you with a decision as soon as we can.

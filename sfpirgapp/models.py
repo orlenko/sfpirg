@@ -122,6 +122,15 @@ class ActionGroupRequest(models.Model):
         help_text='Would you like to be added to our mailing list to receive periodic information about social and environmental justice happenings on and off campus?')
     is_processed = models.BooleanField('Request already processed', default=False)
 
+    @property
+    def content(self):
+        parts = []
+        if self.oneliner:
+            parts.append(self.oneliner)
+        if self.twoliner:
+            parts.append(self.twoliner)
+        return '\n'.join(parts)
+
 
 class ActionGroup(PageLike, Ownable):
     parent = None # To make it compatible with the side_menu template
